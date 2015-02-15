@@ -16,7 +16,30 @@ Route::get('/', [
   'uses' => 'HomeController@index'
 ]);
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+/**
+ * User
+ */
+
+Route::get('/register', [
+  'as' => 'register',
+  'uses' => 'UsersController@create'
+]);
+
+Route::get('/user', [
+  'as' => 'user-index',
+  'uses' => 'UsersController@index'
+]);
+
+Route::get('user/{id}', [
+  'as' => 'user-show',
+  'uses' => 'UsersController@show'
+]);
+
+/**
+ * Session
+ */
+
+Route::get('/login', [
+  'as' => 'login',
+  'uses' => 'SessionsController@create'
 ]);
