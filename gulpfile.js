@@ -20,6 +20,8 @@ elixir(function(mix) {
   mix.copy('bower_components/bootstrap/dist/css/bootstrap.css', 'public/css/vendor/bootstrap.css');
   mix.copy('bower_components/jquery/dist/jquery.js', 'public/js/vendor/jquery.js');
   mix.copy('bower_components/bootstrap/dist/js/bootstrap.js', 'public/js/vendor/bootstrap.js');
+  mix.copy('bower_components/fontawesome/fonts', 'public/css/fonts');
+  mix.copy('bower_components/fontawesome/css/font-awesome.min.css', 'public/css/vendor/font-awesome.min.css');
 
   mix.styles([                        // concat styles
     'vendor/normalize.css',
