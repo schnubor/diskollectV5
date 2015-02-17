@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use Auth;
 use App\Http\Requests;
+use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -32,22 +34,11 @@ class SessionsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(LoginRequest $request)
 	{
-		$validator = Validator::make(Input::all(),[
-			'username' => 'required',
-			'password' => 'required'
-		]);
-
-		if($validator->fails()){
-			return Redirect::back()
-				->withErrors($validator)
-				->withInput();
-		}
-
-		if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password'))))
+		if (Auth::attempt($request->only('username', 'password')))
 		{
-		  return Redirect::intended('/');
+		  return redirect()->intended(route('home'));
 		}
 	}
 

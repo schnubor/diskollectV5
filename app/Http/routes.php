@@ -26,12 +26,12 @@ Route::get('/register', [
 ]);
 
 Route::get('/user', [
-  'as' => 'user-index',
+  'as' => 'user.index',
   'uses' => 'UsersController@index'
 ]);
 
 Route::get('user/{id}', [
-  'as' => 'user-show',
+  'as' => 'user.show',
   'uses' => 'UsersController@show'
 ]);
 
@@ -42,4 +42,9 @@ Route::get('user/{id}', [
 Route::get('/login', [
   'as' => 'login',
   'uses' => 'SessionsController@create'
+]);
+
+Route::post('/login', [
+  'as' => 'post.login',
+  'uses' => 'SessionsController@store'
 ]);
