@@ -81,10 +81,10 @@ class SessionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
 		Auth::logout();
-		return Redirect::route('home');
+		return redirect()->route('home');
 	}
 
 }

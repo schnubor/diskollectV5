@@ -22,7 +22,8 @@ Route::get('/', [
 
 Route::get('/register', [
   'as' => 'register',
-  'uses' => 'UsersController@create'
+  'uses' => 'UsersController@create',
+  'middleware' => 'guest'
 ]);
 
 Route::get('/user', [
@@ -41,10 +42,18 @@ Route::get('user/{id}', [
 
 Route::get('/login', [
   'as' => 'login',
-  'uses' => 'SessionsController@create'
+  'uses' => 'SessionsController@create',
+  'middleware' => 'guest'
 ]);
 
 Route::post('/login', [
   'as' => 'post.login',
-  'uses' => 'SessionsController@store'
+  'uses' => 'SessionsController@store',
+  'middleware' => 'guest'
+]);
+
+Route::get('/logout', [
+  'as' => 'get.logout',
+  'uses' => 'SessionsController@destroy',
+  'middleware' => 'auth'
 ]);
