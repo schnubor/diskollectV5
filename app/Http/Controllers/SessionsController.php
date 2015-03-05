@@ -36,7 +36,9 @@ class SessionsController extends Controller {
 	 */
 	public function store(LoginRequest $request)
 	{
-		if (Auth::attempt($request->only('username', 'password')))
+		$remember = ($request->has('remember')) ? true : false; // set remember cookie
+		
+		if (Auth::attempt($request->only('username', 'password'), $remember))
 		{
 		  return redirect()->intended(route('home'));
 		}

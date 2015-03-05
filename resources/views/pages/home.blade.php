@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('title')
+  Diskollect
+@endsection
+
 @section('content')
 	<div class="jumbotron" style="margin-top: -50px;">
 		<div class="container">

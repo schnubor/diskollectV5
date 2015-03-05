@@ -2,6 +2,7 @@
 
 use App\User;
 use App\Http\Requests;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class UsersController extends Controller {
 	 */
 	public function create()
 	{
-		return "register";
+		return view('auth.register');
 	}
 
 	/**
@@ -33,9 +34,25 @@ class UsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(RegisterRequest $request)
 	{
-		//
+		// Create account
+		$email 		= $request->input('email');
+		$username = $request->input('username');
+		$password = $request->input('password');
+		$currency = $request->input('currency');
+
+		/*$user = User::create(array(
+			'email' => $email,
+			'username' => e($username),
+			'image' => e(USER_PH_PATH),
+			'currency' => $currency,
+			'password' => Hash::make($password),
+			'code' => null,
+			'active' => 0
+		));*/
+
+		return "yo";
 	}
 
 	/**

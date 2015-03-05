@@ -26,6 +26,12 @@ Route::get('/register', [
   'middleware' => 'guest'
 ]);
 
+Route::post('/register', [
+  'as' => 'post.register',
+  'uses' => 'UsersController@store',
+  'middleware' => 'guest'
+]);
+
 Route::get('/user', [
   'as' => 'user.index',
   'uses' => 'UsersController@index'

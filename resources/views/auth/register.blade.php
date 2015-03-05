@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('title')
+	Register
+@endsection
+
 @section('content')
 <div class="container-fluid">
 	<div class="row">
@@ -18,7 +22,7 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="/auth/register">
+					<form class="form-horizontal" role="form" method="POST" action="{{ route('post.register') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
@@ -34,6 +38,13 @@
 								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
 						</div>
+
+						<div class="form-group">
+	            <label for="currency" class="col-sm-4 control-label">Currency</label>
+	            <div class="col-md-6">
+	              <select class="form-control" id="currency" name="currency"><option value="EUR" selected="selected">€ - Euro</option><option value="USD">$ - United States Dollar</option><option value="GBP">£ - Great Britain Pound</option></select>
+	            </div>
+	          </div>
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">Password</label>
