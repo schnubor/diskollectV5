@@ -52,7 +52,9 @@ class UsersController extends Controller {
 			'active' => 0
 		));*/
 
-		return "yo";
+		if($user){
+			return redirect()->route('home');
+		}
 	}
 
 	/**
