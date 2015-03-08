@@ -47,8 +47,7 @@ class UsersController extends Controller {
 		$user = User::create(array(
 			'email' => $email,
 			'username' => e($username),
-			//'image' => e(USER_PH_PATH), // TODO: set standard user image
-			'image' => '-',
+			'image' => config('constants.USER_PH_PATH'),
 			'currency' => $currency,
 			'password' => bcrypt($password),
 			'code' => $code,
