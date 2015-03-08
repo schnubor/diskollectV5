@@ -42,15 +42,18 @@ class UsersController extends Controller {
 		$password = $request->input('password');
 		$currency = $request->input('currency');
 
-		/*$user = User::create(array(
+		$code = str_random(60);
+
+		$user = User::create(array(
 			'email' => $email,
 			'username' => e($username),
-			'image' => e(USER_PH_PATH),
+			//'image' => e(USER_PH_PATH), // TODO: set standard user image
+			'image' => '-',
 			'currency' => $currency,
-			'password' => Hash::make($password),
-			'code' => null,
+			'password' => bcrypt($password),
+			'code' => $code,
 			'active' => 0
-		));*/
+		));
 
 		if($user){
 			return redirect()->route('home');
