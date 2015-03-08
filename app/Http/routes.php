@@ -37,9 +37,14 @@ Route::get('/user', [
   'uses' => 'UsersController@index'
 ]);
 
-Route::get('user/{id}', [
+Route::get('/user/{id}', [
   'as' => 'user.show',
   'uses' => 'UsersController@show'
+]);
+
+Route::get('/activate/{code}', [
+  'as' => 'user.activate',
+  'uses' => 'UsersController@activate'
 ]);
 
 /**

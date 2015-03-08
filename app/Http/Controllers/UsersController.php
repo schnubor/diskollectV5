@@ -4,6 +4,7 @@ use App\User;
 use App\Http\Requests;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Controllers\Controller;
+use Mail;
 
 use Illuminate\Http\Request;
 
@@ -55,8 +56,43 @@ class UsersController extends Controller {
 		));
 
 		if($user){
+			Mail::send('emails.activation', [
+				'link' => route('user.activate', $code), 
+				'username' => $username
+			], function($message) use ($user){
+					$message->to($user->email, $user->username)->subject('Diskollect Account Activation');
+			});
+
 			return redirect()->route('home');
 		}
+	}
+
+	/**
+	 * Active User Account
+	 * GET /users/activate
+	 *
+	 * @return Response
+	 */
+
+	public function activate($code)
+	{
+		$user = User::where('code', '=', $code)->where('active', '=', 0);
+
+		if($user->count()){
+			$user = $user->first();
+
+			// Update user to active state
+
+			$user->active = 1;
+			$user->code = '';
+
+			if($user->save()){
+				return redirect()->route('login');	// TODO: Flash message
+			}
+		}
+
+		return redirect()->route('register');		// TODO: Flash message
+
 	}
 
 	/**

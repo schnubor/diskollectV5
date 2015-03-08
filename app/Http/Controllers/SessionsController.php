@@ -37,11 +37,20 @@ class SessionsController extends Controller {
 	public function store(LoginRequest $request)
 	{
 		$remember = ($request->has('remember')) ? true : false; // set remember cookie
-		
+
 		if (Auth::attempt($request->only('username', 'password'), $remember))
 		{
-		  return redirect()->intended(route('home'));
+			if(Auth::user()->active == 1){
+				return redirect()->intended(route('home'));
+			}
+			else{
+				Auth::logout();
+				return redirect()->route('login');	// TODO: Flash message -> not activated
+			}
+		  
 		}
+
+		return redirect()->route('login'); // TODO: Flash message -> something went wrong
 	}
 
 	/**
