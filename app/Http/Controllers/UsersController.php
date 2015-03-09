@@ -3,6 +3,7 @@
 use App\User;
 use App\Http\Requests;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\PasswordRequest;
 use App\Http\Controllers\Controller;
 use Mail;
 
@@ -137,6 +138,72 @@ class UsersController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	/**
+	 * Get lost password form
+	 */
+
+	public function getPassword(){
+		return view('auth.password');
+	}
+
+	/**
+	 * Email new password
+	 */
+
+	public function postPassword(PasswordRequest $request){
+		$email = $request->input('email');
+
+		$user = User::where('email', '=', $email);
+
+		if($user->count()){
+			$user = $user->first();
+
+			$username = $user->username;
+
+			$code = str_random(60);
+			$password = str_random(10);
+
+			$user->code = $code;
+			$user->password_temp = bcrypt($password);
+
+			if($user->save()){
+				Mail::send('emails.password', [
+					'link' => route('recover', $code),
+					'username' => $username,
+					'password' => $password
+				], function($message) use ($user){
+					$message->to($user->email, $user->username)->subject('Diskollect Password Recovery');
+				});
+
+				return redirect()->route('home'); // TODO: Flash message 'we have sent you an email'
+			}
+
+			return reidrect()->route('password'); // TODO: Flash message 'something went wrong'
+		}
+	}
+
+	/**
+	 * Recover password
+	 */
+
+	public function recover($code){
+		$user = User::where('code', '=', $code)->where('password_temp','!=','');
+
+		if($user->count()){
+			$user = $user->first();
+
+			$user->password = $user->password_temp;
+			$user->password_temp = '';
+			$user->code = '';
+
+			if($user->save()){
+				return redirect()->route('login'); // TODO: Flash message 'You may now login with your new password'
+			}
+
+			return redirect()->route('home'); // TODO: Flash message 'something went wrong'
+		}
 	}
 
 }

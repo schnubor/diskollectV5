@@ -47,6 +47,24 @@ Route::get('/activate/{code}', [
   'uses' => 'UsersController@activate'
 ]);
 
+Route::get('/password/email', [
+  'as' => 'password',
+  'uses' => 'UsersController@getPassword',
+  'middleware' => 'guest'
+]);
+
+Route::post('/password/email', [
+  'as' => 'post.password',
+  'uses' => 'UsersController@postPassword',
+  'middleware' => 'guest'
+]);
+
+Route::get('/password/recover/{code}', [
+  'as' => 'recover',
+  'uses' => 'UsersController@recover',
+  'middleware' => 'guest'
+]);
+
 /**
  * Session
  */
