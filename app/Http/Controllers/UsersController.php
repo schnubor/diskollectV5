@@ -64,8 +64,12 @@ class UsersController extends Controller {
 					$message->to($user->email, $user->username)->subject('Diskollect Account Activation');
 			});
 
+			flash()->success('Almost done! Please check your emails in order to activate your account.');
 			return redirect()->route('home');
 		}
+
+		flash()->error('Sorry! Please try again.');
+		return redirect()->route('home');
 	}
 
 	/**
@@ -88,11 +92,13 @@ class UsersController extends Controller {
 			$user->code = '';
 
 			if($user->save()){
-				return redirect()->route('login');	// TODO: Flash message
+				flash()->success('Your account has been activated! You may now sign in.');
+				return redirect()->route('login');
 			}
 		}
 
-		return redirect()->route('register');		// TODO: Flash message
+		flash()->error('Sorry! Please try again.');
+		return redirect()->route('register');
 
 	}
 
@@ -177,10 +183,12 @@ class UsersController extends Controller {
 					$message->to($user->email, $user->username)->subject('Diskollect Password Recovery');
 				});
 
-				return redirect()->route('home'); // TODO: Flash message 'we have sent you an email'
+				flash()->info('We have sent you an email with your new password.');
+				return redirect()->route('home');
 			}
 
-			return reidrect()->route('password'); // TODO: Flash message 'something went wrong'
+			flash()->error('Sorry! Please try again.');
+			return reidrect()->route('password');
 		}
 	}
 
@@ -199,10 +207,12 @@ class UsersController extends Controller {
 			$user->code = '';
 
 			if($user->save()){
-				return redirect()->route('login'); // TODO: Flash message 'You may now login with your new password'
+				flash()->info('You may now log in with your new password.');
+				return redirect()->route('login');
 			}
 
-			return redirect()->route('home'); // TODO: Flash message 'something went wrong'
+			flash()->error('Sorry! Please try again.');
+			return redirect()->route('home');
 		}
 	}
 

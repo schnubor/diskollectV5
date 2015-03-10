@@ -41,16 +41,22 @@ class SessionsController extends Controller {
 		if (Auth::attempt($request->only('username', 'password'), $remember))
 		{
 			if(Auth::user()->active == 1){
+				flash()->success('Welcome back!');
 				return redirect()->intended(route('home'));
 			}
 			else{
 				Auth::logout();
-				return redirect()->route('login');	// TODO: Flash message -> not activated
+				flash()->warning('Your account is not activated. Please check your emails.');
+				return redirect()->route('login');
 			}
-		  
+		}
+		else{
+			flash()->error('Wrong password.');
+			return redirect()->route('login');
 		}
 
-		return redirect()->route('login'); // TODO: Flash message -> something went wrong
+		flash()->error('Sorry! Please try again.');
+		return redirect()->route('login');
 	}
 
 	/**
@@ -95,6 +101,7 @@ class SessionsController extends Controller {
 	public function destroy()
 	{
 		Auth::logout();
+		flash()->info('You are now signed out.');
 		return redirect()->route('home');
 	}
 
