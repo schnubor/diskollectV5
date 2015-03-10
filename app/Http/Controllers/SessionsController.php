@@ -41,7 +41,7 @@ class SessionsController extends Controller {
 		if (Auth::attempt($request->only('username', 'password'), $remember))
 		{
 			if(Auth::user()->active == 1){
-				flash()->success('Welcome back!');
+				flash()->success('Welcome back '.Auth::user()->username.'!');
 				return redirect()->intended(route('home'));
 			}
 			else{
