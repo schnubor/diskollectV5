@@ -65,6 +65,19 @@ Route::get('/password/recover/{code}', [
   'middleware' => 'guest'
 ]);
 
+Route::get('/password/edit', [
+  'as' => 'get.edit.password',
+  'uses' => 'UsersController@getEditPassword',
+  'middleware' => 'auth'
+]);
+
+
+Route::post('/password/edit', [
+  'as' => 'post.edit.password',
+  'uses' => 'UsersController@postEditPassword',
+  'middleware' => 'auth'
+]);
+
 /**
  * Session
  */

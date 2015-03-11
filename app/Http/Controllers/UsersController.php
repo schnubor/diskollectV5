@@ -4,8 +4,11 @@ use App\User;
 use App\Http\Requests;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Http\Requests\EditPasswordRequest;
 use App\Http\Controllers\Controller;
 use Mail;
+use Hash;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -97,7 +100,7 @@ class UsersController extends Controller {
 			}
 		}
 
-		flash()->error('Sorry! Please try again.');
+		flash()->error('User not found.');
 		return redirect()->route('register');
 
 	}
@@ -151,7 +154,7 @@ class UsersController extends Controller {
 	 */
 
 	public function getPassword(){
-		return view('auth.password');
+		return view('user.password');
 	}
 
 	/**
@@ -190,6 +193,9 @@ class UsersController extends Controller {
 			flash()->error('Sorry! Please try again.');
 			return reidrect()->route('password');
 		}
+
+		flash()->error('User not found.');
+		return redirect()->route('home');
 	}
 
 	/**
@@ -214,6 +220,43 @@ class UsersController extends Controller {
 			flash()->error('Sorry! Please try again.');
 			return redirect()->route('home');
 		}
+
+		flash()->error('User not found.');
+		return redirect()->route('home');
+	}
+
+	/**
+	 * GET edit password form
+	 **/
+
+	public function getEditPassword(){
+		return view('user.password');
+	}
+
+	/**
+	 * POST edit password form
+	 **/
+
+	public function postEditPassword(EditPasswordRequest $request){
+		$user = User::find(Auth::user()->id);
+
+		$old = $request->input('old');
+		$new = $request->input('new');
+
+		if(Hash::check($old, $user->getAuthPassword())){
+			$user->password = bcrypt($new);
+
+			if($user->save()){
+				flash()->success('You successfully changed your password.');
+				return redirect()->route('home');
+			}
+
+			flash()->error('Sorry! Please try again.');
+			return redirect()->route('home');
+		}
+
+		flash()->error('Wrong password.');
+		return redirect()->route('get.edit.password');
 	}
 
 }

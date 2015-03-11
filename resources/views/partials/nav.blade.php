@@ -25,7 +25,7 @@
             <span class="profilePic" style="background-image: url('{{ Auth::user()->image }}')"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href=""><i class="fa fa-fw fa-pencil"></i> Edit profile</a></li>
-              <li><a href=""><i class="fa fa-fw fa-lock"></i> Change password</a></li>
+              <li><a href="{{ route('get.edit.password') }}"><i class="fa fa-fw fa-lock"></i> Change password</a></li>
               <li class="divider"></li>
               <li><a href="{{ route('get.logout') }}"><i class="fa fa-fw fa-sign-out"></i> Sign out</a></li>
             </ul>
