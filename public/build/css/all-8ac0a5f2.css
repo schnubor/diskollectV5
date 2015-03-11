@@ -6993,5 +6993,12 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 
-#home {
-  color: red; }
+.navbar .profilePic {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 5px; }
