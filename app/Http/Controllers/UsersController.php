@@ -154,7 +154,7 @@ class UsersController extends Controller {
 	 */
 
 	public function getPassword(){
-		return view('user.password');
+		return view('user.recover');
 	}
 
 	/**
