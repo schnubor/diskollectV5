@@ -7002,3 +7002,11 @@ button.close {
   background-repeat: no-repeat;
   vertical-align: middle;
   margin-right: 5px; }
+
+.panel-body .avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 70px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 20px; }

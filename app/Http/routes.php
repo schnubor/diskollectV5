@@ -42,6 +42,18 @@ Route::get('/user/{id}', [
   'uses' => 'UsersController@show'
 ]);
 
+Route::get('/user/{id}/edit', [
+  'as' => 'get.edit.user',
+  'uses' => 'UsersController@edit',
+  'middleware' => 'auth'
+]);
+
+Route::post('/user/{id}/edit', [
+  'as' => 'post.edit.user',
+  'uses' => 'UsersController@update',
+  'middleware' => 'auth'
+]);
+
 Route::get('/activate/{code}', [
   'as' => 'user.activate',
   'uses' => 'UsersController@activate'
@@ -72,7 +84,7 @@ Route::get('/password/edit', [
 ]);
 
 
-Route::post('/password/edit', [
+Route::post('/password/edite', [
   'as' => 'post.edit.password',
   'uses' => 'UsersController@postEditPassword',
   'middleware' => 'auth'

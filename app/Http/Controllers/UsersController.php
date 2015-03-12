@@ -124,7 +124,8 @@ class UsersController extends Controller {
 	 */
 	public function edit($id)
 	{
-		return "edit user";
+		$user = User::findOrFail($id);
+		return view('user.edit');
 	}
 
 	/**
