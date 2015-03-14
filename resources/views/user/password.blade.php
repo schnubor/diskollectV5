@@ -28,38 +28,36 @@
               </div>
             @endif
 
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('post.edit.password') }}">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            {!! Form::open([ 'route' => 'post.edit.password', 'class' => 'form-horizontal']) !!}
 
               <div class="form-group">
-                <label class="col-md-4 control-label">Current password</label>
+                {!! Form::label('old', 'Current password', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                  <input type="password" class="form-control" name="old" value="">
+                  {!! Form::password('old', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-md-4 control-label">New password</label>
+                {!! Form::label('new', 'New password', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                  <input type="password" class="form-control" name="new" value="">
+                  {!! Form::password('new', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-md-4 control-label">New password again</label>
+                {!! Form::label('confirm', 'Current password again', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                  <input type="password" class="form-control" name="confirm" value="">
+                  {!! Form::password('confirm', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                  <button type="submit" class="btn btn-primary">
-                    Edit password
-                  </button>
+                  {!! Form::submit('Edit password', array('class' => 'btn btn-md btn-primary pull-right')) !!}
                 </div>
               </div>
-            </form>
+
+            {!! Form::close() !!}
           </div>
         </div>
       </div>

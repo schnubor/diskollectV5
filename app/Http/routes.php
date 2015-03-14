@@ -84,7 +84,7 @@ Route::get('/password/edit', [
 ]);
 
 
-Route::post('/password/edite', [
+Route::post('/password/edit', [
   'as' => 'post.edit.password',
   'uses' => 'UsersController@postEditPassword',
   'middleware' => 'auth'

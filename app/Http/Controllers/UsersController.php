@@ -137,7 +137,7 @@ class UsersController extends Controller {
 	public function update(EditProfileRequest $request)
 	{
 		$user = User::findOrFail(Auth::user()->id);
-		
+
 		if($request->hasFile('avatar')){
 			$path = public_path() . '/images/users';
 			$file = $request->file('avatar');
@@ -152,7 +152,7 @@ class UsersController extends Controller {
 		$user->currency = $request->input('currency');
 
 		if($user->save()){
-			flash()->success('Profile updated');
+			flash()->success('Profile updated successfully!');
 			return redirect()->route('home');
 		}
 

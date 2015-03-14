@@ -22,20 +22,19 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ route('post.login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					{!! Form::open([ 'route' => 'post.login', 'class' => 'form-horizontal']) !!}
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Username</label>
+							{!! Form::label('username', 'Username', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="username" value="{{ old('username') }}">
+								{!! Form::text('username', Input::old('username'), ['class' => 'form-control']) !!}
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
+							{!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
+								{!! Form::password('password', ['class' => 'form-control']) !!}
 							</div>
 						</div>
 
@@ -51,14 +50,12 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" style="margin-right: 15px;">
-									Login
-								</button>
+								{!! Form::submit('Login', array('class' => 'btn btn-md btn-primary')) !!}
 
 								<a href="/password/email">Forgot Your Password?</a>
 							</div>
 						</div>
-					</form>
+					{!! Form::close() !!}
 				</div>
 			</div>
 		</div>
