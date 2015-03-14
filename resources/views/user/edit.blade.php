@@ -30,63 +30,68 @@
           @endif
           
           <div class="row">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('post.edit.user', Auth::user()->id) }}" enctype="multipart/form-data">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            {!! Form::model(Auth::user(), ['route' => array('post.edit.user', Auth::user()->id), 'files' => true, 'class' => 'form-horizontal']) !!}
 
+              <!-- Avatar -->
               <div class="form-group">
-                <label class="col-md-4 control-label">Avatar</label>
+                {!! Form::label('avatar', 'Avatar', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                  <input type="file" class="form-control" name="avatar">
+                  {!! Form::file('avatar', ['class' => 'form-control']) !!}
                 </div>
               </div>
 
+              <!-- Full name -->
               <div class="form-group">
-                <label class="col-md-4 control-label">Full name</label>
+                {!! Form::label('name', 'Full name', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" placeholder="optional">
+                  {!! Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
                 </div>
               </div>
 
+              <!-- Location -->
               <div class="form-group">
-                <label class="col-md-4 control-label">Location</label>
+                {!! Form::label('location', 'Location', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="location" value="{{ Auth::user()->location }}" placeholder="optional">
+                  {!! Form::text('location', Input::old('location'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
                 </div>
               </div>
 
+              <!-- Website -->
               <div class="form-group">
-                <label class="col-md-4 control-label">Website</label>
+                {!! Form::label('website', 'Website', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="website" value="{{ Auth::user()->website }}" placeholder="optional">
+                  {!! Form::text('website', Input::old('website'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
                 </div>
               </div>
 
+              <!-- Description -->
               <div class="form-group">
-                <label class="col-md-4 control-label">Description</label>
+                {!! Form::label('description', 'Description', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="description" value="{{ Auth::user()->description }}" placeholder="optional">
+                  {!! Form::text('description', Input::old('description'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
                 </div>
               </div>
 
+              <!-- Currency -->
               <div class="form-group">
-                <label class="col-md-4 control-label">Currency</label>
+                {!! Form::label('name', 'Full name', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                  <select class="form-control" id="currency" name="currency">
-                    <option value="EUR" selected="selected">€ - Euro</option>
-                    <option value="USD">$ - United States Dollar</option>
-                    <option value="GBP">£ - Great Britain Pound</option>
-                  </select>
+                  {!! Form::select('currency', [
+                    'EUR' => '&euro; - Euro', 
+                    'USD' => '&#36; - United States Dollar', 
+                    'GBP' => '&pound; - Great Britain Pound'
+                  ], 'EUR', ['class' => 'form-control']) !!}
                 </div>
               </div>
 
+              <!-- Submit -->
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                  <button type="submit" class="btn btn-primary">
-                    Update profile
-                  </button>
+                  {!! Form::submit('Update Profile', array('class' => 'btn btn-md btn-primary pull-right')) !!}
                 </div>
               </div>
-            </form>
+            {!! Form::close() !!}
+
           </div>
         </div>
       </div>
