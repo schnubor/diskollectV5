@@ -74,13 +74,13 @@
 
               <!-- Currency -->
               <div class="form-group">
-                {!! Form::label('name', 'Full name', ['class' => 'col-md-4 control-label']) !!}
+                {!! Form::label('currency', 'Currency', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
                   {!! Form::select('currency', [
                     'EUR' => '&euro; - Euro', 
                     'USD' => '&#36; - United States Dollar', 
                     'GBP' => '&pound; - Great Britain Pound'
-                  ], 'EUR', ['class' => 'form-control']) !!}
+                  ], Auth::user()->currency, ['class' => 'form-control']) !!}
                 </div>
               </div>
 
