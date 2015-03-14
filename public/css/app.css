@@ -1,10 +1,19 @@
-.navbar .profilePic {
+.avatar-big {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.navbar .avatar {
   display: inline-block;
   width: 20px;
   height: 20px;
   border-radius: 10px;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center center;
   vertical-align: middle;
   margin-right: 5px; }
 
