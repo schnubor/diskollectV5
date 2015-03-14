@@ -14,7 +14,7 @@
           
           <div class="row">
             <div class="col-md-4 col-md-offset-4">
-              <div class="avatar center-block" style="background-image: url('{{ Auth::user()->image}}');"></div>
+              <div class="avatar center-block" style="background-image: url('{{ Auth::user()->image }}');"></div>
             </div>
           </div>
 
@@ -30,7 +30,7 @@
           @endif
           
           <div class="row">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('post.edit.user') }}">
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('post.edit.user', Auth::user()->id) }}" enctype="multipart/form-data">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
               <div class="form-group">
@@ -41,30 +41,30 @@
               </div>
 
               <div class="form-group">
-                <label class="col-md-4 control-label">Name</label>
+                <label class="col-md-4 control-label">Full name</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                  <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" placeholder="optional">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-md-4 control-label">Location</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="location" value="{{ old('location') }}">
+                  <input type="text" class="form-control" name="location" value="{{ Auth::user()->location }}" placeholder="optional">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-md-4 control-label">Website</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="website" value="{{ old('website') }}">
+                  <input type="text" class="form-control" name="website" value="{{ Auth::user()->website }}" placeholder="optional">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-md-4 control-label">Description</label>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" name="description" value="{{ old('description') }}">
+                  <input type="text" class="form-control" name="description" value="{{ Auth::user()->description }}" placeholder="optional">
                 </div>
               </div>
 
@@ -82,7 +82,7 @@
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                   <button type="submit" class="btn btn-primary">
-                    Save changes
+                    Update profile
                   </button>
                 </div>
               </div>

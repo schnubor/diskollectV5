@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\EditPasswordRequest;
+use App\Http\Requests\EditProfileRequest;
 use App\Http\Controllers\Controller;
 use Mail;
 use Hash;
@@ -125,7 +126,7 @@ class UsersController extends Controller {
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
-		return view('user.edit');
+		return view('user.edit'); // TODO: make view with data
 	}
 
 	/**
@@ -134,9 +135,30 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, EditProfileRequest $request)
 	{
-		//
+		$user = User::findOrFail($id);
+		//dd($request->hasFile('avatar'));
+		if($request->hasFile('avatar')){
+			$path = public_path() . '/images/users';
+			$file = $request->file('avatar');
+			$filename = 'user_' . Auth::user()->id . '_' . $file->getClientOriginalName();
+			$file->move($path,$filename);
+			$user->image = '/images/users/' . $filename;
+		}
+		$user->name = $request->input('name');
+		$user->location = $request->input('location');
+		$user->website = $request->input('website');
+		$user->description = $request->input('description');
+		$user->currency = $request->input('currency');
+
+		if($user->save()){
+			flash()->success('Profile updated');
+			return redirect()->route('home');
+		}
+
+		flash()->error('Sorry! Please try again.');
+		return redirect()->route('home');
 	}
 
 	/**
