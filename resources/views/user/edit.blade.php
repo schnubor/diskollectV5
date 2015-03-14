@@ -30,7 +30,7 @@
           @endif
           
           <div class="row">
-            {!! Form::model(Auth::user(), ['route' => array('post.edit.user', Auth::user()->id), 'files' => true, 'class' => 'form-horizontal']) !!}
+            {!! Form::model(Auth::user(), ['route' => 'post.edit.user', 'files' => true, 'class' => 'form-horizontal']) !!}
 
               <!-- Avatar -->
               <div class="form-group">

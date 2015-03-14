@@ -37,21 +37,21 @@ Route::get('/user', [
   'uses' => 'UsersController@index'
 ]);
 
-Route::get('/user/{id}', [
-  'as' => 'user.show',
-  'uses' => 'UsersController@show'
-]);
-
-Route::get('/user/{id}/edit', [
+Route::get('/user/edit', [
   'as' => 'get.edit.user',
   'uses' => 'UsersController@edit',
   'middleware' => 'auth'
 ]);
 
-Route::post('/user/{id}/edit', [
+Route::post('/user/edit', [
   'as' => 'post.edit.user',
   'uses' => 'UsersController@update',
   'middleware' => 'auth'
+]);
+
+Route::get('/user/{id}', [
+  'as' => 'user.show',
+  'uses' => 'UsersController@show'
 ]);
 
 Route::get('/activate/{code}', [

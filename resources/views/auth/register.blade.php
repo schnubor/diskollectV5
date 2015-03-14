@@ -22,52 +22,53 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ route('post.register') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+					{!! Form::open([ 'route' => 'post.register', 'class' => 'form-horizontal']) !!}
 						<div class="form-group">
-							<label class="col-md-4 control-label">Username</label>
+							{!! Form::label('username', 'Username', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="username" value="{{ old('username') }}">
+								{!! Form::text('username', Input::old('username'), ['class' => 'form-control', 'placeholder' => 'Required']) !!}
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
+							{!! Form::label('email', 'E-Mail Adress', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+								{!! Form::text('email', Input::old('email'), ['class' => 'form-control', 'placeholder' => 'Required']) !!}
 							</div>
 						</div>
 
 						<div class="form-group">
-	            <label for="currency" class="col-sm-4 control-label">Currency</label>
+	            {!! Form::label('currency', 'Currency', ['class' => 'col-md-4 control-label']) !!}
 	            <div class="col-md-6">
-	              <select class="form-control" id="currency" name="currency"><option value="EUR" selected="selected">€ - Euro</option><option value="USD">$ - United States Dollar</option><option value="GBP">£ - Great Britain Pound</option></select>
+	              {!! Form::select('currency', [
+                    'EUR' => '&euro; - Euro', 
+                    'USD' => '&#36; - United States Dollar', 
+                    'GBP' => '&pound; - Great Britain Pound'
+                  ], 'EUR', ['class' => 'form-control']) !!}
 	            </div>
 	          </div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
+							{!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
+								{!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Confirm Password</label>
+							{!! Form::label('password_confirmation', 'Confirm password', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="password_confirmation">
+								{!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									Register
-								</button>
+								{!! Form::submit('Register', array('class' => 'btn btn-md btn-primary pull-right')) !!}
 							</div>
 						</div>
-					</form>
+					{!! Form::close() !!}
+
 				</div>
 			</div>
 		</div>

@@ -123,7 +123,7 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
 		return view('user.edit'); // TODO: make view with data
 	}
@@ -134,10 +134,10 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, EditProfileRequest $request)
+	public function update(EditProfileRequest $request)
 	{
-		$user = User::findOrFail($id);
-		//dd($request->hasFile('avatar'));
+		$user = User::findOrFail(Auth::user()->id);
+		
 		if($request->hasFile('avatar')){
 			$path = public_path() . '/images/users';
 			$file = $request->file('avatar');
