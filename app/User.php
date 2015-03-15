@@ -38,4 +38,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('Vinyl');
 	}
 
+	/**
+	 * Followers
+	 */
+	public function followers()
+	{
+	  return $this->belongsToMany('User', 'followers', 'follow_id', 'user_id')->withTimestamps();
+	}
+
+	/**
+	 * Following
+	 */
+	public function following(){
+		return this->belongsToMany('User', 'followers', 'user_id', 'follow_id')->withTimestamps();
+	}
+
 }

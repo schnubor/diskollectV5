@@ -18,4 +18,9 @@
       @endif
     </p>
   @endif
+  
+  <!-- Follow Button -->
+  @if(! Auth::check())
+    @include('user.partials.follow')
+  @endif
 </div>
