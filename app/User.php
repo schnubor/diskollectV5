@@ -43,14 +43,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function followers()
 	{
-	  return $this->belongsToMany('User', 'followers', 'follow_id', 'user_id')->withTimestamps();
+	  return $this->belongsToMany('App\User', 'followers', 'follow_id', 'user_id')->withTimestamps();
 	}
 
 	/**
 	 * Following
 	 */
 	public function following(){
-		return this->belongsToMany('User', 'followers', 'user_id', 'follow_id')->withTimestamps();
+		return $this->belongsToMany('App\User', 'followers', 'user_id', 'follow_id')->withTimestamps();
+	}
+
+	/**
+	 *
+	 */
+	public function isFollowedBy($otherUser){
+		$ids = $otherUser->following()->lists('follow_id');
+		return in_array($this->id, $ids);
 	}
 
 }

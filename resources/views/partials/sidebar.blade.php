@@ -20,7 +20,7 @@
   @endif
   
   <!-- Follow Button -->
-  @if(! Auth::check())
+  @unless(Auth::user()->id == $user->id)
     @include('user.partials.follow')
-  @endif
+  @endunless
 </div>

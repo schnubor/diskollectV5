@@ -101,7 +101,7 @@ Route::post('/follow', [
 ]);
 
 Route::delete('/unfollow/{id}', [
-  'as' => 'follow',
+  'as' => 'unfollow',
   'uses' => 'FollowsController@destroy',
   'middleware' => 'auth'
 ]);

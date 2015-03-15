@@ -2,8 +2,11 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\Http\Requests\FollowRequest;
+use App\User;
+use Auth;
+
 
 class FollowsController extends Controller {
 
@@ -12,9 +15,15 @@ class FollowsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(FollowRequest $request)
 	{
-		//
+		$user = User::find(Auth::user()->id);
+		$userToFollow = User::find($request->input('userIdToFollow'));
+
+		$user->following()->save($userToFollow);
+
+		flash()->success('You are now following '.$userToFollow->username.'.');
+		return redirect()->back();
 	}
 
 	/**
