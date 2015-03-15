@@ -91,6 +91,22 @@ Route::post('/password/edit', [
 ]);
 
 /**
+ * Follows
+ */
+
+Route::post('/follow', [
+  'as' => 'follow',
+  'uses' => 'FollowsController@store',
+  'middleware' => 'auth'
+]);
+
+Route::delete('/unfollow/{id}', [
+  'as' => 'follow',
+  'uses' => 'FollowsController@destroy',
+  'middleware' => 'auth'
+]);
+
+/**
  * Session
  */
 
