@@ -12,9 +12,10 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="">Collection</a></li>
+        <li><a href=""><i class="fa fa-fw fa-bar-chart"></i> Statistics</a></li>
+        <li><a href=""><i class="fa fa-fw fa-database"></i> Collection</a></li>
       </ul>
-
+      <a class="btn navbar-btn btn-primary" href=""><i class="fa fa-fw fa-plus"></i> Add Vinyl</a>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::guest())
           <li><a href="{{ route('login') }}"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>
