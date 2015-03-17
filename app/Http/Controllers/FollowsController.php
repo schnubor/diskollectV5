@@ -34,7 +34,11 @@ class FollowsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Auth::user()->following()->detach($id);
+
+		$user = User::find($id);
+		flash()->info('You unfollowed '.$user->username.'.');
+		return redirect()->back();
 	}
 
 }
