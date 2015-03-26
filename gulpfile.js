@@ -12,6 +12,7 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
+  mix.phpUnit();                      // run tests
   mix.sass('app.scss');               // compile sass
   mix.coffee();                       // compile coffeescript
 
