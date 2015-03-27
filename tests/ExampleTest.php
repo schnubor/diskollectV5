@@ -2,14 +2,13 @@
 
 class ExampleTest extends TestCase {
 
-	/**
-	 * A basic functional test example.
-	 *
-	 * @return void
-	 */
-	public function testBasicExample()
+	/** @test */
+	public function it_loads_the_login_page()
 	{
-		$this->visit('/');
+		$this->visit('/')
+				 ->click('Login')
+				 ->andSee('Username')
+				 ->onPage('login');
 	}
 
 }
