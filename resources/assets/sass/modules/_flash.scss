@@ -1,0 +1,10 @@
+.flash-message{
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  min-width: 300px;
+  transform: translate(-50%);
+  display: inline-block;
+  margin: 0 auto;
+  z-index: 1;
+}

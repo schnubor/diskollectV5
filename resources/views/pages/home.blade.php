@@ -41,7 +41,9 @@
       </div>
     </div>
     <div class="col-md-10">
-      <!-- Feed content -->
+      <div class="page-header">
+        <p class="h1">Feed</p>
+      </div>
     </div>
   @else
     <h1>Welcome</h1>
