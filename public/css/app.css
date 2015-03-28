@@ -50,7 +50,8 @@ a:hover {
     width: 20px; }
 
 .navbar {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  background-color: #111313; }
   .navbar .avatar {
     display: inline-block;
     vertical-align: middle;
@@ -71,28 +72,35 @@ a:hover {
   color: #f0f0f0; }
   .sidebar p.lead {
     margin-top: 15px; }
-  .sidebar .navigation a:hover {
-    text-decoration: none; }
-  .sidebar .navigation .button {
-    position: relative;
-    text-align: left;
-    height: 50px;
-    line-height: 50px;
-    color: #808080;
-    background-color: #25292A;
-    border-top: 1px solid #3E4545;
-    border-bottom: 1px solid #111313; }
-    .sidebar .navigation .button:hover, .sidebar .navigation .button.active {
-      background-color: #111313;
-      border-top: 1px solid #010101; }
-    .sidebar .navigation .button.active .triangle {
-      position: absolute;
-      top: 17px;
-      right: -8px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 7.5px 0 7.5px 8px;
-      border-color: transparent transparent transparent #111313; }
-    .sidebar .navigation .button i {
-      margin: 0 15px; }
+  .sidebar hr {
+    border-top: 1px solid #3E4545; }
+  .sidebar .navigation {
+    margin-bottom: 20px; }
+    .sidebar .navigation a:hover {
+      text-decoration: none; }
+    .sidebar .navigation .button {
+      position: relative;
+      text-align: left;
+      height: 50px;
+      line-height: 50px;
+      color: #808080;
+      background-color: #25292A;
+      border-top: 1px solid #3E4545;
+      border-bottom: 1px solid #111313; }
+      .sidebar .navigation .button:hover, .sidebar .navigation .button.active {
+        background-color: #111313;
+        border-top: 1px solid #010101; }
+      .sidebar .navigation .button.active .triangle {
+        display: block;
+        position: absolute;
+        top: 17px;
+        right: -8px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7.5px 0 7.5px 8px;
+        border-color: transparent transparent transparent #111313; }
+      .sidebar .navigation .button .triangle {
+        display: none; }
+      .sidebar .navigation .button i {
+        margin: 0 15px; }

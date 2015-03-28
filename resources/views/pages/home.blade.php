@@ -21,6 +21,7 @@
           <div class="button">
             <i class="fa fa-fw fa-database blue"></i>
             <span>Collection</span>
+            <div class="triangle"></div>
           </div>
         </a>
         <a href="">
@@ -34,6 +35,7 @@
           <div class="button">
             <i class="fa fa-fw fa-music purple"></i>
             <span>Jukebox</span>
+            <div class="triangle"></div>
           </div>
         </a>
       </div>
