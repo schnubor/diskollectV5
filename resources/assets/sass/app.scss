@@ -4,9 +4,15 @@
 @import 'base/variables';
 @import 'base/mixins';
 
+// Layout Styles
+// ---------------------------------
+
+@import 'layout/general';
+
 // Modules
 // ---------------------------------
 
 @import 'modules/general';
 @import 'modules/navigation';
 @import 'modules/panel';
+@import 'modules/sidebar';

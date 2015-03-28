@@ -1,0 +1,36 @@
+html, body{
+  height: 100%;
+}
+
+body{
+  background-color: $white;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+.orange{
+  color: $orange;
+}
+.orange-bg{
+  background-color: $orange;
+}
+.blue{
+  color: $blue;
+}
+.blue-bg{
+  background-color: $blue;
+}
+.green{
+  color: $green;
+}
+.green-bg{
+  background-color: $green;
+}
+.purple{
+  color: $purple;
+}
+.purple-bg{
+  background-color: $purple;
+}

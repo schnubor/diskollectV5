@@ -1,0 +1,49 @@
+.sidebar{
+  background-color: $grey;
+  min-height: 100%;
+  padding: 20px 0;
+  color: #f0f0f0;
+
+  p.lead{
+    margin-top: 15px;
+  }
+
+  .navigation{
+    a:hover{
+      text-decoration: none;
+    }
+
+    .button{
+      position: relative;
+      text-align: left;
+      height: 50px;
+      line-height: 50px;
+      color: #808080;
+      background-color: $grey;
+      border-top: 1px solid $light-grey;
+      border-bottom: 1px solid $dark-grey;
+
+      &:hover, &.active{
+        background-color: $dark-grey;
+        border-top: 1px solid $darker-grey;
+      }
+
+      &.active{
+        .triangle{
+          position: absolute;
+          top: 17px;
+          right: -8px;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 7.5px 0 7.5px 8px;
+          border-color: transparent transparent transparent $dark-grey;
+        }
+      }
+
+      i{
+        margin: 0 15px;
+      }
+    }
+  }
+}

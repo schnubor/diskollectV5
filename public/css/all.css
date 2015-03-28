@@ -7011,24 +7011,63 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 
-.avatar-big {
-  height: 200px;
-  width: 200px;
+html, body {
+  height: 100%; }
+
+body {
+  background-color: #F0F0F0; }
+
+a:hover {
+  text-decoration: none; }
+
+.orange {
+  color: #E08447; }
+
+.orange-bg {
+  background-color: #E08447; }
+
+.blue {
+  color: #1E89B7; }
+
+.blue-bg {
+  background-color: #1E89B7; }
+
+.green {
+  color: #6EB85F; }
+
+.green-bg {
+  background-color: #6EB85F; }
+
+.purple {
+  color: #9D3F51; }
+
+.purple-bg {
+  background-color: #9D3F51; }
+
+.avatar {
   border-radius: 50%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center; }
+  .avatar.lg {
+    height: 200px;
+    width: 200px; }
+  .avatar.md {
+    height: 100px;
+    width: 100px; }
+  .avatar.sm {
+    height: 50px;
+    width: 50px; }
+  .avatar.tiny {
+    height: 20px;
+    width: 20px; }
 
-.navbar .avatar {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  vertical-align: middle;
-  margin-right: 5px; }
+.navbar {
+  margin-bottom: 0; }
+  .navbar .avatar {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px; }
 
 .panel-body .avatar {
   width: 140px;
@@ -7037,3 +7076,36 @@ button.close {
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 20px; }
+
+.sidebar {
+  background-color: #25292A;
+  min-height: 100%;
+  padding: 20px 0;
+  color: #f0f0f0; }
+  .sidebar p.lead {
+    margin-top: 15px; }
+  .sidebar .navigation a:hover {
+    text-decoration: none; }
+  .sidebar .navigation .button {
+    position: relative;
+    text-align: left;
+    height: 50px;
+    line-height: 50px;
+    color: #808080;
+    background-color: #25292A;
+    border-top: 1px solid #3E4545;
+    border-bottom: 1px solid #111313; }
+    .sidebar .navigation .button:hover, .sidebar .navigation .button.active {
+      background-color: #111313;
+      border-top: 1px solid #010101; }
+    .sidebar .navigation .button.active .triangle {
+      position: absolute;
+      top: 17px;
+      right: -8px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 7.5px 0 7.5px 8px;
+      border-color: transparent transparent transparent #111313; }
+    .sidebar .navigation .button i {
+      margin: 0 15px; }

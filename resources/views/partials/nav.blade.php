@@ -23,7 +23,7 @@
         @else
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            <span class="avatar" style="background-image: url('{{ Auth::user()->image }}')"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
+            <span class="avatar tiny" style="background-image: url('{{ Auth::user()->image }}')"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="{{ route('get.edit.user') }}"><i class="fa fa-fw fa-pencil"></i> Edit profile</a></li>
               <li><a href="{{ route('get.edit.password') }}"><i class="fa fa-fw fa-lock"></i> Change password</a></li>
