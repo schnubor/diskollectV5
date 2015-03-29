@@ -8,7 +8,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
+			<div class="panel panel-default margin-top">
 				<div class="panel-heading">Login</div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
@@ -58,6 +58,9 @@
 					{!! Form::close() !!}
 				</div>
 			</div>
+			<p class="lead text-center">
+				Don't have an account yet? <a href="{{route('register')}}">Sign up here!</a>
+			</p>
 		</div>
 	</div>
 </div>

@@ -8,7 +8,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
+			<div class="panel panel-default margin-top">
 				<div class="panel-heading">Register</div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
@@ -64,13 +64,15 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
-								{!! Form::submit('Register', array('class' => 'btn btn-md btn-primary pull-right')) !!}
+								{!! Form::submit('Register', array('class' => 'btn btn-lg btn-primary pull-right')) !!}
 							</div>
 						</div>
 					{!! Form::close() !!}
-
 				</div>
 			</div>
+			<p class="lead text-center">
+				Already have an account? <a href="{{route('login')}}">Sign in here!</a>
+			</p>
 		</div>
 	</div>
 </div>

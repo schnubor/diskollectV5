@@ -58,7 +58,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *	Vinyls
 	 */
 	public function vinyls(){
-		return $this->hasMany('Vinyl');
+		return $this->hasMany('App\Vinyl');
 	}
 
 

@@ -7,6 +7,7 @@
 // Layout Styles
 // ---------------------------------
 
+@import 'layout/content';
 @import 'layout/general';
 @import 'layout/welcome';
 
@@ -19,3 +20,5 @@
 @import 'modules/navigation';
 @import 'modules/panel';
 @import 'modules/sidebar';
+@import 'modules/toolbar';
+@import 'modules/vinyl';

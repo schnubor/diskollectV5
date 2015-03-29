@@ -15,8 +15,8 @@
         @else
           <div class="button">
         @endif
-          <i class="fa fa-fw fa-bars orange"></i>
-          <span>Feed</span>
+          <i class="fa fa-fw fa-th-large orange"></i>
+          <span>Dashboard</span>
           <div class="triangle"></div>
         </div>
       </a>

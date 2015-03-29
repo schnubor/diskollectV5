@@ -130,9 +130,11 @@ class UsersController extends Controller {
 	public function collection($id)
 	{
 		$user = User::findOrFail($id);
+		$vinyls = $user->vinyls()->get();
 
 		return view('user.collection')
-			->with('user', $user);
+			->with('user', $user)
+			->with('vinyls', $vinyls);
 	}
 
 	/**

@@ -7011,6 +7011,15 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 
+.content-area {
+  height: calc(100% - 51px); }
+
+.content {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  height: calc(100% - 60px);
+  overflow: scroll; }
+
 html, body {
   height: 100%;
   font-family: 'Raleway', sans-serif; }
@@ -7044,6 +7053,12 @@ a:hover {
 
 .purple-bg {
   background-color: #9D3F51; }
+
+.no-padding {
+  padding: 0; }
+
+.full-height {
+  height: 100%; }
 
 #welcome .header {
   background-image: url('/images/header_bg.jpg');
@@ -7090,7 +7105,8 @@ a:hover {
   padding-bottom: 50px;
   background-color: #25292A; }
   #welcome .counter span {
-    font-weight: bold; }
+    font-weight: normal;
+    font-size: 42px; }
 
 .btn {
   border-radius: 0; }
@@ -7130,7 +7146,8 @@ a:hover {
 
 .navbar {
   margin-bottom: 0;
-  background-color: #111313; }
+  background-color: #111313;
+  border-bottom: 0; }
   .navbar .avatar {
     display: inline-block;
     vertical-align: middle;
@@ -7148,9 +7165,12 @@ a:hover {
   background-size: cover;
   margin-bottom: 20px; }
 
+.panel.margin-top {
+  margin-top: 50px; }
+
 .sidebar {
   background-color: #25292A;
-  min-height: 100%;
+  min-height: calc(100% - 51px);
   padding: 20px 0;
   color: #f0f0f0; }
   .sidebar p.lead {
@@ -7189,3 +7209,16 @@ a:hover {
         display: none; }
       .sidebar .navigation .button i {
         margin: 0 15px; }
+
+.toolbar {
+  background-color: #839393;
+  color: #F0F0F0;
+  padding: 20px 15px; }
+
+.vinyl .cover img {
+  width: 100%; }
+.vinyl .info {
+  margin-top: 8px;
+  margin-bottom: 30px; }
+  .vinyl .info .artist {
+    font-weight: bold; }
