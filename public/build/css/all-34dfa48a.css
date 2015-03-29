@@ -7012,7 +7012,8 @@ button.close {
 /*# sourceMappingURL=bootstrap.css.map */
 
 html, body {
-  height: 100%; }
+  height: 100%;
+  font-family: 'Raleway', sans-serif; }
 
 body {
   background-color: #F0F0F0; }
@@ -7043,6 +7044,20 @@ a:hover {
 
 .purple-bg {
   background-color: #9D3F51; }
+
+.header {
+  background-image: url('/images/header_bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 40px 0;
+  height: 400px;
+  color: #F0F0F0; }
+  .header h1 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 4em;
+    margin-top: 100px; }
 
 .flash-message {
   position: fixed;
