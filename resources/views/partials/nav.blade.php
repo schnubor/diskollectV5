@@ -11,11 +11,12 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <a class="btn navbar-btn btn-primary" href=""><i class="fa fa-fw fa-plus"></i> Add Vinyl</a>
+      @if(Auth::check())
+        <a class="btn navbar-btn btn-primary" href=""><i class="fa fa-fw fa-plus"></i> Add Vinyl</a>
+      @endif
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::guest())
           <li><a href="{{ route('login') }}"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>
-          <li><a href="{{ route('register') }}"><i class="fa fa-fw fa-edit"></i> Register</a></li>
         @else
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

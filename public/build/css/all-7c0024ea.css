@@ -7058,6 +7058,25 @@ a:hover {
     text-align: center;
     font-size: 4em;
     margin-top: 100px; }
+  .header h2 {
+    color: #839393;
+    text-align: center; }
+  .header .cta {
+    text-align: center;
+    margin-top: 110px; }
+    .header .cta .btn.btn-primary.btn-header {
+      border: 4px solid #F0F0F0;
+      border-color: #F0F0F0;
+      height: 70px;
+      width: 200px;
+      line-height: 40px;
+      background-color: #E08447; }
+
+.btn {
+  border-radius: 0; }
+  .btn.btn-primary {
+    background-color: #1E89B7;
+    border-color: #1E89B7; }
 
 .flash-message {
   position: fixed;

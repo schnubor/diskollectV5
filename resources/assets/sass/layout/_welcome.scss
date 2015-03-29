@@ -13,4 +13,24 @@
     font-size: 4em;
     margin-top: 100px;
   }
+
+  h2{
+    color: $lighter-grey;
+    text-align: center;
+  }
+
+  .cta{
+    text-align: center;
+    margin-top: 110px;
+
+    .btn.btn-primary.btn-header{
+      border: 4px solid $white;
+      border-color: $white;
+      height: 70px;
+      width: 200px;
+      line-height: 40px;
+      background-color: $orange;
+    }
+  }
+  
 }
