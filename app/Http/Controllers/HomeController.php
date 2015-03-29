@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use Auth;
+use App\User;
+use App\Vinyl;
 
 class HomeController extends Controller {
 
@@ -33,8 +35,13 @@ class HomeController extends Controller {
 	public function index()
 	{
 		$user = Auth::user();
+		$userCount = User::all()->count();
+		$vinylCount = Vinyl::all()->count();
+
 		return view('pages.home')
-			->with('user', $user);
+			->with('user', $user)
+			->with('userCount', $userCount)
+			->with('vinylCount', $vinylCount);
 	}
 
 }

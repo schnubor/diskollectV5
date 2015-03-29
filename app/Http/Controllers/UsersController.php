@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\User;
+use App\Vinyl;
 use App\Http\Requests;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\PasswordRequest;

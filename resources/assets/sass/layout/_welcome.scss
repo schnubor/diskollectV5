@@ -1,36 +1,67 @@
-.header{
-  background-image: url('/images/header_bg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  padding: 40px 0;
-  height: 400px;
-  color: $white;
+#welcome{
+  .header{
+    background-image: url('/images/header_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 40px 0;
+    height: 400px;
+    color: $white;
 
-  h1{
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 4em;
-    margin-top: 100px;
-  }
+    h1{
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 4em;
+      margin-top: 100px;
+    }
 
-  h2{
-    color: $lighter-grey;
-    text-align: center;
-  }
+    h2{
+      color: $lighter-grey;
+      text-align: center;
+    }
 
-  .cta{
-    text-align: center;
-    margin-top: 110px;
+    .cta{
+      text-align: center;
+      margin-top: 110px;
 
-    .btn.btn-primary.btn-header{
-      border: 4px solid $white;
-      border-color: $white;
-      height: 70px;
-      width: 200px;
-      line-height: 40px;
-      background-color: $orange;
+      .btn.btn-primary.btn-header{
+        border: 4px solid $white;
+        border-color: $white;
+        height: 70px;
+        width: 200px;
+        line-height: 40px;
+        background-color: $orange;
+      }
     }
   }
-  
+
+  .intro{
+    color: $grey;
+    margin-top: 100px;
+    padding-bottom: 100px;
+
+    i{
+      font-size: 52px;
+      margin-bottom: 40px;
+    }
+
+    p{
+      font-weight: 200;
+      font-size: 18px;
+    }
+  }
+
+  .counter{
+    color: $white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 200;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: $grey;
+
+    span{
+      font-weight: bold;
+    }
+  }
 }

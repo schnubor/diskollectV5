@@ -32,7 +32,7 @@ a:hover {
 .purple-bg {
   background-color: #9D3F51; }
 
-.header {
+#welcome .header {
   background-image: url('/images/header_bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -40,24 +40,44 @@ a:hover {
   padding: 40px 0;
   height: 400px;
   color: #F0F0F0; }
-  .header h1 {
+  #welcome .header h1 {
     text-transform: uppercase;
     text-align: center;
     font-size: 4em;
     margin-top: 100px; }
-  .header h2 {
+  #welcome .header h2 {
     color: #839393;
     text-align: center; }
-  .header .cta {
+  #welcome .header .cta {
     text-align: center;
     margin-top: 110px; }
-    .header .cta .btn.btn-primary.btn-header {
+    #welcome .header .cta .btn.btn-primary.btn-header {
       border: 4px solid #F0F0F0;
       border-color: #F0F0F0;
       height: 70px;
       width: 200px;
       line-height: 40px;
       background-color: #E08447; }
+#welcome .intro {
+  color: #25292A;
+  margin-top: 100px;
+  padding-bottom: 100px; }
+  #welcome .intro i {
+    font-size: 52px;
+    margin-bottom: 40px; }
+  #welcome .intro p {
+    font-weight: 200;
+    font-size: 18px; }
+#welcome .counter {
+  color: #F0F0F0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 200;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #25292A; }
+  #welcome .counter span {
+    font-weight: bold; }
 
 .btn {
   border-radius: 0; }
