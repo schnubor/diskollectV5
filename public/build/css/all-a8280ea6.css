@@ -7118,6 +7118,8 @@ a:hover {
     margin-top: 15px; }
   .sidebar hr {
     border-top: 1px solid #3E4545; }
+  .sidebar form {
+    margin-bottom: 20px; }
   .sidebar .navigation {
     margin-bottom: 20px; }
     .sidebar .navigation a:hover {

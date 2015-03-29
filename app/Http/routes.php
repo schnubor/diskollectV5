@@ -54,6 +54,16 @@ Route::get('/user/{id}', [
   'uses' => 'UsersController@show'
 ]);
 
+Route::get('/user/{id}/collection', [
+  'as' => 'user.collection',
+  'uses' => 'UsersController@collection'
+]);
+
+Route::get('/user/{id}/jukebox', [
+  'as' => 'user.jukebox',
+  'uses' => 'UsersController@jukebox'
+]);
+
 Route::get('/activate/{code}', [
   'as' => 'user.activate',
   'uses' => 'UsersController@activate'

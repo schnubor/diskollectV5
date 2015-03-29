@@ -121,6 +121,34 @@ class UsersController extends Controller {
 	}
 
 	/**
+	 * Display users collection.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function collection($id)
+	{
+		$user = User::findOrFail($id);
+
+		return view('user.collection')
+			->with('user', $user);
+	}
+
+	/**
+	 * Display users jukebox.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function jukebox($id)
+	{
+		$user = User::findOrFail($id);
+
+		return view('user.jukebox')
+			->with('user', $user);
+	}
+
+	/**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id

@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-  {{ $user->username }}
+  {{$user->username}}s Jukebox
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 
   <div class="col-md-10">
     <div class="page-header">
-      <p class="h1">Statistics</p>
+      <p class="h1">Coming soon ...</p>
     </div>
   </div>
 @endsection
