@@ -130,7 +130,7 @@ class UsersController extends Controller {
 	public function collection($id)
 	{
 		$user = User::findOrFail($id);
-		$vinyls = $user->vinyls()->get();
+		$vinyls = $user->vinyls()->orderBy('created_at', 'DESC')->paginate(8);
 
 		return view('user.collection')
 			->with('user', $user)

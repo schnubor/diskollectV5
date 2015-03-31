@@ -2,4 +2,30 @@
   background-color: $lighter-grey;
   color: $white;
   padding: 20px 15px;
+
+  .pages{
+    line-height: 26px;
+    font-size: 16px;
+
+    a{
+      color: $white;
+      font-size: 26px;
+
+      &:hover{
+        color: $grey;
+      }
+
+      &.disabled{
+        color: $grey;
+      }
+    }
+
+    i{
+      margin: 0 5px;
+    }
+
+    span{
+      vertical-align: top;
+    }
+  }
 }

@@ -201,6 +201,20 @@ a:hover {
   background-color: #839393;
   color: #F0F0F0;
   padding: 20px 15px; }
+  .toolbar .pages {
+    line-height: 26px;
+    font-size: 16px; }
+    .toolbar .pages a {
+      color: #F0F0F0;
+      font-size: 26px; }
+      .toolbar .pages a:hover {
+        color: #25292A; }
+      .toolbar .pages a.disabled {
+        color: #25292A; }
+    .toolbar .pages i {
+      margin: 0 5px; }
+    .toolbar .pages span {
+      vertical-align: top; }
 
 .vinyl .cover img {
   width: 100%; }

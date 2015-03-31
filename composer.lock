@@ -750,16 +750,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.21",
+            "version": "v5.0.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d30ff645035856d145a0ac191f07151d20fe691a"
+                "reference": "59219f7afb60be05d74ce01fcb5d2440f7a1b13d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d30ff645035856d145a0ac191f07151d20fe691a",
-                "reference": "d30ff645035856d145a0ac191f07151d20fe691a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/59219f7afb60be05d74ce01fcb5d2440f7a1b13d",
+                "reference": "59219f7afb60be05d74ce01fcb5d2440f7a1b13d",
                 "shasum": ""
             },
             "require": {
@@ -872,20 +872,20 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-03-26 19:09:29"
+            "time": "2015-03-28 16:56:59"
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "51cd7cd7ee0defbaafc6ec0d3620110a5d71e11a"
+                "reference": "3c2400a99ccc3be6884d40361890010449c6b447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/51cd7cd7ee0defbaafc6ec0d3620110a5d71e11a",
-                "reference": "51cd7cd7ee0defbaafc6ec0d3620110a5d71e11a",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3c2400a99ccc3be6884d40361890010449c6b447",
+                "reference": "3c2400a99ccc3be6884d40361890010449c6b447",
                 "shasum": ""
             },
             "require": {
@@ -895,7 +895,7 @@
                 "ext-fileinfo": "*",
                 "league/phpunit-coverage-listener": "~1.1",
                 "mockery/mockery": "~0.9",
-                "phpspec/phpspec": "~2.0.0",
+                "phpspec/phpspec": "~2.0",
                 "phpspec/prophecy-phpunit": "~1.0",
                 "phpunit/phpunit": "~4.1",
                 "predis/predis": "~1.0",
@@ -955,7 +955,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-03-10 11:04:14"
+            "time": "2015-03-29 14:01:43"
         },
         {
             "name": "monolog/monolog",
@@ -2298,24 +2298,83 @@
             "time": "2014-06-04 14:43:02"
         },
         {
-            "name": "laracasts/integrated",
-            "version": "0.11.2",
+            "name": "instaclick/php-webdriver",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laracasts/Integrated.git",
-                "reference": "fddf8c30c5624a0b93da48740be9371834107e5c"
+                "url": "https://github.com/instaclick/php-webdriver.git",
+                "reference": "a57b2bcd9467e217134a2248b261b8b3a90ccea0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Integrated/zipball/fddf8c30c5624a0b93da48740be9371834107e5c",
-                "reference": "fddf8c30c5624a0b93da48740be9371834107e5c",
+                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/a57b2bcd9467e217134a2248b261b8b3a90ccea0",
+                "reference": "a57b2bcd9467e217134a2248b261b8b3a90ccea0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "WebDriver": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Bishop",
+                    "email": "jubishop@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anthon Pang",
+                    "email": "apang@softwaredevelopment.ca",
+                    "role": "Fork Maintainer"
+                }
+            ],
+            "description": "PHP WebDriver for Selenium 2",
+            "homepage": "http://instaclick.com/",
+            "keywords": [
+                "browser",
+                "selenium",
+                "webdriver",
+                "webtest"
+            ],
+            "time": "2014-05-12 21:03:05"
+        },
+        {
+            "name": "laracasts/integrated",
+            "version": "0.11.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracasts/Integrated.git",
+                "reference": "4fbbeb4c388a31f27e3030ded175b28712d9b41f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracasts/Integrated/zipball/4fbbeb4c388a31f27e3030ded175b28712d9b41f",
+                "reference": "4fbbeb4c388a31f27e3030ded175b28712d9b41f",
                 "shasum": ""
             },
             "require": {
                 "fabpot/goutte": "~2.0",
+                "instaclick/php-webdriver": "~1.4",
                 "laracasts/testdummy": "~2.1",
-                "symfony/css-selector": "~2.6",
-                "symfony/dom-crawler": "~2.6"
+                "symfony/css-selector": "~2.5|~2.6",
+                "symfony/dom-crawler": "~2.5|~2.6"
             },
             "type": "library",
             "autoload": {
@@ -2341,20 +2400,20 @@
                 "laravel",
                 "testing"
             ],
-            "time": "2015-03-26 04:29:26"
+            "time": "2015-03-27 14:00:59"
         },
         {
             "name": "laracasts/testdummy",
-            "version": "2.1.2",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracasts/TestDummy.git",
-                "reference": "8c5423605b2294bdcb819c5dc298d15c1158c478"
+                "reference": "4f1b1830b3b5d6cc03e52a56d8e8d858e4a5da4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/TestDummy/zipball/8c5423605b2294bdcb819c5dc298d15c1158c478",
-                "reference": "8c5423605b2294bdcb819c5dc298d15c1158c478",
+                "url": "https://api.github.com/repos/laracasts/TestDummy/zipball/4f1b1830b3b5d6cc03e52a56d8e8d858e4a5da4b",
+                "reference": "4f1b1830b3b5d6cc03e52a56d8e8d858e4a5da4b",
                 "shasum": ""
             },
             "require": {
@@ -2371,7 +2430,10 @@
             "autoload": {
                 "psr-4": {
                     "Laracasts\\TestDummy\\": "src/"
-                }
+                },
+                "files": [
+                    "src/functions.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2390,7 +2452,7 @@
                 "stubs",
                 "testing"
             ],
-            "time": "2015-03-15 06:09:30"
+            "time": "2015-03-29 15:07:54"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2553,21 +2615,22 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.3.1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "9ca52329bcdd1500de24427542577ebf3fc2f1c9"
+                "reference": "8724cd239f8ef4c046f55a3b18b4d91cc7f3e4c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/9ca52329bcdd1500de24427542577ebf3fc2f1c9",
-                "reference": "9ca52329bcdd1500de24427542577ebf3fc2f1c9",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/8724cd239f8ef4c046f55a3b18b4d91cc7f3e4c5",
+                "reference": "8724cd239f8ef4c046f55a3b18b4d91cc7f3e4c5",
                 "shasum": ""
             },
             "require": {
-                "doctrine/instantiator": "~1.0,>=1.0.2",
-                "phpdocumentor/reflection-docblock": "~2.0"
+                "doctrine/instantiator": "^1.0.2",
+                "phpdocumentor/reflection-docblock": "~2.0",
+                "sebastian/comparator": "~1.1"
             },
             "require-dev": {
                 "phpspec/phpspec": "~2.0"
@@ -2575,7 +2638,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
@@ -2599,7 +2662,7 @@
                 }
             ],
             "description": "Highly opinionated mocking framework for PHP 5.3+",
-            "homepage": "http://phpspec.org",
+            "homepage": "https://github.com/phpspec/prophecy",
             "keywords": [
                 "Double",
                 "Dummy",
@@ -2608,7 +2671,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2014-11-17 16:23:49"
+            "time": "2015-03-27 19:31:25"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2856,16 +2919,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.5.0",
+            "version": "4.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "5b578d3865a9128b9c209b011fda6539ec06e7a5"
+                "reference": "d6429b0995b24a2d9dfe5587ee3a7071c1161af4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5b578d3865a9128b9c209b011fda6539ec06e7a5",
-                "reference": "5b578d3865a9128b9c209b011fda6539ec06e7a5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d6429b0995b24a2d9dfe5587ee3a7071c1161af4",
+                "reference": "d6429b0995b24a2d9dfe5587ee3a7071c1161af4",
                 "shasum": ""
             },
             "require": {
@@ -2875,8 +2938,8 @@
                 "ext-reflection": "*",
                 "ext-spl": "*",
                 "php": ">=5.3.3",
-                "phpspec/prophecy": "~1.3.1",
-                "phpunit/php-code-coverage": "~2.0",
+                "phpspec/prophecy": "~1.3,>=1.3.1",
+                "phpunit/php-code-coverage": "~2.0,>=2.0.11",
                 "phpunit/php-file-iterator": "~1.3.2",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": "~1.0.2",
@@ -2924,7 +2987,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-02-05 15:51:19"
+            "time": "2015-03-29 09:24:05"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
