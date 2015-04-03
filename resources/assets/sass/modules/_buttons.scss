@@ -1,8 +1,14 @@
 .btn{
-  border-radius: 0;
+  border-radius: 4px;
+  border: 0;
+}
 
-  &.btn-primary{
-    background-color: $blue;
-    border-color: $blue;
+.btn-primary{
+  background-color: $blue;
+  border: 1px solid $blue;
+
+  &:hover{
+    background-color: $dark-blue;
+    border: 1px solid $dark-blue;
   }
 }

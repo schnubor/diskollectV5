@@ -7109,10 +7109,15 @@ a:hover {
     font-size: 42px; }
 
 .btn {
-  border-radius: 0; }
-  .btn.btn-primary {
-    background-color: #1E89B7;
-    border-color: #1E89B7; }
+  border-radius: 4px;
+  border: 0; }
+
+.btn-primary {
+  background-color: #1E89B7;
+  border: 1px solid #1E89B7; }
+  .btn-primary:hover {
+    background-color: #176D93;
+    border: 1px solid #176D93; }
 
 .flash-message {
   position: fixed;
@@ -7228,6 +7233,10 @@ a:hover {
       margin: 0 5px; }
     .toolbar .pages span {
       vertical-align: top; }
+  .toolbar .form-control {
+    border: 0; }
+  .toolbar .col-md-8 {
+    padding-left: 0; }
 
 .vinyl .cover img {
   width: 100%; }

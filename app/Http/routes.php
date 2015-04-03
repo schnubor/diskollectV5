@@ -101,6 +101,47 @@ Route::post('/password/edit', [
 ]);
 
 /**
+ * Vinyls
+ */
+
+Route::get('/search', [
+  'as' => 'get.search',
+  'uses' => 'VinylsController@search',
+  'middleware' => 'auth'
+]);
+
+Route::post('/search', [
+  'as' => 'post.search',
+  'uses' => 'VinylsController@result',
+  'middleware' => 'auth'
+]);
+
+Route::get('/vinyl/{id}', [
+  'as' => 'get.show.vinyl',
+  'uses' => 'VinylsController@show'
+]);
+
+Route::get('/vinyl/create', [
+  'as' => 'get.create.vinyl',
+  'uses' => 'VinylsController@create'
+]);
+
+Route::post('/vinyl/create', [
+  'as' => 'post.create.vinyl',
+  'uses' => 'VinylsController@store'
+]);
+
+Route::get('/vinyl/{id}/edit', [
+  'as' => 'get.edit.vinyl',
+  'uses' => 'VinylsController@edit'
+]);
+
+Route::get('/vinyl/{id}/edit', [
+  'as' => 'post.edit.vinyl',
+  'uses' => 'VinylsController@update'
+]);
+
+/**
  * Follows
  */
 
