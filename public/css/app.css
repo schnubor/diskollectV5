@@ -6,6 +6,9 @@
   padding-bottom: 30px;
   height: calc(100% - 60px);
   overflow: scroll; }
+  .content .loading {
+    font-size: 42px;
+    margin-top: 10%; }
 
 html, body {
   height: 100%;

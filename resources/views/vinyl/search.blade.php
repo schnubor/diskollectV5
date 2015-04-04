@@ -20,9 +20,9 @@
           {!! Form::text('catno', Input::old('catno'), ['class' => 'form-control', 'placeholder' => 'Cat. No.']) !!}
         </div>
         @if($user->discogs_access_token)
-          {!! Form::submit('Search', ['class' => 'btn btn-md btn-primary']) !!}
+          {!! Form::submit('Search', ['id' => 'submit-search', 'class' => 'btn btn-md btn-primary']) !!}
         @else
-          {!! Form::submit('Search', ['class' => 'btn btn-md btn-primary', 'disabled' => 'disabled']) !!}
+          {!! Form::submit('Search', ['id' => 'submit-search', 'class' => 'btn btn-md btn-primary', 'disabled' => 'disabled']) !!}
         @endif
       {!! Form::close() !!}
 
@@ -35,6 +35,26 @@
             <p class="lead">To search for vinyls you need to authorize with Discogs first.</p>
             <a href="{{ route('get.oAuthDiscogs') }}" class="btn btn-lg btn-primary">Authorize</a>
           </div>
+        </div>
+      @else
+        <div class="search-results row">
+          <div class="loading text-center" style="display: none;">
+            <i class="fa fa-refresh fa-spin"></i>
+          </div>
+          <table class="search-results-table table table-striped" style="display: none;">
+            <thead>
+              <tr>
+                <th>Cover</th>
+                <th>Artist</th>
+                <th>Title</th>
+                <th>Cat. No.</th>
+                <th>Add</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
         </div>
       @endunless
     </div>

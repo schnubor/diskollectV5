@@ -6,6 +6,7 @@ use GuzzleHttp;
 use League;
 use App\Http\Requests;
 use App\Http\Requests\DiscogsOAuthRequest;
+use App\Http\Requests\DiscogsSearchRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -98,8 +99,16 @@ class VinylsController extends Controller {
 			->with('user', $user);
 	}
 
-	public function result(){
+	/**
+	 * Receive search results
+	 *
+	 * @return Response
+	 */
+	public function result(DiscogsSearchRequest $request){
 		$user = Auth::user();
+		$artist = $request->input('artist');
+		$title = $request->input('title');
+		$catno = $request->input('catno');
 
 		$client = Discogs\ClientFactory::factory([
 	    'defaults' => [
@@ -117,8 +126,9 @@ class VinylsController extends Controller {
     $client->getHttpClient()->getEmitter()->attach($oauth);
 
 		$response = $client->search([
-      'artist' => 'Daft Punk',
-      'title' => 'Homework',
+      'artist' => $artist,
+      'title' => $title,
+      'catno' => $catno,
       'format' => 'vinyl'
     ]);
 
@@ -133,17 +143,17 @@ class VinylsController extends Controller {
           'id' => $result['id']
         ]);
         $release['type'] = 'release';
-        array_push($results, $release);
+        array_push($results, $release->toArray());
       }
       else{ // Master
         $master = $client->getMaster([
           'id' => $result['id']
         ]);
         $master['type'] = 'master';
-        array_push($results, $master);
+        array_push($results, $master->toArray());
       }
     }
-
+    //dd($results);
     return $results;
 	}
 
