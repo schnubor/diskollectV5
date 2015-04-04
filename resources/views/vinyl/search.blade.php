@@ -19,10 +19,24 @@
         <div class="form-group">
           {!! Form::text('catno', Input::old('catno'), ['class' => 'form-control', 'placeholder' => 'Cat. No.']) !!}
         </div>
-        {!! Form::submit('Search', array('class' => 'btn btn-md btn-primary')) !!}
+        @if($user->discogs_access_token)
+          {!! Form::submit('Search', ['class' => 'btn btn-md btn-primary']) !!}
+        @else
+          {!! Form::submit('Search', ['class' => 'btn btn-md btn-primary', 'disabled' => 'disabled']) !!}
+        @endif
       {!! Form::close() !!}
 
       <a href="{{ route('get.create.vinyl') }}" class="btn btn-md btn-default pull-right">Add manually</a>
+    </div>
+    <div class="col-md-12 content">
+      @unless($user->discogs_access_token)
+        <div class="help">
+          <div class="text-center">
+            <p class="lead">To search for vinyls you need to authorize with Discogs first.</p>
+            <a href="{{ route('get.oAuthDiscogs') }}" class="btn btn-lg btn-primary">Authorize</a>
+          </div>
+        </div>
+      @endunless
     </div>
   </div>
 @endsection

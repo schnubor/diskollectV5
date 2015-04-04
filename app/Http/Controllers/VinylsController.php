@@ -1,10 +1,15 @@
 <?php namespace App\Http\Controllers;
 
 use App\Vinyl;
+use Discogs;
+use GuzzleHttp;
+use League;
 use App\Http\Requests;
+use App\Http\Requests\DiscogsOAuthRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
 
 class VinylsController extends Controller {
 
@@ -16,6 +21,68 @@ class VinylsController extends Controller {
 	public function index()
 	{
 		//
+	}
+
+	/**
+	 * Authorize with Discogs
+	 *
+	 * @return Response
+	 */
+	public function oAuthDiscogs(DiscogsOAuthRequest $request){
+		// oAuth to Discogs to enable search
+    $userAgent = 'Diskollect/1.0, +http://diskollect.com';  // specify recognizable user-agent
+
+    $server = new \League\OAuth1\Client\Server\Discogs([
+      'identifier'   => env('DC_CONSUMER_KEY'),
+      'secret'       => env('DC_CONSUMER_SECRET'),
+      'callback_uri' => 'http://'.$_SERVER['HTTP_HOST'].dirname(strtok($_SERVER['REQUEST_URI'],'?')).'/discogs'
+    ], null, $userAgent);
+
+    // no temporary token? redirect then
+    if ( !isset($_GET['oauth_token']) ) {
+      $tempCredentials = $server->getTemporaryCredentials();
+      Session::put('tempCredentials', serialize($tempCredentials));
+      Session::save();
+      header('Location: '.$server->getAuthorizationUrl($tempCredentials));
+      $server->authorize($tempCredentials);
+    }
+
+    // ok got temporary token
+    // nb: you may save it in db
+    $token = $server->getTokenCredentials(
+      unserialize(Session::get('tempCredentials')),
+      $request->input('oauth_token'),
+      $request->input('oauth_verifier')
+    );
+
+    // Discogs TEST
+    $client = Discogs\ClientFactory::factory([]);
+
+    $oauth = new GuzzleHttp\Subscriber\Oauth\Oauth1([
+      'consumer_key'    => env('DC_CONSUMER_KEY'), // from Discogs developer page
+      'consumer_secret' => env('DC_CONSUMER_SECRET'), // from Discogs developer page
+      'token'           => $token->getIdentifier(), // get this using a OAuth library
+      'token_secret'    => $token->getSecret() // get this using a OAuth library
+    ]);
+    $client->getHttpClient()->getEmitter()->attach($oauth);
+    $identity = $client->getOAuthIdentity();
+
+    $user = Auth::user(); // Current user
+    $user->discogs_access_token = $token->getIdentifier();
+    $user->discogs_access_token_secret = $token->getSecret();
+    $user->discogs_uri = $identity['resource_url'];
+
+    if($user->save()){
+    	flash()->success('Success! You are now authenticated with Discogs.');
+    	return redirect()->route('get.search');
+    }
+    else{
+    	flash()->error('Oops! Something went wrong while saving your information. Please try again.');
+    	return redirect()->route('get.search');
+    }
+
+    flash()->error('Oops! There was an error handling the request from Discogs. Please try again.');
+    return redirect()->route('get.search');
 	}
 
 	/**
@@ -33,7 +100,7 @@ class VinylsController extends Controller {
 
 	public function result(){
 		$user = Auth::user();
-		
+
 		$client = Discogs\ClientFactory::factory([
 	    'defaults' => [
 	       'headers' => ['User-Agent' => 'Diskollect/0.1 +https://www.diskollect.com'],
@@ -50,8 +117,8 @@ class VinylsController extends Controller {
     $client->getHttpClient()->getEmitter()->attach($oauth);
 
 		$response = $client->search([
-      'artist' => $artist,
-      'title' => $title,
+      'artist' => 'Daft Punk',
+      'title' => 'Homework',
       'format' => 'vinyl'
     ]);
 
@@ -76,6 +143,8 @@ class VinylsController extends Controller {
         array_push($results, $master);
       }
     }
+
+    return $results;
 	}
 
 	/**

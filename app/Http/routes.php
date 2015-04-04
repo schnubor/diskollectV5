@@ -141,6 +141,15 @@ Route::get('/vinyl/{id}/edit', [
   'uses' => 'VinylsController@update'
 ]);
 
+/*
+| Discogs oAuth
+*/
+
+Route::get('oauth/discogs', array(
+  'as' => 'get.oAuthDiscogs',
+  'uses' => 'VinylsController@oAuthDiscogs'
+));
+
 /**
  * Follows
  */

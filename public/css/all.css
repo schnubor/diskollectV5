@@ -7119,6 +7119,10 @@ a:hover {
     background-color: #176D93;
     border: 1px solid #176D93; }
 
+.btn-primary[disabled] {
+  background-color: #1E89B7;
+  border-color: #1E89B7; }
+
 .flash-message {
   position: fixed;
   top: 80px;
