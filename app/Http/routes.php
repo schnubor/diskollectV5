@@ -116,29 +116,39 @@ Route::post('/search', [
   'middleware' => 'auth'
 ]);
 
+Route::get('/vinyl/create', [
+  'as' => 'get.create.vinyl',
+  'uses' => 'VinylsController@create',
+  'middleware' => 'auth'
+]);
+
+Route::post('/vinyl/create', [
+  'as' => 'post.create.vinyl',
+  'uses' => 'VinylsController@store',
+  'middleware' => 'auth'
+]);
+
+Route::get('/vinyl/add', [
+  'as' => 'get.add.vinyl',
+  'uses' => 'VinylsController@add',
+  'middleware' => 'auth'
+]);
+
 Route::get('/vinyl/{id}', [
   'as' => 'get.show.vinyl',
   'uses' => 'VinylsController@show'
 ]);
 
-Route::get('/vinyl/create', [
-  'as' => 'get.create.vinyl',
-  'uses' => 'VinylsController@create'
-]);
-
-Route::post('/vinyl/create', [
-  'as' => 'post.create.vinyl',
-  'uses' => 'VinylsController@store'
-]);
-
 Route::get('/vinyl/{id}/edit', [
   'as' => 'get.edit.vinyl',
-  'uses' => 'VinylsController@edit'
+  'uses' => 'VinylsController@edit',
+  'middleware' => 'auth'
 ]);
 
-Route::get('/vinyl/{id}/edit', [
+Route::post('/vinyl/{id}/edit', [
   'as' => 'post.edit.vinyl',
-  'uses' => 'VinylsController@update'
+  'uses' => 'VinylsController@update',
+  'middleware' => 'auth'
 ]);
 
 /*

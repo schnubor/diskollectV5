@@ -1,0 +1,55 @@
+.step{
+
+  &.one{
+    background-color: $lighter-grey;
+  }
+
+  &.two{
+    
+  }
+
+  &.three{
+    background-color: $light-grey;
+  }
+
+  .step-number{
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: $orange;
+    line-height: 65px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 32px;
+    margin: 15px 0;
+  }
+
+  .step-headline{
+    display: inline-block;
+    margin-left: 10px;
+    line-height: 70px;
+    margin-bottom: 0;
+    margin-top: 15px;
+    vertical-align: top;
+
+    &.white{
+      color: $white;
+    }
+  }
+
+  .cover{
+    width: 100%;
+  }
+
+  .coverUrl{
+    margin-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+
+    input{
+      border: 0;
+    }
+  }
+}

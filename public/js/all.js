@@ -11539,6 +11539,7 @@ if (typeof jQuery === 'undefined') {
     e.preventDefault();
     $('.loading').fadeIn();
     $('.search-results-table').hide();
+    $('.no-results').hide();
     $('.search-results-table').find('tbody').html('');
     return $.ajax({
       url: '/search',
@@ -11552,13 +11553,38 @@ if (typeof jQuery === 'undefined') {
       dataType: 'JSON',
       success: function(results) {
         return $('.loading').fadeOut(function() {
-          $('.search-results-table').fadeIn();
-          return _.each(results, function(result) {
-            var $vinyl;
-            console.log(result);
-            $vinyl = '<tr><td><img src="' + result.images[0].uri150 + '" alt="cover"></td><td>' + result.artists[0].name + '</td><td>' + result.title + '</td><td>' + result.labels[0].catno + '</td><td><button class="btn btn-sm btn-success">Add</button></td></tr>';
-            return $('.search-results-table').find('tbody').append($vinyl);
-          });
+          if (results.length) {
+            $('.search-results-table').fadeIn();
+            return _.each(results, function(result) {
+              var $artist, $catno, $cover, $link, $title, $vinyl;
+              console.log(result);
+              if (result.artists) {
+                $artist = result.artists[0].name;
+              } else {
+                $artist = '<em>unknown artist</em>';
+              }
+              if (result.images) {
+                $cover = result.images[0].uri150;
+              } else {
+                $cover = '/images/PH_vinyl.svg';
+              }
+              if (result.title) {
+                $title = result.title;
+              } else {
+                $title = '<em>unknown title</em>';
+              }
+              if (result.type === 'release') {
+                $catno = result.labels[0].catno;
+              } else {
+                $catno = '<em>no catalog number</em>';
+              }
+              $link = '/vinyl/add?id=' + result.id + '?type=' + result.type;
+              $vinyl = '<tr><td class="cover"><img src="' + $cover + '" alt="cover"></td><td>' + $artist + '</td><td>' + $title + '</td><td>' + $catno + '</td><td><a href="' + $link + '" class="btn btn-sm btn-info"><i class="fa fa-fw fa-edit"></i> Edit</a><button class="btn btn-sm btn-success quick-add"><i class="fa fa-fw fa-plus"></i> Quick add</button></td></tr>';
+              return $('.search-results-table').find('tbody').append($vinyl);
+            });
+          } else {
+            return $('.no-results').fadeIn();
+          }
         });
       }
     });

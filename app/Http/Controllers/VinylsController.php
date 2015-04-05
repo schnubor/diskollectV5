@@ -15,16 +15,6 @@ use Session;
 class VinylsController extends Controller {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-	/**
 	 * Authorize with Discogs
 	 *
 	 * @return Response
@@ -157,6 +147,16 @@ class VinylsController extends Controller {
     return $results;
 	}
 
+  /**
+   * Add vinyl from search results.
+   *
+   * @return Response
+   */
+  public function add()
+  {
+    //
+  }
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -164,7 +164,9 @@ class VinylsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+    $user = Auth::user();
+    return view('vinyl.create')
+      ->with('user', $user);
 	}
 
 	/**
@@ -185,7 +187,7 @@ class VinylsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		return $id;
 	}
 
 	/**
@@ -196,7 +198,7 @@ class VinylsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		return 'edit';
 	}
 
 	/**

@@ -41,6 +41,9 @@
           <div class="loading text-center" style="display: none;">
             <i class="fa fa-refresh fa-spin"></i>
           </div>
+          <div class="no-results text-center" style="display: none;">
+            <p class="lead">No vinyls found.</p>
+          </div>
           <table class="search-results-table table table-striped" style="display: none;">
             <thead>
               <tr>
@@ -48,7 +51,7 @@
                 <th>Artist</th>
                 <th>Title</th>
                 <th>Cat. No.</th>
-                <th>Add</th>
+                <th class="actions">Actions</th>
               </tr>
             </thead>
             <tbody>
