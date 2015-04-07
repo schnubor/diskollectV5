@@ -1,3 +1,11 @@
+# Globals
+# ----------------------------
+
+$results = []
+
+# Submit Search
+# ----------------------------
+
 $('#submit-search').click (e) ->
   console.log 'Hello from search.'
   
@@ -9,7 +17,7 @@ $('#submit-search').click (e) ->
   $('.search-results-table').find('tbody').html('');
 
   # request data from discogs.com
-  $.ajax
+  search = $.ajax
     url: '/search'
     type: 'POST'
     data: 
@@ -20,11 +28,14 @@ $('#submit-search').click (e) ->
     dataType: 'JSON'
     success: (results) -> # search results received
       # console.log results
+      $results = results
+      $index = 0
       $('.loading').fadeOut ->
         if results.length
           $('.search-results-table').fadeIn()
           _.each results, (result) ->
-            console.log result
+            #console.log result
+
             # artist
             if result.artists
               $artist = result.artists[0].name
@@ -52,10 +63,31 @@ $('#submit-search').click (e) ->
             # link
             $link = '/vinyl/add?id='+result.id+'?type='+result.type
 
-            $vinyl = '<tr><td class="cover"><img src="'+$cover+'" alt="cover"></td><td>'+$artist+'</td><td>'+$title+'</td><td>'+$catno+'</td><td><a href="'+$link+'" class="btn btn-sm btn-info"><i class="fa fa-fw fa-edit"></i> Edit</a><button class="btn btn-sm btn-success quick-add"><i class="fa fa-fw fa-plus"></i> Quick add</button></td></tr>';
+            $vinyl = '<tr><td class="cover"><img src="'+$cover+'" alt="cover"></td><td>'+$artist+'</td><td>'+$title+'</td><td>'+$catno+'</td><td><a href="'+$link+'" class="btn btn-sm btn-info"><i class="fa fa-fw fa-edit"></i> Edit</a><button class="btn btn-sm btn-success quick-add" data-toggle="modal" data-target="#quickAddVinyl" data-result="'+$index+'"><i class="fa fa-fw fa-plus"></i> Quick add</button></td></tr>';
             $('.search-results-table').find('tbody').append($vinyl);
+
+            # increase index
+            $index++
         else
           $('.no-results').fadeIn()
 
+# Quick add
+# ----------------------------
+
+$('#quickAddVinyl').on 'show.bs.modal', (e) ->
+  button = $(e.relatedTarget)
+  vinyl_index = button.data 'result'
+  vinyl = $results[vinyl_index]
+  console.log vinyl
+
+  # vinyl data
+  $artist = vinyl.artists[0].name
+  $title = vinyl.title
+  $cover = vinyl.images[0].uri
+
+  modal = $(this)
+  modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - '+ vinyl.title + '" to collection')
+  modal.find('.modal-body .cover').html('<img src="'+$cover+'" class="thumbnail" width="100%">')
+  
 
     

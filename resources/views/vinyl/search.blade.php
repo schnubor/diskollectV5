@@ -7,6 +7,8 @@
 @section('content')
   @include('user.partials.sidebar')
 
+  @include('vinyl.partials.modal')
+
   <div class="col-md-10 no-padding content-area">
     <div class="col-md-12 toolbar">
       {!! Form::open(['route' => 'post.search', 'class' => 'form-inline col-md-8']) !!}

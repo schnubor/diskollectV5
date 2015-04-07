@@ -10,6 +10,7 @@
   <div class="col-md-10 no-padding content-area">
     <div class="col-md-12 content full-height no-padding">
       <div class="col-md-12 no-padding">
+        <!-- Cover -->
         <div class="col-md-4 step one no-padding">
           <div class="col-md-12">
             <div class="step-number">1</div>
@@ -22,7 +23,7 @@
             </div>
           </div>
         </div>
-
+        <!-- Vinyl Data -->
         <div class="col-md-8 step two no-padding">
           <div class="col-md-12">
             <div class="step-number">2</div>
@@ -68,7 +69,10 @@
               <input class="form-control" name="color" type="text" placeholder="Color">
             </div>
             <div class="form-group">
-              <input class="form-control" name="weight" type="text" placeholder="Weight">
+              <div class="input-group">
+                <input class="form-control" name="weight" type="text" placeholder="Weight">
+                <span class="input-group-addon" id="basic-addon1">gram</span>
+              </div>
             </div>
             <div class="row">
               <div class="form-group col-xs-4">
@@ -105,12 +109,24 @@
           </div>
         </div>
       </div>
-
+      <!-- tracklist -->
       <div class="col-md-12 no-padding">
         <div class="col-md-12 step three no-padding">
           <div class="col-md-12">
             <div class="step-number">3</div>
             <p class="h1 step-headline white">Tracklist </p>
+          </div>
+        </div>
+      </div>
+      <!-- Save -->
+      <div class="col-md-12 no-padding">
+        <div class="col-md-12 step four no-padding">
+          <div class="col-md-8">
+            <div class="step-number">4</div>
+            <p class="h1 step-headline">Save</p>
+          </div>
+          <div class="col-md-4">
+            {!! Form::submit('Add vinyl', array('class' => 'btn btn-lg btn-primary pull-right')) !!}
           </div>
         </div>
       </div>
