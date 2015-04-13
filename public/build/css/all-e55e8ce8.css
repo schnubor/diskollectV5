@@ -7132,7 +7132,8 @@ a:hover {
       height: 70px;
       width: 200px;
       line-height: 40px;
-      background-color: #E08447; }
+      background-color: #E08447;
+      border-radius: 0; }
 #welcome .intro {
   color: #25292A;
   margin-top: 100px;
@@ -7186,7 +7187,8 @@ a:hover {
   border-radius: 50%;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center; }
+  background-position: center center;
+  background-color: #3E4545; }
   .avatar.lg {
     height: 200px;
     width: 200px; }
@@ -7289,10 +7291,16 @@ a:hover {
   .toolbar .col-md-8 {
     padding-left: 0; }
 
-.vinyl .cover img {
-  width: 100%; }
+.vinyl .cover {
+  background-color: #839393; }
+  .vinyl .cover img {
+    width: 100%; }
 .vinyl .info {
   margin-top: 8px;
   margin-bottom: 30px; }
   .vinyl .info .artist {
     font-weight: bold; }
+
+
+/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=all.css.map */
