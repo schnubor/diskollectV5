@@ -26,6 +26,11 @@ $('#submit-search').click (e) ->
       title: $("input[name='title']").val()
       catno: $("input[name='catno']").val()
     dataType: 'JSON'
+    error: (x,status,error) ->
+      console.log status
+      console.log error
+      $('.loading').html('<p class="h1">Oops!</p><p class="lead">Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary">Refresh Discogs Token</a>')
+
     success: (results) -> # search results received
       # console.log results
       $results = results
