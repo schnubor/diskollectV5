@@ -11533,6 +11533,7 @@ if (typeof jQuery === 'undefined') {
 
 }).call(this);
 
+//# sourceMappingURL=app.js.map
 (function() {
   var $results;
 
@@ -11556,6 +11557,11 @@ if (typeof jQuery === 'undefined') {
         catno: $("input[name='catno']").val()
       },
       dataType: 'JSON',
+      error: function(x, status, error) {
+        console.log(status);
+        console.log(error);
+        return $('.loading').html('<p class="h1">Oops!</p><p class="lead">Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary">Refresh Discogs Token</a>');
+      },
       success: function(results) {
         var $index;
         $results = results;
@@ -11630,3 +11636,6 @@ if (typeof jQuery === 'undefined') {
   });
 
 }).call(this);
+
+//# sourceMappingURL=search.js.map
+//# sourceMappingURL=all.js.map
