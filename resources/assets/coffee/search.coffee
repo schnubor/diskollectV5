@@ -80,10 +80,29 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   vinyl = $results[vinyl_index]
   console.log vinyl
 
-  # vinyl data
-  $artist = vinyl.artists[0].name
-  $title = vinyl.title
-  $cover = vinyl.images[0].uri
+  # artist
+  if vinyl.artists
+    $artist = vinyl.artists[0].name
+  else
+    $artist = 'unknown artist'
+
+  # title
+  if vinyl.title
+    $title = vinyl.title
+  else
+    $title = 'unknown title'
+
+  # cover
+  if vinyl.images
+    $cover = vinyl.images[0].uri
+  else
+    $cover = 'images/PH_vinyl.svg'
+
+  # label
+  if vinyl.labels
+    $label = vinyl.labels[0].name
+  else
+    $label = 'unknown label'
 
   modal = $(this)
   modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - '+ vinyl.title + '" to collection')

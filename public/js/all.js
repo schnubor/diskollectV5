@@ -11599,14 +11599,31 @@ if (typeof jQuery === 'undefined') {
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $cover, $title, button, modal, vinyl, vinyl_index;
+    var $artist, $cover, $label, $title, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
     console.log(vinyl);
-    $artist = vinyl.artists[0].name;
-    $title = vinyl.title;
-    $cover = vinyl.images[0].uri;
+    if (vinyl.artists) {
+      $artist = vinyl.artists[0].name;
+    } else {
+      $artist = 'unknown artist';
+    }
+    if (vinyl.title) {
+      $title = vinyl.title;
+    } else {
+      $title = 'unknown title';
+    }
+    if (vinyl.images) {
+      $cover = vinyl.images[0].uri;
+    } else {
+      $cover = 'images/PH_vinyl.svg';
+    }
+    if (vinyl.labels) {
+      $label = vinyl.labels[0].name;
+    } else {
+      $label = 'unknown label';
+    }
     modal = $(this);
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
     return modal.find('.modal-body .cover').html('<img src="' + $cover + '" class="thumbnail" width="100%">');
