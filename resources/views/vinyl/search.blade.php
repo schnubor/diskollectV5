@@ -42,6 +42,7 @@
         <div class="search-results row">
           <div class="loading text-center" style="display: none;">
             <i class="fa fa-refresh fa-spin"></i>
+            <div><button id="cancel-search" class="btn btn-default">Cancel</button></div>
           </div>
           <div class="no-results text-center" style="display: none;">
             <p class="lead">No vinyls found.</p>

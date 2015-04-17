@@ -1,17 +1,18 @@
 (function() {
-  var $results;
+  var $results, $search;
 
   $results = [];
 
+  $search = null;
+
   $('#submit-search').click(function(e) {
-    var search;
     console.log('Hello from search.');
     e.preventDefault();
     $('.loading').fadeIn();
     $('.search-results-table').hide();
     $('.no-results').hide();
     $('.search-results-table').find('tbody').html('');
-    return search = $.ajax({
+    return $search = $.ajax({
       url: '/search',
       type: 'POST',
       data: {
@@ -24,7 +25,11 @@
       error: function(x, status, error) {
         console.log(status);
         console.log(error);
-        return $('.loading').html('<p class="h1">Oops!</p><p class="lead">Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary">Refresh Discogs Token</a>');
+        if (error === 'abort') {
+          return $('.loading').fadeOut();
+        } else {
+          return $('.loading').html('<p class="h1">Oops!</p><p class="lead">Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary">Refresh Discogs Token</a>');
+        }
       },
       success: function(results) {
         var $index;
@@ -68,6 +73,11 @@
     });
   });
 
+  $('#cancel-search').click(function() {
+    $('.loading').fadeOut();
+    return $search.abort();
+  });
+
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
     var $artist, $cover, $label, $title, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
@@ -96,9 +106,8 @@
     }
     modal = $(this);
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
-    return modal.find('.modal-body .cover').html('<img src="' + $cover + '" class="thumbnail" width="100%">');
+    modal.find('.modal-body .cover').html('<img src="' + $cover + '" class="thumbnail" width="100%">');
+    return modal.find('input[name="title"]').val($title);
   });
 
 }).call(this);
-
-//# sourceMappingURL=search.js.map

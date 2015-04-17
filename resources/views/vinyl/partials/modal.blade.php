@@ -12,10 +12,21 @@
             
           </div>
           <div class="col-md-6">
+            {!! Form::open(['route' => 'post.create.vinyl']) !!}
+              {!! Form::hidden('title', Input::old('title')) !!}
+              {!! Form::hidden('artist', Input::old('artist')) !!}
+              {!! Form::hidden('label', Input::old('label')) !!}
+              {!! Form::hidden('catno', Input::old('catno')) !!}
+              {!! Form::hidden('genre', Input::old('genre')) !!}
+              {!! Form::hidden('country', Input::old('country')) !!}
+              {!! Form::hidden('year', Input::old('year')) !!}
+              {!! Form::hidden('count', Input::old('count')) !!}
+              {!! Form::hidden('format', Input::old('format')) !!}
+              {!! Form::hidden('color', Input::old('country')) !!}
             <div class="form-group">
               <label>What did you pay?</label>
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="required">
+                {!! Form::text('price', Input::old('price'), ['class' => 'form-control', 'placeholder' => 'required']) !!}
                 <span class="input-group-addon" id="basic-addon1">{{ $user->currency }}</span>
               </div>
             </div>
@@ -23,6 +34,7 @@
               <label>Any special notes?</label>
               <textarea class="form-control" placeholder="optional" rows="6" style="resize: none;"></textarea>
             </div>
+            {!! Form::close() !!}
           </div>
         </div>
       </div>

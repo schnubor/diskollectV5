@@ -2,6 +2,7 @@
 # ----------------------------
 
 $results = []
+$search = null
 
 # Submit Search
 # ----------------------------
@@ -17,7 +18,7 @@ $('#submit-search').click (e) ->
   $('.search-results-table').find('tbody').html('');
 
   # request data from discogs.com
-  search = $.ajax
+  $search = $.ajax
     url: '/search'
     type: 'POST'
     data: 
@@ -29,7 +30,10 @@ $('#submit-search').click (e) ->
     error: (x,status,error) ->
       console.log status
       console.log error
-      $('.loading').html('<p class="h1">Oops!</p><p class="lead">Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary">Refresh Discogs Token</a>')
+      if error == 'abort'
+        $('.loading').fadeOut()
+      else
+        $('.loading').html('<p class="h1">Oops!</p><p class="lead">Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary">Refresh Discogs Token</a>')
 
     success: (results) -> # search results received
       # console.log results
@@ -76,6 +80,13 @@ $('#submit-search').click (e) ->
         else
           $('.no-results').fadeIn()
 
+# Cancel search
+# ----------------------------
+
+$('#cancel-search').click ->
+  $('.loading').fadeOut()
+  $search.abort()
+
 # Quick add
 # ----------------------------
 
@@ -109,9 +120,13 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   else
     $label = 'unknown label'
 
+  # visible form data
   modal = $(this)
   modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - '+ vinyl.title + '" to collection')
   modal.find('.modal-body .cover').html('<img src="'+$cover+'" class="thumbnail" width="100%">')
   
+  # invisible form data
+  modal.find('input[name="title"]').val($title)
+
 
     
