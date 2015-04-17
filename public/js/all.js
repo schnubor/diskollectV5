@@ -11614,7 +11614,7 @@ if (typeof jQuery === 'undefined') {
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $cover, $label, $title, button, modal, vinyl, vinyl_index;
+    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $size, $title, $weight, $year, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
@@ -11636,13 +11636,58 @@ if (typeof jQuery === 'undefined') {
     }
     if (vinyl.labels) {
       $label = vinyl.labels[0].name;
+      if (vinyl.labels[0].catno) {
+        $catno = vinyl.labels[0].catno;
+      } else {
+        $catno = 'unknown catno';
+      }
     } else {
       $label = 'unknown label';
     }
+    if (vinyl.genres) {
+      $genre = vinyl.genres[0];
+    } else {
+      $genre = 'unknown genre';
+    }
+    if (vinyl.country) {
+      $country = vinyl.country;
+    } else {
+      $country = 'unknown country';
+    }
+    if (vinyl.year) {
+      $year = vinyl.year;
+    } else {
+      $year = 'unknown year';
+    }
+    if (vinyl.format_quantity) {
+      $count = vinyl.format_quantity;
+    } else {
+      $count = 'unknown quantity';
+    }
+    if (vinyl.estimated_weight) {
+      $weight = vinyl.estimated_weight;
+    } else {
+      $weight = '0';
+    }
+    $color = '#000000';
+    $size = '12';
+    $format = 'LP';
     modal = $(this);
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
     modal.find('.modal-body .cover').html('<img src="' + $cover + '" class="thumbnail" width="100%">');
-    return modal.find('input[name="title"]').val($title);
+    modal.find('input[name="artist"]').val($artist);
+    modal.find('input[name="title"]').val($title);
+    modal.find('input[name="cover"]').val($cover);
+    modal.find('input[name="label"]').val($label);
+    modal.find('input[name="catno"]').val($catno);
+    modal.find('input[name="genre"]').val($genre);
+    modal.find('input[name="country"]').val($country);
+    modal.find('input[name="year"]').val($year);
+    modal.find('input[name="count"]').val($count);
+    modal.find('input[name="color"]').val($color);
+    modal.find('input[name="format"]').val($format);
+    modal.find('input[name="size"]').val($size);
+    return modal.find('input[name="weight"]').val($weight);
   });
 
 }).call(this);

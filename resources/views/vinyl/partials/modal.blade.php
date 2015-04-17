@@ -15,6 +15,7 @@
             {!! Form::open(['route' => 'post.create.vinyl']) !!}
               {!! Form::hidden('title', Input::old('title')) !!}
               {!! Form::hidden('artist', Input::old('artist')) !!}
+              {!! Form::hidden('cover', Input::old('cover')) !!}
               {!! Form::hidden('label', Input::old('label')) !!}
               {!! Form::hidden('catno', Input::old('catno')) !!}
               {!! Form::hidden('genre', Input::old('genre')) !!}
@@ -22,7 +23,10 @@
               {!! Form::hidden('year', Input::old('year')) !!}
               {!! Form::hidden('count', Input::old('count')) !!}
               {!! Form::hidden('format', Input::old('format')) !!}
-              {!! Form::hidden('color', Input::old('country')) !!}
+              {!! Form::hidden('size', Input::old('size')) !!}
+              {!! Form::hidden('weight', Input::old('weight')) !!}
+              {!! Form::hidden('color', Input::old('color')) !!}
+
             <div class="form-group">
               <label>What did you pay?</label>
               <div class="input-group">
@@ -34,14 +38,15 @@
               <label>Any special notes?</label>
               <textarea class="form-control" placeholder="optional" rows="6" style="resize: none;"></textarea>
             </div>
-            {!! Form::close() !!}
+            
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add vinyl</button>
+        {!! Form::submit('Add vinyl', array('class' => 'btn btn-primary')) !!}
       </div>
+      {!! Form::close() !!}
     </div>
   </div>
 </div>

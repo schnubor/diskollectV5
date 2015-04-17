@@ -114,11 +114,54 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   else
     $cover = 'images/PH_vinyl.svg'
 
-  # label
+  # label & catno
   if vinyl.labels
     $label = vinyl.labels[0].name
+    if vinyl.labels[0].catno
+      $catno = vinyl.labels[0].catno
+    else
+      $catno = 'unknown catno'
   else
     $label = 'unknown label'
+
+  # genre
+  if vinyl.genres
+    $genre = vinyl.genres[0]
+  else
+    $genre = 'unknown genre'
+
+  # country
+  if vinyl.country
+    $country = vinyl.country
+  else
+    $country = 'unknown country'
+
+  # year
+  if vinyl.year
+    $year = vinyl.year
+  else
+    $year = 'unknown year'
+
+  # count
+  if vinyl.format_quantity
+    $count = vinyl.format_quantity
+  else
+    $count = 'unknown quantity'
+
+  # weight
+  if vinyl.estimated_weight
+    $weight = vinyl.estimated_weight
+  else
+    $weight = '0'
+
+  # color
+  $color = '#000000'
+
+  # size
+  $size = '12'
+
+  # format
+  $format = 'LP'
 
   # visible form data
   modal = $(this)
@@ -126,7 +169,18 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   modal.find('.modal-body .cover').html('<img src="'+$cover+'" class="thumbnail" width="100%">')
   
   # invisible form data
+  modal.find('input[name="artist"]').val($artist)
   modal.find('input[name="title"]').val($title)
-
+  modal.find('input[name="cover"]').val($cover)
+  modal.find('input[name="label"]').val($label)
+  modal.find('input[name="catno"]').val($catno)
+  modal.find('input[name="genre"]').val($genre)
+  modal.find('input[name="country"]').val($country)
+  modal.find('input[name="year"]').val($year)
+  modal.find('input[name="count"]').val($count)
+  modal.find('input[name="color"]').val($color)
+  modal.find('input[name="format"]').val($format)
+  modal.find('input[name="size"]').val($size)
+  modal.find('input[name="weight"]').val($weight)
 
     
