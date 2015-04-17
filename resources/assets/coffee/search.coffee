@@ -22,10 +22,10 @@ $('#submit-search').click (e) ->
     url: '/search'
     type: 'POST'
     data: 
-      _token: $("input[name='_token']").val()
-      artist: $("input[name='artist']").val()
-      title: $("input[name='title']").val()
-      catno: $("input[name='catno']").val()
+      _token: $("#search-vinyl-form input[name='_token']").val()
+      artist: $("#search-vinyl-form input[name='artist']").val()
+      title: $("#search-vinyl-form input[name='title']").val()
+      catno: $("#search-vinyl-form input[name='catno']").val()
     dataType: 'JSON'
     error: (x,status,error) ->
       console.log status

@@ -11,7 +11,7 @@
 
   <div class="col-md-10 no-padding content-area">
     <div class="col-md-12 toolbar">
-      {!! Form::open(['route' => 'post.search', 'class' => 'form-inline col-md-8']) !!}
+      {!! Form::open(['route' => 'post.search', 'class' => 'form-inline col-md-8', 'id' => 'search-vinyl-form']) !!}
         <div class="form-group">
           {!! Form::text('artist', Input::old('artist'), ['class' => 'form-control', 'placeholder' => 'Artist']) !!}
         </div>
