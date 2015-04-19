@@ -26,6 +26,7 @@
               {!! Form::hidden('size', Input::old('size')) !!}
               {!! Form::hidden('weight', Input::old('weight')) !!}
               {!! Form::hidden('color', Input::old('color')) !!}
+              {!! Form::hidden('type', Input::old('type')) !!}
 
             <div class="form-group">
               <label>What did you pay?</label>

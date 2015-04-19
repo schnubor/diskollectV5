@@ -11614,7 +11614,7 @@ if (typeof jQuery === 'undefined') {
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $size, $title, $weight, $year, button, modal, vinyl, vinyl_index;
+    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $size, $title, $type, $weight, $year, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
@@ -11669,6 +11669,11 @@ if (typeof jQuery === 'undefined') {
     } else {
       $weight = '0';
     }
+    if (vinyl.type) {
+      $type = vinyl.type;
+    } else {
+      $type = '-';
+    }
     $color = '#000000';
     $size = '12';
     $format = 'LP';
@@ -11687,7 +11692,8 @@ if (typeof jQuery === 'undefined') {
     modal.find('input[name="color"]').val($color);
     modal.find('input[name="format"]').val($format);
     modal.find('input[name="size"]').val($size);
-    return modal.find('input[name="weight"]').val($weight);
+    modal.find('input[name="weight"]').val($weight);
+    return modal.find('input[name="type"]').val($type);
   });
 
 }).call(this);

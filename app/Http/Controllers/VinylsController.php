@@ -7,6 +7,7 @@ use League;
 use App\Http\Requests;
 use App\Http\Requests\DiscogsOAuthRequest;
 use App\Http\Requests\DiscogsSearchRequest;
+use App\Http\Requests\StoreVinylRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -174,10 +175,39 @@ class VinylsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(StoreVinylRequest $request)
 	{
-		//
-	}
+		$user =  Auth::user();
+
+    // Create vinyl
+    $vinyl = Vinyl::create([
+      'user_id' => $user->id,
+      'artwork' => $request->input('cover'),
+      'artist' => $request->input('artist'),
+      'title' => $request->input('title'),
+      'label' => $request->input('label'),
+      'genre' => $request->input('genre'),
+      'price' => $request->input('price'),
+      'country' => $request->input('country'),
+      'size' => $request->input('size'),
+      'count' => $request->input('count'),
+      'color' => $request->input('color'),
+      'type' => $request->input('type'),
+      'releasedate' => $request->input('year'),
+      'notes' => $request->input('notes'),
+      'weight' => $request->input('weight'),
+      'catno' => $request->input('catno'),
+      'releasetype' => $request->input('format')
+    ]);
+
+    if($vinyl){
+      flash()->success('Success! '.$request->input('artist').' - '.$request->input('title').' is now in your collection.');
+      return redirect()->route('user.collection', $user->id);
+    }
+
+    flash()->error('Oops! There was an error adding the vinyl to the collection. Please try again.');
+    return redirect()->route('get.search');
+  }
 
 	/**
 	 * Display the specified resource.

@@ -154,6 +154,12 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   else
     $weight = '0'
 
+  # type
+  if vinyl.type
+    $type = vinyl.type
+  else
+    $type = '-'
+
   # color
   $color = '#000000'
 
@@ -182,5 +188,6 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   modal.find('input[name="format"]').val($format)
   modal.find('input[name="size"]').val($size)
   modal.find('input[name="weight"]').val($weight)
+  modal.find('input[name="type"]').val($type)
 
     
