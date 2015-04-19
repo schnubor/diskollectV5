@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Vinyl;
+use App\User;
 use Discogs;
 use GuzzleHttp;
 use League;
@@ -217,7 +218,14 @@ class VinylsController extends Controller {
 	 */
 	public function show($id)
 	{
-		return $id;
+    $vinyl = Vinyl::find($id);
+    $user = Auth::user();
+    $owner = $vinyl->user;
+
+		return view('vinyl.show')
+      ->with('vinyl', $vinyl)
+      ->with('owner', $owner)
+      ->with('user', $user);
 	}
 
 	/**

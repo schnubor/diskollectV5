@@ -17,7 +17,7 @@ class Track extends Model {
    * Vinyl
    */
   public function vinyl(){
-    return $this->belongsTo('Vinyl');
+    return $this->belongsTo('App\Vinyl');
   }
 
 }

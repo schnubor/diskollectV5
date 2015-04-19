@@ -28,7 +28,7 @@
       @foreach($vinyls as $vinyl)
         <div class="col-md-3 vinyl">
           <div class="cover">
-            <img src="{{$vinyl->artwork}}" alt="{{$vinyl->artist}} - {{$vinyl->title}}">
+            <a href="{{ route('get.show.vinyl', $vinyl->id) }}"><img src="{{$vinyl->artwork}}" alt="{{$vinyl->artist}} - {{$vinyl->title}}"></a>
           </div>
           <div class="info">
             <span class="artist">{{$vinyl->artist}}</span><br>

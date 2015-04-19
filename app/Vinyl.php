@@ -17,7 +17,7 @@ class Vinyl extends Model {
    * Owner
    */
   public function user(){
-    return $this->belongsTo('User');
+    return $this->belongsTo('App\User');
   }
 
   /**
@@ -25,7 +25,7 @@ class Vinyl extends Model {
    */
   public function tracks()
   {
-      return $this->hasMany('Track');
+      return $this->hasMany('App\Track');
   }
 
 }
