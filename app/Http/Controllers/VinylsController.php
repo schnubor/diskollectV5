@@ -219,12 +219,10 @@ class VinylsController extends Controller {
 	public function show($id)
 	{
     $vinyl = Vinyl::find($id);
-    $user = Auth::user();
-    $owner = $vinyl->user;
+    $user = $vinyl->user;
 
 		return view('vinyl.show')
       ->with('vinyl', $vinyl)
-      ->with('owner', $owner)
       ->with('user', $user);
 	}
 

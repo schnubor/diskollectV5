@@ -280,6 +280,8 @@ a:hover {
     border: 0; }
   .toolbar .col-md-8 {
     padding-left: 0; }
+  .toolbar .lead {
+    margin: 0; }
 
 .vinyl .cover {
   background-color: #839393; }
@@ -290,3 +292,6 @@ a:hover {
   margin-bottom: 30px; }
   .vinyl .info .artist {
     font-weight: bold; }
+
+
+/*# sourceMappingURL=app.css.map */

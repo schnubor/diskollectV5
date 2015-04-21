@@ -18,7 +18,7 @@
         <h1>Your vinyls new home.</h1>
         <h2>Build. Manage. Rediscover.</h2>
         <div class="cta">
-          <a href="{{ route('register') }}" class="btn btn-lg btn-primary btn-header">Start here.</a>
+          <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-header">Start here.</a>
         </div>
       </div>
       
