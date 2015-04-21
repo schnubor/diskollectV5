@@ -59,7 +59,7 @@
             </tr>
           </table>
         </div>
-        {{-- Tracklist --}}
+        {{-- TODO: Tracklist --}}
         <div class="panel panel-default">
           <div class="panel-heading">Side A</div>
           <table class="table table-bordered">
