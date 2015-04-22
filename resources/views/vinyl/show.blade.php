@@ -52,6 +52,10 @@
               <td>{{ $vinyl->releasedate }}</td>
             </tr>
             <tr>
+              <td><strong>Weight</strong></td>
+              <td>{{ $vinyl->weight }}g</td>
+            </tr>
+            <tr>
               <td><strong>Type</strong></td>
               <td>{{ $vinyl->count }}x {{ $vinyl->size }}" {{ $vinyl->releasetype }}</td>
             </tr>
