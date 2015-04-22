@@ -12,49 +12,64 @@
       <div class="col-md-12 toolbar">
         <p class="lead">Latest news: The world is round.</p>
       </div>
-      {{-- Activities --}}
-      <div class="col-md-6 activities">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img class="media-object" src="/images/PH_user_large.png" alt="username" width="64px">
-                </a>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading"><a href="">Weltraum</a> added a new vinyl to his collection.</h4>
-                <p>Daft Punk - Random Access Memories</p>
-                <div class="thumbnail">
-                  <a href=""><img src="/images/PH_vinyl.svg" alt="artist" width="100%"></a>
+      <div class="col-md-12 content">
+        {{-- Activities --}}
+        <div class="col-md-6 activities">
+          <div class="panel panel-default">
+            <div class="panel-heading"><strong>Activities</strong></div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/images/PH_user_large.png" alt="username" width="64px">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href="">Weltraum</a> added a new vinyl to his collection.</h4>
+                    <p>Mon, 24.04.2015 - 12:45PM</p>
+                    <div class="thumbnail">
+                      <a href=""><img src="/images/PH_vinyl.svg" alt="artist" width="100%"></a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="media">
-              <div class="media-left">
-                <a href="#">
-                  <img class="media-object" src="/images/PH_user_large.png" alt="username" width="64px">
-                </a>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading"><a href="">Weltraum</a> added a new vinyl to his collection.</h4>
-                <p>Daft Punk - Random Access Memories</p>
-                <div class="thumbnail">
-                  <a href=""><img src="/images/PH_vinyl.svg" alt="artist" width="100%"></a>
+              </li>
+              <li class="list-group-item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/images/PH_user_large.png" alt="username" width="64px">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href="">Weltraum</a> added a new vinyl to his collection.</h4>
+                    <p>Mon, 24.04.2015 - 12:45PM</p>
+                    <div class="thumbnail">
+                      <a href=""><img src="/images/PH_vinyl.svg" alt="artist" width="100%"></a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <div class="col-md-12">
-          Latest Vinyls
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="col-md-12">
-          Latest Collectors
+        <div class="col-md-6">
+          {{-- Latest Vinyls --}}
+          <div class="panel panel-default">
+            <div class="panel-heading"><strong>Latest Vinyls</strong></div>
+            <div class="panel-body">
+              <p>...</p>
+            </div>
+          </div>
+
+          {{-- Latest Collectors --}}
+          <div class="panel panel-default">
+            <div class="panel-heading"><strong>Latest Collectors</strong></div>
+            <div class="panel-body">
+              <p>...</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
