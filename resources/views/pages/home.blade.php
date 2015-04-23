@@ -58,7 +58,19 @@
           <div class="panel panel-default">
             <div class="panel-heading"><strong>Latest Vinyls</strong></div>
             <div class="panel-body">
-              <p>...</p>
+              @foreach(array_chunk($latestVinyls->all(), 2) as $vinylRow)
+                <div class="row">
+                  @foreach($vinylRow as $vinyl)
+                    <div class="col-xs-6">
+                      <a href="{{route('get.show.vinyl', $vinyl->id)}}"><img src="{{ $vinyl->artwork }}" alt="{{ $vinyl->artist.' - '.$vinyl->title }}" class="thumbnail" width="100%"></a>
+                      <p>
+                        <strong>{{ $vinyl->artist }}</strong><br>
+                        <span>{{ $vinyl->title }}</span>
+                      </p>
+                    </div>
+                  @endforeach
+                </div>
+              @endforeach
             </div>
           </div>
 

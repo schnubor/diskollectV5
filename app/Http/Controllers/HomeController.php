@@ -37,11 +37,15 @@ class HomeController extends Controller {
 		$user = Auth::user();
 		$userCount = User::all()->count();
 		$vinylCount = Vinyl::all()->count();
+		$latestVinyls = Vinyl::orderBy('created_at', 'DESC')->take(6)->get();
+		$latestMembers = User::orderBy('created_at', 'DESC')->take(6)->get();
 
 		return view('pages.home')
 			->with('user', $user)
 			->with('userCount', $userCount)
-			->with('vinylCount', $vinylCount);
+			->with('vinylCount', $vinylCount)
+			->with('latestVinyls', $latestVinyls)
+			->with('latestMembers', $latestMembers);
 	}
 
 }

@@ -3,23 +3,29 @@
   <p class="lead">{{ $user->username }}</p>
 
   <!-- Follow Button -->
-  @unless(Auth::user()->id == $user->id)
+  @if(Auth::check())
+    @unless(Auth::user()->id == $user->id)
+      @include('user.partials.follow')
+    @endunless
+  @else
     @include('user.partials.follow')
-  @endunless
+  @endif
   
   <div class="navigation">
-    @if(Auth::user()->id == $user->id)
-      <a href="{{ route('home') }}">
-        @if(Request::url() == route('home'))
-          <div class="button active">
-        @else
-          <div class="button">
-        @endif
-          <i class="fa fa-fw fa-th-large orange"></i>
-          <span>Dashboard</span>
-          <div class="triangle"></div>
-        </div>
-      </a>
+    @if(Auth::check())
+      @if(Auth::user()->id == $user->id)
+        <a href="{{ route('home') }}">
+          @if(Request::url() == route('home'))
+            <div class="button active">
+          @else
+            <div class="button">
+          @endif
+            <i class="fa fa-fw fa-th-large orange"></i>
+            <span>Dashboard</span>
+            <div class="triangle"></div>
+          </div>
+        </a>
+      @endif
     @endif
 
     <a href="{{ route('user.collection', $user->id) }}">
@@ -59,7 +65,26 @@
     </a>
   </div>
 
-  @unless(Auth::user()->id == $user->id)
+  @if(Auth::check())
+    @unless(Auth::user()->id == $user->id)
+      @if($user->name || $user->location || $user->website || $user->description)
+        <p>
+          @if($user->name)
+            <span>{{ $user->name }},</span>
+          @endif
+          @if($user->location)
+            <span>{{ $user->location }},</span>
+          @endif
+          @if($user->website)
+            <span><a href="{{ $user->website }}" target="_blank">{{ $user->website }}</a></span>
+          @endif
+          @if($user->description)
+            <hr><span>{{ $user->description }}</span>
+          @endif
+        </p>
+      @endif
+    @endunless
+  @else
     @if($user->name || $user->location || $user->website || $user->description)
       <p>
         @if($user->name)
@@ -76,5 +101,5 @@
         @endif
       </p>
     @endif
-  @endunless
+  @endif
 </div>

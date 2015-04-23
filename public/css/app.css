@@ -216,6 +216,11 @@ a:hover {
 .panel.margin-top {
   margin-top: 50px; }
 
+.panel .thumbnail {
+  margin-bottom: 10px; }
+.panel p {
+  margin-bottom: 20px; }
+
 .sidebar {
   background-color: #25292A;
   min-height: calc(100% - 51px);
