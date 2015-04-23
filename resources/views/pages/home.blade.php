@@ -56,12 +56,12 @@
         <div class="col-md-6">
           {{-- Latest Vinyls --}}
           <div class="panel panel-default">
-            <div class="panel-heading"><strong>Latest Vinyls</strong></div>
+            <div class="panel-heading"><strong>Latest Vinyls in FTR</strong></div>
             <div class="panel-body">
               @foreach(array_chunk($latestVinyls->all(), 2) as $vinylRow)
                 <div class="row">
                   @foreach($vinylRow as $vinyl)
-                    <div class="col-xs-6">
+                    <div class="col-sm-6">
                       <a href="{{route('get.show.vinyl', $vinyl->id)}}"><img src="{{ $vinyl->artwork }}" alt="{{ $vinyl->artist.' - '.$vinyl->title }}" class="thumbnail" width="100%"></a>
                       <p>
                         <strong>{{ $vinyl->artist }}</strong><br>
@@ -78,7 +78,14 @@
           <div class="panel panel-default">
             <div class="panel-heading"><strong>Latest Collectors</strong></div>
             <div class="panel-body">
-              <p>...</p>
+              @foreach($latestMembers as $member)
+                <div class="col-sm-3 text-center">
+                  <a href="{{route('user.show', $member->id)}}"><div class="avatar md"></div></a>
+                  <p>
+                    <span>{{ $member->username }}</span>
+                  </p>
+                </div>
+              @endforeach
             </div>
           </div>
 
