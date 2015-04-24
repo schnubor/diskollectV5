@@ -18,38 +18,27 @@
           <div class="panel panel-default">
             <div class="panel-heading"><strong>Activities</strong></div>
             <ul class="list-group">
-              <li class="list-group-item">
-                <div class="media">
-                  <div class="media-left">
-                    <a href="#">
-                      <img class="media-object" src="/images/PH_user_large.png" alt="username" width="64px">
-                    </a>
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading"><a href="">Weltraum</a> added a new vinyl to his collection.</h4>
-                    <p>Mon, 24.04.2015 - 12:45PM</p>
-                    <div class="thumbnail">
-                      <a href=""><img src="/images/PH_vinyl.svg" alt="artist" width="100%"></a>
+              @foreach($activities as $key => $activity)
+                <li class="list-group-item">
+                  <div class="media">
+                    <div class="media-left">
+                      <a href="{{ route('user.show', $activity->user_id) }}">
+                        <div class="avatar sm" style="background-image: url('{{ $activitiesUsers[$key]->image}}')"></div>
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading"><a href="{{ route('user.show', $activity->user_id) }}">{{ $activitiesUsers[$key]->username }}</a> added a new vinyl to his collection.</h4>
+                      <p>{{ $activity->created_at }}</p>
+                      <div class="thumbnail">
+                        <a href="{{ route('get.show.vinyl', $activity->id) }}"><img src="{{ $activity->artwork }}" alt="{{ $activity->artist }} - {{ $activity->title }}" width="100%"></a>
+                      </div>
+                      <p>
+                        <strong>{{ $activity->artist }}</strong> - {{ $activity->title }}
+                      </p>
                     </div>
                   </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="media">
-                  <div class="media-left">
-                    <a href="#">
-                      <img class="media-object" src="/images/PH_user_large.png" alt="username" width="64px">
-                    </a>
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading"><a href="">Weltraum</a> added a new vinyl to his collection.</h4>
-                    <p>Mon, 24.04.2015 - 12:45PM</p>
-                    <div class="thumbnail">
-                      <a href=""><img src="/images/PH_vinyl.svg" alt="artist" width="100%"></a>
-                    </div>
-                  </div>
-                </div>
-              </li>
+                </li>
+              @endforeach
             </ul>
           </div>
         </div>
