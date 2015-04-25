@@ -7155,6 +7155,21 @@ a:hover {
   #welcome .counter span {
     font-weight: normal;
     font-size: 42px; }
+#welcome .latestVinyls {
+  padding: 50px 0; }
+#welcome .latestMembers {
+  padding: 50px 0;
+  text-align: center;
+  background-color: #25292A;
+  color: #F0F0F0; }
+  #welcome .latestMembers .avatar {
+    margin: 0 auto 15px; }
+  #welcome .latestMembers a {
+    color: #F0F0F0; }
+#welcome .footer {
+  padding: 20px 0 0; }
+  #welcome .footer p {
+    line-height: 86px; }
 
 .btn {
   border-radius: 4px;
@@ -7311,3 +7326,7 @@ a:hover {
   margin-bottom: 30px; }
   .vinyl .info .artist {
     font-weight: bold; }
+
+
+/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=all.css.map */

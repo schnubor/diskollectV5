@@ -60,8 +60,8 @@ class HomeController extends Controller {
 		else{
 			$userCount = User::all()->count();
 			$vinylCount = Vinyl::all()->count();
-			$latestVinyls = Vinyl::latest()->take(6)->get();
-			$latestMembers = User::latest()->take(4)->get();
+			$latestVinyls = Vinyl::latest()->take(4)->get();
+			$latestMembers = User::latest()->take(6)->get();
 
 			return view('pages.home')
 				->with('userCount', $userCount)
