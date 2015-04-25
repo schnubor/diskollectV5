@@ -43,13 +43,11 @@ class HomeController extends Controller {
 			$activities = Vinyl::whereIn('user_id', $userIds)->latest()->get();
 
 			foreach($activities as $key => $vinyl){
-				$user = $vinyl->user;
-				$vinyl['image'] = $user->image;
-				$vinyl['username'] = $user->username;
+				$owner = $vinyl->user;
+				$vinyl['image'] = $owner->image;
+				$vinyl['username'] = $owner->username;
 				$activities[$key] = $vinyl;
 			}
-			// dd($activities);
-			// $activitiesUsers = User::whereIn('id', $userIds)->latest()->get();
 
 			return view('user.dashboard')
 				->with('user', $user)

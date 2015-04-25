@@ -12,7 +12,7 @@
             
           </div>
           <div class="col-md-6">
-            {!! Form::open(['route' => 'post.create.vinyl']) !!}
+            {!! Form::open(['route' => 'post.create.vinyl', 'id' => 'addVinylForm']) !!}
               {!! Form::hidden('title', Input::old('title')) !!}
               {!! Form::hidden('artist', Input::old('artist')) !!}
               {!! Form::hidden('cover', Input::old('cover')) !!}
@@ -27,7 +27,7 @@
               {!! Form::hidden('weight', Input::old('weight')) !!}
               {!! Form::hidden('color', Input::old('color')) !!}
               {!! Form::hidden('type', Input::old('type')) !!}
-
+              {!! Form::hidden('trackCount', Input::old('trackCount')) !!}
             <div class="form-group">
               <label>What did you pay?</label>
               <div class="input-group">

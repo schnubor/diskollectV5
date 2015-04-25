@@ -87,6 +87,12 @@ $('#cancel-search').click ->
   $('.loading').fadeOut()
   $search.abort()
 
+# Close Modal
+# ----------------------------
+
+$('#quickAddVinyl').on 'hide.bs.modal', (e) ->
+  $('#addVinylForm .trackInfo').remove()
+
 # Quick add
 # ----------------------------
 
@@ -169,6 +175,13 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   # format
   $format = 'LP'
 
+  # tracklist
+  if vinyl.tracklist
+    $tracklist = vinyl.tracklist
+  else
+    $tracklist = []
+
+
   # visible form data
   modal = $(this)
   modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - '+ vinyl.title + '" to collection')
@@ -189,5 +202,11 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   modal.find('input[name="size"]').val($size)
   modal.find('input[name="weight"]').val($weight)
   modal.find('input[name="type"]').val($type)
-
+  modal.find('input[name="trackCount"]').val($tracklist.length)
+  _.each $tracklist, (track, index) ->
+    console.log track
+    modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_artist" type="hidden" value="'+$artist+'"/>');
+    modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_title" type="hidden" value="'+track.title+'"/>');
+    modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_position" type="hidden" value="'+track.position+'"/>');
+    modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_duration" type="hidden" value="'+track.duration+'"/>');
     

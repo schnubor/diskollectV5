@@ -78,8 +78,12 @@
     return $search.abort();
   });
 
+  $('#quickAddVinyl').on('hide.bs.modal', function(e) {
+    return $('#addVinylForm .trackInfo').remove();
+  });
+
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $size, $title, $type, $weight, $year, button, modal, vinyl, vinyl_index;
+    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $size, $title, $tracklist, $type, $weight, $year, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
@@ -142,6 +146,11 @@
     $color = '#000000';
     $size = '12';
     $format = 'LP';
+    if (vinyl.tracklist) {
+      $tracklist = vinyl.tracklist;
+    } else {
+      $tracklist = [];
+    }
     modal = $(this);
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
     modal.find('.modal-body .cover').html('<img src="' + $cover + '" class="thumbnail" width="100%">');
@@ -158,7 +167,15 @@
     modal.find('input[name="format"]').val($format);
     modal.find('input[name="size"]').val($size);
     modal.find('input[name="weight"]').val($weight);
-    return modal.find('input[name="type"]').val($type);
+    modal.find('input[name="type"]').val($type);
+    modal.find('input[name="trackCount"]').val($tracklist.length);
+    return _.each($tracklist, function(track, index) {
+      console.log(track);
+      modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_artist" type="hidden" value="' + $artist + '"/>');
+      modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_title" type="hidden" value="' + track.title + '"/>');
+      modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_position" type="hidden" value="' + track.position + '"/>');
+      return modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_duration" type="hidden" value="' + track.duration + '"/>');
+    });
   });
 
 }).call(this);

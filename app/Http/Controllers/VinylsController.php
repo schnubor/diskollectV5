@@ -150,7 +150,7 @@ class VinylsController extends Controller {
 	}
 
   /**
-   * Add vinyl from search results.
+   * Add vinyl from search results with "edit and add".
    *
    * @return Response
    */

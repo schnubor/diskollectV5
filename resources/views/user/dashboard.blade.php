@@ -67,7 +67,7 @@
           <div class="panel-body">
             @foreach($latestMembers as $member)
               <div class="col-sm-3 text-center">
-                <a href="{{route('user.show', $member->id)}}"><div class="avatar md"></div></a>
+                <a href="{{route('user.show', $member->id)}}"><div class="avatar sm"></div></a>
                 <p>
                   <span>{{ $member->username }}</span>
                 </p>
