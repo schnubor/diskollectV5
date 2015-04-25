@@ -41,14 +41,21 @@ class HomeController extends Controller {
 
 			$userIds = $user->following()->lists('follow_id');
 			$activities = Vinyl::whereIn('user_id', $userIds)->latest()->get();
-			$activitiesUsers = User::whereIn('id', $userIds)->latest()->get();
+
+			foreach($activities as $key => $vinyl){
+				$user = $vinyl->user;
+				$vinyl['image'] = $user->image;
+				$vinyl['username'] = $user->username;
+				$activities[$key] = $vinyl;
+			}
+			// dd($activities);
+			// $activitiesUsers = User::whereIn('id', $userIds)->latest()->get();
 
 			return view('user.dashboard')
 				->with('user', $user)
 				->with('latestVinyls', $latestVinyls)
 				->with('latestMembers', $latestMembers)
-				->with('activities', $activities)
-				->with('activitiesUsers', $activitiesUsers);
+				->with('activities', $activities);
 		}
 		else{
 			$userCount = User::all()->count();
