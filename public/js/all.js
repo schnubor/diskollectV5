@@ -11533,7 +11533,6 @@ if (typeof jQuery === 'undefined') {
 
 }).call(this);
 
-//# sourceMappingURL=app.js.map
 (function() {
   var $results, $search;
 
@@ -11698,6 +11697,3 @@ if (typeof jQuery === 'undefined') {
   });
 
 }).call(this);
-
-//# sourceMappingURL=search.js.map
-//# sourceMappingURL=all.js.map

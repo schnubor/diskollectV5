@@ -34,26 +34,33 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		$user = Auth::user();
-		$userCount = User::all()->count();
-		$vinylCount = Vinyl::all()->count();
-		$latestVinyls = Vinyl::latest()->take(6)->get();
-		$latestMembers = User::latest()->take(4)->get();
+		if(Auth::check()){
+			$user = Auth::user();
+			$latestVinyls = Vinyl::latest()->take(6)->get();
+			$latestMembers = User::latest()->take(4)->get();
 
-		$userIds = $user->following()->lists('follow_id');
-		$activities = Vinyl::whereIn('user_id', $userIds)->latest()->get();
-		$activitiesUsers = User::whereIn('id', $userIds)->latest()->get();
+			$userIds = $user->following()->lists('follow_id');
+			$activities = Vinyl::whereIn('user_id', $userIds)->latest()->get();
+			$activitiesUsers = User::whereIn('id', $userIds)->latest()->get();
 
-		//dd($activitiesUsers);
+			return view('user.dashboard')
+				->with('user', $user)
+				->with('latestVinyls', $latestVinyls)
+				->with('latestMembers', $latestMembers)
+				->with('activities', $activities)
+				->with('activitiesUsers', $activitiesUsers);
+		}
+		else{
+			$userCount = User::all()->count();
+			$vinylCount = Vinyl::all()->count();
+			$latestVinyls = Vinyl::latest()->take(6)->get();
+			$latestMembers = User::latest()->take(4)->get();
 
-		return view('pages.home')
-			->with('user', $user)
-			->with('userCount', $userCount)
-			->with('vinylCount', $vinylCount)
-			->with('latestVinyls', $latestVinyls)
-			->with('latestMembers', $latestMembers)
-			->with('activities', $activities)
-			->with('activitiesUsers', $activitiesUsers);
+			return view('pages.home')
+				->with('userCount', $userCount)
+				->with('vinylCount', $vinylCount)
+				->with('latestVinyls', $latestVinyls)
+				->with('latestMembers', $latestMembers);
+		}
 	}
-
 }
