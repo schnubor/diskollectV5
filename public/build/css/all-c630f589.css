@@ -7076,7 +7076,10 @@ a:hover {
 .step.one {
   background-color: #839393; }
 .step.three {
-  background-color: #3E4545; }
+  background-color: #3E4545;
+  padding-bottom: 40px; }
+  .step.three td {
+    border-top: none; }
 .step .step-number {
   width: 70px;
   height: 70px;

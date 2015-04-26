@@ -10,6 +10,17 @@
 
   &.three{
     background-color: $light-grey;
+    padding-bottom: 40px;
+
+    td{
+      border-top: none;
+    }
+  }
+
+  &.four{
+    button{
+      
+    }
   }
 
   .step-number{

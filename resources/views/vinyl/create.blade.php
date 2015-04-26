@@ -7,8 +7,9 @@
 @section('content')
   @include('user.partials.sidebar')
 
-  <div class="col-md-10 no-padding content-area">
+  <div class="col-md-10 no-padding content-area createVinyl">
     <div class="col-md-12 content full-height no-padding">
+      {!! Form::open(['route' => 'post.create.vinyl', 'id' => 'addVinylForm']) !!}
       <div class="col-md-12 no-padding">
         <!-- Cover -->
         <div class="col-md-4 step one no-padding">
@@ -19,7 +20,7 @@
           <div class="col-md-12">
             <img src="/images/PH_vinyl.svg" class="cover">
             <div class="form-group coverUrl">
-              <input class="form-control" name="coverUrl" type="text" placeholder="Image URL (e.g. http://example.com/image.jpg)"> 
+              {!! Form::text('cover', Input::old('cover'), ['class' => 'form-control', 'placeholder' => 'Image URL (e.g. http://example.com/image.jpg)']) !!}
             </div>
           </div>
         </div>
@@ -32,49 +33,56 @@
           <div class="col-md-6">
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" name="artist" type="text" placeholder="Artist">
+                {!! Form::text('artist', Input::old('artist'), ['class' => 'form-control', 'placeholder' => 'Artist']) !!}
                 <span class="input-group-addon" id="basic-addon1">required</span>
               </div>
             </div>
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" name="title" type="text" placeholder="Title">
+                {!! Form::text('title', Input::old('title'), ['class' => 'form-control', 'placeholder' => 'Title']) !!}
                 <span class="input-group-addon" id="basic-addon1">required</span>
               </div>
             </div>
             <div class="form-group">
-              <input class="form-control" name="genre" type="text" placeholder="Genre">
+              {!! Form::text('genre', Input::old('genre'), ['class' => 'form-control', 'placeholder' => 'Genre']) !!}
             </div>
             <div class="form-group">
-              <input class="form-control" name="label" type="text" placeholder="Label">
+              {!! Form::text('label', Input::old('label'), ['class' => 'form-control', 'placeholder' => 'Label']) !!}
             </div>
             <div class="form-group">
-              <input class="form-control" name="year" type="text" placeholder="Release year">
+              {!! Form::text('year', Input::old('year'), ['class' => 'form-control', 'placeholder' => 'Release year']) !!}
             </div>
             <div class="form-group">
-              <input class="form-control" name="country" type="text" placeholder="Country">
+              {!! Form::text('country', Input::old('country'), ['class' => 'form-control', 'placeholder' => 'Country (e.g. US, DE, ...']) !!}
             </div>
             <div class="form-group">
-              <input class="form-control" name="catno" type="text" placeholder="Catalog number">
+              {!! Form::text('catno', Input::old('catno'), ['class' => 'form-control', 'placeholder' => 'Catalog No.']) !!}
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" name="price" type="text" placeholder="Price">
+                {!! Form::text('price', Input::old('price'), ['class' => 'form-control', 'placeholder' => 'Price in '.$user->currency]) !!}
                 <span class="input-group-addon" id="basic-addon1">required</span>
               </div>
             </div>
             <div class="form-group">
-              <input class="form-control" name="color" type="text" placeholder="Color">
+              {!! Form::text('color', Input::old('color'), ['class' => 'form-control', 'placeholder' => '#000000']) !!}
             </div>
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" name="weight" type="text" placeholder="Weight">
+                {!! Form::text('weight', Input::old('weight'), ['class' => 'form-control', 'placeholder' => 'Weight']) !!}
                 <span class="input-group-addon" id="basic-addon1">gram</span>
               </div>
             </div>
             <div class="row">
+              <div class="form-group col-xs-3">
+                <select class="form-control" name="format">
+                  <option selected>LP</option>
+                  <option>EP</option>
+                  <option>Single</option>
+                </select>
+              </div>
               <div class="form-group col-xs-4">
                 <div class="input-group">
                   <select class="form-control" name="count">
@@ -87,13 +95,6 @@
                   </select>
                   <span class="input-group-addon" id="basic-addon1">x</span>
                 </div>
-              </div>
-              <div class="form-group col-xs-3">
-                <select class="form-control" name="format">
-                  <option selected>LP</option>
-                  <option>EP</option>
-                  <option>Single</option>
-                </select>
               </div>
               <div class="form-group col-xs-5">
                 <div class="input-group">
@@ -116,20 +117,31 @@
             <div class="step-number">3</div>
             <p class="h1 step-headline white">Tracklist </p>
           </div>
+          <div class="col-md-8 text-left">
+            <table class="table">
+              <tr>
+                <td width="80px" style="padding-left: 0;">{!! Form::text('track_0_position', Input::old('track_0_position'), ['class' => 'form-control', 'placeholder' => 'A1']) !!}</td>
+                <td>{!! Form::text('track_0_title', Input::old('track_0_title'), ['class' => 'form-control', 'placeholder' => 'Title']) !!}</td>
+                <td width="100px">{!! Form::text('track_0_duration', Input::old('track_0_duration'), ['class' => 'form-control', 'placeholder' => '1:13']) !!}</td>
+              </tr>
+            </table>
+            <button class="js-add-track btn btn-md btn-default"><i class="fa fa-plus"></i> Add Track</button>
+          </div>
         </div>
       </div>
       <!-- Save -->
       <div class="col-md-12 no-padding">
         <div class="col-md-12 step four no-padding">
-          <div class="col-md-8">
+          <div class="col-md-2">
             <div class="step-number">4</div>
             <p class="h1 step-headline">Save</p>
           </div>
-          <div class="col-md-4">
-            {!! Form::submit('Add vinyl', array('class' => 'btn btn-lg btn-primary pull-right')) !!}
+          <div class="col-md-4 text-centered">
+            {!! Form::submit('Add vinyl', array('class' => 'btn btn-lg btn-primary', 'style' => 'margin-top: 30px')) !!}
           </div>
         </div>
       </div>
+      {!! Form::close() !!}
     </div>
   </div>
 @endsection
