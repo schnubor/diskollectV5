@@ -204,8 +204,7 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   modal.find('input[name="type"]').val($type)
   modal.find('input[name="trackCount"]').val($tracklist.length)
   _.each $tracklist, (track, index) ->
-    console.log track
-    modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_artist" type="hidden" value="'+$artist+'"/>');
+    #console.log track
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_title" type="hidden" value="'+track.title+'"/>');
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_position" type="hidden" value="'+track.position+'"/>');
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_duration" type="hidden" value="'+track.duration+'"/>');

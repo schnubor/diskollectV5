@@ -65,14 +65,17 @@
             </tr>
           </table>
         </div>
-        {{-- TODO: Tracklist --}}
+        {{-- Tracklist --}}
         <div class="panel panel-default">
-          <div class="panel-heading">Side A</div>
+          <div class="panel-heading">Tracklist</div>
           <table class="table table-bordered">
-            <tr>
-              <td>Prelude</td>
-              <td>1:20min</td>
-            </tr>
+            @foreach($tracks as $track)
+              <tr>
+                <td>{{ $track->number }}</td>
+                <td>{{ $track->title }}</td>
+                <td>{{ $track->duration }}</td>
+              </tr>
+            @endforeach
           </table>
         </div>
       

@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Vinyl;
+use App\Track;
 use App\User;
 use Discogs;
 use GuzzleHttp;
@@ -202,6 +203,18 @@ class VinylsController extends Controller {
     ]);
 
     if($vinyl){
+      $tracklistItems = $request->input('trackCount');
+      for($i = 0; $i < $tracklistItems; $i++){
+        Track::create([
+          'vinyl_id' => $vinyl->id,
+          'artist_id' => 1,
+          'artist' => $vinyl->artist,
+          'title' => $request->input('track_'.$i.'_title'),
+          'number' => $request->input('track_'.$i.'_position'),
+          'duration' => $request->input('track_'.$i.'_duration'),
+        ]);
+      }
+
       flash()->success('Success! '.$request->input('artist').' - '.$request->input('title').' is now in your collection.');
       return redirect()->route('user.collection', $user->id);
     }
@@ -220,10 +233,12 @@ class VinylsController extends Controller {
 	{
     $vinyl = Vinyl::find($id);
     $user = $vinyl->user;
+    $tracks = $vinyl->tracks;
 
 		return view('vinyl.show')
       ->with('vinyl', $vinyl)
-      ->with('user', $user);
+      ->with('user', $user)
+      ->with('tracks', $tracks);
 	}
 
 	/**
