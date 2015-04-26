@@ -208,4 +208,3 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_title" type="hidden" value="'+track.title+'"/>');
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_position" type="hidden" value="'+track.position+'"/>');
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_duration" type="hidden" value="'+track.duration+'"/>');
-    

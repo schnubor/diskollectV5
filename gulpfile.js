@@ -36,7 +36,8 @@ elixir(function(mix) {
     'vendor/bootstrap.js',
     'vendor/underscore-min.js',
     'app.js',
-    'search.js'
+    'search.js',
+    'createVinyl.js'
   ], null, 'public/js');
 
   mix.version('public/css/all.css');  // versioning
