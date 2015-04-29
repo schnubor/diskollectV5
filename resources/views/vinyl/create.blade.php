@@ -19,8 +19,11 @@
           </div>
           <div class="col-md-12">
             <img src="/images/PH_vinyl.svg" class="cover">
-            <div class="form-group coverUrl">
+            <div class="col-md-6 form-group coverUrl">
               {!! Form::text('cover', Input::old('cover'), ['class' => 'form-control', 'placeholder' => 'Image URL (e.g. http://example.com/image.jpg)']) !!}
+            </div>
+            <div class="col-md-6 form-group">
+              {!! Form::file('coverFile', ['class' => 'form-control']) !!}
             </div>
           </div>
         </div>
@@ -98,7 +101,7 @@
               </div>
               <div class="form-group col-xs-5">
                 <div class="input-group">
-                  <select class="form-control" name="format">
+                  <select class="form-control" name="size">
                     <option selected>12</option>
                     <option>10</option>
                     <option>7</option>
@@ -106,6 +109,17 @@
                   <span class="input-group-addon" id="basic-addon1">inch</span>
                 </div>
               </div>
+            </div>
+            <div class="form-group">
+              <label class="radio-inline">
+                <input type="radio" name="type" value="release" checked> Release
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="type" value="master"> Master
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="type" value="reissue"> Reissue
+              </label>
             </div>
           </div>
         </div>

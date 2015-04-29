@@ -157,7 +157,7 @@ class VinylsController extends Controller {
    */
   public function add()
   {
-    //
+    // return create form with infos
   }
 
 	/**
@@ -180,11 +180,25 @@ class VinylsController extends Controller {
 	public function store(StoreVinylRequest $request)
 	{
 		$user =  Auth::user();
+    $cover = '/images/PH_vinyl.svg';  // default cover
+
+    // uploaded vinyl cover or URL
+    if($request->hasFile('coverFile')){
+      $path = public_path() . '/images/vinyls';
+      $file = $request->file('coverFile');
+      $filename = 'vinyl_' . rand(0,9999999) . '_' . $file->getClientOriginalName();
+      $file->move($path,$filename);
+      $cover = '/images/vinyls/' . $filename;
+      dd($cover);
+    }
+    else{
+      $cover = $request->input('cover');
+    }
 
     // Create vinyl
     $vinyl = Vinyl::create([
       'user_id' => $user->id,
-      'artwork' => $request->input('cover'),
+      'artwork' => $cover,
       'artist' => $request->input('artist'),
       'title' => $request->input('title'),
       'label' => $request->input('label'),
