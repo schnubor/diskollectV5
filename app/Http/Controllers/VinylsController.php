@@ -285,7 +285,16 @@ class VinylsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$vinyl = Vinyl::find($id);
+    if($vinyl->delete()){
+      flash()->info($vinyl->artist.' - '.$vinyl->title.' was deleted successfully.');
+      return redirect()->route('user.collection', Auth::user()->id )
+        ->with('info-alert', 'All done! Vinyl deleted successfully.');
+    }
+    else{
+      flash()->error('Oops! Could not delete vinyl. Please try again.');
+      return redirect()->route('user.collection', Auth::user()->id )
+        ->with('danger-alert', 'Oops! Vinyl could not be deleted.');
+    }
 	}
-
 }

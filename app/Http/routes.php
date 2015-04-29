@@ -151,7 +151,7 @@ Route::post('/vinyl/{id}/edit', [
   'middleware' => 'auth'
 ]);
 
-Route::post('/vinyl/{id}/delete', [
+Route::delete('/vinyl/{id}/delete', [
   'as' => 'delete.vinyl',
   'uses' => 'VinylsController@destroy',
   'middleware' => 'auth'
