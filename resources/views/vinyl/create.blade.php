@@ -19,7 +19,7 @@
           </div>
           <div class="col-md-12">
             <div class="col-md-8 col-md-offset-2">
-              <img src="/images/PH_vinyl.svg" class="cover thumbnail">
+              <img src="/images/PH_vinyl.svg" class="cover thumbnail" id="vinylCover">
             </div>
             <div class="coverUrl">
               {!! Form::text('cover', Input::old('cover'), ['class' => 'form-control', 'placeholder' => 'Image URL (e.g. http://example.com/image.jpg)']) !!}
