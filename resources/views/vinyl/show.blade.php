@@ -32,7 +32,7 @@
       <div class="col-md-6">
         {{-- Details --}}
         <div class="panel panel-default">
-          <div class="panel-heading">Vinyl Details</div>
+          <div class="panel-heading">Vinyl Details <span class="label label-success pull-right">{{ $vinyl->price.$user->currency }}</span></div>
           <table class="table table-bordered">
             <tr>
               <td><strong>Label</strong></td>
