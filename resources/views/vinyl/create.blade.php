@@ -9,7 +9,7 @@
 
   <div class="col-md-10 no-padding content-area createVinyl">
     <div class="col-md-12 content full-height no-padding">
-      {!! Form::open(['route' => 'post.create.vinyl', 'id' => 'addVinylForm']) !!}
+      {!! Form::open(['route' => 'post.create.vinyl', 'id' => 'addVinylForm', 'files' => true]) !!}
       <div class="col-md-12 no-padding">
         <!-- Cover -->
         <div class="col-md-4 step one no-padding">
@@ -18,11 +18,14 @@
             <p class="h1 step-headline white">Cover</p>
           </div>
           <div class="col-md-12">
-            <img src="/images/PH_vinyl.svg" class="cover">
-            <div class="col-md-6 form-group coverUrl">
+            <div class="col-md-8 col-md-offset-2">
+              <img src="/images/PH_vinyl.svg" class="cover thumbnail">
+            </div>
+            <div class="coverUrl">
               {!! Form::text('cover', Input::old('cover'), ['class' => 'form-control', 'placeholder' => 'Image URL (e.g. http://example.com/image.jpg)']) !!}
             </div>
-            <div class="col-md-6 form-group">
+            <p class="text-center">or upload an image</p>
+            <div class="coverUrl">
               {!! Form::file('coverFile', ['class' => 'form-control']) !!}
             </div>
           </div>

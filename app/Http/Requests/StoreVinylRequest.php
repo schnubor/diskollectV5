@@ -24,7 +24,8 @@ class StoreVinylRequest extends Request {
     return [
       'artist' => 'required',
       'title' => 'required',
-      'price' => 'required'
+      'price' => 'required',
+      'coverFile' => 'image|max:200'
     ];
   }
 

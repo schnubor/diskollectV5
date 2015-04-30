@@ -1,3 +1,5 @@
 /vendor
 /node_modules
+/public/vinyls
+/public/users
 .env

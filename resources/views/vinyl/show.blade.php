@@ -20,7 +20,7 @@
         @if(Auth::user() == $user)
           <div>
             <a href="{{ route('get.edit.vinyl', $vinyl->id)}}" class="btn btn-default btn-sm"><i class="fa fa-fw fa-edit"></i> Edit Vinyl</a>
-            {!! Form::open(['route' => ['delete.vinyl', $vinyl->id], 'onsubmit' => 'return confirm(\'Are you sure you want to delete this vinyl?\')']) !!}
+            {!! Form::open(['route' => ['delete.vinyl', $vinyl->id], 'onsubmit' => 'return confirm(\'Are you sure you want to delete this vinyl?\')', 'style' => 'display: inline;']) !!}
               {!! Form::hidden('_method', 'DELETE') !!}
               {!! Form::button('<i class="fa fa-fw fa-trash"></i> Delete Vinyl', ['class' => 'btn btn-sm btn-default', 'type' => 'submit']) !!}
             {!! Form::close() !!}
@@ -70,7 +70,8 @@
         </div>
         {{-- Tracklist --}}
         <div class="panel panel-default">
-          <div class="panel-heading">Tracklist</div>
+          <div class="panel-heading">Tracklist <span class="badge pull-right">{{ $tracks->count() }}</span>
+          </div>
           <table class="table table-bordered">
             @foreach($tracks as $track)
               <tr>

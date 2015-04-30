@@ -189,9 +189,8 @@ class VinylsController extends Controller {
       $filename = 'vinyl_' . rand(0,9999999) . '_' . $file->getClientOriginalName();
       $file->move($path,$filename);
       $cover = '/images/vinyls/' . $filename;
-      dd($cover);
     }
-    else{
+    elseif($request->input('cover')){
       $cover = $request->input('cover');
     }
 
