@@ -135,7 +135,11 @@
             <p class="h1 step-headline white">Tracklist </p>
           </div>
           <div class="col-md-8 text-left">
-            {!! Form::hidden('trackCount', 1) !!}
+            @if($tracks->count())
+              {!! Form::hidden('trackCount', $tracks->count()) !!}
+            @else
+              {!! Form::hidden('trackCount', 1) !!}
+            @endif
             <table class="table js-trackTable">
               @if($tracks->count())
                 @foreach($tracks as $key => $track)
