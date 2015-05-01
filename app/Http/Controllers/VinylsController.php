@@ -262,7 +262,14 @@ class VinylsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		return 'edit';
+    $vinyl = Vinyl::find($id);
+    $user = $vinyl->user;
+    $tracks = $vinyl->tracks;
+
+		return view('vinyl.edit')
+      ->with('vinyl', $vinyl)
+      ->with('user', $user)
+      ->with('tracks', $tracks);
 	}
 
 	/**

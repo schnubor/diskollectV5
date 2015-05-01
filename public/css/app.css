@@ -64,7 +64,8 @@ a:hover {
   height: 100%; }
 
 .step.one {
-  background-color: #839393; }
+  background-color: #839393;
+  color: #F0F0F0; }
 .step.three {
   background-color: #3E4545;
   padding-bottom: 40px; }
@@ -94,7 +95,7 @@ a:hover {
 .step .cover {
   width: 100%; }
 .step .coverUrl {
-  margin-top: 15px;
+  margin-top: 18px;
   padding-bottom: 15px;
   margin-bottom: 0; }
   .step .coverUrl input {
@@ -319,6 +320,3 @@ a:hover {
   margin-bottom: 30px; }
   .vinyl .info .artist {
     font-weight: bold; }
-
-
-/*# sourceMappingURL=app.css.map */

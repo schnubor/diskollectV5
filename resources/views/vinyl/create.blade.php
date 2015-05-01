@@ -25,7 +25,7 @@
               {!! Form::text('cover', Input::old('cover'), ['class' => 'form-control', 'placeholder' => 'Image URL (e.g. http://example.com/image.jpg)']) !!}
             </div>
             <p class="text-center">or upload an image</p>
-            <div class="coverUrl">
+            <div class="coverUrl" style="padding-bottom: 40px;">
               {!! Form::file('coverFile', ['class' => 'form-control']) !!}
             </div>
           </div>
@@ -150,12 +150,8 @@
       <!-- Save -->
       <div class="col-md-12 no-padding">
         <div class="col-md-12 step four no-padding">
-          <div class="col-md-2">
-            <div class="step-number">4</div>
-            <p class="h1 step-headline">Save</p>
-          </div>
-          <div class="col-md-4 text-centered">
-            {!! Form::submit('Add vinyl', array('class' => 'btn btn-lg btn-primary', 'style' => 'margin-top: 30px')) !!}
+          <div class="col-md-12">
+            {!! Form::submit('Add vinyl', array('class' => 'btn btn-lg btn-primary pull-right', 'style' => 'margin: 15px 0')) !!}
           </div>
         </div>
       </div>
