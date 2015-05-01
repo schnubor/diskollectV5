@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Requests\DiscogsOAuthRequest;
 use App\Http\Requests\DiscogsSearchRequest;
 use App\Http\Requests\StoreVinylRequest;
+use App\Http\Requests\EditVinylRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -278,9 +279,70 @@ class VinylsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, EditVinylRequest $request)
 	{
-		//
+		$vinyl = Vinyl::find($id);
+    $cover = '/images/PH_vinyl.svg';
+
+    // uploaded vinyl cover or URL
+    if($request->hasFile('coverFile')){
+      $path = public_path() . '/images/vinyls';
+      $file = $request->file('coverFile');
+      $filename = 'vinyl_' . rand(0,9999999) . '_' . $file->getClientOriginalName();
+      $file->move($path,$filename);
+      $cover = '/images/vinyls/' . $filename;
+    }
+    elseif($request->input('artwork')){
+      $cover = $request->input('artwork');
+    }
+
+    $vinyl->artwork = $cover;
+    $vinyl->artist = $request->input('artist');
+    $vinyl->title = $request->input('title');
+    $vinyl->label = $request->input('label');
+    $vinyl->catno = $request->input('catno');
+    $vinyl->genre = $request->input('genre');
+    $vinyl->price = $request->input('price');
+    $vinyl->country = $request->input('country');
+    $vinyl->releasedate = $request->input('releasedate');
+    $vinyl->size = $request->input('size');
+    $vinyl->count = $request->input('count');
+    $vinyl->type = $request->input('type');
+    $vinyl->releasetype = $request->input('format');
+    $vinyl->notes = $request->input('notes');
+    $vinyl->weight = $request->input('weight');
+
+    if($vinyl->save()){
+      $tracklistItems = $request->input('trackCount');
+
+      // update existing tracks
+      for($i = 0; $i < $tracklistItems; $i++){
+        $track = Track::find($request->input('track_'.$i.'_id'));
+
+        if($track){
+          $track->title = $request->input('track_'.$i.'_title');
+          $track->number = $request->input('track_'.$i.'_position');
+          $track->duration = $request->input('track_'.$i.'_duration');
+          $track->save();
+        }
+        else{
+          Track::create([
+            'vinyl_id' => $vinyl->id,
+            'artist_id' => 1,
+            'artist' => $vinyl->artist,
+            'title' => $request->input('track_'.$i.'_title'),
+            'number' => $request->input('track_'.$i.'_position'),
+            'duration' => $request->input('track_'.$i.'_duration'),
+          ]);
+        }
+      }
+
+      flash()->success('Success! Vinyl updated.');
+      return redirect()->route('get.show.vinyl', $vinyl->id);
+    }
+
+    flash()->success('Oops! Could not edit vinyl. Please try again.');
+    return redirect()->route('get.show.vinyl', $vinyl->id);
 	}
 
 	/**

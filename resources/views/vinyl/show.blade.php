@@ -66,6 +66,14 @@
               <td><strong>Added</strong></td>
               <td>{{ date("d F Y", strtotime($vinyl->created_at)) }}</td>
             </tr>
+            <tr>
+              <td><strong>Updated</strong></td>
+              <td>{{ date("d F Y", strtotime($vinyl->updated_at)) }}</td>
+            </tr>
+            <tr>
+              <td><strong>Notes</strong></td>
+              <td>{{ $vinyl->notes }}</td>
+            </tr>
           </table>
         </div>
         {{-- Tracklist --}}

@@ -124,6 +124,9 @@
                 <input type="radio" name="type" value="reissue"> Reissue
               </label>
             </div>
+            <div class="form-group">
+              <textarea class="form-control" placeholder="Additional notes (optional)" name="notes" style="resize: none;">{{$vinyl->notes}}</textarea>
+            </div>
           </div>
         </div>
       </div>
@@ -144,6 +147,7 @@
               @if($tracks->count())
                 @foreach($tracks as $key => $track)
                   <tr>
+                    {!! Form::hidden('track_'.$key.'_id', $track->id) !!}
                     <td width="80px" style="padding-left: 0;">{!! Form::text('track_'.$key.'_position', $track->number, ['class' => 'form-control', 'placeholder' => 'A1']) !!}</td>
                     <td>{!! Form::text('track_'.$key.'_title', $track->title, ['class' => 'form-control', 'placeholder' => 'Title']) !!}</td>
                     <td width="100px">{!! Form::text('track_'.$key.'_duration', $track->duration, ['class' => 'form-control', 'placeholder' => '1:13']) !!}</td>

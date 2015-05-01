@@ -124,6 +124,9 @@
                 <input type="radio" name="type" value="reissue"> Reissue
               </label>
             </div>
+            <div class="form-group">
+              <textarea class="form-control" placeholder="Additional notes (optional)" name="notes" style="resize: none;"></textarea>
+            </div>
           </div>
         </div>
       </div>
