@@ -9,7 +9,7 @@
 
   <div class="col-md-10 no-padding content-area createVinyl">
     <div class="col-md-12 content full-height no-padding">
-      {!! Form::model($vinyl, ['route' => 'post.edit.vinyl', 'files' => true]) !!}
+      {!! Form::model($vinyl, ['route' => ['post.edit.vinyl', $vinyl->id], 'files' => true]) !!}
       <div class="col-md-12 no-padding">
         <!-- Cover -->
         <div class="col-md-4 step one no-padding">
