@@ -24,10 +24,14 @@ elixir(function(mix) {
   mix.copy('bower_components/fontawesome/fonts', 'public/css/fonts');
   mix.copy('bower_components/fontawesome/css/font-awesome.min.css', 'public/css/vendor/font-awesome.min.css');
   mix.copy('bower_components/underscore/underscore-min.js', 'public/js/vendor/underscore-min.js');
+  mix.copy('bower_components/d3/d3.min.js', 'public/js/vendor/d3.min.js');
+  mix.copy('bower_components/c3/c3.min.js', 'public/js/vendor/c3.min.js');
+  mix.copy('bower_components/c3/c3.min.css', 'public/css/vendor/c3.min.css');
 
   mix.styles([                        // concat styles
     'vendor/normalize.css',
     'vendor/bootstrap.css',
+    'vendor/c3.min.css',
     'app.css'
   ], null, 'public/css');
 
@@ -35,9 +39,12 @@ elixir(function(mix) {
     'vendor/jquery.js',
     'vendor/bootstrap.js',
     'vendor/underscore-min.js',
+    'vendor/d3.min.js',
+    'vendor/c3.min.js',
     'app.js',
     'search.js',
-    'createVinyl.js'
+    'createVinyl.js',
+    'charts.js'
   ], null, 'public/js');
 
   mix.version('public/css/all.css');  // versioning

@@ -9,20 +9,21 @@
 
   <div class="col-md-10 no-padding content-area">
     <div class="col-md-12 toolbar">
-      <div class="pages pull-right">
-        @if($vinyls->previousPageUrl())
-          <a href="{{ $vinyls->previousPageUrl() }}"><i class="fa fa-angle-left arrow"></i></a>
-        @else
-          <a href="{{ $vinyls->previousPageUrl() }}" class="disabled"><i class="fa fa-angle-left arrow"></i></a>
-        @endif
-            <span>{!! $vinyls->currentPage() !!}/{!! $vinyls->lastPage() !!}</span>
-        @if($vinyls->nextPageUrl())
-          <a href="{{ $vinyls->nextPageUrl() }}"><i class="fa fa-angle-right arrow"></i></a>
-        @else
-          <a href="{{ $vinyls->nextPageUrl() }}" class="disabled"><i class="fa fa-angle-right arrow"></i></a>
-        @endif
-        
-      </div>
+      @if($vinyls->count())
+        <div class="pages pull-right">
+          @if($vinyls->previousPageUrl())
+            <a href="{{ $vinyls->previousPageUrl() }}"><i class="fa fa-angle-left arrow"></i></a>
+          @else
+            <a href="{{ $vinyls->previousPageUrl() }}" class="disabled"><i class="fa fa-angle-left arrow"></i></a>
+          @endif
+              <span>{!! $vinyls->currentPage() !!}/{!! $vinyls->lastPage() !!}</span>
+          @if($vinyls->nextPageUrl())
+            <a href="{{ $vinyls->nextPageUrl() }}"><i class="fa fa-angle-right arrow"></i></a>
+          @else
+            <a href="{{ $vinyls->nextPageUrl() }}" class="disabled"><i class="fa fa-angle-right arrow"></i></a>
+          @endif
+        </div>
+      @endif
     </div>
     <div class="col-md-12 content">
       @foreach($vinyls as $vinyl)
