@@ -16,29 +16,29 @@
 
       <div class="col-md-3">
         <div class="well">
-          <p class="h2">1283€</p>
+          <p class="h2">{{ $value }} {{ $user->currency }}</p>
           <p class="lead">Overall Value</p> 
         </div>
       </div>
 
       <div class="col-md-3">
         <div class="well">
-          <p class="h2">1283€</p>
-          <p class="lead">Overall Value</p> 
+          <p class="h2">{{ $weight }} kg</p>
+          <p class="lead">Overall Weight</p> 
         </div>
       </div>
 
       <div class="col-md-3">
         <div class="well">
-          <p class="h2">1283€</p>
-          <p class="lead">Overall Value</p> 
+          <p class="h2">{{ $favArtist }}</p>
+          <p class="lead">Favourite Artist</p> 
         </div>
       </div>
 
       <div class="col-md-3">
         <div class="well">
-          <p class="h2">1283€</p>
-          <p class="lead">Overall Value</p> 
+          <p class="h2">{{ $favLabel }}</p>
+          <p class="lead">Favourite Label</p> 
         </div>
       </div>
 
@@ -54,13 +54,13 @@
 
       {{-- Genres --}}
       <div class="col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading"><strong>Most valueable Vinyl</strong></div>
+        <div class="panel panel-default valueVinyl">
+          <div class="panel-heading"><strong>Most valueable Vinyl</strong><span class="pull-right label label-success">{{ $valueVinyl->price.' '.$user->currency }}</span></div>
           <div class="panel-body">
-            <a href=""><img src="/images/PH_vinyl.svg" alt="" class="thumbnail" width="100%"></a>
-            <p>
-              <strong>Daft Punk</strong><br>
-              <span>Homework</span>
+            <a href="{{ route('get.show.vinyl', $valueVinyl->id) }}"><img src="{{ $valueVinyl->artwork }}" alt="{{ $valueVinyl->artist }} - {{ $valueVinyl->title }}" class="thumbnail" width="100%"></a>
+            <p style="margin-bottom: 0;">
+              <strong>{{ $valueVinyl->artist }}</strong><br>
+              <span>{{ $valueVinyl->title }}</span>
             </p>
           </div>
         </div>

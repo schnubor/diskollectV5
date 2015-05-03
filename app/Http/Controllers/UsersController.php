@@ -13,6 +13,7 @@ use Hash;
 use Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller {
 
@@ -116,9 +117,51 @@ class UsersController extends Controller {
 	public function show($id)
 	{
 		$user = User::findOrFail($id);
+		$vinyls = $user->vinyls();
+
+		// Overall weight
+		$weight = ($vinyls->sum('weight')) / 1000;
+
+		// Fav artist
+		$favArtist = DB::table('vinyls')
+			->select(DB::raw('count(*) as artist_count, artist'))
+			->where('user_id', '=', $id)
+			->groupBy('artist')
+			->orderBy('artist_count','DESC')
+			->first();
+
+		// Fav Label
+		$favLabel = DB::table('vinyls')
+			->select(DB::raw('count(*) as label_count, label'))
+			->where('user_id', '=', $id)
+			->groupBy('label')
+			->orderBy('label_count','DESC')
+			->first();
+
+		// Most valuable vinyl
+		$valueVinylQuery = DB::table('vinyls')
+			->select(DB::raw('id, max(`price`)'))
+			->where('user_id', '=', $id)
+			->groupBy('id')
+			->orderBy('price','DESC')
+			->first();
+
+		if(isset($valueVinylQuery)){
+			$valueVinyl = $vinyls->find($valueVinylQuery->id);
+		}
+		else{
+			$valueVinyl = NULL;
+		}
+
+		$value = number_format(round($vinyls->sum('price'),2),2);
 
 		return view('user.show')
-			->with('user', $user);
+			->with('user', $user)
+			->with('weight', $weight)
+			->with('favArtist', $favArtist->artist)
+			->with('favLabel', $favLabel->label)
+			->with('valueVinyl', $valueVinyl)
+			->with('value', $value);
 	}
 
 	/**
