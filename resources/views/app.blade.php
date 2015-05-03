@@ -30,5 +30,6 @@
 
 	<!-- Scripts -->
 	<script src="/js/all.js"></script>
+	@yield('scripts')
 </body>
 </html>

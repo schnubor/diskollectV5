@@ -7016,7 +7016,7 @@ button.close {
   padding-top: 30px;
   padding-bottom: 30px;
   height: calc(100% - 75px);
-  overflow: scroll; }
+  overflow-y: scroll; }
   .content.full-height {
     height: 100%; }
   .content .loading {
@@ -7300,7 +7300,8 @@ a:hover {
 .toolbar {
   background-color: #839393;
   color: #F0F0F0;
-  padding: 20px 15px; }
+  padding: 20px 15px;
+  height: 75px; }
   .toolbar .pages {
     line-height: 26px;
     font-size: 16px; }
