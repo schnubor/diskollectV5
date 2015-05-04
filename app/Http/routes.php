@@ -32,7 +32,7 @@ Route::post('/register', [
   'middleware' => 'guest'
 ]);
 
-Route::get('/user', [
+Route::get('/collectors', [
   'as' => 'user.index',
   'uses' => 'UsersController@index'
 ]);

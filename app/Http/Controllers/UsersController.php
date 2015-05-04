@@ -24,7 +24,9 @@ class UsersController extends Controller {
 	 */
 	public function index()
 	{
-		return "all the users";
+		$users = User::orderBy('created_at', 'DESC')->paginate(12);
+		return view('user.index')
+			->with('users', $users);
 	}
 
 	/**

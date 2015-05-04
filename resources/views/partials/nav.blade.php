@@ -11,9 +11,9 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      @if(Auth::check())
-        <a class="btn navbar-btn btn-primary" href="{{ route('get.search') }}"><i class="fa fa-fw fa-plus"></i> Add Vinyl</a>
-      @endif
+      <ul class="nav navbar-nav">
+        <li><a href="{{ route('user.index') }}"><i class="fa fa-fw fa-users"></i> Collectors</a></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::guest())
           <li><a href="{{ route('login') }}"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>
@@ -30,6 +30,9 @@
           </li>
         @endif
       </ul>
+      @if(Auth::check())
+        <a class="btn navbar-btn btn-primary pull-right" href="{{ route('get.search') }}"><i class="fa fa-fw fa-plus"></i> Add Vinyl</a>
+      @endif
     </div>
   </div>
 </nav>

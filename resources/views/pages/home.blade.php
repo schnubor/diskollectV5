@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-  FTR
+  Welcome
 @endsection
 
 @section('content')

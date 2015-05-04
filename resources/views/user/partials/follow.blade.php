@@ -1,4 +1,3 @@
-<hr>
 @if(Auth::check())
   @if($user->isFollowedBy(Auth::user()))
     {!! Form::open([ 'route' => ['unfollow', $user->id], 'method' => 'delete' ]) !!}

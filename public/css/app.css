@@ -1,3 +1,12 @@
+#collectors {
+  padding-top: 80px; }
+  #collectors .collector {
+    margin-bottom: 80px; }
+  #collectors .avatar {
+    margin: 0 auto; }
+  #collectors a {
+    color: #333333; }
+
 .content-area {
   height: calc(100% - 51px); }
 
@@ -201,6 +210,9 @@ a:hover {
   .avatar.lg {
     height: 200px;
     width: 200px; }
+  .avatar.big {
+    height: 150px;
+    width: 150px; }
   .avatar.md {
     height: 100px;
     width: 100px; }
