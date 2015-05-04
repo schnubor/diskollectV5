@@ -17,6 +17,15 @@ Route::get('/', [
 ]);
 
 /**
+ * API
+ */
+
+Route::get('/user/{id}/genres', [
+  'as' => 'api.genres',
+  'uses' => 'ApiController@genres'
+]);
+
+/**
  * User
  */
 
