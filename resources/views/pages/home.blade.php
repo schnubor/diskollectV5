@@ -62,7 +62,7 @@
         <div class="container">
           @foreach($latestMembers as $member)
             <div class="col-sm-2">
-              <a href="{{ route('user.show', $member->id) }}"><div class="avatar sm" style="background-image: url('{{ $member->image }}')"></div></a>
+              <a href="{{ route('user.show', $member->id) }}"><div class="avatar sm" style="background-image: url('{{ $member->image }}');"></div></a>
               <p><a href="{{ route('user.show', $member->id) }}">{{ $member->username }}</a></p>
             </div>
           @endforeach
