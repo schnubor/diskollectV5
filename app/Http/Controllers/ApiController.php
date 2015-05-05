@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\User;
+use App\Vinyl;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -12,10 +14,10 @@ class ApiController extends Controller {
      *
      * @return Response
      */
-	public function genres($id){
+	public function vinyls($id){
         $user = User::find($id);
-        
-        return $user;
+        $vinyls = $user->vinyls;
+        return $vinyls;
     }
 
 }
