@@ -40,7 +40,7 @@ class HomeController extends Controller {
 			$latestMembers = User::latest()->take(4)->get();
 
 			$userIds = $user->following()->lists('follow_id');
-			$activities = Vinyl::whereIn('user_id', $userIds)->latest()->get();
+			$activities = Vinyl::whereIn('user_id', $userIds)->latest()->paginate(8);
 
 			foreach($activities as $key => $vinyl){
 				$owner = $vinyl->user;
