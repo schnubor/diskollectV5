@@ -27,6 +27,7 @@ elixir(function(mix) {
   mix.copy('bower_components/d3/d3.min.js', 'public/js/vendor/d3.min.js');
   mix.copy('bower_components/c3/c3.min.js', 'public/js/vendor/c3.min.js');
   mix.copy('bower_components/c3/c3.min.css', 'public/css/vendor/c3.min.css');
+  mix.copy('bower_components/dateformatjs/dateformat.min.js', 'public/js/vendor/dateformat.min.js');
 
   mix.styles([                        // concat styles
     'vendor/normalize.css',
@@ -41,6 +42,7 @@ elixir(function(mix) {
     'vendor/underscore-min.js',
     'vendor/d3.min.js',
     'vendor/c3.min.js',
+    'vendor/dateformat.min.js',
     'app.js',
     'search.js',
     'createVinyl.js',

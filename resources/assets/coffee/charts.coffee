@@ -11,7 +11,7 @@ root.getStats = (userId) ->
       console.log status
       console.log error
     success: (vinyls) -> # search results received
-      console.log vinyls
+      #console.log vinyls
 
       genreData = []
 
@@ -39,9 +39,11 @@ root.getStats = (userId) ->
         sizeData_temp.push(size)
 
         # --- Time --------------------------------
-        time = vinyl.releasedate.substr(vinyl.releasedate.length - 4)
-        if time != ""
-          timeData_temp.push(time)
+        time = new Date(vinyl.releasedate)
+        if time.getFullYear()
+          timeData_temp.push(time.format('Y-m-d'))
+
+      console.log timeData_temp
       
       genreData = _.chain(genreData).countBy().pairs().value()
 
@@ -55,6 +57,11 @@ root.getStats = (userId) ->
         timeData[0].push(timeArray[0])
         timeData[1].push(timeArray[1])
 
+
+      console.log timeData
+
+
+      # --- Charts --------------------------------
       genreChart = c3.generate
         bindto: '#genreChart'
         data:
@@ -85,10 +92,7 @@ root.getStats = (userId) ->
         bindto: '#timeChart'
         data:
           x: 'x'
-          columns: [
-            ['x', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01', '2014-01-01', '2015-01-01']
-            ['vinyls', 30, 200, 100, 400, 150, 250]
-          ]
+          columns: timeData
         axis:
           x: 
             type: 'timeseries'

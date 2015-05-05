@@ -8,8 +8,8 @@
   {{-- Welcome Page --}}
     <div id="welcome">
       <div class="header">
-        <h1>Your vinyls new home.</h1>
-        <h2>Build. Manage. Rediscover.</h2>
+        <h1>For The Record</h1>
+        <h2>Your vinyls new home.</h2>
         <div class="cta">
           <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-header">Start here.</a>
         </div>

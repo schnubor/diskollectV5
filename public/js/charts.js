@@ -16,7 +16,6 @@
       },
       success: function(vinyls) {
         var genreChart, genreData, sizeChart, sizeData, sizeData_temp, timeChart, timeData, timeData_temp;
-        console.log(vinyls);
         genreData = [];
         sizeData = [['x'], ['sizes']];
         sizeData_temp = [];
@@ -31,11 +30,12 @@
           genreData.push(genre);
           size = vinyl.size;
           sizeData_temp.push(size);
-          time = vinyl.releasedate.substr(vinyl.releasedate.length - 4);
-          if (time !== "") {
-            return timeData_temp.push(time);
+          time = new Date(vinyl.releasedate);
+          if (time.getFullYear()) {
+            return timeData_temp.push(time.format('Y-m-d'));
           }
         });
+        console.log(timeData_temp);
         genreData = _.chain(genreData).countBy().pairs().value();
         sizeData_temp = _.chain(sizeData_temp).countBy().pairs().value();
         _.each(sizeData_temp, function(sizeArray) {
@@ -47,6 +47,7 @@
           timeData[0].push(timeArray[0]);
           return timeData[1].push(timeArray[1]);
         });
+        console.log(timeData);
         genreChart = c3.generate({
           bindto: '#genreChart',
           data: {
@@ -87,7 +88,7 @@
           bindto: '#timeChart',
           data: {
             x: 'x',
-            columns: [['x', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01', '2014-01-01', '2015-01-01'], ['vinyls', 30, 200, 100, 400, 150, 250]]
+            columns: timeData
           },
           axis: {
             x: {
