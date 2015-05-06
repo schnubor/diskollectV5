@@ -11799,7 +11799,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
           sizeData_temp.push(size);
           time = new Date(vinyl.releasedate);
           if (time.getFullYear()) {
-            return timeData_temp.push(time.format('Y-m-d'));
+            return timeData_temp.push(time.format('Y'));
           }
         });
         console.log(timeData_temp);
@@ -11856,16 +11856,6 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
           data: {
             x: 'x',
             columns: timeData
-          },
-          axis: {
-            x: {
-              type: 'timeseries',
-              tick: {
-                format: function(x) {
-                  return x.getFullYear();
-                }
-              }
-            }
           },
           legend: {
             show: false

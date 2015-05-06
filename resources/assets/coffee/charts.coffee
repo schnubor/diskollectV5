@@ -41,7 +41,7 @@ root.getStats = (userId) ->
         # --- Time --------------------------------
         time = new Date(vinyl.releasedate)
         if time.getFullYear()
-          timeData_temp.push(time.format('Y-m-d'))
+          timeData_temp.push(time.format('Y'))
 
       console.log timeData_temp
       
@@ -93,11 +93,5 @@ root.getStats = (userId) ->
         data:
           x: 'x'
           columns: timeData
-        axis:
-          x: 
-            type: 'timeseries'
-            tick:
-              format: (x) -> 
-                return x.getFullYear()
         legend:
           show: false
