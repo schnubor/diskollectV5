@@ -1,6 +1,6 @@
 Hey {{ $username }}, <br><br>
 
-we set up a new temporary password for your account.
+we set up a new temporary password for your account. <br><br>
 
 1. Click the following link: <br><br>   
 

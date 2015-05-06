@@ -138,13 +138,9 @@
             <p class="h1 step-headline white">Tracklist </p>
           </div>
           <div class="col-md-8 text-left">
-            {!! Form::hidden('trackCount', 1) !!}
+            {!! Form::hidden('trackCount', 0) !!}
             <table class="table js-trackTable">
-              <tr class="track0">
-                <td width="80px" style="padding-left: 0;">{!! Form::text('track_0_position', Input::old('track_0_position'), ['class' => 'form-control', 'placeholder' => 'A1']) !!}</td>
-                <td>{!! Form::text('track_0_title', Input::old('track_0_title'), ['class' => 'form-control', 'placeholder' => 'Title']) !!}</td>
-                <td width="100px">{!! Form::text('track_0_duration', Input::old('track_0_duration'), ['class' => 'form-control', 'placeholder' => '1:13']) !!}</td>
-              </tr>
+              
             </table>
             <button type="button" class="js-add-track btn btn-md btn-default"><i class="fa fa-plus"></i> Add Track</button>
           </div>

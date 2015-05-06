@@ -12,7 +12,11 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{{ route('user.index') }}"><i class="fa fa-fw fa-users"></i> Collectors</a></li>
+        @if (Auth::guest())
+          <li><a href="{{ route('user.index') }}"><i class="fa fa-fw fa-users"></i> Collectors</a></li>
+        @else
+          <li><a href="{{ route('home') }}"><i class="fa fa-fw fa-th-large"></i> Dashboard</a></li>
+        @endif
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::guest())
@@ -28,6 +32,11 @@
               <li><a href="{{ route('get.logout') }}"><i class="fa fa-fw fa-sign-out"></i> Sign out</a></li>
             </ul>
           </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{{ route('user.index') }}"><i class="fa fa-fw fa-users"></i> Collectors</a></li>
+            </ul>
         @endif
       </ul>
       @if(Auth::check())

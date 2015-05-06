@@ -46,7 +46,6 @@ elixir(function(mix) {
     'app.js',
     'search.js',
     'createVinyl.js',
-    'editVinyl.js',
     'charts.js'
   ], null, 'public/js');
 

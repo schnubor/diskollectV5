@@ -1,4 +1,4 @@
-# Create Vinyl Site
+# Add Track
 # ----------------------------
 
 $('.createVinyl .js-add-track').click ->
@@ -22,3 +22,11 @@ $("input[name='coverFile']").change ->
 
 $("input[name='cover']").change ->
   $('#vinylCover').attr('src', $(this).val())
+
+# Delete Track
+# ----------------------------
+
+$('.editVinyl .js-delete-track').click ->
+  id = $(this).data('trackId')
+  console.log 'click '+id
+  $('tr.track'+id)
