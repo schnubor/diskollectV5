@@ -146,19 +146,14 @@
             <table class="table js-trackTable">
               @if($tracks->count())
                 @foreach($tracks as $key => $track)
-                  <tr>
+                  <tr data-trackId="{{ $key }}">
                     {!! Form::hidden('track_'.$key.'_id', $track->id) !!}
                     <td width="80px" style="padding-left: 0;">{!! Form::text('track_'.$key.'_position', $track->number, ['class' => 'form-control', 'placeholder' => 'A1']) !!}</td>
                     <td>{!! Form::text('track_'.$key.'_title', $track->title, ['class' => 'form-control', 'placeholder' => 'Title']) !!}</td>
                     <td width="100px">{!! Form::text('track_'.$key.'_duration', $track->duration, ['class' => 'form-control', 'placeholder' => '1:13']) !!}</td>
+                    <td><button type="button" class="btn btn-md btn-default js-deleteTrack"><i class="fa fa-trash"></i></button></td>
                   </tr>
                 @endforeach
-              @else
-                <tr>
-                  <td width="80px" style="padding-left: 0;">{!! Form::text('track_0_position', Input::old('track_0_position'), ['class' => 'form-control', 'placeholder' => 'A1']) !!}</td>
-                  <td>{!! Form::text('track_0_title', Input::old('track_0_title'), ['class' => 'form-control', 'placeholder' => 'Title']) !!}</td>
-                  <td width="100px">{!! Form::text('track_0_duration', Input::old('track_0_duration'), ['class' => 'form-control', 'placeholder' => '1:13']) !!}</td>
-                </tr>
               @endif
             </table>
             <button type="button" class="js-add-track btn btn-md btn-default"><i class="fa fa-plus"></i> Add Track</button>
