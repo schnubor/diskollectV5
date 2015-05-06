@@ -1,6 +1,9 @@
 (function() {
   $('.editVinyl .js-delete-track').click(function() {
-    return console.log('click');
+    var id;
+    id = $(this).data('trackId');
+    console.log('click ' + id);
+    return $('tr.track' + id);
   });
 
 }).call(this);

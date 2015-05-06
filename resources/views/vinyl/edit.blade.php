@@ -146,7 +146,7 @@
             <table class="table js-trackTable">
               @if($tracks->count())
                 @foreach($tracks as $key => $track)
-                  <tr data-trackId="{{ $key }}">
+                  <tr class="track{{ $key }}">
                     {!! Form::hidden('track_'.$key.'_id', $track->id) !!}
                     <td width="80px" style="padding-left: 0;">{!! Form::text('track_'.$key.'_position', $track->number, ['class' => 'form-control', 'placeholder' => 'A1']) !!}</td>
                     <td>{!! Form::text('track_'.$key.'_title', $track->title, ['class' => 'form-control', 'placeholder' => 'Title']) !!}</td>

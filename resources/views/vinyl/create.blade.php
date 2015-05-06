@@ -140,7 +140,7 @@
           <div class="col-md-8 text-left">
             {!! Form::hidden('trackCount', 1) !!}
             <table class="table js-trackTable">
-              <tr data-trackId="0">
+              <tr class="track0">
                 <td width="80px" style="padding-left: 0;">{!! Form::text('track_0_position', Input::old('track_0_position'), ['class' => 'form-control', 'placeholder' => 'A1']) !!}</td>
                 <td>{!! Form::text('track_0_title', Input::old('track_0_title'), ['class' => 'form-control', 'placeholder' => 'Title']) !!}</td>
                 <td width="100px">{!! Form::text('track_0_duration', Input::old('track_0_duration'), ['class' => 'form-control', 'placeholder' => '1:13']) !!}</td>

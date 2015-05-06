@@ -2,5 +2,6 @@
 # ----------------------------
 
 $('.editVinyl .js-delete-track').click ->
-  console.log 'click'
-  
+  id = $(this).data('trackId')
+  console.log 'click '+id
+  $('tr.track'+id)

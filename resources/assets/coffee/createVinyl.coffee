@@ -7,7 +7,7 @@ $('.createVinyl .js-add-track').click ->
   $tracks++
   $('.createVinyl input[name="trackCount"]').val($tracks)
   
-  $('.js-trackTable').append('<tr data-trackId="'+($tracks-1)+'"><td width="80px" style="padding-left: 0;"><input class="form-control" placeholder="A1" name="track_'+($tracks-1)+'_position" type="text"></td><td><input class="form-control" placeholder="Title" name="track_'+($tracks-1)+'_title" type="text"></td><td width="100px"><input class="form-control" placeholder="1:13" name="track_'+($tracks-1)+'_duration" type="text"></td></tr>')
+  $('.js-trackTable').append('<tr class="track'+($tracks-1)+'"><td width="80px" style="padding-left: 0;"><input class="form-control" placeholder="A1" name="track_'+($tracks-1)+'_position" type="text"></td><td><input class="form-control" placeholder="Title" name="track_'+($tracks-1)+'_title" type="text"></td><td width="100px"><input class="form-control" placeholder="1:13" name="track_'+($tracks-1)+'_duration" type="text"></td></tr>')
 
 readUrl = (input) ->
   if input.files and input.files[0]
