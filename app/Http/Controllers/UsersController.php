@@ -121,6 +121,9 @@ class UsersController extends Controller {
 		$user = User::findOrFail($id);
 		$vinyls = $user->vinyls();
 
+		// Overall value
+		$value = number_format(round($vinyls->sum('price'),2),2);
+
 		// Overall weight
 		$weight = ($vinyls->sum('weight')) / 1000;
 
@@ -154,8 +157,6 @@ class UsersController extends Controller {
 		else{
 			$valueVinyl = NULL;
 		}
-
-		$value = number_format(round($vinyls->sum('price'),2),2);
 
 		return view('user.show')
 			->with('user', $user)

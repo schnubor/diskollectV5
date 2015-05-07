@@ -47,7 +47,8 @@
       border-radius: 75px;
       -webkit-border-radius: 75px;
       -moz-border-radius: 75px;
-      background: url('http://beta.diskollect.com/images/users/{{ $follower->image }}') center center no-repeat cover;
+      background: url('http://beta.diskollect.com/images/users/{{ $follower->image }}') center center no-repeat;
+      background-size: cover;
     }
 
     .button {
@@ -149,9 +150,9 @@
                             </tr>
                             <tr>
                                 <td align="center">
-                                    <p>
-                                        <a href="{{ route('user.show', $follower->id) }}" class="button">{{ $follower->username }}</a>
-                                    </p>
+                                    <h4>
+                                        <a href="{{ route('user.show', $follower->id) }}">{{ $follower->username }}</a>
+                                    </h4>
                                 </td>
                             </tr>
                         </table>
