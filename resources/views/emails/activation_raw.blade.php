@@ -130,7 +130,7 @@
 
                         <h2>Hi {{ $username }},</h2>
 
-                        <p>you just told us you forgot your password. Don't panic, we got you covered. Click the following link and use the password below to log in again.</p>
+                        <p>thank you for signing up at FTR. Please click the button below to complete your registration.</p>
 
                         <table>
                             <tr>
@@ -142,11 +142,7 @@
                             </tr>
                         </table>
 
-                        <p>Your new password:</p>
-
-                        <h3>{{ $password }}</h3>
-
-                        <p>You can change your password again, once you're logged in.</p>
+                        <p>Enjoy FTR and feel free to give us feedback any time!</p>
 
                         <p><em>– Christian from FTR</em></p>
 
