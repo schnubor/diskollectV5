@@ -30,14 +30,22 @@
 
       <div class="col-md-3">
         <div class="well">
-          <p class="h2">{{ $favArtist }}</p>
+          @if(isset($favArtist))
+            <p class="h2">{{ $favArtist }}</p>
+          @else
+            <p class="h2">-</p>
+          @endif
           <p class="lead">Favourite Artist</p> 
         </div>
       </div>
 
       <div class="col-md-3">
         <div class="well">
-          <p class="h2">{{ $favLabel }}</p>
+          @if(isset($favLabel))
+            <p class="h2">{{ $favLabel }}</p>
+          @else
+            <p class="h2">-</p>
+          @endif
           <p class="lead">Favourite Label</p> 
         </div>
       </div>
@@ -55,13 +63,23 @@
       {{-- Genres --}}
       <div class="col-md-3">
         <div class="panel panel-default valueVinyl">
-          <div class="panel-heading"><strong>Most valueable Vinyl</strong><span class="pull-right label label-success">{{ $valueVinyl->price.' '.$user->currency }}</span></div>
+          <div class="panel-heading"><strong>Most valueable Vinyl</strong><span class="pull-right label label-success">
+            @if(isset($valueVinyl))
+              {{ $valueVinyl->price.' '.$user->currency }}
+            @else
+              0 {{ $user->currency }}
+            @endif
+          </span></div>
           <div class="panel-body">
-            <a href="{{ route('get.show.vinyl', $valueVinyl->id) }}"><img src="{{ $valueVinyl->artwork }}" alt="{{ $valueVinyl->artist }} - {{ $valueVinyl->title }}" class="thumbnail" width="100%"></a>
-            <p style="margin-bottom: 0;">
-              <strong>{{ $valueVinyl->artist }}</strong><br>
-              <span>{{ $valueVinyl->title }}</span>
-            </p>
+            @if(isset($valueVinyl))
+              <a href="{{ route('get.show.vinyl', $valueVinyl->id) }}"><img src="{{ $valueVinyl->artwork }}" alt="{{ $valueVinyl->artist }} - {{ $valueVinyl->title }}" class="thumbnail" width="100%"></a>
+              <p style="margin-bottom: 0;">
+                <strong>{{ $valueVinyl->artist }}</strong><br>
+                <span>{{ $valueVinyl->title }}</span>
+              </p>
+            @else
+              <img class="thumbnail" src="/images/PH_vinyl.svg" alt="empty vinyl" width="100%">
+            @endif
           </div>
         </div>
       </div>

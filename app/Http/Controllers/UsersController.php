@@ -160,8 +160,8 @@ class UsersController extends Controller {
 		return view('user.show')
 			->with('user', $user)
 			->with('weight', $weight)
-			->with('favArtist', $favArtist->artist)
-			->with('favLabel', $favLabel->label)
+			->with('favArtist', $favArtist)
+			->with('favLabel', $favLabel)
 			->with('valueVinyl', $valueVinyl)
 			->with('value', $value);
 	}
