@@ -31,7 +31,7 @@
       <div class="col-md-3">
         <div class="well">
           @if(isset($favArtist))
-            <p class="h2">{{ $favArtist }}</p>
+            <p class="h2">{{ $favArtist->artist }}</p>
           @else
             <p class="h2">-</p>
           @endif
@@ -42,7 +42,7 @@
       <div class="col-md-3">
         <div class="well">
           @if(isset($favLabel))
-            <p class="h2">{{ $favLabel }}</p>
+            <p class="h2">{{ $favLabel->label }}</p>
           @else
             <p class="h2">-</p>
           @endif
