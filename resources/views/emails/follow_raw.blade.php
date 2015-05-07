@@ -41,6 +41,15 @@
     .text-left {
       text-align: left; }
 
+    .avatar{
+      width: 150px;
+      height: 150px;
+      border-radius: 75px;
+      -webkit-border-radius: 75px;
+      -moz-border-radius: 75px;
+      background: url('http://beta.diskollect.com/images/users/{{ $follower->image }}') center center no-repeat cover;
+    }
+
     .button {
       display: inline-block;
       color: white;
@@ -133,6 +142,11 @@
                         <p>you got a new follower on FTR. Check out his profile:</p>
 
                         <table>
+                            <tr>
+                              <td align="center">
+                                <a href="{{ route('user.show', $follower->id) }}"><div class="avatar"></div></a>
+                              </td>
+                            </tr>
                             <tr>
                                 <td align="center">
                                     <p>

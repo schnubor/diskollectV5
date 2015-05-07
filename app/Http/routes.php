@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/mailtest', function(){
+  return view('emails.follow');
+});
+
 Route::get('/', [
   'as' => 'home',
   'uses' => 'HomeController@index'
