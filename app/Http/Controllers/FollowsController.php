@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\FollowRequest;
 use App\User;
 use Auth;
-
+use Mail;
 
 class FollowsController extends Controller {
 
@@ -21,6 +21,13 @@ class FollowsController extends Controller {
 		$userToFollow = User::find($request->input('userIdToFollow'));
 
 		$user->following()->save($userToFollow);
+
+		Mail::send('emails.follow', [
+			'username' => $userToFollow->username,
+			'follower' => $user,
+		], function($message) use ($userToFollow){
+			$message->to($userToFollow->email, $userToFollow->username)->subject('New Follower');
+		});
 
 		flash()->success('You are now following '.$userToFollow->username.'.');
 		return redirect()->back();

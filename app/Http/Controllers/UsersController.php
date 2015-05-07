@@ -69,7 +69,7 @@ class UsersController extends Controller {
 				'link' => route('user.activate', $code), 
 				'username' => $username
 			], function($message) use ($user){
-					$message->to($user->email, $user->username)->subject('Account Activation');
+				$message->to($user->email, $user->username)->subject('Account Activation');
 			});
 
 			flash()->success('Almost done! Please check your emails in order to activate your account.');

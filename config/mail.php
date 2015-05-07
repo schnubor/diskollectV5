@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'info@fortherecord.de', 'name' => 'ForTheRecord'],
+	'from' => ['address' => 'info@fortherecord.de', 'name' => 'For The Record'],
 
 	/*
 	|--------------------------------------------------------------------------
