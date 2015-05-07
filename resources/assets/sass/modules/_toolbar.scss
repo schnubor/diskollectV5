@@ -2,7 +2,21 @@
   background-color: $lighter-grey;
   color: $white;
   padding: 20px 15px;
-  height: 75px;
+  height: 69px;
+
+  .news{
+    display: inline;
+    a{
+      font-weight: bold;
+      color: $white;
+    }
+  }
+
+  form{
+    display: inline;
+    vertical-align: text-bottom;
+    margin-left: 10px;
+  }
 
   .pages{
     line-height: 26px;

@@ -7024,7 +7024,7 @@ button.close {
 .content {
   padding-top: 30px;
   padding-bottom: 30px;
-  height: calc(100% - 75px);
+  height: calc(100% - 69px);
   overflow-y: scroll; }
   .content.full-height {
     height: 100%; }
@@ -7313,7 +7313,16 @@ a:hover {
   background-color: #839393;
   color: #F0F0F0;
   padding: 20px 15px;
-  height: 75px; }
+  height: 69px; }
+  .toolbar .news {
+    display: inline; }
+    .toolbar .news a {
+      font-weight: bold;
+      color: #F0F0F0; }
+  .toolbar form {
+    display: inline;
+    vertical-align: text-bottom;
+    margin-left: 10px; }
   .toolbar .pages {
     line-height: 26px;
     font-size: 16px; }

@@ -38,6 +38,7 @@ class HomeController extends Controller {
 			$user = Auth::user();
 			$latestVinyls = Vinyl::latest()->take(6)->get();
 			$latestMembers = User::latest()->take(4)->get();
+			$latestUser = $latestMembers->first();
 
 			$userIds = $user->following()->lists('follow_id');
 			$activities = Vinyl::whereIn('user_id', $userIds)->latest()->paginate(8);
@@ -53,6 +54,7 @@ class HomeController extends Controller {
 				->with('user', $user)
 				->with('latestVinyls', $latestVinyls)
 				->with('latestMembers', $latestMembers)
+				->with('latestUser', $latestUser)
 				->with('activities', $activities);
 		}
 		else{
