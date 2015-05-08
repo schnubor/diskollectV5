@@ -28,4 +28,12 @@ class Vinyl extends Model {
       return $this->hasMany('App\Track');
   }
 
+  /**
+   * Videos
+   */
+  public function videos()
+  {
+      return $this->hasMany('App\Video');
+  }
+
 }
