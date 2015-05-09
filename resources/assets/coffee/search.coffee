@@ -181,6 +181,11 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   else
     $tracklist = []
 
+  # videos
+  if vinyl.videos
+    $videos = vinyl.videos
+  else
+    $videos = []
 
   # visible form data
   modal = $(this)
@@ -208,3 +213,8 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_title" type="hidden" value="'+track.title+'"/>');
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_position" type="hidden" value="'+track.position+'"/>');
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_duration" type="hidden" value="'+track.duration+'"/>');
+  _.each $videos, (video, index) ->
+    #console.log video
+    modal.find('#addVinylForm').append('<input class="videoInfo" name="track_'+index+'_title" type="hidden" value="'+video.title+'"/>');
+    modal.find('#addVinylForm').append('<input class="videoInfo" name="track_'+index+'_uri" type="hidden" value="'+video.position+'"/>');
+    modal.find('#addVinylForm').append('<input class="videoInfo" name="track_'+index+'_duration" type="hidden" value="'+video.duration+'"/>');

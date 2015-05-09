@@ -28,6 +28,7 @@
               {!! Form::hidden('color', Input::old('color')) !!}
               {!! Form::hidden('type', Input::old('type')) !!}
               {!! Form::hidden('trackCount', Input::old('trackCount')) !!}
+              {!! Form::hidden('videoCount', Input::old('videoCount')) !!}
             <div class="form-group">
               <label>What did you pay?</label>
               <div class="input-group">
