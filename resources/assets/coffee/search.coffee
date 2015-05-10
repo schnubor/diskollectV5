@@ -208,6 +208,7 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   modal.find('input[name="weight"]').val($weight)
   modal.find('input[name="type"]').val($type)
   modal.find('input[name="trackCount"]').val($tracklist.length)
+  modal.find('input[name="videoCount"]').val($videos.length)
   _.each $tracklist, (track, index) ->
     #console.log track
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_title" type="hidden" value="'+track.title+'"/>');
@@ -215,6 +216,8 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
     modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_duration" type="hidden" value="'+track.duration+'"/>');
   _.each $videos, (video, index) ->
     #console.log video
-    modal.find('#addVinylForm').append('<input class="videoInfo" name="track_'+index+'_title" type="hidden" value="'+video.title+'"/>');
-    modal.find('#addVinylForm').append('<input class="videoInfo" name="track_'+index+'_uri" type="hidden" value="'+video.position+'"/>');
-    modal.find('#addVinylForm').append('<input class="videoInfo" name="track_'+index+'_duration" type="hidden" value="'+video.duration+'"/>');
+    # rewrite uri to embed uri
+    uri = "//youtube.com/embed/"+video.uri.substr(video.uri.length-11)
+    modal.find('#addVinylForm').append('<input class="videoInfo" name="video_'+index+'_title" type="hidden" value="'+video.title+'"/>');
+    modal.find('#addVinylForm').append('<input class="videoInfo" name="video_'+index+'_uri" type="hidden" value="'+uri+'"/>');
+    modal.find('#addVinylForm').append('<input class="videoInfo" name="video_'+index+'_duration" type="hidden" value="'+video.duration+'"/>');

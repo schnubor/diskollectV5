@@ -83,7 +83,7 @@
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $size, $title, $tracklist, $type, $weight, $year, button, modal, vinyl, vinyl_index;
+    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $size, $title, $tracklist, $type, $videos, $weight, $year, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
@@ -151,6 +151,11 @@
     } else {
       $tracklist = [];
     }
+    if (vinyl.videos) {
+      $videos = vinyl.videos;
+    } else {
+      $videos = [];
+    }
     modal = $(this);
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
     modal.find('.modal-body .cover').html('<img src="' + $cover + '" class="thumbnail" width="100%">');
@@ -169,10 +174,18 @@
     modal.find('input[name="weight"]').val($weight);
     modal.find('input[name="type"]').val($type);
     modal.find('input[name="trackCount"]').val($tracklist.length);
-    return _.each($tracklist, function(track, index) {
+    modal.find('input[name="videoCount"]').val($videos.length);
+    _.each($tracklist, function(track, index) {
       modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_title" type="hidden" value="' + track.title + '"/>');
       modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_position" type="hidden" value="' + track.position + '"/>');
       return modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_duration" type="hidden" value="' + track.duration + '"/>');
+    });
+    return _.each($videos, function(video, index) {
+      var uri;
+      uri = "//youtube.com/embed/" + video.uri.substr(video.uri.length - 11);
+      modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_title" type="hidden" value="' + video.title + '"/>');
+      modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_uri" type="hidden" value="' + uri + '"/>');
+      return modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_duration" type="hidden" value="' + video.duration + '"/>');
     });
   });
 

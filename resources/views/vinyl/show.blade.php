@@ -9,7 +9,16 @@
 
   <div class="col-md-10 no-padding content-area">
     <div class="col-md-12 toolbar">
-      <p class="lead">{{ $vinyl->artist }} - {{ $vinyl->title }}</p>
+      <p class="lead pull-left">{{ $vinyl->artist }} - {{ $vinyl->title }}</p>
+      @if(Auth::user() == $user)
+        <div class="pull-right">
+          <a href="{{ route('get.edit.vinyl', $vinyl->id)}}" class="btn btn-default btn-sm" style="vertical-align: top;"><i class="fa fa-fw fa-edit"></i> Edit</a>
+          {!! Form::open(['route' => ['delete.vinyl', $vinyl->id], 'onsubmit' => 'return confirm(\'Are you sure you want to delete this vinyl?\')', 'style' => 'display: inline;']) !!}
+            {!! Form::hidden('_method', 'DELETE') !!}
+            {!! Form::button('<i class="fa fa-fw fa-trash"></i>', ['class' => 'btn btn-sm btn-default', 'type' => 'submit']) !!}
+          {!! Form::close() !!}
+        </div>
+      @endif
     </div>
     <div class="col-md-12 content">
       {{-- Left side --}}
@@ -17,15 +26,16 @@
         <div class="thumbnail">
           <img src="{{ $vinyl->artwork }}" alt="{{ $vinyl->artist }} - {{ $vinyl->title }}">
         </div>
-        @if(Auth::user() == $user)
-          <div>
-            <a href="{{ route('get.edit.vinyl', $vinyl->id)}}" class="btn btn-default btn-sm"><i class="fa fa-fw fa-edit"></i> Edit Vinyl</a>
-            {!! Form::open(['route' => ['delete.vinyl', $vinyl->id], 'onsubmit' => 'return confirm(\'Are you sure you want to delete this vinyl?\')', 'style' => 'display: inline;']) !!}
-              {!! Form::hidden('_method', 'DELETE') !!}
-              {!! Form::button('<i class="fa fa-fw fa-trash"></i> Delete Vinyl', ['class' => 'btn btn-sm btn-default', 'type' => 'submit']) !!}
-            {!! Form::close() !!}
+        @foreach($videos as $video)
+          <div class="panel panel-default">
+            <div class="panel-heading">{{ $video->title }} <span class="label label-default pull-right">{{ gmdate('H:i:s', $video->duration) }}</span></div>
+            <div class="panel-body">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="{{ $video->uri }}"></iframe>
+              </div>
+            </div>
           </div>
-        @endif
+        @endforeach
       </div>
         
       {{-- Right side --}}

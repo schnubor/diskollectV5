@@ -2,6 +2,7 @@
 
 use App\Vinyl;
 use App\Track;
+use App\Video;
 use App\User;
 use Discogs;
 use GuzzleHttp;
@@ -218,6 +219,9 @@ class VinylsController extends Controller {
 
     if($vinyl){
       $tracklistItems = $request->input('trackCount');
+      $videoItems = $request->input('videoCount');
+
+      // Tracklist
       for($i = 0; $i < $tracklistItems; $i++){
         Track::create([
           'vinyl_id' => $vinyl->id,
@@ -226,6 +230,16 @@ class VinylsController extends Controller {
           'title' => $request->input('track_'.$i.'_title'),
           'number' => $request->input('track_'.$i.'_position'),
           'duration' => $request->input('track_'.$i.'_duration'),
+        ]);
+      }
+
+      // Videos
+      for($i = 0; $i < $videoItems; $i++){
+        Video::create([
+          'vinyl_id' => $vinyl->id,
+          'title' => $request->input('video_'.$i.'_title'),
+          'duration' => $request->input('video_'.$i.'_duration'),
+          'uri' => $request->input('video_'.$i.'_uri')
         ]);
       }
 
@@ -248,11 +262,13 @@ class VinylsController extends Controller {
     $vinyl = Vinyl::find($id);
     $user = $vinyl->user;
     $tracks = $vinyl->tracks;
+    $videos = $vinyl->videos;
 
 		return view('vinyl.show')
       ->with('vinyl', $vinyl)
       ->with('user', $user)
-      ->with('tracks', $tracks);
+      ->with('tracks', $tracks)
+      ->with('videos', $videos);
 	}
 
 	/**
