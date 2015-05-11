@@ -29,6 +29,16 @@ Route::get('/api/user/{id}/vinyls', [
   'uses' => 'ApiController@vinyls'
 ]);
 
+Route::get('/api/vinyl/{id}/videos', [
+  'as' => 'api.vinyl.videos',
+  'uses' => 'ApiController@videos'
+]);
+
+Route::get('/api/vinyl/{id}/tracks', [
+  'as' => 'api.vinyl.tracks',
+  'uses' => 'ApiController@tracks'
+]);
+
 /**
  * User
  */
