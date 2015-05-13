@@ -40,3 +40,7 @@
     </div>
   </div>
 @endsection
+
+@section('scripts')
+  <script>$.jukebox({{$user->id}});</script>
+@endsection
