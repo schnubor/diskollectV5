@@ -11785,11 +11785,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 //# sourceMappingURL=createVinyl.js.map
 (function() {
-  var root;
-
-  root = typeof exports !== "undefined" && exports !== null ? exports : this;
-
-  root.getStats = function(userId) {
+  $.getStats = function(userId) {
     var $vinyls;
     console.log('user: ' + userId);
     return $vinyls = $.ajax({
@@ -11888,45 +11884,12 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 //# sourceMappingURL=charts.js.map
 (function() {
-  $.jukebox = function(userId) {
-    var videos, vinyls, vinylsRequest;
-    console.log('user: ' + userId);
-    vinyls = [];
-    videos = [];
-    return vinylsRequest = $.ajax({
-      url: '/api/user/' + userId + '/vinyls',
-      type: 'GET',
-      dataType: 'JSON',
-      error: function(x, status, error) {
-        console.log(status);
-        return console.log(error);
-      },
-      success: function(response) {
-        var videoRequest, vinyl;
-        vinyls = response;
-        console.log(vinyls);
-        vinyl = vinyls[Math.floor(Math.random() * vinyls.length)];
-        console.log(vinyl.id);
-        return videoRequest = $.ajax({
-          url: '/api/vinyl/' + vinyl.id + '/videos',
-          type: 'GET',
-          dataType: 'JSON',
-          error: function(x, status, error) {
-            console.log(status);
-            return console.log(error);
-          },
-          success: function(response) {
-            console.log(response);
-            if (response.length) {
-              console.log(vinyl);
-              return console.log(response[Math.floor(Math.random() * response.length)]);
-            } else {
-              return $.jukebox(userId);
-            }
-          }
-        });
-      }
-    });
+  $.jukebox = function(vinyls) {
+    console.log(vinyls);
+    $('.js-cover').attr('src', vinyls[0].artwork);
+    $('.js-vinylTitle').text(vinyls[0].artist + ' – ' + vinyls[0].title);
+    $('.js-videoTitle').text(vinyls[0].videos[0].title);
+    return $('#player').attr('src', vinyls[0].videos[0].uri);
   };
 
 }).call(this);

@@ -1,9 +1,5 @@
 (function() {
-  var root;
-
-  root = typeof exports !== "undefined" && exports !== null ? exports : this;
-
-  root.getStats = function(userId) {
+  $.getStats = function(userId) {
     var $vinyls;
     console.log('user: ' + userId);
     return $vinyls = $.ajax({

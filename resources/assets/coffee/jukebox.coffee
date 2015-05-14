@@ -1,40 +1,14 @@
-$.jukebox = (userId) ->
-    console.log 'user: '+userId
+$.jukebox = (vinyls) ->
+    console.log vinyls
 
-    vinyls = []
-    videos = []
+    # fill artwork
+    $('.js-cover').attr('src', vinyls[0].artwork)
 
-    vinylsRequest = $.ajax
-        url: '/api/user/'+userId+'/vinyls'
-        type: 'GET'
-        dataType: 'JSON'
-        error: (x,status,error) ->
-          console.log status
-          console.log error
-        success: (response) -> # search results received
-            vinyls = response
-            console.log vinyls
+    # fill vinyl title
+    $('.js-vinylTitle').text(vinyls[0].artist+' – '+vinyls[0].title)
 
-            # pick a random vinyl
-            vinyl = vinyls[Math.floor(Math.random()*vinyls.length)]
-            console.log vinyl.id
+    # fill video title
+    $('.js-videoTitle').text(vinyls[0].videos[0].title)
 
-            # try to fetch a video for that vinyl
-            videoRequest = $.ajax
-                url: '/api/vinyl/'+vinyl.id+'/videos'
-                type: 'GET'
-                dataType: 'JSON'
-                error: (x,status,error) ->
-                  console.log status
-                  console.log error
-                success: (response) -> # search results received
-                    console.log response
-                    if(response.length)
-                        console.log vinyl
-                        console.log response[Math.floor(Math.random()*response.length)]
-                    else
-                        $.jukebox(userId)
-
-
-            #on sucess: display the vinyl and the video 
-
+    # fill player
+    $('#player').attr('src', vinyls[0].videos[0].uri)

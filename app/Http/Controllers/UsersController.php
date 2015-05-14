@@ -192,16 +192,11 @@ class UsersController extends Controller {
 	public function jukebox($id)
 	{
 		$user = User::findOrFail($id);
-		$vinyls = $user->vinyls()->with([
-			'videos' => function($query){
-				$query->whereNotNull('id');
-			}
-		])->get();
-
-		dd($vinyls);
+		$vinyls = $user->vinyls()->with('videos')->has('videos')->get();
 
 		return view('user.jukebox')
-			->with('user', $user);
+			->with('user', $user)
+			->with('vinyls', $vinyls);
 	}
 
 	/**

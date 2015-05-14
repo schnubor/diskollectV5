@@ -18,17 +18,17 @@
     <div class="col-md-12 content">
         <div class="col-sm-4">
             <div class="panel panel-default">
-                <div class="panel-heading">Vinyl</div>
+                <div class="panel-heading js-vinylTitle"></div>
                 <div class="panel-body">
-                    <img src="" alt="" class="thumbnail">
+                    <img src="" alt="" class="thumbnail js-cover" width="100%">
                 </div>
             </div>
             
         </div>
         <div class="col-sm-8">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    Daft Punk - Around the world
+                <div class="panel-heading js-videoTitle">
+                    
                 </div>
                 <div class="panel-body">
                     <div class="embed-responsive embed-responsive-16by9">
@@ -42,5 +42,5 @@
 @endsection
 
 @section('scripts')
-  <script>$.jukebox({{$user->id}});</script>
+  <script>$.jukebox({!! $vinyls !!});</script>
 @endsection

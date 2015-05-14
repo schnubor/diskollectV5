@@ -1,6 +1,4 @@
-root = exports ? this
-
-root.getStats = (userId) ->
+$.getStats = (userId) ->
   console.log 'user: '+userId
 
   $vinyls = $.ajax

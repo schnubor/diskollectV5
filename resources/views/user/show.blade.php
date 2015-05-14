@@ -108,5 +108,5 @@
 @endsection
 
 @section('scripts')
-  <script>getStats({{$user->id}});</script>
+  <script>$.getStats({{$user->id}});</script>
 @endsection
