@@ -12,7 +12,7 @@
       <div class="controls">
           <button class="btn btn-default btn-sm"><i class="fa fa-fw fa-play"></i></button>
           <button class="btn btn-default btn-sm"><i class="fa fa-fw fa-pause"></i></button>
-          <button class="btn btn-default btn-sm"><i class="fa fa-fw fa-step-forward"></i> Skip</button>
+          <button class="btn btn-default btn-sm js-skip"><i class="fa fa-fw fa-step-forward"></i> Skip</button>
       </div>
     </div>
     <div class="col-md-12 content">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe id="player" class="embed-responsive-item" src=""></iframe>
+                        <iframe id="player" class="embed-responsive-item" src="" frameborder="0" enablejsapi="1"></iframe>
                     </div>
                 </div>
             </div>
@@ -42,5 +42,6 @@
 @endsection
 
 @section('scripts')
+  <script src="/js/yt.js"></script>
   <script>$.jukebox({!! $vinyls !!});</script>
 @endsection
