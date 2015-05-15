@@ -53,7 +53,7 @@ $.jukebox = (vinyls) ->
 
   setInterval ->
       state = player.getPlayerState()
-      # console.log state
-      if(state == 3 || state == 0)
+      console.log state
+      if(state == -1 || state == 0)
         $.jukebox(vinyls)
-    , 4000
+    , 2000

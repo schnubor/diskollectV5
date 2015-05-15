@@ -11938,10 +11938,11 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
     return setInterval(function() {
       var state;
       state = player.getPlayerState();
-      if (state === 3 || state === 0) {
+      console.log(state);
+      if (state === -1 || state === 0) {
         return $.jukebox(vinyls);
       }
-    }, 4000);
+    }, 2000);
   };
 
 }).call(this);
