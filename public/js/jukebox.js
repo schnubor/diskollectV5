@@ -53,10 +53,10 @@
     return setInterval(function() {
       var state;
       state = player.getPlayerState();
-      if (state === -1 || state === 0) {
+      if (state === 3 || state === 0) {
         return $.jukebox(vinyls);
       }
-    }, 2000);
+    }, 4000);
   };
 
 }).call(this);
