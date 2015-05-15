@@ -1,10 +1,34 @@
 
 /*
-  Youtube API
+  String to time
  */
 
 (function() {
-  var delay, firstScriptTag, player, tag;
+  var checkPlayer, delay, firstScriptTag, player, tag;
+
+  String.prototype.toHHMMSS = function() {
+    var hours, minutes, sec_num, seconds, time;
+    sec_num = parseInt(this, 10);
+    hours = Math.floor(sec_num / 3600);
+    minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    seconds = sec_num - (hours * 3600) - (minutes * 60);
+    if (hours < 10) {
+      hours = '0' + hours;
+    }
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+    if (seconds < 10) {
+      seconds = '0' + seconds;
+    }
+    time = hours + ':' + minutes + ':' + seconds;
+    return time;
+  };
+
+
+  /*
+    Youtube API
+   */
 
   tag = document.createElement('script');
 
@@ -16,6 +40,8 @@
 
   player = void 0;
 
+  checkPlayer = void 0;
+
   delay = function(ms, func) {
     return setTimeout(func, ms);
   };
@@ -26,9 +52,8 @@
    */
 
   $.jukebox = function(vinyls) {
-    var checkPlayer, onPlayerReady, onPlayerStateChange, video, vinyl;
+    var duration, onPlayerReady, onPlayerStateChange, video, vinyl;
     window.onYouTubeIframeAPIReady = function() {
-      console.log("ready");
       player = new YT.Player('player', {
         events: {
           'onReady': onPlayerReady,
@@ -38,25 +63,25 @@
     };
     onPlayerStateChange = function(state) {};
     onPlayerReady = function() {
-      console.log('hey Im ready');
       player.playVideo();
+      checkPlayer = setInterval(function() {
+        var state;
+        state = player.getPlayerState();
+        console.log(state);
+        if (state === -1 || state === 0) {
+          clearInterval(checkPlayer);
+          checkPlayer = 0;
+          return $.jukebox(vinyls);
+        }
+      }, 2000);
     };
-    checkPlayer = setInterval(function() {
-      var state;
-      state = player.getPlayerState();
-      console.log(state);
-      if (state === -1 || state === 0) {
-        clearInterval(checkPlayer);
-        checkPlayer = 0;
-        return $.jukebox(vinyls);
-      }
-    }, 2000);
     vinyl = vinyls[Math.floor(Math.random() * vinyls.length)];
     video = vinyl.videos[Math.floor(Math.random() * vinyl.videos.length)];
     $('.js-cover').attr('src', vinyl.artwork);
     $('.js-vinylTitle').text(vinyl.artist + ' – ' + vinyl.title);
-    $('.js-videoTitle').text(video.title);
-    $('#player').attr('src', video.uri + "?&controls=0&enablejsapi=1&showinfo=0&autohide=1");
+    duration = video.duration.toHHMMSS();
+    $('.js-videoTitle').html(video.title + '<span class="badge pull-right">' + duration + '</span>');
+    $('#player').attr('src', video.uri + "?&controls=0&enablejsapi=1&showinfo=0&autohide=1&iv_load_policy=3");
     return $('.js-skip').click(function() {
       clearInterval(checkPlayer);
       checkPlayer = 0;
