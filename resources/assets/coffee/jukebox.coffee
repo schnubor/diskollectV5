@@ -15,6 +15,33 @@ delay = (ms, func) -> setTimeout func, ms
 ###
 
 $.jukebox = (vinyls) ->
+
+  # YT stuff
+  window.onYouTubeIframeAPIReady = ->
+    console.log "ready"
+    player = new (YT.Player)('player', events:
+      'onReady': onPlayerReady
+      'onStateChange': onPlayerStateChange)
+    return
+
+  onPlayerStateChange = (state) ->
+    # console.log state.data
+    
+
+  onPlayerReady = ->
+    console.log 'hey Im ready'
+    player.playVideo()
+    return
+
+  checkPlayer = setInterval ->
+      state = player.getPlayerState()
+      console.log state
+      if(state == -1 || state == 0)
+        clearInterval(checkPlayer)
+        checkPlayer = 0
+        $.jukebox(vinyls)
+    , 2000
+
   #console.log vinyls
   vinyl = vinyls[Math.floor(Math.random()*vinyls.length)]
   video = vinyl.videos[Math.floor(Math.random()*vinyl.videos.length)]
@@ -33,27 +60,6 @@ $.jukebox = (vinyls) ->
 
   # skip
   $('.js-skip').click ->
+    clearInterval(checkPlayer)
+    checkPlayer = 0
     $.jukebox(vinyls)
-
-  window.onYouTubeIframeAPIReady = ->
-    console.log "ready"
-    player = new (YT.Player)('player', events:
-      'onReady': onPlayerReady
-      'onStateChange': onPlayerStateChange)
-    return
-
-  onPlayerStateChange = (state) ->
-    # console.log state.data
-    
-
-  onPlayerReady = ->
-    console.log 'hey Im ready'
-    player.playVideo()
-    return
-
-  setInterval ->
-      state = player.getPlayerState()
-      console.log state
-      if(state == -1 || state == 0)
-        $.jukebox(vinyls)
-    , 2000
