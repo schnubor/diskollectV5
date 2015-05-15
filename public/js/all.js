@@ -11941,7 +11941,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
     $('.js-cover').attr('src', vinyl.artwork);
     $('.js-vinylTitle').text(vinyl.artist + ' – ' + vinyl.title);
     $('.js-videoTitle').text(video.title);
-    $('#player').attr('src', video.uri + "?&controls=0&enablejsapi=1&showinfo=0");
+    $('#player').attr('src', video.uri + "?&controls=0&enablejsapi=1&showinfo=0&autohide=1");
     return $('.js-skip').click(function() {
       clearInterval(checkPlayer);
       checkPlayer = 0;

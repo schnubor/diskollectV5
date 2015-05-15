@@ -56,7 +56,7 @@ $.jukebox = (vinyls) ->
   $('.js-videoTitle').text(video.title)
 
   # fill player
-  $('#player').attr('src', video.uri+"?&controls=0&enablejsapi=1&showinfo=0")
+  $('#player').attr('src', video.uri+"?&controls=0&enablejsapi=1&showinfo=0&autohide=1")
 
   # skip
   $('.js-skip').click ->
