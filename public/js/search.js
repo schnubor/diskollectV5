@@ -182,7 +182,7 @@
     });
     return _.each($videos, function(video, index) {
       var uri;
-      uri = "//youtube.com/embed/" + video.uri.substr(video.uri.length - 11);
+      uri = "//www.youtube.com/embed/" + video.uri.substr(video.uri.length - 11);
       modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_title" type="hidden" value="' + video.title + '"/>');
       modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_uri" type="hidden" value="' + uri + '"/>');
       return modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_duration" type="hidden" value="' + video.duration + '"/>');

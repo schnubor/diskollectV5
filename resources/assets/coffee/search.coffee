@@ -217,7 +217,7 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   _.each $videos, (video, index) ->
     #console.log video
     # rewrite uri to embed uri
-    uri = "//youtube.com/embed/"+video.uri.substr(video.uri.length-11)
+    uri = "//www.youtube.com/embed/"+video.uri.substr(video.uri.length-11)
     modal.find('#addVinylForm').append('<input class="videoInfo" name="video_'+index+'_title" type="hidden" value="'+video.title+'"/>');
     modal.find('#addVinylForm').append('<input class="videoInfo" name="video_'+index+'_uri" type="hidden" value="'+uri+'"/>');
     modal.find('#addVinylForm').append('<input class="videoInfo" name="video_'+index+'_duration" type="hidden" value="'+video.duration+'"/>');

@@ -10,8 +10,6 @@
   <div class="col-md-10 no-padding content-area">
     <div class="col-md-12 toolbar">
       <div class="controls">
-          <button class="btn btn-default btn-sm"><i class="fa fa-fw fa-play"></i></button>
-          <button class="btn btn-default btn-sm"><i class="fa fa-fw fa-pause"></i></button>
           <button class="btn btn-default btn-sm js-skip"><i class="fa fa-fw fa-step-forward"></i> Skip</button>
       </div>
     </div>
@@ -42,6 +40,5 @@
 @endsection
 
 @section('scripts')
-  <script src="/js/yt.js"></script>
   <script>$.jukebox({!! $vinyls !!});</script>
 @endsection
