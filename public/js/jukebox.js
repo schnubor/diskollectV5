@@ -78,6 +78,7 @@
     vinyl = vinyls[Math.floor(Math.random() * vinyls.length)];
     video = vinyl.videos[Math.floor(Math.random() * vinyl.videos.length)];
     $('.js-cover').attr('src', vinyl.artwork);
+    $('.js-link').attr('href', '/vinyl/' + vinyl.id);
     $('.js-vinylTitle').text(vinyl.artist + ' – ' + vinyl.title);
     duration = video.duration.toHHMMSS();
     $('.js-videoTitle').html(video.title + '<span class="badge pull-right">' + duration + '</span>');

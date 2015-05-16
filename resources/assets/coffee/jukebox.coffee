@@ -65,8 +65,9 @@ $.jukebox = (vinyls) ->
   vinyl = vinyls[Math.floor(Math.random()*vinyls.length)]
   video = vinyl.videos[Math.floor(Math.random()*vinyl.videos.length)]
 
-  # fill artwork
+  # fill artwork & link
   $('.js-cover').attr('src', vinyl.artwork)
+  $('.js-link').attr('href', '/vinyl/'+vinyl.id)
 
   # fill vinyl title
   $('.js-vinylTitle').text(vinyl.artist+' – '+vinyl.title)
