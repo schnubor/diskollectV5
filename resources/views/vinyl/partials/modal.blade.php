@@ -35,7 +35,7 @@
               <div class="input-group">
                 <p class="h1" id="price">Fetching...</p>
                 {!! Form::hidden('price', Input::old('price'), ['class' => 'form-control', 'required' => 'required']) !!}
-                <span class="input-group-addon" id="currencyLabel">.00</span>
+                <span class="input-group-addon" id="currencyLabel" style="display: none;">.00</span>
               </div>
             </div>
             <div class="form-group">
