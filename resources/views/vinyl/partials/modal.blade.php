@@ -33,7 +33,7 @@
               <label>What did you pay?</label>
               <div class="input-group">
                 {!! Form::text('price', Input::old('price'), ['class' => 'form-control', 'placeholder' => 'required', 'required' => 'required']) !!}
-                <span class="input-group-addon" id="basic-addon1">{{ $user->currency }}</span>
+                <span class="input-group-addon" id="userCurrency">{{ $user->currency }}</span>
               </div>
             </div>
             <div class="form-group">

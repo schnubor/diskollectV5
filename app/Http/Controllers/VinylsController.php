@@ -124,7 +124,8 @@ class VinylsController extends Controller {
       'artist' => $artist,
       'title' => $title,
       'catno' => $catno,
-      'format' => 'vinyl'
+      'format' => 'vinyl',
+      'type' => 'release'
     ]);
 
     $results = [];

@@ -11551,11 +11551,17 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 //# sourceMappingURL=app.js.map
 (function() {
-  var $results, $search;
+  var $results, $search, EURinGBP, EURinUSD, GBPinUSD;
 
   $results = [];
 
   $search = null;
+
+  EURinUSD = 1.14;
+
+  EURinGBP = 0.73;
+
+  GBPinUSD = 1.53;
 
   $('#submit-search').click(function(e) {
     console.log('Hello from search.');
@@ -11635,11 +11641,30 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $size, $title, $tracklist, $type, $videos, $weight, $year, button, modal, vinyl, vinyl_index;
+    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $priceRequest, $size, $title, $tracklist, $type, $videos, $weight, $year, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
     console.log(vinyl);
+    $priceRequest = $.ajax({
+      url: '//api.discogs.com/marketplace/search?release_id=' + vinyl.id,
+      type: 'GET',
+      dataType: 'JSON',
+      error: function(x, status, error) {
+        console.log(status);
+        return console.log(error);
+      },
+      success: function(prices) {
+        var userCurrency;
+        userCurrency = $('#userCurrency').text();
+        console.log(userCurrency);
+        return _.each(prices, function(price) {
+          var currency;
+          currency = price.currency;
+          return console.log(currency);
+        });
+      }
+    });
     if (vinyl.artists) {
       $artist = vinyl.artists[0].name;
     } else {

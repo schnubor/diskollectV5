@@ -4,6 +4,10 @@
 $results = []
 $search = null
 
+EURinUSD = 1.14 # USD
+EURinGBP = 0.73 # GBP
+GBPinUSD = 1.53 # USD
+
 # Submit Search
 # ----------------------------
 
@@ -101,6 +105,22 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   vinyl_index = button.data 'result'
   vinyl = $results[vinyl_index]
   console.log vinyl
+
+  # fetch price
+  $priceRequest = $.ajax
+    url: '//api.discogs.com/marketplace/search?release_id='+vinyl.id
+    type: 'GET'
+    dataType: 'JSON'
+    error: (x,status,error) ->
+      console.log status
+      console.log error
+    success: (prices) -> # search results received
+      userCurrency = $('#userCurrency').text()
+      console.log userCurrency
+      _.each prices, (price) ->
+        currency = price.currency
+        console.log currency
+
 
   # artist
   if vinyl.artists
