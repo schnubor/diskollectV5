@@ -8,11 +8,22 @@ EURinUSD = 1.14 # USD
 EURinGBP = 0.73 # GBP
 GBPinUSD = 1.53 # USD
 
+# Calc Median
+# ----------------------------
+
+getMedian = (values) ->
+  values.sort  (a,b)=> return a - b
+  half = Math.floor values.length/2
+  if values.length % 2 
+    return values[half]
+  else
+    return (values[half-1] + values[half]) / 2.0
+
 # Submit Search
 # ----------------------------
 
 $('#submit-search').click (e) ->
-  console.log 'Hello from search.'
+  # console.log 'Hello from search.'
   
   # show loading icon, hide and clear result table
   e.preventDefault()
@@ -94,8 +105,17 @@ $('#cancel-search').click ->
 # Close Modal
 # ----------------------------
 
-$('#quickAddVinyl').on 'hide.bs.modal', (e) ->
-  $('#addVinylForm .trackInfo').remove()
+$('#quickAddVinyl').on 'hidden.bs.modal', (e) ->
+  modal = $(this)
+  $('#modalSubmit').disabled = true         # disable submit
+  $('#addVinylForm .trackInfo').remove()    # remove track infos
+  $('#currencyLabel').hide()                # remove price
+  modal.find('input[name="price"]').before('<input type="hidden" name="price"/>').remove()
+  unless($('#price').length)                # as long as not already present
+    modal.find('input[name="price"]').before('<p class="h1" id="price">Fetching...</p>') # show price text
+  else
+    $('#price').text('Fetching...')
+  $('#priceLabelText').text('Discogs median price:')
 
 # Quick add
 # ----------------------------
@@ -104,7 +124,8 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   button = $(e.relatedTarget)
   vinyl_index = button.data 'result'
   vinyl = $results[vinyl_index]
-  console.log vinyl
+  modal = $(this)
+  # console.log vinyl
 
   # fetch price
   $priceRequest = $.ajax
@@ -115,12 +136,48 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
       console.log status
       console.log error
     success: (prices) -> # search results received
-      userCurrency = $('#userCurrency').text()
-      console.log userCurrency
+      # console.log prices
+      userCurrency = $('#userCurrency').val()
+      values = []
+      median = 0
+
+      # convert all prices to EUR and add up
       _.each prices, (price) ->
         currency = price.currency
-        console.log currency
+        
+        switch(price.currency)
+          when 'EUR'
+            values.push(parseInt(price.price.substr(1)))
+          when 'GBP'
+            values.push(parseInt(price.price.substr(1)) / EURinGBP)
+          when 'USD'
+            values.push(parseInt(price.price.substr(1)) / EURinUSD)
+      
+      # calc median
+      median = getMedian(values).toFixed(2)
 
+      # convert to users currency
+      switch(userCurrency)
+        when 'EUR'
+          median = median
+        when 'GBP'
+          median = median * EURinGBP
+        when 'USD'
+          median = median * EURinUSD
+
+      # show the price & add to form
+      if(isNaN(median))
+        # no prices on Discogs -> show text input for price
+        modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove()
+        $('#currencyLabel').text(userCurrency).show()
+        $('#price').remove()
+        $('#priceLabelText').text('What did you pay?')
+      else
+        $('#price').html(median+' '+userCurrency)
+        modal.find('input[name="price"]').val(median)
+
+      # enable submit button
+      $('#modalSubmit').disabled = false
 
   # artist
   if vinyl.artists
@@ -208,7 +265,6 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
     $videos = []
 
   # visible form data
-  modal = $(this)
   modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - '+ vinyl.title + '" to collection')
   modal.find('.modal-body .cover').html('<img src="'+$cover+'" class="thumbnail" width="100%">')
   

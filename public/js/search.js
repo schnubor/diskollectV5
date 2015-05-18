@@ -1,5 +1,5 @@
 (function() {
-  var $results, $search, EURinGBP, EURinUSD, GBPinUSD;
+  var $results, $search, EURinGBP, EURinUSD, GBPinUSD, getMedian;
 
   $results = [];
 
@@ -11,8 +11,22 @@
 
   GBPinUSD = 1.53;
 
+  getMedian = function(values) {
+    var half;
+    values.sort((function(_this) {
+      return function(a, b) {
+        return a - b;
+      };
+    })(this));
+    half = Math.floor(values.length / 2);
+    if (values.length % 2) {
+      return values[half];
+    } else {
+      return (values[half - 1] + values[half]) / 2.0;
+    }
+  };
+
   $('#submit-search').click(function(e) {
-    console.log('Hello from search.');
     e.preventDefault();
     $('.loading').fadeIn();
     $('.search-results-table').hide();
@@ -84,8 +98,19 @@
     return $search.abort();
   });
 
-  $('#quickAddVinyl').on('hide.bs.modal', function(e) {
-    return $('#addVinylForm .trackInfo').remove();
+  $('#quickAddVinyl').on('hidden.bs.modal', function(e) {
+    var modal;
+    modal = $(this);
+    $('#modalSubmit').disabled = true;
+    $('#addVinylForm .trackInfo').remove();
+    $('#currencyLabel').hide();
+    modal.find('input[name="price"]').before('<input type="hidden" name="price"/>').remove();
+    if (!($('#price').length)) {
+      modal.find('input[name="price"]').before('<p class="h1" id="price">Fetching...</p>');
+    } else {
+      $('#price').text('Fetching...');
+    }
+    return $('#priceLabelText').text('Discogs median price:');
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
@@ -93,7 +118,7 @@
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
-    console.log(vinyl);
+    modal = $(this);
     $priceRequest = $.ajax({
       url: '//api.discogs.com/marketplace/search?release_id=' + vinyl.id,
       type: 'GET',
@@ -103,14 +128,43 @@
         return console.log(error);
       },
       success: function(prices) {
-        var userCurrency;
-        userCurrency = $('#userCurrency').text();
-        console.log(userCurrency);
-        return _.each(prices, function(price) {
+        var median, userCurrency, values;
+        userCurrency = $('#userCurrency').val();
+        values = [];
+        median = 0;
+        _.each(prices, function(price) {
           var currency;
           currency = price.currency;
-          return console.log(currency);
+          switch (price.currency) {
+            case 'EUR':
+              return values.push(parseInt(price.price.substr(1)));
+            case 'GBP':
+              return values.push(parseInt(price.price.substr(1)) / EURinGBP);
+            case 'USD':
+              return values.push(parseInt(price.price.substr(1)) / EURinUSD);
+          }
         });
+        median = getMedian(values).toFixed(2);
+        switch (userCurrency) {
+          case 'EUR':
+            median = median;
+            break;
+          case 'GBP':
+            median = median * EURinGBP;
+            break;
+          case 'USD':
+            median = median * EURinUSD;
+        }
+        if (isNaN(median)) {
+          modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove();
+          $('#currencyLabel').text(userCurrency).show();
+          $('#price').remove();
+          $('#priceLabelText').text('What did you pay?');
+        } else {
+          $('#price').html(median + ' ' + userCurrency);
+          modal.find('input[name="price"]').val(median);
+        }
+        return $('#modalSubmit').disabled = false;
       }
     });
     if (vinyl.artists) {
@@ -181,7 +235,6 @@
     } else {
       $videos = [];
     }
-    modal = $(this);
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
     modal.find('.modal-body .cover').html('<img src="' + $cover + '" class="thumbnail" width="100%">');
     modal.find('input[name="artist"]').val($artist);

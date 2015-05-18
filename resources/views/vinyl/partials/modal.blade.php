@@ -29,11 +29,13 @@
               {!! Form::hidden('type', Input::old('type')) !!}
               {!! Form::hidden('trackCount', Input::old('trackCount')) !!}
               {!! Form::hidden('videoCount', Input::old('videoCount')) !!}
+              {!! Form::hidden('userCurrency', $user->currency, ['id' => 'userCurrency']) !!}
             <div class="form-group">
-              <label>What did you pay?</label>
+              <label id="priceLabelText">Discogs Median Price:</label>
               <div class="input-group">
-                {!! Form::text('price', Input::old('price'), ['class' => 'form-control', 'placeholder' => 'required', 'required' => 'required']) !!}
-                <span class="input-group-addon" id="userCurrency">{{ $user->currency }}</span>
+                <p class="h1" id="price">Fetching...</p>
+                {!! Form::hidden('price', Input::old('price'), ['class' => 'form-control', 'required' => 'required']) !!}
+                <span class="input-group-addon" id="currencyLabel">.00</span>
               </div>
             </div>
             <div class="form-group">
@@ -46,7 +48,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        {!! Form::submit('Add vinyl', array('class' => 'btn btn-primary')) !!}
+        {!! Form::submit('Add vinyl', ['class' => 'btn btn-primary', 'id' => 'modalSubmit']) !!}
       </div>
       {!! Form::close() !!}
     </div>
