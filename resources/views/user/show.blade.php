@@ -9,7 +9,7 @@
 
   <div class="col-md-10 no-padding content-area">
     <div class="col-md-12 toolbar">
-
+      <p class="lead">Showing statistics for <strong>{{ $user->vinyls->count() }}</strong> vinyls</p>
     </div>
     
     <div class="col-md-12 content">
@@ -63,7 +63,7 @@
       {{-- Genres --}}
       <div class="col-md-3">
         <div class="panel panel-default valueVinyl">
-          <div class="panel-heading"><strong>Most valueable Vinyl</strong><span class="pull-right label label-success">
+          <div class="panel-heading"><strong>Treasure</strong><span class="pull-right label label-success">
             @if(isset($valueVinyl))
               {{ $valueVinyl->price.' '.$user->currency }}
             @else
