@@ -125,7 +125,7 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   vinyl_index = button.data 'result'
   vinyl = $results[vinyl_index]
   modal = $(this)
-  # console.log vinyl
+  console.log vinyl
 
   # fetch price
   $priceRequest = $.ajax
@@ -252,6 +252,12 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   # format
   $format = 'LP'
 
+  # release ID
+  $release_id = vinyl.id
+
+  # Discogs URI
+  $discogs_uri = vinyl.uri
+
   # tracklist
   if vinyl.tracklist
     $tracklist = vinyl.tracklist
@@ -283,6 +289,8 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
   modal.find('input[name="size"]').val($size)
   modal.find('input[name="weight"]').val($weight)
   modal.find('input[name="type"]').val($type)
+  modal.find('input[name="release_id"]').val($release_id)
+  modal.find('input[name="discogs_uri"]').val($discogs_uri)
   modal.find('input[name="trackCount"]').val($tracklist.length)
   modal.find('input[name="videoCount"]').val($videos.length)
   _.each $tracklist, (track, index) ->

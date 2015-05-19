@@ -11,7 +11,7 @@ class Vinyl extends Model {
    */
   protected $table = 'vinyls';
 
-  protected $fillable = ['user_id','artwork','artist','title','label','genre','price','videos','tracklist','country','size','count','color','type','catno','releasedate','releasetype','notes','weight'];
+  protected $fillable = ['user_id','artwork','artist','title','label','genre','price','videos','tracklist','country','size','count','color','type','catno','releasedate','releasetype','notes','weight', 'discogs_uri', 'release_id'];
 
   /**
    * Owner

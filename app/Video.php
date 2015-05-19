@@ -11,7 +11,7 @@ class Video extends Model {
    */
   protected $table = 'videos';
 
-  protected $fillable = ['vinyl_id','title','duration','uri'];
+  protected $fillable = ['vinyl_id','title','duration','uri','enabled'];
 
   /**
    * Vinyl

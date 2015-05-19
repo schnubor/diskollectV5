@@ -215,7 +215,9 @@ class VinylsController extends Controller {
       'notes' => $request->input('notes'),
       'weight' => $request->input('weight'),
       'catno' => $request->input('catno'),
-      'releasetype' => $request->input('format')
+      'releasetype' => $request->input('format'),
+      'release_id' => $request->input('release_id'),
+      'discogs_uri' => $request->input('discogs_uri')
     ]);
 
     if($vinyl){

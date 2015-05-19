@@ -11666,11 +11666,12 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $catno, $color, $count, $country, $cover, $format, $genre, $label, $priceRequest, $size, $title, $tracklist, $type, $videos, $weight, $year, button, modal, vinyl, vinyl_index;
+    var $artist, $catno, $color, $count, $country, $cover, $discogs_uri, $format, $genre, $label, $priceRequest, $release_id, $size, $title, $tracklist, $type, $videos, $weight, $year, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
     modal = $(this);
+    console.log(vinyl);
     $priceRequest = $.ajax({
       url: '//api.discogs.com/marketplace/search?release_id=' + vinyl.id,
       type: 'GET',
@@ -11777,6 +11778,8 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
     $color = '#000000';
     $size = '12';
     $format = 'LP';
+    $release_id = vinyl.id;
+    $discogs_uri = vinyl.uri;
     if (vinyl.tracklist) {
       $tracklist = vinyl.tracklist;
     } else {
@@ -11803,6 +11806,8 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
     modal.find('input[name="size"]').val($size);
     modal.find('input[name="weight"]').val($weight);
     modal.find('input[name="type"]').val($type);
+    modal.find('input[name="release_id"]').val($release_id);
+    modal.find('input[name="discogs_uri"]').val($discogs_uri);
     modal.find('input[name="trackCount"]').val($tracklist.length);
     modal.find('input[name="videoCount"]').val($videos.length);
     _.each($tracklist, function(track, index) {

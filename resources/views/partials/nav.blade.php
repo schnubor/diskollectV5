@@ -27,6 +27,11 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <span class="avatar tiny" style="background-image: url('{{ Auth::user()->image }}')"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+              <li><a href="{{ route('home') }}"><i class="fa fa-fw fa-th-large orange"></i> Dashboard</a></li>
+              <li><a href="{{ route('user.collection', Auth::user()->id) }}"><i class="fa fa-fw fa-database blue"></i> Collection</a></li>
+              <li><a href="{{ route('user.show', Auth::user()->id) }}"><i class="fa fa-fw fa-area-chart green"></i> Statistics</a></li>
+              <li><a href="{{ route('user.jukebox', Auth::user()->id) }}"><i class="fa fa-fw fa-music purple"></i> Jukebox</a></li>
+              <li class="divider"></li>
               <li><a href="{{ route('get.edit.user') }}"><i class="fa fa-fw fa-pencil"></i> Edit profile</a></li>
               <li><a href="{{ route('get.edit.password') }}"><i class="fa fa-fw fa-lock"></i> Change password</a></li>
               <li class="divider"></li>

@@ -27,6 +27,8 @@
               {!! Form::hidden('weight', Input::old('weight')) !!}
               {!! Form::hidden('color', Input::old('color')) !!}
               {!! Form::hidden('type', Input::old('type')) !!}
+              {!! Form::hidden('discogs_uri', Input::old('discogs_uri')) !!}
+              {!! Form::hidden('release_id', Input::old('release_id')) !!}
               {!! Form::hidden('trackCount', Input::old('trackCount')) !!}
               {!! Form::hidden('videoCount', Input::old('videoCount')) !!}
               {!! Form::hidden('userCurrency', $user->currency, ['id' => 'userCurrency']) !!}
