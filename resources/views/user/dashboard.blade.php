@@ -30,7 +30,7 @@
                     </div>
                     <div class="media-body">
                       <h4 class="media-heading"><a href="{{ route('user.show', $activity->user_id) }}">{{ $activity->username }}</a> added a new vinyl to his collection.</h4>
-                      <p>{{ $activity->created_at }}</p>
+                      <p>{{ $activity->time }} ago</p>
                       <div class="thumbnail">
                         <a href="{{ route('get.show.vinyl', $activity->id) }}"><img src="{{ $activity->artwork }}" alt="{{ $activity->artist }} - {{ $activity->title }}" width="100%"></a>
                       </div>
