@@ -7271,7 +7271,11 @@ a:hover {
   background-color: #25292A;
   min-height: calc(100% - 51px);
   padding: 20px 0;
-  color: #f0f0f0; }
+  color: #f0f0f0;
+  display: none; }
+  @media (min-width: 922px) {
+    .sidebar {
+      display: block; } }
   .sidebar p.lead {
     margin-top: 15px; }
   .sidebar hr {

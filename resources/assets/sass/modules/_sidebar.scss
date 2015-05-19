@@ -3,6 +3,9 @@
   min-height: calc(100% - 51px);
   padding: 20px 0;
   color: #f0f0f0;
+  display: none;
+
+  @media (min-width: 922px) { display: block; }
 
   p.lead{
     margin-top: 15px;
