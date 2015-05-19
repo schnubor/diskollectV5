@@ -95,5 +95,3 @@
   };
 
 }).call(this);
-
-//# sourceMappingURL=charts.js.map

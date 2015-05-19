@@ -48,6 +48,7 @@ class HomeController extends Controller {
 				$vinyl['image'] = $owner->image;
 				$vinyl['username'] = $owner->username;
 				$vinyl['time'] = humanTiming($vinyl->created_at);
+				$vinyl['currency'] = $user->currency;
 				$activities[$key] = $vinyl;
 			}
 

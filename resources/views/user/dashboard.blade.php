@@ -40,7 +40,7 @@
                         <strong>{{ $activity->artist }}</strong> <br> {{ $activity->title }}
                       </p>
                       <hr>
-                      <p><small>45€, Electronic, MONO, 2x LP</small></p>
+                      <p><small>{{ $activity->price.$activity->currency }}, {{ $activity->genre }}, {{ $activity->label }}, {{ $activity->count }}x {{ $activity->releasetype }}</small></p>
                     </div>
                   </div>
                 </li>
