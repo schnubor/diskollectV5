@@ -275,11 +275,25 @@ a:hover {
     .sidebar {
       display: block; } }
   .sidebar p.lead {
-    margin-top: 15px; }
+    margin-top: 15px;
+    padding: 0 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; }
+  .sidebar .info {
+    padding: 0 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block; }
+  .sidebar small {
+    color: #808080;
+    padding-bottom: 20px;
+    display: block; }
   .sidebar hr {
     border-top: 1px solid #3E4545; }
   .sidebar form {
-    margin-bottom: 20px; }
+    margin-bottom: 10px; }
   .sidebar .navigation {
     margin-bottom: 20px; }
     .sidebar .navigation a:hover {
@@ -355,3 +369,6 @@ a:hover {
   margin-bottom: 30px; }
   .vinyl .info .artist {
     font-weight: bold; }
+
+
+/*# sourceMappingURL=app.css.map */

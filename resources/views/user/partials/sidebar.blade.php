@@ -1,6 +1,7 @@
 <div class="col-md-2 text-center sidebar">
-  <div class="avatar md center-block" style="background-image: url('{{ $user->image }}')"></div>
+  <a href="{{ route('user.show', $user->id) }}"><div class="avatar md center-block" style="background-image: url('{{ $user->image }}')"></div></a>
   <p class="lead">{{ $user->username }}</p>
+
 
   <!-- Follow Button -->
   @if(Auth::check())
@@ -10,6 +11,7 @@
   @else
     @include('user.partials.follow')
   @endif
+  <small class="text-center">{{ $user->followers->count() }} Follower &middot; {{ $user->following->count() }} Following</small>
   
   <div class="navigation">
     @if(Auth::check())
@@ -70,13 +72,13 @@
       @if($user->name || $user->location || $user->website || $user->description)
         <p>
           @if($user->name)
-            <span>{{ $user->name }},</span>
+            <span class="info">{{ $user->name }}</span><br>
           @endif
           @if($user->location)
-            <span>{{ $user->location }},</span>
+            <span class="info">{{ $user->location }}</span><br>
           @endif
           @if($user->website)
-            <span><a href="{{ $user->website }}" target="_blank">{{ $user->website }}</a></span>
+            <span class="info"><a href="{{ $user->website }}" target="_blank">{{ $user->website }}</a></span><br>
           @endif
           @if($user->description)
             <hr><span>{{ $user->description }}</span>
@@ -88,13 +90,13 @@
     @if($user->name || $user->location || $user->website || $user->description)
       <p>
         @if($user->name)
-          <span>{{ $user->name }},</span>
+          <span class="info">{{ $user->name }}</span><br>
         @endif
         @if($user->location)
-          <span>{{ $user->location }},</span>
+          <span class="info">{{ $user->location }}</span><br>
         @endif
         @if($user->website)
-          <span><a href="{{ $user->website }}" target="_blank">{{ $user->website }}</a></span>
+          <span class="info"><a href="{{ $user->website }}" target="_blank">{{ $user->website }}</a></span><br>
         @endif
         @if($user->description)
           <hr><span>{{ $user->description }}</span>
