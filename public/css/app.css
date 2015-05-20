@@ -172,7 +172,8 @@ a:hover {
 #welcome .footer {
   padding: 20px 0 0; }
   #welcome .footer p {
-    line-height: 86px; }
+    margin-top: 20px;
+    color: #A0A0A0; }
 
 .activities hr {
   margin-bottom: 10px; }

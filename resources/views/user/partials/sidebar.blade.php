@@ -11,7 +11,7 @@
   @else
     @include('user.partials.follow')
   @endif
-  <small class="text-center"><a href="#">{{ $user->followers->count() }} Follower</a> &middot; <a href="#">{{ $user->following->count() }} Following</a></small>
+  <small class="text-center"><a href="{{ route('user.followers', $user->id) }}">{{ $user->followers->count() }} Follower</a> &middot; <a href="{{ route('user.following', $user->id) }}">{{ $user->following->count() }} Following</a></small>
   
   <div class="navigation">
     @if(Auth::check())

@@ -11,7 +11,6 @@
       <p class="lead news">
         Welcome <a href="{{ route('user.show', $latestUser->id) }}">{{ $latestUser->username }}</a> to the party!
       </p>
-      @include('user.partials.follow', ['user' => $latestUser])
     </div>
     <div class="col-md-12 content">
       {{-- Activities --}}

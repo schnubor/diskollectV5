@@ -71,9 +71,11 @@
 
       <div class="footer">
         <div class="container">
-          <p class="lead">
-            Made by <a href="http://twitter.com/schnubor" target="_blank">@schnubor</a> using <a href="http://laravel.com" target="_blank">Laravel</a>.
-            <img src="/images/made-in-berlin-badge.png" alt="Made in Berlin" width="100" class="pull-right">
+          <p class="text-center">
+            The site owner is not responsible for uploaded images. You can only upload images for which you own the copyright. <br>
+            Made by <a href="http://twitter.com/schnubor" target="_blank">@schnubor</a> using <a href="http://laravel.com" target="_blank">Laravel</a> and the <a href="http://discogs.com" target="_blank">Discogs</a> API. <br><br>
+            <img src="/images/made-in-berlin-badge.png" alt="Made in Berlin" width="100">
+            <br><br>
           </p>
           
         </div>

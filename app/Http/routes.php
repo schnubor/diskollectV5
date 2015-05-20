@@ -87,6 +87,16 @@ Route::get('/user/{id}/jukebox', [
   'uses' => 'UsersController@jukebox'
 ]);
 
+Route::get('/user/{id}/followers', [
+  'as' => 'user.followers',
+  'uses' => 'UsersController@followers'
+]);
+
+Route::get('/user/{id}/following', [
+  'as' => 'user.following',
+  'uses' => 'UsersController@following'
+]);
+
 Route::get('/activate/{code}', [
   'as' => 'user.activate',
   'uses' => 'UsersController@activate'
@@ -115,7 +125,6 @@ Route::get('/password/edit', [
   'uses' => 'UsersController@getEditPassword',
   'middleware' => 'auth'
 ]);
-
 
 Route::post('/password/edit', [
   'as' => 'post.edit.password',

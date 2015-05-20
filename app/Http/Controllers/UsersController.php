@@ -200,6 +200,28 @@ class UsersController extends Controller {
 	}
 
 	/**
+	 * Display followers of user.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function followers($id)
+	{
+		// show followers...
+	}
+
+	/**
+	 * Display users followed by user.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function following($id)
+	{
+		// show followed users by user...
+	}
+
+	/**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id
