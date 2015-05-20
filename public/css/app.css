@@ -290,6 +290,11 @@ a:hover {
     color: #808080;
     padding-bottom: 20px;
     display: block; }
+    .sidebar small a {
+      color: #808080;
+      text-decoration: none; }
+      .sidebar small a:hover {
+        text-decoration: none; }
   .sidebar hr {
     border-top: 1px solid #3E4545; }
   .sidebar form {

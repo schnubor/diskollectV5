@@ -27,6 +27,15 @@
     color: #808080;
     padding-bottom: 20px;
     display: block;
+
+    a{
+      color: #808080;
+      text-decoration: none;
+
+      &:hover{
+        text-decoration: none;
+      }
+    }
   }
 
   hr{
