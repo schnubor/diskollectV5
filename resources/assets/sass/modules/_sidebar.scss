@@ -9,6 +9,24 @@
 
   p.lead{
     margin-top: 15px;
+    padding: 0 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .info{
+    padding: 0 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+  }
+
+  small{
+    color: #808080;
+    padding-bottom: 20px;
+    display: block;
   }
 
   hr{
@@ -16,7 +34,7 @@
   }
 
   form{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .navigation{
