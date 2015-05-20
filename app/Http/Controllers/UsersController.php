@@ -207,7 +207,11 @@ class UsersController extends Controller {
 	 */
 	public function followers($id)
 	{
-		// show followers...
+		$user = User::find($id);
+		$followers = $user->followers()->orderBy('created_at', 'DESC')->paginate(12);
+		return view('user.follower')
+			->with('user', $user)
+			->with('followers', $followers);
 	}
 
 	/**
@@ -218,7 +222,11 @@ class UsersController extends Controller {
 	 */
 	public function following($id)
 	{
-		// show followed users by user...
+		$user = User::find($id);
+		$followings = $user->following()->orderBy('created_at', 'DESC')->paginate(12);
+		return view('user.following')
+			->with('user', $user)
+			->with('followings', $followings);
 	}
 
 	/**

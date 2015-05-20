@@ -1,5 +1,8 @@
 #collectors {
-  padding-top: 80px; }
+  padding-top: 40px; }
+  #collectors .back {
+    display: inline-block;
+    margin-bottom: 20px; }
   #collectors .collector {
     margin-bottom: 10px; }
   #collectors .avatar {
