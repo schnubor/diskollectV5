@@ -7025,13 +7025,11 @@ button.close {
     color: #333333; }
 
 .content-area {
-  height: calc(100% - 51px); }
+  margin-left: 65px; }
 
 .content {
   padding-top: 30px;
-  padding-bottom: 30px;
-  height: calc(100% - 69px);
-  overflow-y: scroll; }
+  padding-bottom: 30px; }
   .content.full-height {
     height: 100%; }
   .content .loading {
@@ -7285,10 +7283,14 @@ a:hover {
 
 .sidebar {
   background-color: #25292A;
-  min-height: calc(100% - 51px);
+  min-height: 100%;
   padding: 20px 0;
   color: #f0f0f0;
-  display: none; }
+  display: none;
+  width: 65px;
+  position: fixed;
+  top: 0;
+  left: 0; }
   @media (min-width: 992px) {
     .sidebar {
       display: block; } }

@@ -1,7 +1,6 @@
-<div class="col-md-2 text-center sidebar">
-  <a href="{{ route('user.show', $user->id) }}"><div class="avatar md center-block" style="background-image: url('{{ $user->image }}')"></div></a>
+<div class="text-center sidebar">
+  <a href="{{ route('user.show', $user->id) }}"><div class="avatar sm center-block" style="background-image: url('{{ $user->image }}')"></div></a>
   <p class="lead">{{ $user->username }}</p>
-
 
   <!-- Follow Button -->
   @if(Auth::check())
@@ -23,7 +22,6 @@
             <div class="button">
           @endif
             <i class="fa fa-fw fa-th-large orange"></i>
-            <span>Dashboard</span>
             <div class="triangle"></div>
           </div>
         </a>
@@ -37,7 +35,6 @@
         <div class="button">
       @endif
         <i class="fa fa-fw fa-database blue"></i>
-        <span>Collection</span>
         <div class="triangle"></div>
       </div>
     </a>
@@ -61,7 +58,6 @@
         <div class="button">
       @endif
         <i class="fa fa-fw fa-music purple"></i>
-        <span>Jukebox</span>
         <div class="triangle"></div>
       </div>
     </a>

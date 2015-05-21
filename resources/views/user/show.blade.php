@@ -7,7 +7,7 @@
 @section('content')
   @include('user.partials.sidebar')
 
-  <div class="col-md-10 no-padding content-area">
+  <div class="content-area">
     <div class="col-md-12 toolbar">
       <p class="lead">Showing statistics for <strong>{{ $user->vinyls->count() }}</strong> vinyls</p>
     </div>

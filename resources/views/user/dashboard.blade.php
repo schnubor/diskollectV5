@@ -6,7 +6,7 @@
 
 @section('content')
   @include('user.partials.sidebar')
-  <div class="col-md-10 no-padding content-area">
+  <div class="content-area">
     <div class="col-md-12 toolbar">
       <p class="lead news">
         Welcome <a href="{{ route('user.show', $latestUser->id) }}">{{ $latestUser->username }}</a> to the party!

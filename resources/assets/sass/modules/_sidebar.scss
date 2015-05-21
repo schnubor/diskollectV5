@@ -1,9 +1,13 @@
 .sidebar{
   background-color: $grey;
-  min-height: calc(100% - 51px);
+  min-height: 100%;
   padding: 20px 0;
   color: #f0f0f0;
   display: none;
+  width: 65px;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   @media (min-width: 992px) { display: block; }
 

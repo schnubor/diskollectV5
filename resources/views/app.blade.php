@@ -20,7 +20,7 @@
 	<![endif]-->
 </head>
 <body>
-	@include('partials.nav')
+	
 	
 	<div class="flash-message">
 		@include('flash::message')

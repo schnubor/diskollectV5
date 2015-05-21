@@ -7,7 +7,7 @@
 @section('content')
   @include('user.partials.sidebar')
 
-  <div class="col-md-10 no-padding content-area createVinyl">
+  <div class="content-area createVinyl">
     <div class="col-md-12 content full-height no-padding">
       {!! Form::open(['route' => 'post.create.vinyl', 'id' => 'addVinylForm', 'files' => true]) !!}
       <div class="col-md-12 no-padding">
