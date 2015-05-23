@@ -7049,7 +7049,7 @@ button.close {
 
 html, body {
   height: 100%;
-  font-family: 'Raleway', sans-serif; }
+  font-family: 'Open Sans', sans-serif; }
 
 body {
   background-color: #F0F0F0; }
@@ -7125,70 +7125,108 @@ a:hover {
   .step .coverUrl input {
     border: 0; }
 
-#welcome .header {
-  background-image: url('/images/header_BG.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  padding: 40px 0;
-  height: 400px;
-  color: #F0F0F0; }
-  #welcome .header h1 {
-    text-transform: uppercase;
+#welcome {
+  height: 100%; }
+  #welcome .header {
+    background-image: url('/images/header_BG.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    color: #F0F0F0;
+    overflow: hidden; }
+    #welcome .header #bgvid {
+      height: 100%; }
+    #welcome .header .header-menu {
+      padding: 20px 40px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100px; }
+      #welcome .header .header-menu .logo {
+        width: 80px;
+        display: inline-block; }
+        #welcome .header .header-menu .logo img {
+          width: 100%; }
+    #welcome .header .header-content {
+      position: absolute;
+      top: calc(50% - 150px);
+      width: 100%;
+      height: 200px;
+      text-align: center; }
+      #welcome .header .header-content h1 {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 3em; }
+      #welcome .header .header-content h2 {
+        color: #808080;
+        text-align: center;
+        font-weight: lighter;
+        font-size: 2em; }
+      #welcome .header .header-content .cta .btn.btn-primary.btn-header {
+        margin-top: 50px;
+        border: 1px solid #F0F0F0;
+        height: 60px;
+        width: 200px;
+        font-weight: lighter;
+        line-height: 35px;
+        border-radius: 4px;
+        background-color: transparent;
+        transition: 0.4s all; }
+        #welcome .header .header-content .cta .btn.btn-primary.btn-header:hover {
+          border: 1px solid #1E89B7;
+          background-color: #1E89B7; }
+    #welcome .header .header-stats {
+      width: 100%;
+      position: absolute;
+      bottom: 20px;
+      text-align: center; }
+      #welcome .header .header-stats .stat {
+        width: 100px;
+        display: inline-block; }
+        #welcome .header .header-stats .stat span {
+          font-size: 24px; }
+        #welcome .header .header-stats .stat small {
+          font-size: 14px;
+          color: #808080; }
+  #welcome .intro {
+    color: #25292A;
+    margin-top: 100px;
+    padding-bottom: 100px; }
+    #welcome .intro i {
+      font-size: 52px;
+      margin-bottom: 40px; }
+    #welcome .intro p {
+      font-weight: 200;
+      font-size: 18px; }
+  #welcome .counter {
+    color: #F0F0F0;
     text-align: center;
-    font-size: 4em;
-    margin-top: 100px; }
-  #welcome .header h2 {
-    color: #839393;
-    text-align: center; }
-  #welcome .header .cta {
-    text-align: center;
-    margin-top: 110px; }
-    #welcome .header .cta .btn.btn-primary.btn-header {
-      border: 4px solid #F0F0F0;
-      border-color: #F0F0F0;
-      height: 70px;
-      width: 200px;
-      line-height: 40px;
-      background-color: #E08447;
-      border-radius: 0; }
-#welcome .intro {
-  color: #25292A;
-  margin-top: 100px;
-  padding-bottom: 100px; }
-  #welcome .intro i {
-    font-size: 52px;
-    margin-bottom: 40px; }
-  #welcome .intro p {
+    font-size: 24px;
     font-weight: 200;
-    font-size: 18px; }
-#welcome .counter {
-  color: #F0F0F0;
-  text-align: center;
-  font-size: 24px;
-  font-weight: 200;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  background-color: #25292A; }
-  #welcome .counter span {
-    font-weight: normal;
-    font-size: 42px; }
-#welcome .latestVinyls {
-  padding: 50px 0; }
-#welcome .latestMembers {
-  padding: 50px 0;
-  text-align: center;
-  background-color: #25292A;
-  color: #F0F0F0; }
-  #welcome .latestMembers .avatar {
-    margin: 0 auto 15px; }
-  #welcome .latestMembers a {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #25292A; }
+    #welcome .counter span {
+      font-weight: normal;
+      font-size: 42px; }
+  #welcome .latestVinyls {
+    padding: 50px 0; }
+  #welcome .latestMembers {
+    padding: 50px 0;
+    text-align: center;
+    background-color: #25292A;
     color: #F0F0F0; }
-#welcome .footer {
-  padding: 20px 0 0; }
-  #welcome .footer p {
-    margin-top: 20px;
-    color: #A0A0A0; }
+    #welcome .latestMembers .avatar {
+      margin: 0 auto 15px; }
+    #welcome .latestMembers a {
+      color: #F0F0F0; }
+  #welcome .footer {
+    padding: 20px 0 0; }
+    #welcome .footer p {
+      font-weight: lighter;
+      margin-top: 20px;
+      color: #A0A0A0; }
 
 .activities hr {
   margin-bottom: 10px; }
