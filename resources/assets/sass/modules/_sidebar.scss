@@ -11,6 +11,12 @@
 
   @media (min-width: 992px) { display: block; }
 
+  .avatar{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+
   p.lead{
     margin-top: 15px;
     padding: 0 10px;
@@ -60,17 +66,19 @@
 
     .button{
       position: relative;
-      text-align: left;
-      height: 50px;
-      line-height: 50px;
+      text-align: center;
+      height: 45px;
+      width: 45px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      line-height: 45px;
+      font-size: 16px;
       color: #808080;
       background-color: $grey;
-      border-top: 1px solid $light-grey;
-      border-bottom: 1px solid $dark-grey;
 
       &:hover, &.active{
         background-color: $dark-grey;
-        border-top: 1px solid $darker-grey;
       }
 
       &.active{
@@ -89,10 +97,6 @@
 
       .triangle{
         display: none;
-      }
-
-      i{
-        margin: 0 15px;
       }
     }
   }

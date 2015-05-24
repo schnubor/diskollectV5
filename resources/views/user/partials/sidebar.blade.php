@@ -1,6 +1,4 @@
 <div class="text-center sidebar">
-  <a href="{{ route('user.show', $user->id) }}"><div class="avatar sm center-block" style="background-image: url('{{ $user->image }}')"></div></a>
-  <p class="lead">{{ $user->username }}</p>
 
   <!-- Follow Button -->
   @if(Auth::check())
@@ -19,10 +17,9 @@
           @if(Request::url() == route('home'))
             <div class="button active">
           @else
-            <div class="button">
+            <div class="button orange hover">
           @endif
-            <i class="fa fa-fw fa-th-large orange"></i>
-            <div class="triangle"></div>
+            <i class="fa fa-fw fa-th-large"></i>
           </div>
         </a>
       @endif
@@ -32,10 +29,9 @@
       @if(Request::url() == route('user.collection', $user->id))
         <div class="button active">
       @else
-        <div class="button">
+        <div class="button blue hover">
       @endif
-        <i class="fa fa-fw fa-database blue"></i>
-        <div class="triangle"></div>
+        <i class="fa fa-fw fa-database"></i>
       </div>
     </a>
 
@@ -45,9 +41,7 @@
       @else
         <div class="button">
       @endif
-        <i class="fa fa-fw fa-area-chart green"></i>
-        <span>Statistics</span>
-        <div class="triangle"></div>
+        <i class="fa fa-fw fa-area-chart green hover"></i>
       </div>
     </a>
 
@@ -57,11 +51,15 @@
       @else
         <div class="button">
       @endif
-        <i class="fa fa-fw fa-music purple"></i>
-        <div class="triangle"></div>
+        <i class="fa fa-fw fa-music purple hover"></i>
       </div>
     </a>
   </div>
+  
+  <!-- Settings -->
+
+  <!-- Avatar -->
+  <a href="{{ route('user.show', $user->id) }}"><div class="avatar sb center-block edgy" style="background-image: url('{{ $user->image }}')"></div></a>
 
   @if(Auth::check())
     @unless(Auth::user()->id == $user->id)

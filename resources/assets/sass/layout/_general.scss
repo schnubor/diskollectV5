@@ -13,24 +13,56 @@ a:hover{
 
 .orange{
   color: $orange;
+
+  &.hover{
+    color: $lighter-grey;
+
+    &:hover{
+      color: $orange;
+    }
+  }
 }
 .orange-bg{
   background-color: $orange;
 }
 .blue{
   color: $blue;
+
+  &.hover{
+    color: $lighter-grey;
+
+    &:hover{
+      color: $blue;
+    }
+  }
 }
 .blue-bg{
   background-color: $blue;
 }
 .green{
   color: $green;
+
+  &.hover{
+    color: $lighter-grey;
+
+    &:hover{
+      color: $green;
+    }
+  }
 }
 .green-bg{
   background-color: $green;
 }
 .purple{
   color: $purple;
+
+  &.hover{
+    color: $lighter-grey;
+
+    &:hover{
+      color: $purple;
+    }
+  }
 }
 .purple-bg{
   background-color: $purple;

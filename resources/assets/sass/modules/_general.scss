@@ -5,6 +5,10 @@
   background-position: center center;
   background-color: $light-grey;
 
+  &.edgy{
+    border-radius: 4px;
+  }
+
   &.lg{
     height: 200px;
     width: 200px;
@@ -23,6 +27,11 @@
   &.sm{
     height: 50px;
     width: 50px;
+  }
+
+  &.sb{
+    height: 45px;
+    width: 45px;
   }
 
   &.tiny{

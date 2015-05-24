@@ -7059,24 +7059,40 @@ a:hover {
 
 .orange {
   color: #E08447; }
+  .orange.hover {
+    color: #839393; }
+    .orange.hover:hover {
+      color: #E08447; }
 
 .orange-bg {
   background-color: #E08447; }
 
 .blue {
   color: #1E89B7; }
+  .blue.hover {
+    color: #839393; }
+    .blue.hover:hover {
+      color: #1E89B7; }
 
 .blue-bg {
   background-color: #1E89B7; }
 
 .green {
   color: #6EB85F; }
+  .green.hover {
+    color: #839393; }
+    .green.hover:hover {
+      color: #6EB85F; }
 
 .green-bg {
   background-color: #6EB85F; }
 
 .purple {
   color: #9D3F51; }
+  .purple.hover {
+    color: #839393; }
+    .purple.hover:hover {
+      color: #9D3F51; }
 
 .purple-bg {
   background-color: #9D3F51; }
@@ -7232,6 +7248,8 @@ a:hover {
   background-repeat: no-repeat;
   background-position: center center;
   background-color: #3E4545; }
+  .avatar.edgy {
+    border-radius: 4px; }
   .avatar.lg {
     height: 200px;
     width: 200px; }
@@ -7244,6 +7262,9 @@ a:hover {
   .avatar.sm {
     height: 50px;
     width: 50px; }
+  .avatar.sb {
+    height: 45px;
+    width: 45px; }
   .avatar.tiny {
     height: 20px;
     width: 20px; }
@@ -7294,6 +7315,10 @@ a:hover {
   @media (min-width: 992px) {
     .sidebar {
       display: block; } }
+  .sidebar .avatar {
+    position: absolute;
+    bottom: 10px;
+    left: 10px; }
   .sidebar p.lead {
     margin-top: 15px;
     padding: 0 10px;
@@ -7325,16 +7350,18 @@ a:hover {
       text-decoration: none; }
     .sidebar .navigation .button {
       position: relative;
-      text-align: left;
-      height: 50px;
-      line-height: 50px;
+      text-align: center;
+      height: 45px;
+      width: 45px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      line-height: 45px;
+      font-size: 16px;
       color: #808080;
-      background-color: #25292A;
-      border-top: 1px solid #3E4545;
-      border-bottom: 1px solid #111313; }
+      background-color: #25292A; }
       .sidebar .navigation .button:hover, .sidebar .navigation .button.active {
-        background-color: #111313;
-        border-top: 1px solid #010101; }
+        background-color: #111313; }
       .sidebar .navigation .button.active .triangle {
         display: block;
         position: absolute;
@@ -7347,8 +7374,6 @@ a:hover {
         border-color: transparent transparent transparent #111313; }
       .sidebar .navigation .button .triangle {
         display: none; }
-      .sidebar .navigation .button i {
-        margin: 0 15px; }
 
 .toolbar {
   background-color: #839393;
