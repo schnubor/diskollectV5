@@ -1,7 +1,7 @@
 .sidebar{
   background-color: $grey;
   min-height: 100%;
-  padding: 20px 0;
+  padding: 0;
   color: #f0f0f0;
   display: none;
   width: 65px;
@@ -11,9 +11,20 @@
 
   @media (min-width: 992px) { display: block; }
 
+  .sb-logo{
+    background-color: $blue;
+    height: 70px;
+    margin-bottom: 10px;
+
+    img{
+      width: 45px;
+      margin-top: 10px;
+    }
+  }
+  
   .bottom-nav{
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     width: 100%;
   }
 
@@ -63,6 +74,10 @@
     a:hover{
       text-decoration: none;
     }
+
+    .avatar{
+      margin-bottom: 10px;
+    }
   }
 
   .button{
@@ -92,6 +107,15 @@
           color: $purple;
         }
         background-color: $dark-grey;
+      }
+
+      &.add{
+        background-color: $blue;
+        color: $white;
+
+        &:hover{
+          background-color: $dark-blue;
+        }
       }
 
       &.active{

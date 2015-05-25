@@ -8,22 +8,26 @@
   @else
     @include('user.partials.follow')
   @endif
+
+  <div class="sb-logo">
+    <img src="/images/logo.png" alt="Dashboard">
+  </div>
+  {{--
   <small class="text-center"><a href="{{ route('user.followers', $user->id) }}">{{ $user->followers->count() }} Follower</a> &middot; <a href="{{ route('user.following', $user->id) }}">{{ $user->following->count() }} Following</a></small>
-  
+  --}}
   <div class="navigation">
-    @if(Auth::check())
-      @if(Auth::user()->id == $user->id)
-        <a href="{{ route('home') }}" data-toggle="tooltip" data-placement="right" title="Dashboard" data-original-title="Dashboard">
-          @if(Request::url() == route('home'))
-            <div class="button orange active">
-          @else
-            <div class="button orange">
-          @endif
-            <i class="fa fa-fw fa-th-large"></i>
-          </div>
-        </a>
+    <!-- Avatar -->
+    <a href="{{ route('user.show', $user->id) }}"><div class="avatar sb center-block edgy" style="background-image: url('{{ $user->image }}')"></div></a>
+
+    <a href="{{ route('home') }}" data-toggle="tooltip" data-placement="right" title="Dashboard" data-original-title="Dashboard">
+      @if(Request::url() == route('home'))
+        <div class="button orange active">
+      @else
+        <div class="button orange">
       @endif
-    @endif
+        <i class="fa fa-fw fa-th-large"></i>
+      </div>
+    </a>
 
     <a href="{{ route('user.collection', $user->id) }}" data-toggle="tooltip" data-placement="right" title="Collection" data-original-title="Collection">
       @if(Request::url() == route('user.collection', $user->id))
@@ -69,7 +73,9 @@
     </a>
 
     <!-- Avatar -->
-    <a href="{{ route('user.show', $user->id) }}"><div class="avatar sb center-block edgy" style="background-image: url('{{ $user->image }}')"></div></a>
+    <a href="{{ route('get.search') }}" data-toggle="tooltip" data-placement="right" title="Add record" data-original-title="Add record">
+      <div class="button add"><i class="fa fa-fw fa-plus"></i></div>
+    </a>
   </div>
 
   @if(Auth::check())

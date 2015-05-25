@@ -332,7 +332,7 @@ a:hover {
 .sidebar {
   background-color: #25292A;
   min-height: 100%;
-  padding: 20px 0;
+  padding: 0;
   color: #f0f0f0;
   display: none;
   width: 65px;
@@ -342,9 +342,16 @@ a:hover {
   @media (min-width: 992px) {
     .sidebar {
       display: block; } }
+  .sidebar .sb-logo {
+    background-color: #1E89B7;
+    height: 70px;
+    margin-bottom: 10px; }
+    .sidebar .sb-logo img {
+      width: 45px;
+      margin-top: 10px; }
   .sidebar .bottom-nav {
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     width: 100%; }
   .sidebar p.lead {
     margin-top: 15px;
@@ -375,6 +382,8 @@ a:hover {
     margin-bottom: 20px; }
     .sidebar .navigation a:hover {
       text-decoration: none; }
+    .sidebar .navigation .avatar {
+      margin-bottom: 10px; }
   .sidebar .button {
     position: relative;
     text-align: center;
@@ -397,6 +406,11 @@ a:hover {
         color: #6EB85F; }
       .sidebar .button:hover.purple, .sidebar .button.active.purple {
         color: #9D3F51; }
+    .sidebar .button.add {
+      background-color: #1E89B7;
+      color: #F0F0F0; }
+      .sidebar .button.add:hover {
+        background-color: #176D93; }
     .sidebar .button.active .triangle {
       display: block;
       position: absolute;
@@ -454,6 +468,3 @@ a:hover {
   margin-bottom: 30px; }
   .vinyl .info .artist {
     font-weight: bold; }
-
-
-/*# sourceMappingURL=app.css.map */
