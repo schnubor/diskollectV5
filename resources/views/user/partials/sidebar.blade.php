@@ -15,9 +15,9 @@
       @if(Auth::user()->id == $user->id)
         <a href="{{ route('home') }}">
           @if(Request::url() == route('home'))
-            <div class="button active">
+            <div class="button orange active">
           @else
-            <div class="button orange hover">
+            <div class="button orange">
           @endif
             <i class="fa fa-fw fa-th-large"></i>
           </div>
@@ -27,9 +27,9 @@
 
     <a href="{{ route('user.collection', $user->id) }}">
       @if(Request::url() == route('user.collection', $user->id))
-        <div class="button active">
+        <div class="button blue active">
       @else
-        <div class="button blue hover">
+        <div class="button blue">
       @endif
         <i class="fa fa-fw fa-database"></i>
       </div>
@@ -37,26 +37,35 @@
 
     <a href="{{ route('user.show', $user->id) }}">
       @if(Request::url() == route('user.show', $user->id))
-        <div class="button active">
+        <div class="button green active">
       @else
-        <div class="button">
+        <div class="button green">
       @endif
-        <i class="fa fa-fw fa-area-chart green hover"></i>
+        <i class="fa fa-fw fa-area-chart"></i>
       </div>
     </a>
 
     <a href="{{ route('user.jukebox', $user->id) }}">
       @if(Request::url() == route('user.jukebox', $user->id))
-        <div class="button active">
+        <div class="button purple active">
       @else
-        <div class="button">
+        <div class="button purple">
       @endif
-        <i class="fa fa-fw fa-music purple hover"></i>
+        <i class="fa fa-fw fa-music"></i>
+      </div>
+    </a>
+
+    <!-- Settings -->
+    <a href="{{ route('get.edit.user', $user->id) }}">
+      @if(Request::url() == route('get.edit.user', $user->id))
+        <div class="button grey active">
+      @else
+        <div class="button grey">
+      @endif
+        <i class="fa fa-fw fa-cogs"></i>
       </div>
     </a>
   </div>
-  
-  <!-- Settings -->
 
   <!-- Avatar -->
   <a href="{{ route('user.show', $user->id) }}"><div class="avatar sb center-block edgy" style="background-image: url('{{ $user->image }}')"></div></a>

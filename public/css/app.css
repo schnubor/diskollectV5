@@ -348,9 +348,17 @@ a:hover {
       line-height: 45px;
       font-size: 16px;
       color: #808080;
-      background-color: #25292A; }
+      background-color: #3E4545; }
       .sidebar .navigation .button:hover, .sidebar .navigation .button.active {
         background-color: #111313; }
+        .sidebar .navigation .button:hover.orange, .sidebar .navigation .button.active.orange {
+          color: #E08447; }
+        .sidebar .navigation .button:hover.blue, .sidebar .navigation .button.active.blue {
+          color: #1E89B7; }
+        .sidebar .navigation .button:hover.green, .sidebar .navigation .button.active.green {
+          color: #6EB85F; }
+        .sidebar .navigation .button:hover.purple, .sidebar .navigation .button.active.purple {
+          color: #9D3F51; }
       .sidebar .navigation .button.active .triangle {
         display: block;
         position: absolute;

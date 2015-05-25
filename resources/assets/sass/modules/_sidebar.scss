@@ -75,9 +75,21 @@
       line-height: 45px;
       font-size: 16px;
       color: #808080;
-      background-color: $grey;
+      background-color: $light-grey;
 
       &:hover, &.active{
+        &.orange{
+          color: $orange;
+        }
+        &.blue{
+          color: $blue;
+        }
+        &.green{
+          color: $green;
+        }
+        &.purple{
+          color: $purple;
+        }
         background-color: $dark-grey;
       }
 
