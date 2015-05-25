@@ -8,10 +8,36 @@
   {{-- Welcome Page --}}
     <div id="welcome">
       <div class="header">
-        <h1>For The Record</h1>
-        <h2>Your vinyls new home.</h2>
-        <div class="cta">
-          <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-header">Start here.</a>
+        <video autoplay="" loop="" poster="/images/header_BG.jpg" id="bgvid">
+          <source src="/images/bg_clip.webm" type="video/webm">
+          <source src="/images/bg_clip.mp4" type="video/mp4">
+        </video>
+        <div class="header-menu container">
+          <div class="logo">
+            <img src="/images/logo.png" alt="For the record">
+          </div>
+
+        </div>
+        <div class="header-content container">
+          <h1>Your vinyls new home.</h1>
+          <h2>Manage, rediscover and analyse your collection.</h2>
+          <div class="cta">
+            <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-header">Start here.</a>
+          </div>
+        </div>
+        <div class="header-stats">
+          <div class="stat">
+            <span>{{$vinylCount}}</span><br>
+            <small>vinyls</small>
+          </div>
+          <div class="stat">
+            <span>{{$weight}}kg</span><br>
+            <small>in weight</small>
+          </div>
+          <div class="stat">
+            <span>{{$userCount}}</span><br>
+            <small>collectors</small>
+          </div>
         </div>
       </div>
       
