@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  @include('user.partials.sidebar')
+  <!-- Content -->
   <div class="content-area">
     <div class="col-md-12 toolbar">
       <p class="lead news">
@@ -94,4 +94,7 @@
       </div>
     </div>
   </div>
+
+  <!-- Sidebar -->
+  @include('user.partials.sidebar')
 @endsection

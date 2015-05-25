@@ -13,7 +13,7 @@
   <div class="navigation">
     @if(Auth::check())
       @if(Auth::user()->id == $user->id)
-        <a href="{{ route('home') }}">
+        <a href="{{ route('home') }}" data-toggle="tooltip" data-placement="right" title="Dashboard" data-original-title="Dashboard">
           @if(Request::url() == route('home'))
             <div class="button orange active">
           @else
@@ -25,7 +25,7 @@
       @endif
     @endif
 
-    <a href="{{ route('user.collection', $user->id) }}">
+    <a href="{{ route('user.collection', $user->id) }}" data-toggle="tooltip" data-placement="right" title="Collection" data-original-title="Collection">
       @if(Request::url() == route('user.collection', $user->id))
         <div class="button blue active">
       @else
@@ -35,7 +35,7 @@
       </div>
     </a>
 
-    <a href="{{ route('user.show', $user->id) }}">
+    <a href="{{ route('user.show', $user->id) }}" data-toggle="tooltip" data-placement="right" title="Statistics" data-original-title="Statistics">
       @if(Request::url() == route('user.show', $user->id))
         <div class="button green active">
       @else
@@ -45,7 +45,7 @@
       </div>
     </a>
 
-    <a href="{{ route('user.jukebox', $user->id) }}">
+    <a href="{{ route('user.jukebox', $user->id) }}" data-toggle="tooltip" data-placement="right" title="Jukebox" data-original-title="Jukebox">
       @if(Request::url() == route('user.jukebox', $user->id))
         <div class="button purple active">
       @else
@@ -54,9 +54,11 @@
         <i class="fa fa-fw fa-music"></i>
       </div>
     </a>
+  </div>
 
+  <div class="bottom-nav">
     <!-- Settings -->
-    <a href="{{ route('get.edit.user', $user->id) }}">
+    <a href="{{ route('get.edit.user', $user->id) }}" data-toggle="tooltip" data-placement="right" title="Settings" data-original-title="Settings">
       @if(Request::url() == route('get.edit.user', $user->id))
         <div class="button grey active">
       @else
@@ -65,10 +67,10 @@
         <i class="fa fa-fw fa-cogs"></i>
       </div>
     </a>
-  </div>
 
-  <!-- Avatar -->
-  <a href="{{ route('user.show', $user->id) }}"><div class="avatar sb center-block edgy" style="background-image: url('{{ $user->image }}')"></div></a>
+    <!-- Avatar -->
+    <a href="{{ route('user.show', $user->id) }}"><div class="avatar sb center-block edgy" style="background-image: url('{{ $user->image }}')"></div></a>
+  </div>
 
   @if(Auth::check())
     @unless(Auth::user()->id == $user->id)

@@ -11,10 +11,10 @@
 
   @media (min-width: 992px) { display: block; }
 
-  .avatar{
+  .bottom-nav{
     position: absolute;
     bottom: 10px;
-    left: 10px;
+    width: 100%;
   }
 
   p.lead{
@@ -63,8 +63,9 @@
     a:hover{
       text-decoration: none;
     }
+  }
 
-    .button{
+  .button{
       position: relative;
       text-align: center;
       height: 45px;
@@ -111,5 +112,4 @@
         display: none;
       }
     }
-  }
 }

@@ -342,10 +342,10 @@ a:hover {
   @media (min-width: 992px) {
     .sidebar {
       display: block; } }
-  .sidebar .avatar {
+  .sidebar .bottom-nav {
     position: absolute;
     bottom: 10px;
-    left: 10px; }
+    width: 100%; }
   .sidebar p.lead {
     margin-top: 15px;
     padding: 0 10px;
@@ -375,46 +375,46 @@ a:hover {
     margin-bottom: 20px; }
     .sidebar .navigation a:hover {
       text-decoration: none; }
-    .sidebar .navigation .button {
-      position: relative;
-      text-align: center;
-      height: 45px;
-      width: 45px;
-      margin-left: 10px;
-      margin-bottom: 10px;
-      border-radius: 4px;
-      line-height: 45px;
-      font-size: 16px;
-      color: #808080;
-      background-color: #3E4545; }
-      .sidebar .navigation .button:hover, .sidebar .navigation .button.active {
-        background-color: #111313; }
-        .sidebar .navigation .button:hover.orange, .sidebar .navigation .button.active.orange {
-          color: #E08447; }
-        .sidebar .navigation .button:hover.blue, .sidebar .navigation .button.active.blue {
-          color: #1E89B7; }
-        .sidebar .navigation .button:hover.green, .sidebar .navigation .button.active.green {
-          color: #6EB85F; }
-        .sidebar .navigation .button:hover.purple, .sidebar .navigation .button.active.purple {
-          color: #9D3F51; }
-      .sidebar .navigation .button.active .triangle {
-        display: block;
-        position: absolute;
-        top: 17px;
-        right: -8px;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 7.5px 0 7.5px 8px;
-        border-color: transparent transparent transparent #111313; }
-      .sidebar .navigation .button .triangle {
-        display: none; }
+  .sidebar .button {
+    position: relative;
+    text-align: center;
+    height: 45px;
+    width: 45px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    line-height: 45px;
+    font-size: 16px;
+    color: #808080;
+    background-color: #3E4545; }
+    .sidebar .button:hover, .sidebar .button.active {
+      background-color: #111313; }
+      .sidebar .button:hover.orange, .sidebar .button.active.orange {
+        color: #E08447; }
+      .sidebar .button:hover.blue, .sidebar .button.active.blue {
+        color: #1E89B7; }
+      .sidebar .button:hover.green, .sidebar .button.active.green {
+        color: #6EB85F; }
+      .sidebar .button:hover.purple, .sidebar .button.active.purple {
+        color: #9D3F51; }
+    .sidebar .button.active .triangle {
+      display: block;
+      position: absolute;
+      top: 17px;
+      right: -8px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 7.5px 0 7.5px 8px;
+      border-color: transparent transparent transparent #111313; }
+    .sidebar .button .triangle {
+      display: none; }
 
 .toolbar {
   background-color: #839393;
   color: #F0F0F0;
   padding: 20px 15px;
-  height: 69px; }
+  height: 70px; }
   .toolbar .news {
     display: inline; }
     .toolbar .news a {

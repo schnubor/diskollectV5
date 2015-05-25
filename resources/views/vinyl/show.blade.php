@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-  @include('user.partials.sidebar')
-
   <div class="content-area">
     <div class="col-md-12 toolbar">
       <p class="lead pull-left">{{ $vinyl->artist }} - {{ $vinyl->title }}</p>
@@ -130,4 +128,7 @@
       </div>
     </div>
   </div>
+  
+  <!-- Sidebar -->
+  @include('user.partials.sidebar')
 @endsection

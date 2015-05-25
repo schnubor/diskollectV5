@@ -11547,6 +11547,8 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 (function() {
   console.log("hello from coffeescript!!");
 
+  $('[data-toggle="tooltip"]').tooltip();
+
 }).call(this);
 
 //# sourceMappingURL=app.js.map
