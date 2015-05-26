@@ -20,8 +20,6 @@
 	<![endif]-->
 </head>
 <body>
-	
-	
 	<div class="flash-message">
 		@include('flash::message')
 	</div>

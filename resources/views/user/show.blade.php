@@ -6,10 +6,19 @@
 
 @section('content')
   
-
   <div class="content-area">
     <div class="col-md-12 toolbar">
-      <p class="lead">Showing statistics for <strong>{{ $user->vinyls->count() }}</strong> vinyls</p>
+      @if(Auth::check())
+        @if(Auth::user()->id == $user->id)
+          <p class="lead">Your statistics for <strong>{{ $user->vinyls->count() }}</strong> vinyls</p>
+        @else
+          <div class="avatar sm" style="background-image: url('{{ $user->image }}')"></div>
+          <p class="lead"><strong>{{ $user->username }}</strong>
+        @endif
+      @else
+        <div class="avatar sm" style="background-image: url('{{ $user->image }}')"></div><p class="lead"><strong>{{ $user->username }}</strong>
+      @endif
+
     </div>
     
     <div class="col-md-12 content">
