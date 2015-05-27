@@ -32,10 +32,15 @@
         {{-- Details --}}
         <div class="panel panel-default">
           <div class="panel-heading">Vinyl Details</div>
-          <div class="panel-body">
-            <p class="h2 text-center">{{ $vinyl->price.$user->currency }}</p>
-          </div>
+          <ul class="list-group">
+            <li class="list-group-item"><p class="h2 text-center">{{ $vinyl->price.$user->currency }}</p></li>
+            <li class="list-group-item"><div class="lead text-center">{{ $user->username }}</div</li>
+          </ul>
           <table class="table table-bordered">
+            <tr>
+              <td><strong>Owner</strong></td>
+              <td><strong><a href="{{ route('user.show', $user->id) }}">{{ $user->username }}</a></strong></td>
+            </tr>
             @if($vinyl->discogs_uri)
               <tr>
                 <td><strong>Discogs</strong></td>

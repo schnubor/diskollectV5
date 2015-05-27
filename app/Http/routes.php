@@ -60,12 +60,6 @@ Route::get('/collectors', [
   'uses' => 'UsersController@index'
 ]);
 
-Route::get('/user/edit', [
-  'as' => 'get.edit.user',
-  'uses' => 'UsersController@edit',
-  'middleware' => 'auth'
-]);
-
 Route::post('/user/edit', [
   'as' => 'post.edit.user',
   'uses' => 'UsersController@update',
@@ -97,6 +91,11 @@ Route::get('/user/{id}/following', [
   'uses' => 'UsersController@following'
 ]);
 
+Route::get('/user/{id}/settings', [
+  'as' => 'user.settings',
+  'uses' => 'UsersController@settings'
+]);
+
 Route::get('/activate/{code}', [
   'as' => 'user.activate',
   'uses' => 'UsersController@activate'
@@ -118,12 +117,6 @@ Route::get('/password/recover/{code}', [
   'as' => 'recover',
   'uses' => 'UsersController@recover',
   'middleware' => 'guest'
-]);
-
-Route::get('/password/edit', [
-  'as' => 'get.edit.password',
-  'uses' => 'UsersController@getEditPassword',
-  'middleware' => 'auth'
 ]);
 
 Route::post('/password/edit', [

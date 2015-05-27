@@ -58,8 +58,8 @@
   <div class="bottom-nav">
     @if(Auth::check())
       <!-- Settings -->
-      <a href="{{ route('get.edit.user', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Settings" data-original-title="Settings">
-        @if(Request::url() == route('get.edit.user', Auth::user()->id))
+      <a href="{{ route('user.settings', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Settings" data-original-title="Settings">
+        @if(Request::url() == route('user.settings', Auth::user()->id))
           <div class="button grey active">
         @else
           <div class="button grey">

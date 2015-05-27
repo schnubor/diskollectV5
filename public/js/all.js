@@ -11549,7 +11549,6 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
-//# sourceMappingURL=app.js.map
 (function() {
   var $results, $search, EURinGBP, EURinUSD, GBPinUSD, getMedian;
 
@@ -11826,7 +11825,6 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
-//# sourceMappingURL=search.js.map
 (function() {
   var readUrl;
 
@@ -11866,7 +11864,6 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
-//# sourceMappingURL=createVinyl.js.map
 (function() {
   $.getStats = function(userId) {
     var $vinyls;
@@ -11965,7 +11962,6 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
-//# sourceMappingURL=charts.js.map
 
 /*
   String to time
@@ -12059,6 +12055,3 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   };
 
 }).call(this);
-
-//# sourceMappingURL=jukebox.js.map
-//# sourceMappingURL=all.js.map

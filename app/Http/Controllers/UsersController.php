@@ -235,9 +235,9 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit()
+	public function settings()
 	{
-		return view('user.edit'); // TODO: make view with data
+		return view('user.settings');
 	}
 
 	/**
@@ -357,14 +357,6 @@ class UsersController extends Controller {
 
 		flash()->error('User not found.');
 		return redirect()->route('home');
-	}
-
-	/**
-	 * GET edit password form
-	 **/
-
-	public function getEditPassword(){
-		return view('user.password');
 	}
 
 	/**
