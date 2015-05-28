@@ -7254,6 +7254,14 @@ p.placeholder {
   background-color: #1E89B7;
   border-color: #1E89B7; }
 
+.btn-info {
+  color: #fff;
+  background-color: #DDD;
+  border-color: #DDD; }
+  .btn-info:hover {
+    border-color: #CCC;
+    background-color: #CCC; }
+
 .collector .back {
   display: inline-block;
   margin-bottom: 20px; }

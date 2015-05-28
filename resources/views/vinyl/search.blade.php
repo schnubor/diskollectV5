@@ -5,10 +5,6 @@
 @endsection
 
 @section('content')
-  @include('user.partials.sidebar')
-
-  @include('vinyl.partials.modal')
-
   <div class="content-area">
     <div class="col-md-12 toolbar">
       {!! Form::open(['route' => 'post.search', 'class' => 'form-inline col-md-8', 'id' => 'search-vinyl-form']) !!}
@@ -65,4 +61,10 @@
       @endunless
     </div>
   </div>
+  
+  {{-- Sidebar --}}
+  @include('user.partials.sidebar')
+
+  {{-- Modal --}}
+  @include('vinyl.partials.modal')
 @endsection
