@@ -158,7 +158,7 @@
         </div>
       </div>
 
-      <!-- Password -->
+      {{-- Notifications 
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">Notifications</div>
@@ -167,6 +167,7 @@
           </div>
         </div>
       </div>
+      --}}
     </div>
   </div>
 

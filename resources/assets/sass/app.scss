@@ -7,10 +7,8 @@
 // Layout Styles
 // ---------------------------------
 
-@import 'layout/collectors';
 @import 'layout/content';
 @import 'layout/general';
-@import 'layout/steps';
 @import 'layout/welcome';
 
 // Modules
@@ -19,6 +17,7 @@
 @import 'modules/activities';
 @import 'modules/avatar';
 @import 'modules/buttons';
+@import 'modules/collector';
 @import 'modules/flash';
 @import 'modules/navigation';
 @import 'modules/panel';

@@ -9,7 +9,7 @@
     {{-- Avatar --}}
     <a href="#" data-toggle="popover" title="{{ Auth::user()->username }}" data-trigger="focus" data-content="
       <p><a href='{{ route('user.followers', Auth::user()->id) }}'>{{ Auth::user()->followers->count() }} Follower</a> &middot; <a href='{{ route('user.following', Auth::user()->id) }}''>{{ Auth::user()->following->count() }} Following</a></p>
-      <a class='btn btn-danger btn-block' href='{{ route('get.logout') }}'><i class='fa fa-fw fa-sign-out'></i>Sign out</a>
+      <a class='btn btn-warning btn-block' href='{{ route('get.logout') }}'><i class='fa fa-fw fa-sign-out'></i>Sign out</a>
       " data-original-title="{{ Auth::user()->username }}">
       <div class="avatar sb center-block edgy" style="background-image: url('{{ Auth::user()->image }}')"></div>
     </a>

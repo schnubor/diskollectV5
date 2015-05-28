@@ -34,7 +34,6 @@
           <div class="panel-heading">Vinyl Details</div>
           <ul class="list-group">
             <li class="list-group-item"><p class="h2 text-center">{{ $vinyl->price.$user->currency }}</p></li>
-            <li class="list-group-item"><div class="lead text-center">{{ $user->username }}</div</li>
           </ul>
           <table class="table table-bordered">
             <tr>
