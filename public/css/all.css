@@ -7168,19 +7168,24 @@ p.placeholder {
     #welcome .intro p {
       font-weight: 200;
       font-size: 18px; }
-  #welcome .counter {
-    color: #F0F0F0;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 200;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background-color: #25292A; }
-    #welcome .counter span {
-      font-weight: normal;
-      font-size: 42px; }
+  #welcome .feature {
+    margin-top: 50px;
+    border-bottom: 1px solid #CCC;
+    overflow: hidden;
+    height: 200px; }
+    #welcome .feature img {
+      box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.2); }
+    #welcome .feature .description {
+      margin-top: 20px; }
   #welcome .latestVinyls {
     padding: 50px 0; }
+    #welcome .latestVinyls .headline {
+      font-size: 48px;
+      margin-bottom: 0; }
+    #welcome .latestVinyls .subheadline {
+      font-size: 16px;
+      color: #AAA;
+      margin-bottom: 50px; }
   #welcome .latestMembers {
     padding: 50px 0;
     text-align: center;

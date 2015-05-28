@@ -110,23 +110,34 @@
     }
   }
 
-  .counter{
-    color: $white;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 200;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background-color: $grey;
+  .feature{
+    margin-top: 50px;
+    border-bottom: 1px solid #CCC;
+    overflow: hidden;
+    height: 200px;
 
-    span{
-      font-weight: normal;
-      font-size: 42px;
+    img{
+      box-shadow: 5px 10px 15px rgba(0,0,0,.2);
+    }
+
+    .description{
+      margin-top: 20px;
     }
   }
 
   .latestVinyls{
     padding: 50px 0;
+
+    .headline{
+      font-size: 48px;
+      margin-bottom: 0;
+    }
+
+    .subheadline{
+      font-size: 16px;
+      color: #AAA;
+      margin-bottom: 50px;
+    }
   }
 
   .latestMembers{

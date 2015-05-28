@@ -41,37 +41,57 @@
       </div>
     </div>
     
-    <div class="container">
-      <div class="intro row">
-        <div class="col-md-4">
-          <div class="text-center"><i class="fa fa-fw fa-line-chart"></i></div>
-          <p>
-            Dive into the numbers and keep track of your progress. We will create personlized statistics for your collection and yourself.
+    
+    <div class="row feature">
+      <div class="container">
+        <div class="col-md-4 col-md-offset-1">
+          <p class="h3">Collection Statistics.</p>
+          <p class="description">
+            Dive into the numbers and keep track of your progress. We will create personlized statistics for your collection, covering overall value, genre distribution, favourites and much more.
           </p>
         </div>
-        <div class="col-md-4">
-          <div class="text-center"><i class="fa fa-fw fa-cubes"></i></div>
-          <p>
-            FTR integrates with different APIs like Discogs or iTunes to get all the data you need. It also has its own API.
-          </p>
+        <div class="col-md-5 col-md-offset-1">
+          <img src="/images/welcome/browser-stats.png" alt="Statistics" width="100%">
         </div>
-        <div class="col-md-4">
-          <div class="text-center"><i class="fa fa-fw fa-share-alt"></i></div>
-          <p>
-            Share your own collection with anyone you know and follow other collectors to explore their music and discover new records.
+      </div>
+    </div>
+
+    <div class="row feature">
+      <div class="container">
+        <div class="col-md-5 col-md-offset-1">
+          <img src="/images/welcome/browser-vinyl.png" alt="Statistics" width="100%">
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+          <p class="h3">Open Data. Minimal effort.</p>
+          <p class="description">
+            For The Record is part of the Open Data Movement and integrates with different APIs like Discogs, iTunes or Youtube to automatically fetch all the data for your records. It also has its own API.
           </p>
         </div>
       </div>
     </div>
 
-    <div class="counter">
-      <p>
-        Tracking <span>{{$vinylCount}}</span> Vinyls of <span>{{$userCount}}</span> Collectors.
-      </p>
+    <div class="row feature">
+      <div class="container">
+        <div class="col-md-4 col-md-offset-1">
+          <p class="h3">Collect and connect.</p>
+          <p class="description">
+            Share your collection with anyone you know and follow other collectors to explore their music and discover new records. For The Record turns collecting into an collective experience. 
+          </p>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+          <img src="/images/welcome/browser-dashboard.png" alt="Statistics" width="100%">
+        </div>
+      </div>
     </div>
 
     <div class="latestVinyls">
       <div class="container">
+        <p class="lead headline text-center">
+          Latest records
+        </p>
+        <p class="subheadline text-center">
+          They just keep flying in.
+        </p>
         @foreach($latestVinyls as $vinyl)
           <div class="col-sm-3">
             <a href="{{ route('get.show.vinyl', $vinyl->id) }}"><img src="{{ $vinyl->artwork }}" alt="{{ $vinyl->artist }} - {{ $vinyl->title }}" class="thumbnail" width="100%"></a>

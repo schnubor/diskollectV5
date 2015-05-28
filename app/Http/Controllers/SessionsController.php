@@ -101,7 +101,7 @@ class SessionsController extends Controller {
 	public function destroy()
 	{
 		Auth::logout();
-		flash()->info('You are now signed out.');
+		//flash()->info('You are now signed out.');
 		return redirect()->route('home');
 	}
 
