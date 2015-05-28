@@ -47,7 +47,7 @@
             </ul>
           @else
             <div class="panel-body">
-              <p class="text-center" style="margin: 40px 0;">
+              <p class="text-center placeholder small" style="margin: 40px 0;">
                 No recent activities. Try following other collectors! <br><br>
                 <a href="{{ route('user.index') }}" class="btn btn-success btn-lg"><i class="fa fa-users"></i> Collectors</a>
               </p>

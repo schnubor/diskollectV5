@@ -7103,6 +7103,12 @@ a:hover {
 .full-height {
   height: 100%; }
 
+p.placeholder {
+  font-size: 32px;
+  color: #CCC; }
+  p.placeholder.small {
+    font-size: 18px; }
+
 .step.one {
   background-color: #839393;
   color: #F0F0F0; }
@@ -7450,8 +7456,7 @@ a:hover {
       color: #333; }
   .toolbar form {
     display: inline;
-    vertical-align: text-bottom;
-    margin-left: 10px; }
+    margin-top: -3px; }
   .toolbar .pages {
     line-height: 26px;
     font-size: 16px; }
@@ -7484,3 +7489,7 @@ a:hover {
   margin-bottom: 30px; }
   .vinyl .info .artist {
     font-weight: bold; }
+
+
+/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=all.css.map */

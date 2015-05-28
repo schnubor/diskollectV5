@@ -9,11 +9,38 @@
 
   <div class="content-area">
     <div class="col-md-12 toolbar">
-      <div class="controls">
-        <p class="lead"><strong>{{ $vinyls->count() }}</strong> Vinyls in the Jukebox</p>
-      </div>
+      @if(Auth::check())
+        @if(Auth::user()->id == $user->id)
+          <p class="lead"><strong>Your Jukebox</strong></p>
+        @else
+          <div class="avatar sm" style="background-image: url('{{ $user->image }}')"></div>
+          <div class="lead dropdown">
+            <strong class="toggle-dropdown" data-toggle="dropdown" aria-expanded="false" id="userDropdown" role="button">{{ $user->username }}<span class="caret"></span></strong>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="userDropdown">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.collection', $user->id) }}"><i class="fa fa-fw fa-database"></i> Collection</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.show', $user->id) }}"><i class="fa fa-fw fa-area-chart"></i> Statistics</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.jukebox', $user->id) }}"><i class="fa fa-fw fa-music"></i> Jukebox</a></li>
+            </ul>
+          </div>
+          <div class="pull-right">@include('user.partials.follow')</div>
+        @endif
+      @else
+        <div class="avatar sm" style="background-image: url('{{ $user->image }}')"></div>
+        <div class="lead dropdown">
+          <strong class="toggle-dropdown" data-toggle="dropdown" aria-expanded="false" id="userDropdown" role="button">{{ $user->username }}<span class="caret"></span></strong>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="userDropdown">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.collection', $user->id) }}"><i class="fa fa-fw fa-database"></i> Collection</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.show', $user->id) }}"><i class="fa fa-fw fa-area-chart"></i> Statistics</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.jukebox', $user->id) }}"><i class="fa fa-fw fa-music"></i> Jukebox</a></li>
+          </ul>
+        </div>
+        <div class="pull-right">@include('user.partials.follow')</div>
+      @endif
     </div>
+
+    <!-- Jukebox content -->
     <div class="col-md-12 content">
+      @if($vinyls->count())
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong class="js-vinylTitle"></strong></div>
@@ -36,6 +63,16 @@
                 </div>
             </div>
         </div>
+      @else
+        <div class="col-md-12 text-center">
+          <p class="placeholder">Not enough vinyls in collection.</p>
+          @if(Auth::check())
+            @if(Auth::user()->id == $user->id)
+              <a href="{{ route('get.search') }}" class="btn btn-primary btn-lg"><i class="fa fa-fw fa-plus"></i> Add vinyl</a>
+            @endif
+          @endif
+        </div>
+      @endif
     </div>
   </div>
 @endsection

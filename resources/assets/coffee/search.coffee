@@ -48,7 +48,7 @@ $('#submit-search').click (e) ->
       if error == 'abort'
         $('.loading').fadeOut()
       else
-        $('.loading').html('<p class="h1">Oops!</p><p class="lead">Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary">Refresh Discogs Token</a>')
+        $('.loading').html('<p class="placeholder">Oops! <br> Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-exchange"></i> Refresh Discogs Token</a>')
 
     success: (results) -> # search results received
       # console.log results

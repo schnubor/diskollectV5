@@ -10,7 +10,7 @@
     <div class="col-md-12 toolbar">
       @if(Auth::check())
         @if(Auth::user()->id == $user->id)
-          <p class="lead">Your statistics for <strong>{{ $user->vinyls->count() }}</strong> vinyls</p>
+          <p class="lead"><strong>Your Statistics</strong></p>
         @else
           <div class="avatar sm" style="background-image: url('{{ $user->image }}')"></div>
           <div class="lead dropdown">

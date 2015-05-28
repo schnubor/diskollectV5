@@ -11549,6 +11549,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
+//# sourceMappingURL=app.js.map
 (function() {
   var $results, $search, EURinGBP, EURinUSD, GBPinUSD, getMedian;
 
@@ -11599,7 +11600,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
         if (error === 'abort') {
           return $('.loading').fadeOut();
         } else {
-          return $('.loading').html('<p class="h1">Oops!</p><p class="lead">Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary">Refresh Discogs Token</a>');
+          return $('.loading').html('<p class="placeholder">Oops! <br> Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-exchange"></i> Refresh Discogs Token</a>');
         }
       },
       success: function(results) {
@@ -11825,6 +11826,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
+//# sourceMappingURL=search.js.map
 (function() {
   var readUrl;
 
@@ -11864,6 +11866,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
+//# sourceMappingURL=createVinyl.js.map
 (function() {
   $.getStats = function(userId) {
     var $vinyls;
@@ -11962,6 +11965,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
+//# sourceMappingURL=charts.js.map
 
 /*
   String to time
@@ -12055,3 +12059,6 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   };
 
 }).call(this);
+
+//# sourceMappingURL=jukebox.js.map
+//# sourceMappingURL=all.js.map

@@ -48,7 +48,7 @@
         if (error === 'abort') {
           return $('.loading').fadeOut();
         } else {
-          return $('.loading').html('<p class="h1">Oops!</p><p class="lead">Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary">Refresh Discogs Token</a>');
+          return $('.loading').html('<p class="placeholder">Oops! <br> Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-exchange"></i> Refresh Discogs Token</a>');
         }
       },
       success: function(results) {
@@ -273,3 +273,5 @@
   });
 
 }).call(this);
+
+//# sourceMappingURL=search.js.map
