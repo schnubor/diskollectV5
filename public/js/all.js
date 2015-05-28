@@ -11547,6 +11547,10 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 (function() {
   $('[data-toggle="tooltip"]').tooltip();
 
+  $('[data-toggle="popover"]').popover({
+    html: true
+  });
+
 }).call(this);
 
 //# sourceMappingURL=app.js.map

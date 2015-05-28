@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-  @include('user.partials.sidebar')
-
   <div class="content-area">
     <div class="col-md-12 toolbar">
       @if(Auth::check())
@@ -75,6 +73,9 @@
       @endif
     </div>
   </div>
+  
+  {{-- Sidebar --}}
+  @include('user.partials.sidebar')
 @endsection
 
 @section('scripts')

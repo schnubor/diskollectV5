@@ -80,60 +80,76 @@
     }
   }
 
-  .button{
-      position: relative;
-      text-align: center;
-      height: 45px;
-      width: 45px;
-      margin-left: 10px;
-      margin-bottom: 10px;
-      border-radius: 4px;
-      line-height: 45px;
-      font-size: 16px;
-      color: #808080;
-      background-color: $light-grey;
+  .popover{
+    color: #333;
+    width: 200px;
 
-      &:hover, &.active{
-        &.orange{
-          color: $orange;
-        }
-        &.blue{
-          color: $blue;
-        }
-        &.green{
-          color: $green;
-        }
-        &.purple{
-          color: $purple;
-        }
-        background-color: $dark-grey;
-      }
-
-      &.add{
-        background-color: $blue;
-        color: $white;
+    p{
+      a{
+        color: #AAA;
 
         &:hover{
-          background-color: $dark-blue;
+          color: #333
         }
-      }
-
-      &.active{
-        .triangle{
-          display: block;
-          position: absolute;
-          top: 17px;
-          right: -8px;
-          width: 0;
-          height: 0;
-          border-style: solid;
-          border-width: 7.5px 0 7.5px 8px;
-          border-color: transparent transparent transparent $dark-grey;
-        }
-      }
-
-      .triangle{
-        display: none;
       }
     }
+    
+  }
+
+  .button{
+    position: relative;
+    text-align: center;
+    height: 45px;
+    width: 45px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    line-height: 45px;
+    font-size: 16px;
+    color: #808080;
+    background-color: $light-grey;
+
+    &:hover, &.active{
+      &.orange{
+        color: $orange;
+      }
+      &.blue{
+        color: $blue;
+      }
+      &.green{
+        color: $green;
+      }
+      &.purple{
+        color: $purple;
+      }
+      background-color: $dark-grey;
+    }
+
+    &.add{
+      background-color: $blue;
+      color: $white;
+
+      &:hover{
+        background-color: $dark-blue;
+      }
+    }
+
+    &.active{
+      .triangle{
+        display: block;
+        position: absolute;
+        top: 17px;
+        right: -8px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7.5px 0 7.5px 8px;
+        border-color: transparent transparent transparent $dark-grey;
+      }
+    }
+
+    .triangle{
+      display: none;
+    }
+  }
 }

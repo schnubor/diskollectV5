@@ -24,7 +24,7 @@
         </div>
       @endif
 
-      <!-- Controls -->
+      {{-- Controls --}}
       @if(Auth::check())
         @if(Auth::user()->id == $user->id)
           <p class="lead"><strong>Your Collection</strong></p>
@@ -85,6 +85,6 @@
     </div>
   </div>
 
-  <!-- Sidebar -->
+  {{-- Sidebar --}}
   @include('user.partials.sidebar')
 @endsection

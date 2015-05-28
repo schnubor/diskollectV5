@@ -388,6 +388,13 @@ p.placeholder {
       text-decoration: none; }
     .sidebar .navigation .avatar {
       margin-bottom: 10px; }
+  .sidebar .popover {
+    color: #333;
+    width: 200px; }
+    .sidebar .popover p a {
+      color: #AAA; }
+      .sidebar .popover p a:hover {
+        color: #333; }
   .sidebar .button {
     position: relative;
     text-align: center;

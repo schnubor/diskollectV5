@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-  @include('user.partials.sidebar')
   <div class="content-area">
     <div class="col-md-12">
       <a href="{{ route('user.show', $user->id) }}" class="btn btn-default back"><i class="fa fa-fw fa-chevron-left"></i> Back to profile</a>
@@ -32,4 +31,7 @@
       </div>
     </div>
   </div>
+
+  {{-- Sidebar --}}
+  @include('user.partials.sidebar')
 @endsection

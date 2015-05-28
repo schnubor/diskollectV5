@@ -10,9 +10,15 @@
   
 @if(Auth::check())
   <div class="navigation">
-    <!-- Avatar -->
-    <a href="{{ route('user.show', Auth::user()->id) }}"><div class="avatar sb center-block edgy" style="background-image: url('{{ Auth::user()->image }}')"></div></a>
+    {{-- Avatar --}}
+    <a href="#" data-toggle="popover" title="" data-content="
+      <p><a href='{{ route('user.followers', $user->id) }}'>{{ $user->followers->count() }} Follower</a> &middot; <a href='{{ route('user.following', $user->id) }}''>{{ $user->following->count() }} Following</a></p>
+      <a class='btn btn-danger btn-block' href='{{ route('get.logout') }}'><i class='fa fa-fw fa-sign-out'></i>Sign out</a>
+      " data-original-title="{{ Auth::user()->username }}">
+      <div class="avatar sb center-block edgy" style="background-image: url('{{ Auth::user()->image }}')"></div>
+    </a>
 
+    {{-- Dashboard --}}
     <a href="{{ route('home') }}" data-toggle="tooltip" data-placement="right" title="Dashboard" data-original-title="Dashboard">
       @if(Request::url() == route('home'))
         <div class="button orange active">
@@ -23,6 +29,7 @@
       </div>
     </a>
 
+    {{-- Collection --}}
     <a href="{{ route('user.collection', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Collection" data-original-title="Collection">
       @if(Request::url() == route('user.collection', Auth::user()->id))
         <div class="button blue active">
@@ -32,7 +39,8 @@
         <i class="fa fa-fw fa-database"></i>
       </div>
     </a>
-
+    
+    {{-- Statistics --}}
     <a href="{{ route('user.show', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Statistics" data-original-title="Statistics">
       @if(Request::url() == route('user.show', Auth::user()->id))
         <div class="button green active">
@@ -42,7 +50,8 @@
         <i class="fa fa-fw fa-area-chart"></i>
       </div>
     </a>
-
+    
+    {{-- Jukebox --}}
     <a href="{{ route('user.jukebox', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Jukebox" data-original-title="Jukebox">
       @if(Request::url() == route('user.jukebox', Auth::user()->id))
         <div class="button purple active">
@@ -57,7 +66,7 @@
 
   <div class="bottom-nav">
     @if(Auth::check())
-      <!-- Settings -->
+      {{-- Settings --}}
       <a href="{{ route('user.settings', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Settings" data-original-title="Settings">
         @if(Request::url() == route('user.settings', Auth::user()->id))
           <div class="button grey active">
@@ -68,12 +77,12 @@
         </div>
       </a>
 
-      <!-- Add vinyl -->
+      {{-- Add vinyl --}}
       <a href="{{ route('get.search') }}" data-toggle="tooltip" data-placement="right" title="Add record" data-original-title="Add record">
         <div class="button add"><i class="fa fa-fw fa-plus"></i></div>
       </a>
     @else
-      <!-- Register -->
+      {{-- Register --}}
       <a href="{{ route('register') }}" data-toggle="tooltip" data-placement="right" title="Register" data-original-title="Register">
         @if(Request::url() == route('register'))
           <div class="button grey active">
@@ -84,7 +93,7 @@
         </div>
       </a>
 
-      <!-- Login -->
+      {{-- Login --}}
       <a href="{{ route('login') }}" data-toggle="tooltip" data-placement="right" title="Login" data-original-title="Login">
         <div class="button add"><i class="fa fa-fw fa-sign-in"></i></div>
       </a>
