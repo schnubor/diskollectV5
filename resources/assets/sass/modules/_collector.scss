@@ -5,11 +5,12 @@
         margin-bottom: 20px;
     } 
 
-    .collector{
-        margin-bottom: 10px;
-        overflow: hidden;
+    .username{
         text-overflow: ellipsis;
+        overflow: hidden;
         white-space: nowrap;
+        width: 100%;
+        display: block;
     }
 
     .avatar{

@@ -12,28 +12,10 @@
         @if(Auth::user()->id == $user->id)
           <p class="lead"><strong>Collectors you are following</strong></p>
         @else
-          <div class="avatar sm" style="background-image: url('{{ $user->image }}')"></div>
-          <div class="lead dropdown">
-            <strong class="toggle-dropdown" data-toggle="dropdown" aria-expanded="false" id="userDropdown" role="button">{{ $user->username }}<span class="caret"></span></strong>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="userDropdown">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.collection', $user->id) }}"><i class="fa fa-fw fa-database"></i> Collection</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.show', $user->id) }}"><i class="fa fa-fw fa-area-chart"></i> Statistics</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.jukebox', $user->id) }}"><i class="fa fa-fw fa-music"></i> Jukebox</a></li>
-            </ul>
-          </div>
-          <div class="pull-right">@include('user.partials.follow')</div>
+          @include('user.partials.dropdown')
         @endif
       @else
-        <div class="avatar sm" style="background-image: url('{{ $user->image }}')"></div>
-        <div class="lead dropdown">
-          <strong class="toggle-dropdown" data-toggle="dropdown" aria-expanded="false" id="userDropdown" role="button">{{ $user->username }}<span class="caret"></span></strong>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="userDropdown">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.collection', $user->id) }}"><i class="fa fa-fw fa-database"></i> Collection</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.show', $user->id) }}"><i class="fa fa-fw fa-area-chart"></i> Statistics</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('user.jukebox', $user->id) }}"><i class="fa fa-fw fa-music"></i> Jukebox</a></li>
-          </ul>
-        </div>
-        <div class="pull-right">@include('user.partials.follow')</div>
+        @include('user.partials.dropdown')
       @endif
     </div>
 
@@ -47,9 +29,9 @@
                 <div class="thumbnail">
                   <a href="{{ route('user.show', $follower->id) }}"><div class="avatar" style="background-image: url('{{ $follower->image }}');"></div></a>
                   <div class="caption">
-                    <p class="h4"><a href="{{ route('user.show', $follower->id) }}"><strong>{{ $follower->username }}</strong></a></p>
+                    <p class="h4"><a href="{{ route('user.show', $follower->id) }}"><strong class="username">{{ $follower->username }}</strong></a></p>
                     <p>{{ $follower->vinyls->count() }} Records</p>
-                    <div class="text-left">@include('user.partials.follow')</div>
+                    <div class="text-left">@include('user.partials.follow', ['user' => $follower])</div>
                   </div>
                 </div>
               </div>

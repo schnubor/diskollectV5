@@ -241,11 +241,12 @@ p.placeholder {
 .collector .back {
   display: inline-block;
   margin-bottom: 20px; }
-.collector .collector {
-  margin-bottom: 10px;
-  overflow: hidden;
+.collector .username {
   text-overflow: ellipsis;
-  white-space: nowrap; }
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  display: block; }
 .collector .avatar {
   margin: 0px auto 0;
   width: 100%;
