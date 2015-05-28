@@ -1,17 +1,18 @@
-#collectors {
-  padding-top: 40px; }
-  #collectors .back {
-    display: inline-block;
-    margin-bottom: 20px; }
-  #collectors .collector {
-    margin-bottom: 10px; }
-  #collectors .avatar {
-    margin: 0px auto 0;
-    width: 100%;
-    height: 200px;
-    border-radius: 0; }
-  #collectors a {
-    color: #333333; }
+.collector .back {
+  display: inline-block;
+  margin-bottom: 20px; }
+.collector .collector {
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+.collector .avatar {
+  margin: 0px auto 0;
+  width: 100%;
+  height: 150px;
+  border-radius: 0; }
+.collector a {
+  color: #333333; }
 
 .content-area {
   margin-left: 65px; }

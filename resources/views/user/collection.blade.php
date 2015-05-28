@@ -7,7 +7,7 @@
 @section('content')
   <div class="content-area">
     <div class="col-md-12 toolbar">
-      <!-- Pagination -->
+      {{-- Pagination --}}
       @if($vinyls->count())
         <div class="pages pull-right">
           @if($vinyls->previousPageUrl())

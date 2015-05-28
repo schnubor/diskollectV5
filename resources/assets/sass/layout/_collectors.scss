@@ -1,6 +1,4 @@
-#collectors{
-    
-    padding-top: 40px;   
+.collector{   
 
     .back{
         display: inline-block;
@@ -9,12 +7,15 @@
 
     .collector{
         margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .avatar{
         margin: 0px auto 0;
         width: 100%;
-        height: 200px;
+        height: 150px;
         border-radius: 0;
     }
 
