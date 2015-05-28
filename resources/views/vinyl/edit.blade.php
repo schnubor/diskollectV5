@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-  @include('user.partials.sidebar')
-  
   {!! Form::model($vinyl, ['route' => ['post.edit.vinyl', $vinyl->id], 'files' => true]) !!}
   <div class="content-area createVinyl">
     {{-- Toolbar --}}
@@ -166,9 +164,10 @@
           {!! Form::submit('Save', array('class' => 'btn btn-lg btn-primary pull-right', 'style' => 'margin: 15px 0')) !!}
         </div>
       </div>
-
-
       {!! Form::close() !!}
     </div>
   </div>
+
+  {{-- Sidebar --}}
+  @include('user.partials.sidebar')
 @endsection
