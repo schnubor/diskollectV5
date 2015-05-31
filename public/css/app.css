@@ -121,19 +121,6 @@ p.placeholder {
         text-align: center;
         font-weight: lighter;
         font-size: 2em; }
-      #welcome .header .header-content .cta .btn.btn-primary.btn-header {
-        margin-top: 50px;
-        border: 1px solid #F0F0F0;
-        height: 60px;
-        width: 200px;
-        font-weight: lighter;
-        line-height: 35px;
-        border-radius: 4px;
-        background-color: transparent;
-        transition: 0.4s all; }
-        #welcome .header .header-content .cta .btn.btn-primary.btn-header:hover {
-          border: 1px solid #1E89B7;
-          background-color: #1E89B7; }
     #welcome .header .header-stats {
       width: 100%;
       position: absolute;
@@ -147,6 +134,25 @@ p.placeholder {
         #welcome .header .header-stats .stat small {
           font-size: 14px;
           color: #808080; }
+  #welcome .cta {
+    text-align: center; }
+    #welcome .cta .btn.btn-primary.btn-header {
+      margin-top: 50px;
+      border: 1px solid #F0F0F0;
+      height: 60px;
+      width: 200px;
+      font-weight: lighter;
+      line-height: 35px;
+      border-radius: 4px;
+      background-color: transparent;
+      transition: 0.4s all; }
+      #welcome .cta .btn.btn-primary.btn-header.dark {
+        border: 1px solid #333;
+        color: #333; }
+      #welcome .cta .btn.btn-primary.btn-header:hover {
+        color: #F0F0F0;
+        border: 1px solid #1E89B7;
+        background-color: #1E89B7; }
   #welcome .intro {
     color: #25292A;
     margin-top: 100px;
@@ -167,24 +173,19 @@ p.placeholder {
       box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.2); }
     #welcome .feature .description {
       margin-top: 20px; }
+  #welcome .headline {
+    font-size: 48px;
+    margin-bottom: 0; }
+  #welcome .subheadline {
+    font-size: 16px;
+    color: #AAA;
+    margin-bottom: 50px; }
   #welcome .latestVinyls {
     padding: 50px 0; }
-    #welcome .latestVinyls .headline {
-      font-size: 48px;
-      margin-bottom: 0; }
-    #welcome .latestVinyls .subheadline {
-      font-size: 16px;
-      color: #AAA;
-      margin-bottom: 50px; }
   #welcome .latestMembers {
     padding: 50px 0;
-    text-align: center;
     background-color: #25292A;
     color: #F0F0F0; }
-    #welcome .latestMembers .avatar {
-      margin: 0 auto 15px; }
-    #welcome .latestMembers a {
-      color: #F0F0F0; }
   #welcome .footer {
     padding: 20px 0 0; }
     #welcome .footer p {

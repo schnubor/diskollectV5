@@ -101,20 +101,41 @@
             </p>
           </div>
         @endforeach
+
+        <div class="cta">
+          <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-header dark">Add a record.</a>
+        </div>
       </div>
     </div>
-
+    
+    {{-- Latest members --}}
     <div class="latestMembers">
       <div class="container">
+        <p class="lead headline text-center">
+          Latest collectors
+        </p>
+        <p class="subheadline text-center">
+          You could be one of them.
+        </p>
         @foreach($latestMembers as $member)
-          <div class="col-sm-2">
-            <a href="{{ route('user.show', $member->id) }}"><div class="avatar sm" style="background-image: url('{{ $member->image }}');"></div></a>
-            <p><a href="{{ route('user.show', $member->id) }}">{{ $member->username }}</a></p>
+          <div class="col-sm-2 collector">
+            <div class="thumbnail">
+              <a href="{{ route('user.show', $member->id) }}"><div class="avatar" style="background-image: url('{{ $member->image }}');"></div></a>
+              <div class="caption">
+                <p class="h4"><a href="{{ route('user.show', $member->id) }}"><strong class="username">{{ $member->username }}</strong></a></p>
+              </div>
+            </div>
           </div>
         @endforeach
+
+        <div class="cta">
+          <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-header">Get on board.</a>
+        </div>
       </div>
     </div>
+    
 
+    {{-- Footer --}}
     <div class="footer">
       <div class="container">
         <p class="text-center">

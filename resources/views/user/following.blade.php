@@ -22,7 +22,7 @@
     {{-- Content --}}
     <div class="col-md-12 content">
       @if($followings->count())
-        @foreach(array_chunk($followings->all(), 4) as $followerRow)
+        @foreach(array_chunk($followings->all(), 6) as $followerRow)
           <div class="row col-md-12">
             @foreach($followerRow as $follower)
               <div class="col-sm-2 collector">
