@@ -7283,6 +7283,9 @@ p.placeholder {
   border-radius: 0; }
 .collector a {
   color: #333333; }
+.collector p.h4 {
+  font-size: 14px;
+  margin: 0 0 5px; }
 
 .flash-message {
   position: fixed;

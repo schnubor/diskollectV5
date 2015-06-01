@@ -92,6 +92,7 @@
         <p class="subheadline text-center">
           They just keep flying in.
         </p>
+        <div class="row">
         @foreach($latestVinyls as $vinyl)
           <div class="col-sm-3">
             <a href="{{ route('get.show.vinyl', $vinyl->id) }}"><img src="{{ $vinyl->artwork }}" alt="{{ $vinyl->artist }} - {{ $vinyl->title }}" class="thumbnail" width="100%"></a>
@@ -101,8 +102,9 @@
             </p>
           </div>
         @endforeach
+        </div>
 
-        <div class="cta">
+        <div class="cta row">
           <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-header dark">Add a record.</a>
         </div>
       </div>
@@ -128,7 +130,7 @@
           </div>
         @endforeach
 
-        <div class="cta">
+        <div class="cta row">
           <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-header">Get on board.</a>
         </div>
       </div>
