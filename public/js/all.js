@@ -11585,6 +11585,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   $('#submit-search').click(function(e) {
     e.preventDefault();
     $('.loading').fadeIn();
+    $('.search-help').hide();
     $('.search-results-table').hide();
     $('.no-results').hide();
     $('.search-results-table').find('tbody').html('');
@@ -11650,6 +11651,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   });
 
   $('#cancel-search').click(function() {
+    $('.search-help').fadeIn();
     $('.loading').fadeOut();
     return $search.abort();
   });

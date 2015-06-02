@@ -153,9 +153,9 @@ Route::post('/vinyl/create', [
   'middleware' => 'auth'
 ]);
 
-Route::get('/vinyl/add', [
-  'as' => 'get.add.vinyl',
-  'uses' => 'VinylsController@add',
+Route::get('/vinyl/import', [
+  'as' => 'get.import.vinyl',
+  'uses' => 'VinylsController@import',
   'middleware' => 'auth'
 ]);
 

@@ -154,13 +154,13 @@ class VinylsController extends Controller {
 	}
 
   /**
-   * Add vinyl from search results with "edit and add".
+   * Import vinyls from Discogs.
    *
    * @return Response
    */
-  public function add()
+  public function import()
   {
-    // return create form with infos
+    return view('vinyl.import');
   }
 
 	/**

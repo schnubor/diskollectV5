@@ -28,6 +28,7 @@ $('#submit-search').click (e) ->
   # show loading icon, hide and clear result table
   e.preventDefault()
   $('.loading').fadeIn()
+  $('.search-help').hide()
   $('.search-results-table').hide()
   $('.no-results').hide()
   $('.search-results-table').find('tbody').html('');
@@ -99,6 +100,7 @@ $('#submit-search').click (e) ->
 # ----------------------------
 
 $('#cancel-search').click ->
+  $('.search-help').fadeIn()
   $('.loading').fadeOut()
   $search.abort()
 

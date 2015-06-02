@@ -29,6 +29,7 @@
   $('#submit-search').click(function(e) {
     e.preventDefault();
     $('.loading').fadeIn();
+    $('.search-help').hide();
     $('.search-results-table').hide();
     $('.no-results').hide();
     $('.search-results-table').find('tbody').html('');
@@ -94,6 +95,7 @@
   });
 
   $('#cancel-search').click(function() {
+    $('.search-help').fadeIn();
     $('.loading').fadeOut();
     return $search.abort();
   });
