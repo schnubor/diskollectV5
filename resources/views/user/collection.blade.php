@@ -21,7 +21,7 @@
     <div class="col-md-12 content">
       @if($vinyls->count())
         @foreach(array_chunk($vinyls->all(), 4) as $vinylRow)
-          <div class="row col-md-12">
+          <div class="row padding15">
             @foreach($vinylRow as $vinyl)
               <div class="col-md-3 vinyl">
                 <div class="cover">
@@ -44,7 +44,7 @@
         </div>
       @endif
 
-      <div class="text-center">
+      <div class="row text-center">
         {!! $vinyls->render() !!}
       </div>
     </div>

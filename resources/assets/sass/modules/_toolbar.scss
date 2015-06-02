@@ -1,7 +1,7 @@
 .toolbar{
   background-color: #F5F5F5;
   color: #333;
-  padding: 20px 30px;
+  padding: 0 30px;
   height: 71px;
   border-bottom: 1px solid #DDD;
 
@@ -59,6 +59,7 @@
   }
 
   .lead{
+    line-height: 71px;
     margin: 0;
     display: inline-block;
     vertical-align: top;

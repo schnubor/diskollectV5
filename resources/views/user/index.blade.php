@@ -13,7 +13,7 @@
 
     <div class="col-md-12 content" id="collectors">
       @foreach(array_chunk($users->all(), 6) as $userRow)
-        <div class="row col-md-12">
+        <div class="row padding15">
           @foreach($userRow as $user)
             @if(Auth::check())
               @unless(Auth::user()->id == $user->id)
@@ -44,7 +44,7 @@
         </div>
       @endforeach
       
-      <div class="text-center">
+      <div class="row text-center">
         {!! $users->render() !!}
       </div>
     </div>

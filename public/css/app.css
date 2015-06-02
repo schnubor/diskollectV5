@@ -80,6 +80,12 @@ a:hover {
 .margin-top-50 {
   margin-top: 50px; }
 
+.padding30 {
+  padding: 0 30px; }
+
+.padding15 {
+  padding: 0 15px; }
+
 p.placeholder {
   font-size: 32px;
   color: #CCC; }
@@ -423,7 +429,7 @@ p.placeholder {
 .toolbar {
   background-color: #F5F5F5;
   color: #333;
-  padding: 20px 30px;
+  padding: 0 30px;
   height: 71px;
   border-bottom: 1px solid #DDD; }
   .toolbar .avatar {
@@ -457,6 +463,7 @@ p.placeholder {
   .toolbar .col-md-8 {
     padding-left: 0; }
   .toolbar .lead {
+    line-height: 71px;
     margin: 0;
     display: inline-block;
     vertical-align: top; }

@@ -23,7 +23,7 @@
     <div class="col-md-12 content">
       @if($followings->count())
         @foreach(array_chunk($followings->all(), 6) as $followerRow)
-          <div class="row col-md-12">
+          <div class="row padding15">
             @foreach($followerRow as $follower)
               <div class="col-sm-2 collector">
                 <div class="thumbnail">
@@ -47,7 +47,7 @@
         </div>
       @endif
       
-      <div class="text-center">
+      <div class="row text-center">
         {!! $followings->render() !!}
       </div>
     </div>
