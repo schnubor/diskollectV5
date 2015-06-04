@@ -158,19 +158,30 @@
         </div>
       </div>
 
-      {{-- Notifications 
+      {{-- Discogs Connection status --}}
       <div class="col-md-6">
         <div class="panel panel-default">
-          <div class="panel-heading">Notifications</div>
+          <div class="panel-heading">Discogs Connection Status</div>
           <div class="panel-body">
-
+            <div class="row">
+              <div class="col-md-4">
+                <button class="btn btn-info btn-block js-connectionStatus disabled"><i class="fa fa-spin fa-refresh"></i> Checking...</button>
+              </div>
+              <div class="col-md-8">
+                <a href="{{ route('get.oAuthDiscogs') }}" class="btn btn-primary hidden js-connectionAction"><i class="fa fa-fw fa-exchange"></i> Authorize</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      --}}
+      
     </div>
   </div>
 
   {{-- Sidebar --}}
   @include('user.partials.sidebar')
+@endsection
+
+@section('scripts')
+  <script>$.getStatus({{Auth::user()->id}});</script>
 @endsection

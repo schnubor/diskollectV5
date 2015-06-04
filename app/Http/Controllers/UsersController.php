@@ -230,7 +230,7 @@ class UsersController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show user settings.
 	 *
 	 * @param  int  $id
 	 * @return Response
