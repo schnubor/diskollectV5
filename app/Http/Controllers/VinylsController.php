@@ -67,6 +67,7 @@ class VinylsController extends Controller {
     $user->discogs_access_token = $token->getIdentifier();
     $user->discogs_access_token_secret = $token->getSecret();
     $user->discogs_uri = $identity['resource_url'];
+    $user->discogs_username = $identity['username'];
 
     if($user->save()){
     	flash()->success('Success! You are now authenticated with Discogs.');
@@ -160,6 +161,8 @@ class VinylsController extends Controller {
    */
   public function import()
   {
+    $user = Auth::user();
+
     return view('vinyl.import');
   }
 
@@ -189,7 +192,7 @@ class VinylsController extends Controller {
     if($request->hasFile('coverFile')){
       $path = public_path() . '/images/vinyls';
       $file = $request->file('coverFile');
-      $filename = 'vinyl_' . rand(0,9999999) . '_' . $file->getClientOriginalName();
+      $filename = 'vinyl_' . time() . '_' . $file->getClientOriginalName();
       $file->move($path,$filename);
       $cover = '/images/vinyls/' . $filename;
     }
@@ -307,7 +310,7 @@ class VinylsController extends Controller {
     if($request->hasFile('coverFile')){
       $path = public_path() . '/images/vinyls';
       $file = $request->file('coverFile');
-      $filename = 'vinyl_' . rand(0,9999999) . '_' . $file->getClientOriginalName();
+      $filename = 'vinyl_' . time() . '_' . $file->getClientOriginalName();
       $file->move($path,$filename);
       $cover = '/images/vinyls/' . $filename;
     }

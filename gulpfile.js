@@ -47,7 +47,8 @@ elixir(function(mix) {
     'search.js',
     'createVinyl.js',
     'charts.js',
-    'jukebox.js'
+    'jukebox.js',
+    'import.js'
   ], null, 'public/js');
 
   mix.version('public/css/all.css');  // versioning
