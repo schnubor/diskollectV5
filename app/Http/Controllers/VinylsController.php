@@ -220,7 +220,8 @@ class VinylsController extends Controller {
       'catno' => $request->input('catno'),
       'releasetype' => $request->input('format'),
       'release_id' => $request->input('release_id'),
-      'discogs_uri' => $request->input('discogs_uri')
+      'discogs_uri' => $request->input('discogs_uri'),
+      'spotify_id' => $request->input('spotify_id')
     ]);
 
     if($vinyl){

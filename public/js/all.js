@@ -11583,6 +11583,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   };
 
   $('#submit-search').click(function(e) {
+    console.log('Hello from search.');
     e.preventDefault();
     $('.loading').fadeIn();
     $('.search-help').hide();
@@ -11672,12 +11673,28 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $catno, $color, $count, $country, $cover, $discogs_uri, $format, $genre, $label, $priceRequest, $release_id, $size, $title, $tracklist, $type, $videos, $weight, $year, button, modal, vinyl, vinyl_index;
+    var $artist, $catno, $color, $count, $country, $cover, $discogs_uri, $format, $genre, $label, $priceRequest, $release_id, $size, $spotify, $title, $tracklist, $type, $videos, $weight, $year, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
     modal = $(this);
     console.log(vinyl);
+    $spotify = $.ajax({
+      url: 'https://api.spotify.com/v1/search?q=album%3A' + vinyl.title + '+artist%3A' + vinyl.artists[0].name + '&type=album',
+      type: 'GET',
+      dataType: 'JSON',
+      error: function(x, status, error) {
+        console.log(status);
+        return console.log(error);
+      },
+      success: function(results) {
+        console.log(results);
+        if (results.albums.items.length) {
+          $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A' + results.albums.items[0].id + '" width="598" height="380" frameborder="0" allowtransparency="true"></iframe>');
+          return modal.find('input[name="spotify_id"]').val(results.albums.items[0].id);
+        }
+      }
+    });
     $priceRequest = $.ajax({
       url: '//api.discogs.com/marketplace/search?release_id=' + vinyl.id,
       type: 'GET',

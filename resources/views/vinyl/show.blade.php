@@ -108,13 +108,17 @@
             <div class="panel-heading">Tracklist <span class="badge pull-right">{{ $tracks->count() }}</span>
             </div>
             <table class="table table-bordered">
-              @foreach($tracks as $track)
-                <tr>
-                  <td>{{ $track->number }}</td>
-                  <td>{{ $track->title }}</td>
-                  <td>{{ $track->duration }}</td>
-                </tr>
-              @endforeach
+              @if($vinyl->spotify_id)
+                <iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A{{ $vinyl->spotify_id }}" width="100%" height="640" frameborder="0" allowtransparency="true"></iframe>
+              @else
+                @foreach($tracks as $track)
+                  <tr>
+                    <td>{{ $track->number }}</td>
+                    <td>{{ $track->title }}</td>
+                    <td>{{ $track->duration }}</td>
+                  </tr>
+                @endforeach
+              @endif
             </table>
           </div>
         @endif
