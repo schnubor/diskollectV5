@@ -1,18 +1,19 @@
 (function() {
-  $('.js-startImport').click(function() {
-    var $identity;
-    return $identity = $.ajax({
-      url: 'https://api.discogs.com//users/schnubor/collection/folders/0/releases',
+  $.getReleases = function(username) {
+    var $request;
+    return $request = $.ajax({
+      url: 'https://api.discogs.com/users/' + username + '/collection/folders/0/releases',
       type: 'GET',
       error: function(x, status, error) {
         console.log(status);
         return console.log(error);
       },
       success: function(response) {
-        return console.log(response);
+        console.log(response);
+        return $('.js-importResults').html('<p class="placeholder">Found ' + response.releases.length + ' records in your Discogs collection.</p>');
       }
     });
-  });
+  };
 
 }).call(this);
 
