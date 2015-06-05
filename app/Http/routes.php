@@ -98,7 +98,8 @@ Route::get('/user/{id}/following', [
 
 Route::get('/user/{id}/settings', [
   'as' => 'user.settings',
-  'uses' => 'UsersController@settings'
+  'uses' => 'UsersController@settings',
+  'middleware' => 'auth'
 ]);
 
 Route::get('/activate/{code}', [

@@ -12,6 +12,6 @@
 @else
   {!! Form::open([ 'route' => 'follow' ]) !!}
     {!! Form::hidden('userIdToFollow', $user->id) !!}
-    <button class="btn btn-md btn-success" type="submit"><i class="fa fa-fw fa-plus"></i> Follow</button>
+    <button class="btn btn-md btn-success btn-follow" type="submit"><i class="fa fa-fw fa-plus"></i> Follow</button>
   {!! Form::close() !!}
 @endif

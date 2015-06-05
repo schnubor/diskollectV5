@@ -434,7 +434,7 @@ p.placeholder {
   border-bottom: 1px solid #DDD; }
   .toolbar .avatar {
     display: inline-block;
-    margin-top: -10px;
+    margin-top: 10px;
     margin-right: 15px; }
   .toolbar .news {
     display: inline; }
@@ -446,6 +446,8 @@ p.placeholder {
     height: 100%; }
     .toolbar form .form-group {
       height: 100%; }
+    .toolbar form .btn-follow {
+      margin-top: 18px; }
     .toolbar form input[type="text"] {
       background-color: transparent;
       height: 100%;
