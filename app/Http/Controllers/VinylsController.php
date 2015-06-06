@@ -334,6 +334,7 @@ class VinylsController extends Controller {
     $vinyl->releasetype = $request->input('format');
     $vinyl->notes = $request->input('notes');
     $vinyl->weight = $request->input('weight');
+    $vinyl->spotify_id = substr($request->input('spotify_id'), -22);
 
     if($vinyl->save()){
       $tracklistItems = $request->input('trackCount');

@@ -133,6 +133,16 @@
               </div>
             </div>
           </div>
+
+          {{-- Spotify --}}
+          <div class="panel panel-default">
+            <div class="panel-heading">Spotify URI</div>
+            <div class="panel-body">
+              <div class="form-group">
+                {!! Form::text('spotify_id', Input::old('spotify_id'), ['class' => 'form-control', 'placeholder' => 'Spotify ID. e.g. spotify:album:2b1HN0avZHrA8vNL0vP1Gw']) !!}
+              </div>
+            </div>
+          </div>
           
           {{-- Tracklist --}}
           <div class="panel panel-default">
