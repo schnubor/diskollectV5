@@ -12095,8 +12095,11 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
         return console.log(error);
       },
       success: function(response) {
-        console.log(response);
-        return $('.js-importResults').html('<p class="placeholder">Found ' + response.releases.length + ' records in your Discogs collection.</p>');
+        $('.js-importResults').html('<p class="placeholder">Found ' + response.releases.length + ' records in your Discogs collection.</p>');
+        $.each(response.releases, function(index) {
+          return $('.js-importTable').find('tbody').append('<tr><td>' + response.releases[index].id + '</td><td>' + response.releases[index].basic_information.artists[0].name + '</td><td>' + response.releases[index].basic_information.title + '</td></tr>');
+        });
+        return $('.js-importTable').fadeIn();
       }
     });
   };

@@ -17,9 +17,20 @@
           <a href="{{ route('get.oAuthDiscogs') }}" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-exchange"></i> Authorize with Discogs</a>
         @endif
       </div>
-      <table class="table js-importTable">
-        
-      </table>
+      <div class="col-md-12">
+        <table class="table table-striped js-importTable" style="display: none;">
+          <thead>
+            <tr>
+              <th>Discogs ID</th>
+              <th>Artist</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   
