@@ -41,8 +41,8 @@
 
 @section('scripts')
   <script>
-    $('.js-startImport').click(function(){
-      $.getReleases('{{ Auth::user()->discogs_username }}')
+    $('.js-startImport').click(function(event){
+      $.getReleases('{{ Auth::user()->discogs_username }}', {{ Auth::user()->id }})
     });
   </script>
 @endsection
