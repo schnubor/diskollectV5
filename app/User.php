@@ -50,7 +50,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *	Check if followed by other User (boolean)
 	 */
 	public function isFollowedBy($otherUser){
-		$ids = $otherUser->following()->lists('follow_id');
+		$ids = $otherUser->following()->lists('follow_id')->toArray();
 		return in_array($this->id, $ids);
 	}
 
