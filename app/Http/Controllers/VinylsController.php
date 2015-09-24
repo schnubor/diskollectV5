@@ -41,6 +41,7 @@ class VinylsController extends Controller {
       Session::save();
       header('Location: '.$server->getAuthorizationUrl($tempCredentials));
       $server->authorize($tempCredentials);
+      die(); // doesn't work without exiting the current script
     }
 
     // ok got temporary token
