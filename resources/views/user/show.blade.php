@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      {{-- Genres --}}
+      {{-- Value Vinyl --}}
       <div class="col-md-3">
         <div class="panel panel-default valueVinyl">
           <div class="panel-heading"><strong>Treasure</strong><span class="pull-right label label-success">
