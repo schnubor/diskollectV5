@@ -95,7 +95,7 @@ p.placeholder {
 #welcome {
   height: 100%; }
   #welcome .header {
-    background-image: url('/images/header_BG.jpg');
+    background-image: url("/images/header_BG.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -204,10 +204,13 @@ p.placeholder {
 
 .activities hr {
   margin-bottom: 10px; }
+
 .activities h4 {
   font-size: 16px; }
+
 .activities small {
   color: #b0b0b0; }
+
 .activities .vinyl {
   margin-top: 10px; }
 
@@ -265,19 +268,23 @@ p.placeholder {
 .collector .back {
   display: inline-block;
   margin-bottom: 20px; }
+
 .collector .username {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
   display: block; }
+
 .collector .avatar {
   margin: 0px auto 0;
   width: 100%;
   height: 150px;
   border-radius: 0; }
+
 .collector a {
   color: #333333; }
+
 .collector p.h4 {
   font-size: 14px;
   margin: 0 0 5px; }
@@ -321,6 +328,7 @@ p.placeholder {
 
 .panel .thumbnail {
   margin-bottom: 10px; }
+
 .panel p {
   margin-bottom: 20px; }
 
@@ -492,11 +500,11 @@ p.placeholder {
   background-color: #839393; }
   .vinyl .cover img {
     width: 100%; }
+
 .vinyl .info {
   margin-top: 8px;
   margin-bottom: 30px; }
   .vinyl .info .artist {
     font-weight: bold; }
-
 
 /*# sourceMappingURL=app.css.map */

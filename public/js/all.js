@@ -9210,9 +9210,9 @@ return jQuery;
 }));
 
 /*!
- * Bootstrap v3.3.4 (http://getbootstrap.com)
+ * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under the MIT license
  */
 
 if (typeof jQuery === 'undefined') {
@@ -9228,7 +9228,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: transition.js v3.3.4
+ * Bootstrap: transition.js v3.3.5
  * http://getbootstrap.com/javascript/#transitions
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9288,7 +9288,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: alert.js v3.3.4
+ * Bootstrap: alert.js v3.3.5
  * http://getbootstrap.com/javascript/#alerts
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9307,7 +9307,7 @@ if (typeof jQuery === 'undefined') {
     $(el).on('click', dismiss, this.close)
   }
 
-  Alert.VERSION = '3.3.4'
+  Alert.VERSION = '3.3.5'
 
   Alert.TRANSITION_DURATION = 150
 
@@ -9383,7 +9383,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.3.4
+ * Bootstrap: button.js v3.3.5
  * http://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9403,7 +9403,7 @@ if (typeof jQuery === 'undefined') {
     this.isLoading = false
   }
 
-  Button.VERSION  = '3.3.4'
+  Button.VERSION  = '3.3.5'
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
@@ -9415,7 +9415,7 @@ if (typeof jQuery === 'undefined') {
     var val  = $el.is('input') ? 'val' : 'html'
     var data = $el.data()
 
-    state = state + 'Text'
+    state += 'Text'
 
     if (data.resetText == null) $el.data('resetText', $el[val]())
 
@@ -9440,15 +9440,19 @@ if (typeof jQuery === 'undefined') {
     if ($parent.length) {
       var $input = this.$element.find('input')
       if ($input.prop('type') == 'radio') {
-        if ($input.prop('checked') && this.$element.hasClass('active')) changed = false
-        else $parent.find('.active').removeClass('active')
+        if ($input.prop('checked')) changed = false
+        $parent.find('.active').removeClass('active')
+        this.$element.addClass('active')
+      } else if ($input.prop('type') == 'checkbox') {
+        if (($input.prop('checked')) !== this.$element.hasClass('active')) changed = false
+        this.$element.toggleClass('active')
       }
-      if (changed) $input.prop('checked', !this.$element.hasClass('active')).trigger('change')
+      $input.prop('checked', this.$element.hasClass('active'))
+      if (changed) $input.trigger('change')
     } else {
       this.$element.attr('aria-pressed', !this.$element.hasClass('active'))
+      this.$element.toggleClass('active')
     }
-
-    if (changed) this.$element.toggleClass('active')
   }
 
 
@@ -9491,7 +9495,7 @@ if (typeof jQuery === 'undefined') {
       var $btn = $(e.target)
       if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
       Plugin.call($btn, 'toggle')
-      e.preventDefault()
+      if (!($(e.target).is('input[type="radio"]') || $(e.target).is('input[type="checkbox"]'))) e.preventDefault()
     })
     .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
@@ -9500,7 +9504,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.3.4
+ * Bootstrap: carousel.js v3.3.5
  * http://getbootstrap.com/javascript/#carousel
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9531,7 +9535,7 @@ if (typeof jQuery === 'undefined') {
       .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
   }
 
-  Carousel.VERSION  = '3.3.4'
+  Carousel.VERSION  = '3.3.5'
 
   Carousel.TRANSITION_DURATION = 600
 
@@ -9738,7 +9742,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.3.4
+ * Bootstrap: collapse.js v3.3.5
  * http://getbootstrap.com/javascript/#collapse
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9768,7 +9772,7 @@ if (typeof jQuery === 'undefined') {
     if (this.options.toggle) this.toggle()
   }
 
-  Collapse.VERSION  = '3.3.4'
+  Collapse.VERSION  = '3.3.5'
 
   Collapse.TRANSITION_DURATION = 350
 
@@ -9950,7 +9954,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.3.4
+ * Bootstrap: dropdown.js v3.3.5
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9970,7 +9974,41 @@ if (typeof jQuery === 'undefined') {
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
-  Dropdown.VERSION = '3.3.4'
+  Dropdown.VERSION = '3.3.5'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
+    })
+  }
 
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
@@ -9985,7 +10023,10 @@ if (typeof jQuery === 'undefined') {
     if (!isActive) {
       if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
         // if mobile we use a backdrop because click events don't delegate
-        $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
       }
 
       var relatedTarget = { relatedTarget: this }
@@ -10018,55 +10059,23 @@ if (typeof jQuery === 'undefined') {
     var $parent  = getParent($this)
     var isActive = $parent.hasClass('open')
 
-    if ((!isActive && e.which != 27) || (isActive && e.which == 27)) {
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
       if (e.which == 27) $parent.find(toggle).trigger('focus')
       return $this.trigger('click')
     }
 
     var desc = ' li:not(.disabled):visible a'
-    var $items = $parent.find('[role="menu"]' + desc + ', [role="listbox"]' + desc)
+    var $items = $parent.find('.dropdown-menu' + desc)
 
     if (!$items.length) return
 
     var index = $items.index(e.target)
 
-    if (e.which == 38 && index > 0)                 index--                        // up
-    if (e.which == 40 && index < $items.length - 1) index++                        // down
-    if (!~index)                                      index = 0
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
 
     $items.eq(index).trigger('focus')
-  }
-
-  function clearMenus(e) {
-    if (e && e.which === 3) return
-    $(backdrop).remove()
-    $(toggle).each(function () {
-      var $this         = $(this)
-      var $parent       = getParent($this)
-      var relatedTarget = { relatedTarget: this }
-
-      if (!$parent.hasClass('open')) return
-
-      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
-
-      if (e.isDefaultPrevented()) return
-
-      $this.attr('aria-expanded', 'false')
-      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
-    })
-  }
-
-  function getParent($this) {
-    var selector = $this.attr('data-target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
-    }
-
-    var $parent = selector && $(selector)
-
-    return $parent && $parent.length ? $parent : $this.parent()
   }
 
 
@@ -10106,13 +10115,12 @@ if (typeof jQuery === 'undefined') {
     .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
-    .on('keydown.bs.dropdown.data-api', '[role="menu"]', Dropdown.prototype.keydown)
-    .on('keydown.bs.dropdown.data-api', '[role="listbox"]', Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
 
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.4
+ * Bootstrap: modal.js v3.3.5
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10146,7 +10154,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  Modal.VERSION  = '3.3.4'
+  Modal.VERSION  = '3.3.5'
 
   Modal.TRANSITION_DURATION = 300
   Modal.BACKDROP_TRANSITION_DURATION = 150
@@ -10203,9 +10211,7 @@ if (typeof jQuery === 'undefined') {
         that.$element[0].offsetWidth // force reflow
       }
 
-      that.$element
-        .addClass('in')
-        .attr('aria-hidden', false)
+      that.$element.addClass('in')
 
       that.enforceFocus()
 
@@ -10239,7 +10245,6 @@ if (typeof jQuery === 'undefined') {
 
     this.$element
       .removeClass('in')
-      .attr('aria-hidden', true)
       .off('click.dismiss.bs.modal')
       .off('mouseup.dismiss.bs.modal')
 
@@ -10303,7 +10308,8 @@ if (typeof jQuery === 'undefined') {
     if (this.isShown && this.options.backdrop) {
       var doAnimate = $.support.transition && animate
 
-      this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+      this.$backdrop = $(document.createElement('div'))
+        .addClass('modal-backdrop ' + animate)
         .appendTo(this.$body)
 
       this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
@@ -10452,7 +10458,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.3.4
+ * Bootstrap: tooltip.js v3.3.5
  * http://getbootstrap.com/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
@@ -10474,11 +10480,12 @@ if (typeof jQuery === 'undefined') {
     this.timeout    = null
     this.hoverState = null
     this.$element   = null
+    this.inState    = null
 
     this.init('tooltip', element, options)
   }
 
-  Tooltip.VERSION  = '3.3.4'
+  Tooltip.VERSION  = '3.3.5'
 
   Tooltip.TRANSITION_DURATION = 150
 
@@ -10503,7 +10510,8 @@ if (typeof jQuery === 'undefined') {
     this.type      = type
     this.$element  = $(element)
     this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $(this.options.viewport.selector || this.options.viewport)
+    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    this.inState   = { click: false, hover: false, focus: false }
 
     if (this.$element[0] instanceof document.constructor && !this.options.selector) {
       throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
@@ -10562,14 +10570,18 @@ if (typeof jQuery === 'undefined') {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
 
-    if (self && self.$tip && self.$tip.is(':visible')) {
-      self.hoverState = 'in'
-      return
-    }
-
     if (!self) {
       self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
       $(obj.currentTarget).data('bs.' + this.type, self)
+    }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
+    }
+
+    if (self.tip().hasClass('in') || self.hoverState == 'in') {
+      self.hoverState = 'in'
+      return
     }
 
     clearTimeout(self.timeout)
@@ -10583,6 +10595,14 @@ if (typeof jQuery === 'undefined') {
     }, self.options.delay.show)
   }
 
+  Tooltip.prototype.isInStateTrue = function () {
+    for (var key in this.inState) {
+      if (this.inState[key]) return true
+    }
+
+    return false
+  }
+
   Tooltip.prototype.leave = function (obj) {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
@@ -10591,6 +10611,12 @@ if (typeof jQuery === 'undefined') {
       self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
       $(obj.currentTarget).data('bs.' + this.type, self)
     }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
+    }
+
+    if (self.isInStateTrue()) return
 
     clearTimeout(self.timeout)
 
@@ -10638,6 +10664,7 @@ if (typeof jQuery === 'undefined') {
         .data('bs.' + this.type, this)
 
       this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+      this.$element.trigger('inserted.bs.' + this.type)
 
       var pos          = this.getPosition()
       var actualWidth  = $tip[0].offsetWidth
@@ -10645,13 +10672,12 @@ if (typeof jQuery === 'undefined') {
 
       if (autoPlace) {
         var orgPlacement = placement
-        var $container   = this.options.container ? $(this.options.container) : this.$element.parent()
-        var containerDim = this.getPosition($container)
+        var viewportDim = this.getPosition(this.$viewport)
 
-        placement = placement == 'bottom' && pos.bottom + actualHeight > containerDim.bottom ? 'top'    :
-                    placement == 'top'    && pos.top    - actualHeight < containerDim.top    ? 'bottom' :
-                    placement == 'right'  && pos.right  + actualWidth  > containerDim.width  ? 'left'   :
-                    placement == 'left'   && pos.left   - actualWidth  < containerDim.left   ? 'right'  :
+        placement = placement == 'bottom' && pos.bottom + actualHeight > viewportDim.bottom ? 'top'    :
+                    placement == 'top'    && pos.top    - actualHeight < viewportDim.top    ? 'bottom' :
+                    placement == 'right'  && pos.right  + actualWidth  > viewportDim.width  ? 'left'   :
+                    placement == 'left'   && pos.left   - actualWidth  < viewportDim.left   ? 'right'  :
                     placement
 
         $tip
@@ -10692,8 +10718,8 @@ if (typeof jQuery === 'undefined') {
     if (isNaN(marginTop))  marginTop  = 0
     if (isNaN(marginLeft)) marginLeft = 0
 
-    offset.top  = offset.top  + marginTop
-    offset.left = offset.left + marginLeft
+    offset.top  += marginTop
+    offset.left += marginLeft
 
     // $.fn.offset doesn't round pixel values
     // so we use setOffset directly with our own function B-0
@@ -10775,7 +10801,7 @@ if (typeof jQuery === 'undefined') {
 
   Tooltip.prototype.fixTitle = function () {
     var $e = this.$element
-    if ($e.attr('title') || typeof ($e.attr('data-original-title')) != 'string') {
+    if ($e.attr('title') || typeof $e.attr('data-original-title') != 'string') {
       $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
     }
   }
@@ -10830,7 +10856,7 @@ if (typeof jQuery === 'undefined') {
       var rightEdgeOffset = pos.left + viewportPadding + actualWidth
       if (leftEdgeOffset < viewportDimensions.left) { // left overflow
         delta.left = viewportDimensions.left - leftEdgeOffset
-      } else if (rightEdgeOffset > viewportDimensions.width) { // right overflow
+      } else if (rightEdgeOffset > viewportDimensions.right) { // right overflow
         delta.left = viewportDimensions.left + viewportDimensions.width - rightEdgeOffset
       }
     }
@@ -10856,7 +10882,13 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tooltip.prototype.tip = function () {
-    return (this.$tip = this.$tip || $(this.options.template))
+    if (!this.$tip) {
+      this.$tip = $(this.options.template)
+      if (this.$tip.length != 1) {
+        throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
+      }
+    }
+    return this.$tip
   }
 
   Tooltip.prototype.arrow = function () {
@@ -10885,7 +10917,13 @@ if (typeof jQuery === 'undefined') {
       }
     }
 
-    self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+    if (e) {
+      self.inState.click = !self.inState.click
+      if (self.isInStateTrue()) self.enter(self)
+      else self.leave(self)
+    } else {
+      self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+    }
   }
 
   Tooltip.prototype.destroy = function () {
@@ -10893,6 +10931,12 @@ if (typeof jQuery === 'undefined') {
     clearTimeout(this.timeout)
     this.hide(function () {
       that.$element.off('.' + that.type).removeData('bs.' + that.type)
+      if (that.$tip) {
+        that.$tip.detach()
+      }
+      that.$tip = null
+      that.$arrow = null
+      that.$viewport = null
     })
   }
 
@@ -10929,7 +10973,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: popover.js v3.3.4
+ * Bootstrap: popover.js v3.3.5
  * http://getbootstrap.com/javascript/#popovers
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10949,7 +10993,7 @@ if (typeof jQuery === 'undefined') {
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-  Popover.VERSION  = '3.3.4'
+  Popover.VERSION  = '3.3.5'
 
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
@@ -11038,7 +11082,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.3.4
+ * Bootstrap: scrollspy.js v3.3.5
  * http://getbootstrap.com/javascript/#scrollspy
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11067,7 +11111,7 @@ if (typeof jQuery === 'undefined') {
     this.process()
   }
 
-  ScrollSpy.VERSION  = '3.3.4'
+  ScrollSpy.VERSION  = '3.3.5'
 
   ScrollSpy.DEFAULTS = {
     offset: 10
@@ -11211,7 +11255,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tab.js v3.3.4
+ * Bootstrap: tab.js v3.3.5
  * http://getbootstrap.com/javascript/#tabs
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11226,10 +11270,12 @@ if (typeof jQuery === 'undefined') {
   // ====================
 
   var Tab = function (element) {
+    // jscs:disable requireDollarBeforejQueryAssignment
     this.element = $(element)
+    // jscs:enable requireDollarBeforejQueryAssignment
   }
 
-  Tab.VERSION = '3.3.4'
+  Tab.VERSION = '3.3.5'
 
   Tab.TRANSITION_DURATION = 150
 
@@ -11277,7 +11323,7 @@ if (typeof jQuery === 'undefined') {
     var $active    = container.find('> .active')
     var transition = callback
       && $.support.transition
-      && (($active.length && $active.hasClass('fade')) || !!container.find('> .fade').length)
+      && ($active.length && $active.hasClass('fade') || !!container.find('> .fade').length)
 
     function next() {
       $active
@@ -11365,7 +11411,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.3.4
+ * Bootstrap: affix.js v3.3.5
  * http://getbootstrap.com/javascript/#affix
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11394,7 +11440,7 @@ if (typeof jQuery === 'undefined') {
     this.checkPosition()
   }
 
-  Affix.VERSION  = '3.3.4'
+  Affix.VERSION  = '3.3.5'
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
@@ -11444,7 +11490,7 @@ if (typeof jQuery === 'undefined') {
     var offset       = this.options.offset
     var offsetTop    = offset.top
     var offsetBottom = offset.bottom
-    var scrollHeight = $(document.body).height()
+    var scrollHeight = Math.max($(document).height(), $(document.body).height())
 
     if (typeof offset != 'object')         offsetBottom = offsetTop = offset
     if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
@@ -11553,7 +11599,297 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
-//# sourceMappingURL=app.js.map
+(function() {
+  $.getStats = function(userId) {
+    var $vinyls;
+    console.log('user: ' + userId);
+    return $vinyls = $.ajax({
+      url: '/api/user/' + userId + '/vinyls',
+      type: 'GET',
+      dataType: 'JSON',
+      error: function(x, status, error) {
+        console.log(status);
+        return console.log(error);
+      },
+      success: function(vinyls) {
+        var genreChart, genreData, sizeChart, sizeData, sizeData_temp, timeChart, timeData, timeData_temp;
+        genreData = [];
+        sizeData = [['x'], ['sizes']];
+        sizeData_temp = [];
+        timeData = [['x'], ['vinyls']];
+        timeData_temp = [];
+        _.each(vinyls, function(vinyl) {
+          var genre, size, time;
+          genre = vinyl.genre.split(';')[0];
+          if (genre === "") {
+            genre = "unknown";
+          }
+          genreData.push(genre);
+          size = vinyl.size;
+          sizeData_temp.push(size);
+          time = new Date(vinyl.releasedate);
+          if (time.getFullYear()) {
+            return timeData_temp.push(time.format('Y'));
+          }
+        });
+        console.log(timeData_temp);
+        genreData = _.chain(genreData).countBy().pairs().value();
+        sizeData_temp = _.chain(sizeData_temp).countBy().pairs().value();
+        _.each(sizeData_temp, function(sizeArray) {
+          sizeData[0].push(sizeArray[0]);
+          return sizeData[1].push(sizeArray[1]);
+        });
+        timeData_temp = _.chain(timeData_temp).countBy().pairs().value();
+        _.each(timeData_temp, function(timeArray) {
+          timeData[0].push(timeArray[0]);
+          return timeData[1].push(timeArray[1]);
+        });
+        console.log(timeData);
+        genreChart = c3.generate({
+          bindto: '#genreChart',
+          data: {
+            columns: genreData,
+            type: 'donut'
+          },
+          legend: {
+            show: true
+          },
+          donut: {
+            title: vinyls.length + ' Vinyls',
+            label: {
+              format: function(value) {
+                return value;
+              }
+            }
+          }
+        });
+        sizeChart = c3.generate({
+          bindto: '#sizeChart',
+          data: {
+            x: 'x',
+            columns: sizeData,
+            types: {
+              sizes: 'bar'
+            }
+          },
+          legend: {
+            show: false
+          },
+          axis: {
+            x: {
+              type: 'categorized'
+            }
+          }
+        });
+        return timeChart = c3.generate({
+          bindto: '#timeChart',
+          data: {
+            x: 'x',
+            columns: timeData
+          },
+          legend: {
+            show: false
+          }
+        });
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var readUrl;
+
+  $('.createVinyl .js-add-track').click(function() {
+    var $tracks;
+    $tracks = $('.createVinyl input[name="trackCount"]').val();
+    $tracks++;
+    $('.createVinyl input[name="trackCount"]').val($tracks);
+    return $('.js-trackTable').append('<tr class="track' + ($tracks - 1) + '"><td width="80px" style="padding-left: 0;"><input class="form-control" placeholder="A1" name="track_' + ($tracks - 1) + '_position" type="text"></td><td><input class="form-control" placeholder="Title" name="track_' + ($tracks - 1) + '_title" type="text"></td><td width="100px"><input class="form-control" placeholder="1:13" name="track_' + ($tracks - 1) + '_duration" type="text"></td></tr>');
+  });
+
+  readUrl = function(input) {
+    var reader;
+    if (input.files && input.files[0]) {
+      reader = new FileReader();
+      reader.onload = function(e) {
+        return $('#vinylCover').attr('src', e.target.result);
+      };
+      return reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $("input[name='coverFile']").change(function() {
+    return readUrl(this);
+  });
+
+  $("input[name='cover']").change(function() {
+    return $('#vinylCover').attr('src', $(this).val());
+  });
+
+  $('.editVinyl .js-delete-track').click(function() {
+    var id;
+    id = $(this).data('trackId');
+    console.log('click ' + id);
+    return $('tr.track' + id);
+  });
+
+}).call(this);
+
+(function() {
+  $.getStatus = function(userId) {
+    var $vinyls;
+    console.log(userId);
+    return $vinyls = $.ajax({
+      url: '/api/user/' + userId + '/status',
+      type: 'GET',
+      error: function(x, status, error) {
+        console.log(status);
+        console.log(error);
+        $('.js-connectionStatus').removeClass('btn-info').addClass('btn-danger').html('<i class="fa fa-fw fa-exclamation-circle"></i> Not connected');
+        return $('.js-connectionAction').removeClass('hidden');
+      },
+      success: function(response) {
+        return $('.js-connectionStatus').removeClass('btn-info').addClass('btn-success').html('<i class="fa fa-fw fa-check"></i> Connected');
+      }
+    });
+  };
+
+}).call(this);
+
+(function() {
+  $.getReleases = function(username, user_id) {
+    var $discogs;
+    $('.js-startImport').fadeOut(400, function() {
+      return $('.js-importResults').html('<p class="placeholder">Fetching ...</p>');
+    });
+    return $discogs = $.ajax({
+      url: 'https://api.discogs.com/users/' + username + '/collection/folders/0/releases',
+      type: 'GET',
+      error: function(x, status, error) {
+        console.log(status);
+        return console.log(error);
+      },
+      success: function(response) {
+        var $api, discogs_vinyls, user_vinyls;
+        discogs_vinyls = response.releases;
+        user_vinyls = null;
+        return $api = $.ajax({
+          url: '/api/user/' + user_id + '/vinyls',
+          type: 'GET',
+          error: function(x, status, error) {
+            console.log(status);
+            return console.log(error);
+          },
+          success: function(response) {
+            user_vinyls = response;
+            $('.js-importResults').html('<p class="placeholder">Found ' + discogs_vinyls.length + ' records in your Discogs collection.</p>');
+            $.each(discogs_vinyls, function(index) {
+              return $('.js-importTable').find('tbody').append('<tr><td>' + discogs_vinyls[index].id + '</td><td>' + discogs_vinyls[index].basic_information.artists[0].name + '</td><td>' + discogs_vinyls[index].basic_information.title + '</td></tr>');
+            });
+            return $('.js-importTable').fadeIn();
+          }
+        });
+      }
+    });
+  };
+
+}).call(this);
+
+
+/*
+  String to time
+ */
+
+(function() {
+  var checkPlayer, delay, firstScriptTag, player, tag;
+
+  String.prototype.toHHMMSS = function() {
+    var hours, minutes, sec_num, seconds, time;
+    sec_num = parseInt(this, 10);
+    hours = Math.floor(sec_num / 3600);
+    minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    seconds = sec_num - (hours * 3600) - (minutes * 60);
+    if (hours < 10) {
+      hours = '0' + hours;
+    }
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+    if (seconds < 10) {
+      seconds = '0' + seconds;
+    }
+    time = hours + ':' + minutes + ':' + seconds;
+    return time;
+  };
+
+
+  /*
+    Youtube API
+   */
+
+  tag = document.createElement('script');
+
+  tag.src = 'https://www.youtube.com/iframe_api';
+
+  firstScriptTag = document.getElementsByTagName('script')[0];
+
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  player = void 0;
+
+  checkPlayer = void 0;
+
+  delay = function(ms, func) {
+    return setTimeout(func, ms);
+  };
+
+
+  /*
+    JukeBox functionality
+   */
+
+  $.jukebox = function(vinyls) {
+    var duration, onPlayerReady, onPlayerStateChange, video, vinyl;
+    window.onYouTubeIframeAPIReady = function() {
+      player = new YT.Player('player', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    };
+    onPlayerStateChange = function(state) {};
+    onPlayerReady = function() {
+      player.playVideo();
+      checkPlayer = setInterval(function() {
+        var state;
+        state = player.getPlayerState();
+        console.log(state);
+        if (state === -1 || state === 0) {
+          clearInterval(checkPlayer);
+          checkPlayer = 0;
+          return $.jukebox(vinyls);
+        }
+      }, 2000);
+    };
+    vinyl = vinyls[Math.floor(Math.random() * vinyls.length)];
+    video = vinyl.videos[Math.floor(Math.random() * vinyl.videos.length)];
+    $('.js-cover').attr('src', vinyl.artwork);
+    $('.js-link').attr('href', '/vinyl/' + vinyl.id);
+    $('.js-vinylTitle').text(vinyl.artist + ' – ' + vinyl.title);
+    duration = video.duration.toHHMMSS();
+    $('.js-videoTitle').html(video.title + '<span class="badge pull-right">' + duration + '</span>');
+    $('#player').attr('src', video.uri + "?&controls=0&enablejsapi=1&showinfo=0&autohide=1&iv_load_policy=3");
+    return $('.js-skip').click(function() {
+      clearInterval(checkPlayer);
+      checkPlayer = 0;
+      return $.jukebox(vinyls);
+    });
+  };
+
+}).call(this);
+
 (function() {
   var $results, $search, EURinGBP, EURinUSD, GBPinUSD, getMedian;
 
@@ -11849,301 +12185,33 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
-//# sourceMappingURL=search.js.map
 (function() {
-  var readUrl;
+  var scaleVid;
 
-  $('.createVinyl .js-add-track').click(function() {
-    var $tracks;
-    $tracks = $('.createVinyl input[name="trackCount"]').val();
-    $tracks++;
-    $('.createVinyl input[name="trackCount"]').val($tracks);
-    return $('.js-trackTable').append('<tr class="track' + ($tracks - 1) + '"><td width="80px" style="padding-left: 0;"><input class="form-control" placeholder="A1" name="track_' + ($tracks - 1) + '_position" type="text"></td><td><input class="form-control" placeholder="Title" name="track_' + ($tracks - 1) + '_title" type="text"></td><td width="100px"><input class="form-control" placeholder="1:13" name="track_' + ($tracks - 1) + '_duration" type="text"></td></tr>');
-  });
-
-  readUrl = function(input) {
-    var reader;
-    if (input.files && input.files[0]) {
-      reader = new FileReader();
-      reader.onload = function(e) {
-        return $('#vinylCover').attr('src', e.target.result);
-      };
-      return reader.readAsDataURL(input.files[0]);
+  scaleVid = function() {
+    var height, ratio, widescreen, width;
+    width = $(window).width();
+    height = $(window).height();
+    ratio = width / height;
+    widescreen = 16 / 9;
+    if (ratio < widescreen) {
+      $('#bgvid').css('width', 'auto');
+      return $('#bgvid').css('height', '100%');
+    } else {
+      $('#bgvid').css('width', '100%');
+      return $('#bgvid').css('height', 'auto');
     }
   };
 
-  $("input[name='coverFile']").change(function() {
-    return readUrl(this);
+  $(document).ready(function() {
+    return scaleVid();
   });
 
-  $("input[name='cover']").change(function() {
-    return $('#vinylCover').attr('src', $(this).val());
-  });
-
-  $('.editVinyl .js-delete-track').click(function() {
-    var id;
-    id = $(this).data('trackId');
-    console.log('click ' + id);
-    return $('tr.track' + id);
+  $(window).resize(function() {
+    return scaleVid();
   });
 
 }).call(this);
 
-//# sourceMappingURL=createVinyl.js.map
-(function() {
-  $.getStats = function(userId) {
-    var $vinyls;
-    console.log('user: ' + userId);
-    return $vinyls = $.ajax({
-      url: '/api/user/' + userId + '/vinyls',
-      type: 'GET',
-      dataType: 'JSON',
-      error: function(x, status, error) {
-        console.log(status);
-        return console.log(error);
-      },
-      success: function(vinyls) {
-        var genreChart, genreData, sizeChart, sizeData, sizeData_temp, timeChart, timeData, timeData_temp;
-        genreData = [];
-        sizeData = [['x'], ['sizes']];
-        sizeData_temp = [];
-        timeData = [['x'], ['vinyls']];
-        timeData_temp = [];
-        _.each(vinyls, function(vinyl) {
-          var genre, size, time;
-          genre = vinyl.genre.split(';')[0];
-          if (genre === "") {
-            genre = "unknown";
-          }
-          genreData.push(genre);
-          size = vinyl.size;
-          sizeData_temp.push(size);
-          time = new Date(vinyl.releasedate);
-          if (time.getFullYear()) {
-            return timeData_temp.push(time.format('Y'));
-          }
-        });
-        console.log(timeData_temp);
-        genreData = _.chain(genreData).countBy().pairs().value();
-        sizeData_temp = _.chain(sizeData_temp).countBy().pairs().value();
-        _.each(sizeData_temp, function(sizeArray) {
-          sizeData[0].push(sizeArray[0]);
-          return sizeData[1].push(sizeArray[1]);
-        });
-        timeData_temp = _.chain(timeData_temp).countBy().pairs().value();
-        _.each(timeData_temp, function(timeArray) {
-          timeData[0].push(timeArray[0]);
-          return timeData[1].push(timeArray[1]);
-        });
-        console.log(timeData);
-        genreChart = c3.generate({
-          bindto: '#genreChart',
-          data: {
-            columns: genreData,
-            type: 'donut'
-          },
-          legend: {
-            show: true
-          },
-          donut: {
-            title: vinyls.length + ' Vinyls',
-            label: {
-              format: function(value) {
-                return value;
-              }
-            }
-          }
-        });
-        sizeChart = c3.generate({
-          bindto: '#sizeChart',
-          data: {
-            x: 'x',
-            columns: sizeData,
-            types: {
-              sizes: 'bar'
-            }
-          },
-          legend: {
-            show: false
-          },
-          axis: {
-            x: {
-              type: 'categorized'
-            }
-          }
-        });
-        return timeChart = c3.generate({
-          bindto: '#timeChart',
-          data: {
-            x: 'x',
-            columns: timeData
-          },
-          legend: {
-            show: false
-          }
-        });
-      }
-    });
-  };
-
-}).call(this);
-
-//# sourceMappingURL=charts.js.map
-
-/*
-  String to time
- */
-
-(function() {
-  var checkPlayer, delay, firstScriptTag, player, tag;
-
-  String.prototype.toHHMMSS = function() {
-    var hours, minutes, sec_num, seconds, time;
-    sec_num = parseInt(this, 10);
-    hours = Math.floor(sec_num / 3600);
-    minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-    seconds = sec_num - (hours * 3600) - (minutes * 60);
-    if (hours < 10) {
-      hours = '0' + hours;
-    }
-    if (minutes < 10) {
-      minutes = '0' + minutes;
-    }
-    if (seconds < 10) {
-      seconds = '0' + seconds;
-    }
-    time = hours + ':' + minutes + ':' + seconds;
-    return time;
-  };
-
-
-  /*
-    Youtube API
-   */
-
-  tag = document.createElement('script');
-
-  tag.src = 'https://www.youtube.com/iframe_api';
-
-  firstScriptTag = document.getElementsByTagName('script')[0];
-
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  player = void 0;
-
-  checkPlayer = void 0;
-
-  delay = function(ms, func) {
-    return setTimeout(func, ms);
-  };
-
-
-  /*
-    JukeBox functionality
-   */
-
-  $.jukebox = function(vinyls) {
-    var duration, onPlayerReady, onPlayerStateChange, video, vinyl;
-    window.onYouTubeIframeAPIReady = function() {
-      player = new YT.Player('player', {
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    };
-    onPlayerStateChange = function(state) {};
-    onPlayerReady = function() {
-      player.playVideo();
-      checkPlayer = setInterval(function() {
-        var state;
-        state = player.getPlayerState();
-        console.log(state);
-        if (state === -1 || state === 0) {
-          clearInterval(checkPlayer);
-          checkPlayer = 0;
-          return $.jukebox(vinyls);
-        }
-      }, 2000);
-    };
-    vinyl = vinyls[Math.floor(Math.random() * vinyls.length)];
-    video = vinyl.videos[Math.floor(Math.random() * vinyl.videos.length)];
-    $('.js-cover').attr('src', vinyl.artwork);
-    $('.js-link').attr('href', '/vinyl/' + vinyl.id);
-    $('.js-vinylTitle').text(vinyl.artist + ' – ' + vinyl.title);
-    duration = video.duration.toHHMMSS();
-    $('.js-videoTitle').html(video.title + '<span class="badge pull-right">' + duration + '</span>');
-    $('#player').attr('src', video.uri + "?&controls=0&enablejsapi=1&showinfo=0&autohide=1&iv_load_policy=3");
-    return $('.js-skip').click(function() {
-      clearInterval(checkPlayer);
-      checkPlayer = 0;
-      return $.jukebox(vinyls);
-    });
-  };
-
-}).call(this);
-
-//# sourceMappingURL=jukebox.js.map
-(function() {
-  $.getReleases = function(username, user_id) {
-    var $discogs;
-    $('.js-startImport').fadeOut(400, function() {
-      return $('.js-importResults').html('<p class="placeholder">Fetching ...</p>');
-    });
-    return $discogs = $.ajax({
-      url: 'https://api.discogs.com/users/' + username + '/collection/folders/0/releases',
-      type: 'GET',
-      error: function(x, status, error) {
-        console.log(status);
-        return console.log(error);
-      },
-      success: function(response) {
-        var $api, discogs_vinyls, user_vinyls;
-        discogs_vinyls = response.releases;
-        user_vinyls = null;
-        return $api = $.ajax({
-          url: '/api/user/' + user_id + '/vinyls',
-          type: 'GET',
-          error: function(x, status, error) {
-            console.log(status);
-            return console.log(error);
-          },
-          success: function(response) {
-            user_vinyls = response;
-            $('.js-importResults').html('<p class="placeholder">Found ' + discogs_vinyls.length + ' records in your Discogs collection.</p>');
-            $.each(discogs_vinyls, function(index) {
-              return $('.js-importTable').find('tbody').append('<tr><td>' + discogs_vinyls[index].id + '</td><td>' + discogs_vinyls[index].basic_information.artists[0].name + '</td><td>' + discogs_vinyls[index].basic_information.title + '</td></tr>');
-            });
-            return $('.js-importTable').fadeIn();
-          }
-        });
-      }
-    });
-  };
-
-}).call(this);
-
-//# sourceMappingURL=import.js.map
-(function() {
-  $.getStatus = function(userId) {
-    var $vinyls;
-    console.log(userId);
-    return $vinyls = $.ajax({
-      url: '/api/user/' + userId + '/status',
-      type: 'GET',
-      error: function(x, status, error) {
-        console.log(status);
-        console.log(error);
-        $('.js-connectionStatus').removeClass('btn-info').addClass('btn-danger').html('<i class="fa fa-fw fa-exclamation-circle"></i> Not connected');
-        return $('.js-connectionAction').removeClass('hidden');
-      },
-      success: function(response) {
-        return $('.js-connectionStatus').removeClass('btn-info').addClass('btn-success').html('<i class="fa fa-fw fa-check"></i> Connected');
-      }
-    });
-  };
-
-}).call(this);
-
-//# sourceMappingURL=getStatus.js.map
+//# sourceMappingURL=app.js.map
 //# sourceMappingURL=all.js.map

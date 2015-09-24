@@ -6,8 +6,8 @@ class ExampleTest extends TestCase {
 	public function it_loads_the_login_page()
 	{
 		$this->visit('/')
-				 ->click('Login')
-				 ->andSee('Username')
+				 ->click('Start here.')
+				 ->see('Username')
 				 ->onPage('login');
 	}
 
