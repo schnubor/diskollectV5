@@ -11,6 +11,26 @@
     </div>
     
     <div class="col-md-12 content">
+      {{-- Flash messages --}}
+      <div class="col-md-12">
+        @if (session('status'))
+          <div class="alert alert-success">
+            {{ session('status') }}
+          </div>
+        @endif
+
+        @if (count($errors) > 0)
+          <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+      </div>
+
       <!-- Profile -->
       <div class="col-md-6">
         <div class="panel panel-default">
@@ -22,17 +42,6 @@
                 <div class="avatar center-block" style="background-image: url('{{ Auth::user()->image }}');"></div>
               </div>
             </div>
-
-            @if (count($errors) > 0)
-              <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                  @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                  @endforeach
-                </ul>
-              </div>
-            @endif
             
             <div class="row">
               {!! Form::model(Auth::user(), ['route' => 'post.edit.user', 'files' => true, 'class' => 'form-horizontal']) !!}
@@ -107,23 +116,6 @@
         <div class="panel panel-default">
           <div class="panel-heading">Edit Password</div>
           <div class="panel-body">
-            @if (session('status'))
-              <div class="alert alert-success">
-                {{ session('status') }}
-              </div>
-            @endif
-
-            @if (count($errors) > 0)
-              <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                  @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                  @endforeach
-                </ul>
-              </div>
-            @endif
-
             {!! Form::open([ 'route' => 'post.edit.password', 'class' => 'form-horizontal']) !!}
 
               <div class="form-group">
@@ -175,6 +167,40 @@
         </div>
       </div>
       
+      {{-- Email Notifications --}}
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">Notifications</div>
+          {!! Form::model(Auth::user(), ['route' => 'post.edit.notifications', 'class' => 'form-horizontal']) !!}
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-md-12">
+                {!! Form::checkbox('email_new_follower', Input::old('email_new_follower'), ['class' => 'form-control']) !!} 
+                Email me on new followers
+              </div>
+            </div>
+            
+          </div>
+          <div class="panel-footer">
+            {!! Form::submit('Update', array('class' => 'btn btn-md btn-primary pull-right')) !!}
+            <div class="clearfix"></div>
+          </div>
+          {!! Form::close() !!}
+        </div>
+      </div>
+
+      {{-- Privacy --}}
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">Privacy</div>
+          <div class="panel-body">
+            {!! Form::model(Auth::user(), [ 'route' => 'post.edit.privacy', 'class' => 'form-horizontal']) !!}
+
+            {!! Form::close() !!}
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 

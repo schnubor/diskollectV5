@@ -6,6 +6,8 @@ use App\Http\Requests;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\EditPasswordRequest;
+use App\Http\Requests\EditNotificationsRequest;
+use App\Http\Requests\EditPrivacyRequest;
 use App\Http\Requests\EditProfileRequest;
 use App\Http\Controllers\Controller;
 use Mail;
@@ -265,11 +267,11 @@ class UsersController extends Controller {
 
 		if($user->save()){
 			flash()->success('Profile updated successfully!');
-			return redirect()->route('home');
+			return redirect()->route('user.settings', Auth::user()->id);
 		}
 
 		flash()->error('Sorry! Please try again.');
-		return redirect()->route('home');
+		return redirect()->route('user.settings', Auth::user()->id);
 	}
 
 	/**
@@ -325,7 +327,7 @@ class UsersController extends Controller {
 			}
 
 			flash()->error('Sorry! Please try again.');
-			return reidrect()->route('password');
+			return redirect()->route('password');
 		}
 
 		flash()->error('User not found.');
@@ -374,15 +376,39 @@ class UsersController extends Controller {
 
 			if($user->save()){
 				flash()->success('You successfully changed your password.');
-				return redirect()->route('home');
+				return redirect()->route('user.settings', Auth::user()->id);
 			}
 
 			flash()->error('Sorry! Please try again.');
-			return redirect()->route('home');
+			return redirect()->route('user.settings', Auth::user()->id);
 		}
 
 		flash()->error('Wrong password.');
-		return redirect()->route('get.edit.password');
+		return redirect()->route('user.settings', Auth::user()->id);
+	}
+
+	/**
+	 * POST edit notificiations form
+	 **/
+
+	public function postEditNotifications(EditNotificationsRequest $request){
+		$user = User::find(Auth::user()->id);
+		$email_new_follower = $request->input('email_new_follower');
+		
+		if($email_new_follower == 'on'){
+			$user->email_new_follower = 1;
+		}
+		else{
+			$user->email_new_follower = 0;
+		}
+
+		if($user->save()){
+			flash()->success('You successfully updated your notification settings.');
+			return redirect()->route('user.settings', Auth::user());
+		}
+
+		flash()->error('Wrong password.');
+		return redirect()->route('user.settings', Auth::user()->id);
 	}
 
 }

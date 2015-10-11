@@ -131,6 +131,18 @@ Route::post('/password/edit', [
   'middleware' => 'auth'
 ]);
 
+Route::post('/notifications/edit', [
+  'as' => 'post.edit.notifications',
+  'uses' => 'UsersController@postEditNotifications',
+  'middleware' => 'auth'
+]);
+
+Route::post('/privacy/edit', [
+  'as' => 'post.edit.privacy',
+  'uses' => 'UsersController@postEditPrivacy',
+  'middleware' => 'auth'
+]);
+
 /**
  * Vinyls
  */
