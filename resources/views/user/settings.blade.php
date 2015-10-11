@@ -35,6 +35,7 @@
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">Edit profile</div>
+          {!! Form::model(Auth::user(), ['route' => 'post.edit.user', 'files' => true, 'class' => 'form-horizontal']) !!}
           <div class="panel-body">
             
             <div class="row">
@@ -44,70 +45,64 @@
             </div>
             
             <div class="row">
-              {!! Form::model(Auth::user(), ['route' => 'post.edit.user', 'files' => true, 'class' => 'form-horizontal']) !!}
-
-                <!-- Avatar -->
-                <div class="form-group">
-                  {!! Form::label('avatar', 'Avatar', ['class' => 'col-md-4 control-label']) !!}
-                  <div class="col-md-6">
-                    {!! Form::file('avatar', ['class' => 'form-control']) !!}
-                  </div>
+              <!-- Avatar -->
+              <div class="form-group">
+                {!! Form::label('avatar', 'Avatar', ['class' => 'col-md-4 control-label']) !!}
+                <div class="col-md-6">
+                  {!! Form::file('avatar', ['class' => 'form-control']) !!}
                 </div>
+              </div>
 
-                <!-- Full name -->
-                <div class="form-group">
-                  {!! Form::label('name', 'Full name', ['class' => 'col-md-4 control-label']) !!}
-                  <div class="col-md-6">
-                    {!! Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
-                  </div>
+              <!-- Full name -->
+              <div class="form-group">
+                {!! Form::label('name', 'Full name', ['class' => 'col-md-4 control-label']) !!}
+                <div class="col-md-6">
+                  {!! Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
                 </div>
+              </div>
 
-                <!-- Location -->
-                <div class="form-group">
-                  {!! Form::label('location', 'Location', ['class' => 'col-md-4 control-label']) !!}
-                  <div class="col-md-6">
-                    {!! Form::text('location', Input::old('location'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
-                  </div>
+              <!-- Location -->
+              <div class="form-group">
+                {!! Form::label('location', 'Location', ['class' => 'col-md-4 control-label']) !!}
+                <div class="col-md-6">
+                  {!! Form::text('location', Input::old('location'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
                 </div>
+              </div>
 
-                <!-- Website -->
-                <div class="form-group">
-                  {!! Form::label('website', 'Website', ['class' => 'col-md-4 control-label']) !!}
-                  <div class="col-md-6">
-                    {!! Form::text('website', Input::old('website'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
-                  </div>
+              <!-- Website -->
+              <div class="form-group">
+                {!! Form::label('website', 'Website', ['class' => 'col-md-4 control-label']) !!}
+                <div class="col-md-6">
+                  {!! Form::text('website', Input::old('website'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
                 </div>
+              </div>
 
-                <!-- Description -->
-                <div class="form-group">
-                  {!! Form::label('description', 'Description', ['class' => 'col-md-4 control-label']) !!}
-                  <div class="col-md-6">
-                    {!! Form::text('description', Input::old('description'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
-                  </div>
+              <!-- Description -->
+              <div class="form-group">
+                {!! Form::label('description', 'Description', ['class' => 'col-md-4 control-label']) !!}
+                <div class="col-md-6">
+                  {!! Form::text('description', Input::old('description'), ['class' => 'form-control', 'placeholder' => 'Optional']) !!}
                 </div>
+              </div>
 
-                <!-- Currency -->
-                <div class="form-group">
-                  {!! Form::label('currency', 'Currency', ['class' => 'col-md-4 control-label']) !!}
-                  <div class="col-md-6">
-                    {!! Form::select('currency', [
-                      'EUR' => '&euro; - Euro', 
-                      'USD' => '&#36; - United States Dollar', 
-                      'GBP' => '&pound; - Great Britain Pound'
-                    ], Auth::user()->currency, ['class' => 'form-control']) !!}
-                  </div>
+              <!-- Currency -->
+              <div class="form-group">
+                {!! Form::label('currency', 'Currency', ['class' => 'col-md-4 control-label']) !!}
+                <div class="col-md-6">
+                  {!! Form::select('currency', [
+                    'EUR' => '&euro; - Euro', 
+                    'USD' => '&#36; - United States Dollar', 
+                    'GBP' => '&pound; - Great Britain Pound'
+                  ], Auth::user()->currency, ['class' => 'form-control']) !!}
                 </div>
-
-                <!-- Submit -->
-                <div class="form-group">
-                  <div class="col-md-6 col-md-offset-4">
-                    {!! Form::submit('Update Profile', array('class' => 'btn btn-md btn-primary pull-right')) !!}
-                  </div>
-                </div>
-              {!! Form::close() !!}
-
+              </div>
             </div>
           </div>
+          <div class="panel-footer">
+            {!! Form::submit('Update', array('class' => 'btn btn-md btn-primary pull-right')) !!}
+            <div class="clearfix"></div>
+          </div>
+          {!! Form::close() !!}
         </div>
       </div>
       
@@ -115,38 +110,34 @@
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">Edit Password</div>
+          {!! Form::open([ 'route' => 'post.edit.password', 'class' => 'form-horizontal']) !!}
           <div class="panel-body">
-            {!! Form::open([ 'route' => 'post.edit.password', 'class' => 'form-horizontal']) !!}
-
-              <div class="form-group">
-                {!! Form::label('old', 'Current password', ['class' => 'col-md-5 control-label']) !!}
-                <div class="col-md-7">
-                  {!! Form::password('old', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
-                </div>
+            <div class="form-group">
+              {!! Form::label('old', 'Current password', ['class' => 'col-md-5 control-label']) !!}
+              <div class="col-md-7">
+                {!! Form::password('old', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
               </div>
+            </div>
 
-              <div class="form-group">
-                {!! Form::label('new', 'New password', ['class' => 'col-md-5 control-label']) !!}
-                <div class="col-md-7">
-                  {!! Form::password('new', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
-                </div>
+            <div class="form-group">
+              {!! Form::label('new', 'New password', ['class' => 'col-md-5 control-label']) !!}
+              <div class="col-md-7">
+                {!! Form::password('new', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
               </div>
+            </div>
 
-              <div class="form-group">
-                {!! Form::label('confirm', 'Current password again', ['class' => 'col-md-5 control-label']) !!}
-                <div class="col-md-7">
-                  {!! Form::password('confirm', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
-                </div>
+            <div class="form-group">
+              {!! Form::label('confirm', 'Current password again', ['class' => 'col-md-5 control-label']) !!}
+              <div class="col-md-7">
+                {!! Form::password('confirm', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
               </div>
-
-              <div class="form-group">
-                <div class="col-md-6 col-md-offset-6">
-                  {!! Form::submit('Edit password', array('class' => 'btn btn-md btn-primary pull-right')) !!}
-                </div>
-              </div>
-
-            {!! Form::close() !!}
+            </div>
           </div>
+          <div class="panel-footer">
+            {!! Form::submit('Edit password', array('class' => 'btn btn-md btn-primary pull-right')) !!}
+            <div class="clearfix"></div>
+          </div>
+          {!! Form::close() !!}
         </div>
       </div>
 
@@ -193,11 +184,34 @@
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">Privacy</div>
+          {!! Form::model(Auth::user(), [ 'route' => 'post.edit.privacy', 'class' => 'form-horizontal']) !!}
           <div class="panel-body">
-            {!! Form::model(Auth::user(), [ 'route' => 'post.edit.privacy', 'class' => 'form-horizontal']) !!}
-
-            {!! Form::close() !!}
+            <div class="form-group">
+              {!! Form::label('collection_visibility', 'Who can see my collection', ['class' => 'col-md-5 control-label']) !!}
+              <div class="col-md-7">
+                {!! Form::select('collection_visibility', [
+                      'everyone' => 'Everyone', 
+                      'noone' => 'Noone', 
+                      'follower' => 'Only follower'
+                    ], Auth::user()->collection_visibility, ['class' => 'form-control']) !!}
+              </div>
+            </div>
+            <div class="form-group">
+              {!! Form::label('statistics_visibility', 'Who can see my statistics', ['class' => 'col-md-5 control-label']) !!}
+              <div class="col-md-7">
+                {!! Form::select('statistics_visibility', [
+                      'everyone' => 'Everyone', 
+                      'noone' => 'Noone', 
+                      'follower' => 'Only follower'
+                    ], Auth::user()->statistics_visibility, ['class' => 'form-control']) !!}
+              </div>
+            </div>
           </div>
+          <div class="panel-footer">
+            {!! Form::submit('Update', array('class' => 'btn btn-md btn-primary pull-right')) !!}
+            <div class="clearfix"></div>
+          </div>
+          {!! Form::close() !!}
         </div>
       </div>
 

@@ -24,8 +24,8 @@ class EditPrivacyRequest extends Request
     public function rules()
     {
         return [
-            'collection' => 'required|string',
-            'statistics' => 'required|string'
+            'collection_visibility' => 'required|string',
+            'statistics_visibility' => 'required|string'
         ];
     }
 }

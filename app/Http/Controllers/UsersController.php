@@ -394,13 +394,32 @@ class UsersController extends Controller {
 	public function postEditNotifications(EditNotificationsRequest $request){
 		$user = User::find(Auth::user()->id);
 		$email_new_follower = $request->input('email_new_follower');
-		
+
 		if($email_new_follower == 'on'){
 			$user->email_new_follower = 1;
 		}
 		else{
 			$user->email_new_follower = 0;
 		}
+
+		if($user->save()){
+			flash()->success('You successfully updated your notification settings.');
+			return redirect()->route('user.settings', Auth::user());
+		}
+
+		flash()->error('Wrong password.');
+		return redirect()->route('user.settings', Auth::user()->id);
+	}
+
+	/**
+	 * POST edit privacy form
+	 **/
+
+	public function postEditPrivacy(EditPrivacyRequest $request){
+		$user = User::find(Auth::user()->id);
+
+		$user->collection_visibility = $request->input('collection_visibility');
+		$user->statistics_visibility = $request->input('statistics_visibility');
 
 		if($user->save()){
 			flash()->success('You successfully updated your notification settings.');
