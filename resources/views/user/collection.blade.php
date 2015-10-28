@@ -19,34 +19,27 @@
       @endif
     </div>
     <div class="col-md-12 content">
-      @if($vinyls->count())
-        @foreach(array_chunk($vinyls->all(), 4) as $vinylRow)
-          <div class="row padding15">
-            @foreach($vinylRow as $vinyl)
-              <div class="col-md-3 vinyl">
-                <div class="cover">
-                  <a href="{{ route('get.show.vinyl', $vinyl->id) }}"><img src="{{$vinyl->artwork}}" alt="{{$vinyl->artist}} - {{$vinyl->title}}"></a>
-                </div>
-                <div class="info">
-                  <span class="artist">{{$vinyl->artist}}</span><br>
-                  <span class="title">{{$vinyl->title}}</span>
-                </div>
-              </div>
-            @endforeach
-          </div>
-        @endforeach
-      @else
-        <div class="col-md-12 text-center">
-          <p class="placeholder">No vinyls in the collection yet.</p>
-          @if(Auth::user()->id == $user->id)
-            <a href="{{ route('get.search') }}" class="btn btn-primary btn-lg"><i class="fa fa-fw fa-plus"></i> Add vinyl</a>
+      @if($user->collection_visibility == 'everyone' || Auth::user()->id == $user->id)
+        @include('partials.collectionVinyls')
+      @else {{-- not everyone can the collection --}}
+        @if($user->collection_visibility == 'follower')
+          @if($user->isFollowedBy(Auth::user()))
+            @include('partials.collectionVinyls')
+          @else
+            <div class="col-md-12 text-center">
+              <p class="placeholder">This collection is only visible for followers.</p>
+              {!! Form::open([ 'route' => 'follow' ]) !!}
+                {!! Form::hidden('userIdToFollow', $user->id) !!}
+                <button class="btn btn-md btn-success btn-follow" type="submit"><i class="fa fa-fw fa-plus"></i> Follow</button>
+              {!! Form::close() !!}
+            </div>
           @endif
-        </div>
+        @else
+          <div class="col-md-12 text-center">
+            <p class="placeholder">This collection is private.</p>
+          </div>
+        @endif
       @endif
-
-      <div class="row text-center">
-        {!! $vinyls->render() !!}
-      </div>
     </div>
   </div>
 
