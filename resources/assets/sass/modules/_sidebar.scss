@@ -1,14 +1,62 @@
 .sidebar{
   background-color: $grey;
-  min-height: calc(100% - 51px);
-  padding: 20px 0;
+  min-height: 100%;
+  padding: 0;
   color: #f0f0f0;
   display: none;
+  width: 65px;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   @media (min-width: 992px) { display: block; }
 
+  .sb-logo{
+    background-color: $blue;
+    height: 70px;
+    margin-bottom: 10px;
+
+    img{
+      width: 45px;
+      margin-top: 10px;
+    }
+  }
+  
+  .bottom-nav{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+  }
+
   p.lead{
     margin-top: 15px;
+    padding: 0 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .info{
+    padding: 0 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+  }
+
+  small{
+    color: #808080;
+    padding-bottom: 20px;
+    display: block;
+
+    a{
+      color: #808080;
+      text-decoration: none;
+
+      &:hover{
+        text-decoration: none;
+      }
+    }
   }
 
   hr{
@@ -16,7 +64,7 @@
   }
 
   form{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .navigation{
@@ -27,42 +75,81 @@
       text-decoration: none;
     }
 
-    .button{
-      position: relative;
-      text-align: left;
-      height: 50px;
-      line-height: 50px;
-      color: #808080;
-      background-color: $grey;
-      border-top: 1px solid $light-grey;
-      border-bottom: 1px solid $dark-grey;
+    .avatar{
+      margin-bottom: 10px;
+    }
+  }
 
-      &:hover, &.active{
-        background-color: $dark-grey;
-        border-top: 1px solid $darker-grey;
-      }
+  .popover{
+    color: #333;
+    width: 200px;
 
-      &.active{
-        .triangle{
-          display: block;
-          position: absolute;
-          top: 17px;
-          right: -8px;
-          width: 0;
-          height: 0;
-          border-style: solid;
-          border-width: 7.5px 0 7.5px 8px;
-          border-color: transparent transparent transparent $dark-grey;
+    p{
+      a{
+        color: #AAA;
+
+        &:hover{
+          color: #333
         }
       }
+    }
+    
+  }
 
+  .button{
+    position: relative;
+    text-align: center;
+    height: 45px;
+    width: 45px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    line-height: 45px;
+    font-size: 16px;
+    color: #808080;
+    background-color: $light-grey;
+
+    &:hover, &.active{
+      &.orange{
+        color: $orange;
+      }
+      &.blue{
+        color: $blue;
+      }
+      &.green{
+        color: $green;
+      }
+      &.purple{
+        color: $purple;
+      }
+      background-color: $dark-grey;
+    }
+
+    &.add{
+      background-color: $blue;
+      color: $white;
+
+      &:hover{
+        background-color: $dark-blue;
+      }
+    }
+
+    &.active{
       .triangle{
-        display: none;
+        display: block;
+        position: absolute;
+        top: 17px;
+        right: -8px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7.5px 0 7.5px 8px;
+        border-color: transparent transparent transparent $dark-grey;
       }
+    }
 
-      i{
-        margin: 0 15px;
-      }
+    .triangle{
+      display: none;
     }
   }
 }

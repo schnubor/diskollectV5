@@ -3,7 +3,12 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: $light-grey;
+  background-color: #DDD;
+
+  &.edgy{
+    border-radius: 4px;
+    background-color: $light-grey;
+  }
 
   &.lg{
     height: 200px;
@@ -23,6 +28,11 @@
   &.sm{
     height: 50px;
     width: 50px;
+  }
+
+  &.sb{
+    height: 45px;
+    width: 45px;
   }
 
   &.tiny{

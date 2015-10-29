@@ -1,12 +1,10 @@
 .content-area{
-  height: calc(100% - 51px);
+  margin-left: 65px;
 }
 
 .content{
   padding-top: 30px;
   padding-bottom: 30px;
-  height: calc(100% - 69px);
-  overflow-y: scroll;
 
   &.full-height{
     height: 100%;

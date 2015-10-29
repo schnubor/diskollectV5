@@ -13,11 +13,11 @@ class CreateFollowersTable extends Migration {
 	public function up()
 	{
 		Schema::create('followers', function ($table)
-    {
-        $table->integer('user_id')->unsigned();
-        $table->integer('follow_id')->unsigned();
-        $table->timestamps();
-    });
+        {
+            $table->integer('user_id')->unsigned();
+            $table->integer('follow_id')->unsigned();
+            $table->timestamps();
+        });
 	}
 
 	/**

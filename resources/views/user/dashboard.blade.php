@@ -5,13 +5,12 @@
 @endsection
 
 @section('content')
-  @include('user.partials.sidebar')
-  <div class="col-md-10 no-padding content-area">
+  <!-- Content -->
+  <div class="content-area">
     <div class="col-md-12 toolbar">
       <p class="lead news">
         Welcome <a href="{{ route('user.show', $latestUser->id) }}">{{ $latestUser->username }}</a> to the party!
       </p>
-      @include('user.partials.follow', ['user' => $latestUser])
     </div>
     <div class="col-md-12 content">
       {{-- Activities --}}
@@ -48,9 +47,9 @@
             </ul>
           @else
             <div class="panel-body">
-              <p class="text-center" style="margin: 40px 0;">
+              <p class="text-center placeholder small" style="margin: 40px 0;">
                 No recent activities. Try following other collectors! <br><br>
-                <a href="{{ route('user.index') }}" class="btn btn-success btn-lg"><i class="fa fa-users"></i> Collectors</a>
+                <a href="{{ route('user.index') }}" class="btn btn-primary btn-lg"><i class="fa fa-users"></i> Collectors</a>
               </p>
             </div>
           @endif
@@ -95,4 +94,7 @@
       </div>
     </div>
   </div>
+
+  <!-- Sidebar -->
+  @include('user.partials.sidebar')
 @endsection

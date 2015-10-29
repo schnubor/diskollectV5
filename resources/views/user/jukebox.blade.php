@@ -5,15 +5,22 @@
 @endsection
 
 @section('content')
-  @include('user.partials.sidebar')
-
-  <div class="col-md-10 no-padding content-area">
+  <div class="content-area">
     <div class="col-md-12 toolbar">
-      <div class="controls">
-        <p class="lead"><strong>{{ $vinyls->count() }}</strong> Vinyls in the Jukebox</p>
-      </div>
+      @if(Auth::check())
+        @if(Auth::user()->id == $user->id)
+          <p class="lead"><strong>Your Jukebox</strong></p>
+        @else
+          @include('user.partials.dropdown')
+        @endif
+      @else
+        @include('user.partials.dropdown')
+      @endif
     </div>
+
+    <!-- Jukebox content -->
     <div class="col-md-12 content">
+      @if($vinyls->count())
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong class="js-vinylTitle"></strong></div>
@@ -36,8 +43,21 @@
                 </div>
             </div>
         </div>
+      @else
+        <div class="col-md-12 text-center">
+          <p class="placeholder">Not enough vinyls in collection.</p>
+          @if(Auth::check())
+            @if(Auth::user()->id == $user->id)
+              <a href="{{ route('get.search') }}" class="btn btn-primary btn-lg"><i class="fa fa-fw fa-plus"></i> Add vinyl</a>
+            @endif
+          @endif
+        </div>
+      @endif
     </div>
   </div>
+  
+  {{-- Sidebar --}}
+  @include('user.partials.sidebar')
 @endsection
 
 @section('scripts')

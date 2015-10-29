@@ -64,12 +64,14 @@ class HomeController extends Controller {
 			$vinylCount = Vinyl::all()->count();
 			$latestVinyls = Vinyl::latest()->take(4)->get();
 			$latestMembers = User::latest()->take(6)->get();
+			$weight = round(((Vinyl::all()->sum('weight')) / 1000),2);
 
 			return view('pages.home')
 				->with('userCount', $userCount)
 				->with('vinylCount', $vinylCount)
 				->with('latestVinyls', $latestVinyls)
-				->with('latestMembers', $latestMembers);
+				->with('latestMembers', $latestMembers)
+				->with('weight', $weight);
 		}
 	}
 }

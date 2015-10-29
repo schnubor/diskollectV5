@@ -32,6 +32,7 @@
               {!! Form::hidden('trackCount', Input::old('trackCount')) !!}
               {!! Form::hidden('videoCount', Input::old('videoCount')) !!}
               {!! Form::hidden('userCurrency', $user->currency, ['id' => 'userCurrency']) !!}
+              {!! Form::hidden('spotify_id', Input::old('spotify_id')) !!}
             <div class="form-group">
               <label id="priceLabelText">Discogs Median Price:</label>
               <div class="input-group">
@@ -44,6 +45,10 @@
               <label>Any special notes?</label>
               <textarea class="form-control" placeholder="optional" rows="6" style="resize: none;"></textarea>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div id="spotify" class="col-md-12">
             
           </div>
         </div>

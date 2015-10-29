@@ -17,3 +17,14 @@
   background-color: $blue;
   border-color: $blue;
 }
+
+.btn-info{
+  color: #fff;
+  background-color: #DDD;
+  border-color: #DDD;
+
+  &:hover{
+    border-color: #CCC;
+    background-color: #CCC;
+  }
+}

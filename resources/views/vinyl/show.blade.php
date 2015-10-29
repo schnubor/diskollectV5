@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-  @include('user.partials.sidebar')
-
-  <div class="col-md-10 no-padding content-area">
+  <div class="content-area">
     <div class="col-md-12 toolbar">
       <p class="lead pull-left">{{ $vinyl->artist }} - {{ $vinyl->title }}</p>
     </div>
@@ -34,10 +32,14 @@
         {{-- Details --}}
         <div class="panel panel-default">
           <div class="panel-heading">Vinyl Details</div>
-          <div class="panel-body">
-            <p class="h2 text-center">{{ $vinyl->price.$user->currency }}</p>
-          </div>
+          <ul class="list-group">
+            <li class="list-group-item"><p class="h2 text-center">{{ $vinyl->price.$user->currency }}</p></li>
+          </ul>
           <table class="table table-bordered">
+            <tr>
+              <td><strong>Owner</strong></td>
+              <td><strong><a href="{{ route('user.show', $user->id) }}">{{ $user->username }}</a></strong></td>
+            </tr>
             @if($vinyl->discogs_uri)
               <tr>
                 <td><strong>Discogs</strong></td>
@@ -106,13 +108,17 @@
             <div class="panel-heading">Tracklist <span class="badge pull-right">{{ $tracks->count() }}</span>
             </div>
             <table class="table table-bordered">
-              @foreach($tracks as $track)
-                <tr>
-                  <td>{{ $track->number }}</td>
-                  <td>{{ $track->title }}</td>
-                  <td>{{ $track->duration }}</td>
-                </tr>
-              @endforeach
+              @if($vinyl->spotify_id)
+                <iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A{{ $vinyl->spotify_id }}" width="100%" height="640" frameborder="0" allowtransparency="true"></iframe>
+              @else
+                @foreach($tracks as $track)
+                  <tr>
+                    <td>{{ $track->number }}</td>
+                    <td>{{ $track->title }}</td>
+                    <td>{{ $track->duration }}</td>
+                  </tr>
+                @endforeach
+              @endif
             </table>
           </div>
         @endif
@@ -130,4 +136,7 @@
       </div>
     </div>
   </div>
+  
+  <!-- Sidebar -->
+  @include('user.partials.sidebar')
 @endsection

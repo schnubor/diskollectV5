@@ -1,4 +1,8 @@
 (function() {
-  console.log("hello from coffeescript!!");
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('[data-toggle="popover"]').popover({
+    html: true
+  });
 
 }).call(this);

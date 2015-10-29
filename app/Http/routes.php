@@ -29,6 +29,11 @@ Route::get('/api/user/{id}/vinyls', [
   'uses' => 'ApiController@vinyls'
 ]);
 
+Route::get('/api/user/{id}/status', [
+  'as' => 'api.user.status',
+  'uses' => 'ApiController@connectionStatus'
+]);
+
 Route::get('/api/vinyl/{id}/videos', [
   'as' => 'api.vinyl.videos',
   'uses' => 'ApiController@videos'
@@ -60,12 +65,6 @@ Route::get('/collectors', [
   'uses' => 'UsersController@index'
 ]);
 
-Route::get('/user/edit', [
-  'as' => 'get.edit.user',
-  'uses' => 'UsersController@edit',
-  'middleware' => 'auth'
-]);
-
 Route::post('/user/edit', [
   'as' => 'post.edit.user',
   'uses' => 'UsersController@update',
@@ -85,6 +84,22 @@ Route::get('/user/{id}/collection', [
 Route::get('/user/{id}/jukebox', [
   'as' => 'user.jukebox',
   'uses' => 'UsersController@jukebox'
+]);
+
+Route::get('/user/{id}/followers', [
+  'as' => 'user.followers',
+  'uses' => 'UsersController@followers'
+]);
+
+Route::get('/user/{id}/following', [
+  'as' => 'user.following',
+  'uses' => 'UsersController@following'
+]);
+
+Route::get('/user/{id}/settings', [
+  'as' => 'user.settings',
+  'uses' => 'UsersController@settings',
+  'middleware' => 'auth'
 ]);
 
 Route::get('/activate/{code}', [
@@ -110,16 +125,21 @@ Route::get('/password/recover/{code}', [
   'middleware' => 'guest'
 ]);
 
-Route::get('/password/edit', [
-  'as' => 'get.edit.password',
-  'uses' => 'UsersController@getEditPassword',
-  'middleware' => 'auth'
-]);
-
-
 Route::post('/password/edit', [
   'as' => 'post.edit.password',
   'uses' => 'UsersController@postEditPassword',
+  'middleware' => 'auth'
+]);
+
+Route::post('/notifications/edit', [
+  'as' => 'post.edit.notifications',
+  'uses' => 'UsersController@postEditNotifications',
+  'middleware' => 'auth'
+]);
+
+Route::post('/privacy/edit', [
+  'as' => 'post.edit.privacy',
+  'uses' => 'UsersController@postEditPrivacy',
   'middleware' => 'auth'
 ]);
 
@@ -151,9 +171,9 @@ Route::post('/vinyl/create', [
   'middleware' => 'auth'
 ]);
 
-Route::get('/vinyl/add', [
-  'as' => 'get.add.vinyl',
-  'uses' => 'VinylsController@add',
+Route::get('/vinyl/import', [
+  'as' => 'get.import.vinyl',
+  'uses' => 'VinylsController@import',
   'middleware' => 'auth'
 ]);
 

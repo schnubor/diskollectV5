@@ -7,6 +7,12 @@
 @section('content')
 <div class="container-fluid">
 	<div class="row">
+		<div class="container text-center margin-top-50">
+			<a href="/"><img src="/images/logo_dark.png" alt="For the Record Logo" width="100px"></a>
+		</div>
+	</div>
+	
+	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default margin-top">
 				<div class="panel-heading">Reset Password</div>

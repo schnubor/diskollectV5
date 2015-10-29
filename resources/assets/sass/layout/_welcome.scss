@@ -1,37 +1,102 @@
 #welcome{
+  height: 100%;
+
   .header{
     background-image: url('/images/header_BG.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    padding: 40px 0;
-    height: 400px;
+    height: 100%;
     color: $white;
+    overflow: hidden;
 
-    h1{
-      text-transform: uppercase;
-      text-align: center;
-      font-size: 4em;
-      margin-top: 100px;
+    #bgvid{
+      height: 100%;
     }
 
-    h2{
-      color: $lighter-grey;
-      text-align: center;
+    .header-menu{
+      padding: 20px 40px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100px;
+
+      .logo{
+        width: 80px;
+        display: inline-block;
+
+        img{
+          width: 100%;
+        }
+      }
     }
 
-    .cta{
+    .header-content{
+      position: absolute;
+      top: calc(50% - 150px);
+      width: 100%;
+      height: 200px;
       text-align: center;
-      margin-top: 110px;
 
-      .btn.btn-primary.btn-header{
-        border: 4px solid $white;
-        border-color: $white;
-        height: 70px;
-        width: 200px;
-        line-height: 40px;
-        background-color: $orange;
-        border-radius: 0;
+      h1{
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 3em;
+      }
+
+      h2{
+        color: #808080;
+        text-align: center;
+        font-weight: lighter;
+        font-size: 2em;
+      }
+    }
+
+    .header-stats{
+      width: 100%;
+      position: absolute;
+      bottom: 20px;
+      text-align: center;
+
+      .stat{
+          width: 100px;
+          display: inline-block;
+
+          span{
+            font-size: 24px;
+          }
+
+          small{
+            font-size: 14px;
+            color: #808080;
+          }
+      }
+    }
+    
+  }
+
+  .cta{
+    text-align: center;
+    .btn.btn-primary.btn-header{
+      margin-top: 50px;
+      border: 1px solid $white;
+      height: 60px;
+      width: 200px;
+      font-weight: lighter;
+      line-height: 35px;
+      border-radius: 4px;
+      background-color: transparent;
+      transition: 0.4s all;
+
+      &.dark{
+        border: 1px solid #333;
+        color: #333;
+      }
+
+      &:hover{
+        color: $white;
+        border: 1px solid $blue;
+        background-color: $blue;
       }
     }
   }
@@ -52,45 +117,50 @@
     }
   }
 
-  .counter{
-    color: $white;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 200;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background-color: $grey;
+  .feature{
+    margin-top: 50px;
+    margin-right: 0;
+    border-bottom: 1px solid #CCC;
+    overflow: hidden;
+    height: 200px;
 
-    span{
-      font-weight: normal;
-      font-size: 42px;
+    img{
+      box-shadow: 5px 10px 15px rgba(0,0,0,.2);
+    }
+
+    .description{
+      margin-top: 20px;
     }
   }
 
+  .headline{
+    font-size: 48px;
+    margin-bottom: 0;
+  }
+
+  .subheadline{
+    font-size: 16px;
+    color: #AAA;
+    margin-bottom: 50px;
+  }
+  
   .latestVinyls{
     padding: 50px 0;
   }
 
   .latestMembers{
     padding: 50px 0;
-    text-align: center;
     background-color: $grey;
     color: $white;
-
-    .avatar{
-      margin: 0 auto 15px;
-    }
-
-    a{
-      color: $white;
-    }
   }
 
   .footer{
     padding: 20px 0 0;
 
     p{
-      line-height: 86px;
+      font-weight: lighter;
+      margin-top: 20px;
+      color: #A0A0A0;
     }
   }
 }

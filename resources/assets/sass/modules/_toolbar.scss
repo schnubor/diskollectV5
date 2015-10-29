@@ -1,21 +1,58 @@
 .toolbar{
-  background-color: $lighter-grey;
-  color: $white;
-  padding: 20px 15px;
-  height: 69px;
+  background-color: #F5F5F5;
+  color: #333;
+  padding: 0 30px;
+  height: 71px;
+  border-bottom: 1px solid #DDD;
+
+  .avatar{
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 15px;
+  }
 
   .news{
     display: inline;
     a{
       font-weight: bold;
-      color: $white;
+      color: #333;
     }
   }
 
   form{
     display: inline;
-    vertical-align: text-bottom;
-    margin-left: 10px;
+    height: 100%;
+
+    .form-group{
+      height: 100%;
+    }
+
+    .btn-follow{
+      margin-top: 18px;
+    }
+
+    input[type="text"]{
+      background-color: transparent;
+      height: 100%;
+      font-size: 18px;
+      font-weight: 100;
+      border: 0;
+      border-right: 1px solid #ddd;
+      border-radius: 0;
+      box-shadow: none;
+
+      &:nth-child(3){
+        border-right: none;
+      }
+    }
+
+    #submit-search{
+      border: 0;
+      background-color: transparent;
+      font-size: 18px;
+      color: #CCC;
+    }
+
   }
 
   .pages{
@@ -53,6 +90,9 @@
   }
 
   .lead{
+    line-height: 71px;
     margin: 0;
+    display: inline-block;
+    vertical-align: top;
   }
 }

@@ -6,6 +6,8 @@ use App\Http\Requests;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\EditPasswordRequest;
+use App\Http\Requests\EditNotificationsRequest;
+use App\Http\Requests\EditPrivacyRequest;
 use App\Http\Requests\EditProfileRequest;
 use App\Http\Controllers\Controller;
 use Mail;
@@ -200,14 +202,44 @@ class UsersController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Display followers of user.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit()
+	public function followers($id)
 	{
-		return view('user.edit'); // TODO: make view with data
+		$user = User::find($id);
+		$followers = $user->followers()->orderBy('created_at', 'DESC')->paginate(12);
+		return view('user.follower')
+			->with('user', $user)
+			->with('followers', $followers);
+	}
+
+	/**
+	 * Display users followed by user.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function following($id)
+	{
+		$user = User::find($id);
+		$followings = $user->following()->orderBy('created_at', 'DESC')->paginate(12);
+		return view('user.following')
+			->with('user', $user)
+			->with('followings', $followings);
+	}
+
+	/**
+	 * Show user settings.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function settings()
+	{
+		return view('user.settings');
 	}
 
 	/**
@@ -235,11 +267,11 @@ class UsersController extends Controller {
 
 		if($user->save()){
 			flash()->success('Profile updated successfully!');
-			return redirect()->route('home');
+			return redirect()->route('user.settings', Auth::user()->id);
 		}
 
 		flash()->error('Sorry! Please try again.');
-		return redirect()->route('home');
+		return redirect()->route('user.settings', Auth::user()->id);
 	}
 
 	/**
@@ -295,7 +327,7 @@ class UsersController extends Controller {
 			}
 
 			flash()->error('Sorry! Please try again.');
-			return reidrect()->route('password');
+			return redirect()->route('password');
 		}
 
 		flash()->error('User not found.');
@@ -330,14 +362,6 @@ class UsersController extends Controller {
 	}
 
 	/**
-	 * GET edit password form
-	 **/
-
-	public function getEditPassword(){
-		return view('user.password');
-	}
-
-	/**
 	 * POST edit password form
 	 **/
 
@@ -352,15 +376,58 @@ class UsersController extends Controller {
 
 			if($user->save()){
 				flash()->success('You successfully changed your password.');
-				return redirect()->route('home');
+				return redirect()->route('user.settings', Auth::user()->id);
 			}
 
 			flash()->error('Sorry! Please try again.');
-			return redirect()->route('home');
+			return redirect()->route('user.settings', Auth::user()->id);
 		}
 
 		flash()->error('Wrong password.');
-		return redirect()->route('get.edit.password');
+		return redirect()->route('user.settings', Auth::user()->id);
+	}
+
+	/**
+	 * POST edit notificiations form
+	 **/
+
+	public function postEditNotifications(EditNotificationsRequest $request){
+		$user = User::find(Auth::user()->id);
+		$email_new_follower = $request->input('email_new_follower');
+
+		if($email_new_follower == 'on'){
+			$user->email_new_follower = 1;
+		}
+		else{
+			$user->email_new_follower = 0;
+		}
+
+		if($user->save()){
+			flash()->success('You successfully updated your notification settings.');
+			return redirect()->route('user.settings', Auth::user());
+		}
+
+		flash()->error('Wrong password.');
+		return redirect()->route('user.settings', Auth::user()->id);
+	}
+
+	/**
+	 * POST edit privacy form
+	 **/
+
+	public function postEditPrivacy(EditPrivacyRequest $request){
+		$user = User::find(Auth::user()->id);
+
+		$user->collection_visibility = $request->input('collection_visibility');
+		$user->statistics_visibility = $request->input('statistics_visibility');
+
+		if($user->save()){
+			flash()->success('You successfully updated your notification settings.');
+			return redirect()->route('user.settings', Auth::user());
+		}
+
+		flash()->error('Wrong password.');
+		return redirect()->route('user.settings', Auth::user()->id);
 	}
 
 }

@@ -41,6 +41,7 @@ class VinylsController extends Controller {
       Session::save();
       header('Location: '.$server->getAuthorizationUrl($tempCredentials));
       $server->authorize($tempCredentials);
+      die(); // doesn't work without exiting the current script
     }
 
     // ok got temporary token
@@ -67,6 +68,7 @@ class VinylsController extends Controller {
     $user->discogs_access_token = $token->getIdentifier();
     $user->discogs_access_token_secret = $token->getSecret();
     $user->discogs_uri = $identity['resource_url'];
+    $user->discogs_username = $identity['username'];
 
     if($user->save()){
     	flash()->success('Success! You are now authenticated with Discogs.');
@@ -154,13 +156,15 @@ class VinylsController extends Controller {
 	}
 
   /**
-   * Add vinyl from search results with "edit and add".
+   * Import vinyls from Discogs.
    *
    * @return Response
    */
-  public function add()
+  public function import()
   {
-    // return create form with infos
+    $user = Auth::user();
+
+    return view('vinyl.import');
   }
 
 	/**
@@ -189,7 +193,7 @@ class VinylsController extends Controller {
     if($request->hasFile('coverFile')){
       $path = public_path() . '/images/vinyls';
       $file = $request->file('coverFile');
-      $filename = 'vinyl_' . rand(0,9999999) . '_' . $file->getClientOriginalName();
+      $filename = 'vinyl_' . time() . '_' . $file->getClientOriginalName();
       $file->move($path,$filename);
       $cover = '/images/vinyls/' . $filename;
     }
@@ -217,7 +221,8 @@ class VinylsController extends Controller {
       'catno' => $request->input('catno'),
       'releasetype' => $request->input('format'),
       'release_id' => $request->input('release_id'),
-      'discogs_uri' => $request->input('discogs_uri')
+      'discogs_uri' => $request->input('discogs_uri'),
+      'spotify_id' => $request->input('spotify_id')
     ]);
 
     if($vinyl){
@@ -307,7 +312,7 @@ class VinylsController extends Controller {
     if($request->hasFile('coverFile')){
       $path = public_path() . '/images/vinyls';
       $file = $request->file('coverFile');
-      $filename = 'vinyl_' . rand(0,9999999) . '_' . $file->getClientOriginalName();
+      $filename = 'vinyl_' . time() . '_' . $file->getClientOriginalName();
       $file->move($path,$filename);
       $cover = '/images/vinyls/' . $filename;
     }
@@ -330,6 +335,7 @@ class VinylsController extends Controller {
     $vinyl->releasetype = $request->input('format');
     $vinyl->notes = $request->input('notes');
     $vinyl->weight = $request->input('weight');
+    $vinyl->spotify_id = substr($request->input('spotify_id'), -22);
 
     if($vinyl->save()){
       $tracklistItems = $request->input('trackCount');

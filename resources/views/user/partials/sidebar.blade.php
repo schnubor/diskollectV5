@@ -1,105 +1,98 @@
-<div class="col-md-2 text-center sidebar">
-  <div class="avatar md center-block" style="background-image: url('{{ $user->image }}')"></div>
-  <p class="lead">{{ $user->username }}</p>
+<div class="text-center sidebar">
 
-  <!-- Follow Button -->
-  @if(Auth::check())
-    @unless(Auth::user()->id == $user->id)
-      @include('user.partials.follow')
-    @endunless
-  @else
-    @include('user.partials.follow')
-  @endif
+  <div class="sb-logo">
+    <a href="{{ route('home') }}"><img src="/images/logo.png" alt="Dashboard"></a>
+  </div>
   
+@if(Auth::check())
   <div class="navigation">
-    @if(Auth::check())
-      @if(Auth::user()->id == $user->id)
-        <a href="{{ route('home') }}">
-          @if(Request::url() == route('home'))
-            <div class="button active">
-          @else
-            <div class="button">
-          @endif
-            <i class="fa fa-fw fa-th-large orange"></i>
-            <span>Dashboard</span>
-            <div class="triangle"></div>
-          </div>
-        </a>
-      @endif
-    @endif
+    {{-- Avatar --}}
+    <a href="#" data-toggle="popover" title="{{ Auth::user()->username }}" data-trigger="focus" data-content="
+      <p><a href='{{ route('user.followers', Auth::user()->id) }}'>{{ Auth::user()->followers->count() }} Follower</a> &middot; <a href='{{ route('user.following', Auth::user()->id) }}''>{{ Auth::user()->following->count() }} Following</a></p>
+      <a class='btn btn-info btn-block' href='{{ route('get.logout') }}'><i class='fa fa-fw fa-sign-out'></i>Sign out</a>
+      " data-original-title="{{ Auth::user()->username }}">
+      <div class="avatar sb center-block edgy" style="background-image: url('{{ Auth::user()->image }}')"></div>
+    </a>
 
-    <a href="{{ route('user.collection', $user->id) }}">
-      @if(Request::url() == route('user.collection', $user->id))
-        <div class="button active">
+    {{-- Dashboard --}}
+    <a href="{{ route('home') }}" data-toggle="tooltip" data-placement="right" title="Dashboard" data-original-title="Dashboard">
+      @if(Request::url() == route('home'))
+        <div class="button orange active">
       @else
-        <div class="button">
+        <div class="button orange">
       @endif
-        <i class="fa fa-fw fa-database blue"></i>
-        <span>Collection</span>
-        <div class="triangle"></div>
+        <i class="fa fa-fw fa-th-large"></i>
       </div>
     </a>
 
-    <a href="{{ route('user.show', $user->id) }}">
-      @if(Request::url() == route('user.show', $user->id))
-        <div class="button active">
+    {{-- Collection --}}
+    <a href="{{ route('user.collection', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Collection" data-original-title="Collection">
+      @if(Request::url() == route('user.collection', Auth::user()->id))
+        <div class="button blue active">
       @else
-        <div class="button">
+        <div class="button blue">
       @endif
-        <i class="fa fa-fw fa-area-chart green"></i>
-        <span>Statistics</span>
-        <div class="triangle"></div>
+        <i class="fa fa-fw fa-database"></i>
       </div>
     </a>
-
-    <a href="{{ route('user.jukebox', $user->id) }}">
-      @if(Request::url() == route('user.jukebox', $user->id))
-        <div class="button active">
+    
+    {{-- Statistics --}}
+    <a href="{{ route('user.show', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Statistics" data-original-title="Statistics">
+      @if(Request::url() == route('user.show', Auth::user()->id))
+        <div class="button green active">
       @else
-        <div class="button">
+        <div class="button green">
       @endif
-        <i class="fa fa-fw fa-music purple"></i>
-        <span>Jukebox</span>
-        <div class="triangle"></div>
+        <i class="fa fa-fw fa-area-chart"></i>
+      </div>
+    </a>
+    
+    {{-- Jukebox --}}
+    <a href="{{ route('user.jukebox', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Jukebox" data-original-title="Jukebox">
+      @if(Request::url() == route('user.jukebox', Auth::user()->id))
+        <div class="button purple active">
+      @else
+        <div class="button purple">
+      @endif
+        <i class="fa fa-fw fa-music"></i>
       </div>
     </a>
   </div>
+@endif
 
-  @if(Auth::check())
-    @unless(Auth::user()->id == $user->id)
-      @if($user->name || $user->location || $user->website || $user->description)
-        <p>
-          @if($user->name)
-            <span>{{ $user->name }},</span>
-          @endif
-          @if($user->location)
-            <span>{{ $user->location }},</span>
-          @endif
-          @if($user->website)
-            <span><a href="{{ $user->website }}" target="_blank">{{ $user->website }}</a></span>
-          @endif
-          @if($user->description)
-            <hr><span>{{ $user->description }}</span>
-          @endif
-        </p>
-      @endif
-    @endunless
-  @else
-    @if($user->name || $user->location || $user->website || $user->description)
-      <p>
-        @if($user->name)
-          <span>{{ $user->name }},</span>
+  <div class="bottom-nav">
+    @if(Auth::check())
+      {{-- Settings --}}
+      <a href="{{ route('user.settings', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Settings" data-original-title="Settings">
+        @if(Request::url() == route('user.settings', Auth::user()->id))
+          <div class="button grey active">
+        @else
+          <div class="button grey">
         @endif
-        @if($user->location)
-          <span>{{ $user->location }},</span>
+          <i class="fa fa-fw fa-cogs"></i>
+        </div>
+      </a>
+
+      {{-- Add vinyl --}}
+      <a href="{{ route('get.search') }}" data-toggle="tooltip" data-placement="right" title="Add record" data-original-title="Add record">
+        <div class="button add"><i class="fa fa-fw fa-plus"></i></div>
+      </a>
+    @else
+      {{-- Register --}}
+      <a href="{{ route('register') }}" data-toggle="tooltip" data-placement="right" title="Register" data-original-title="Register">
+        @if(Request::url() == route('register'))
+          <div class="button grey active">
+        @else
+          <div class="button grey">
         @endif
-        @if($user->website)
-          <span><a href="{{ $user->website }}" target="_blank">{{ $user->website }}</a></span>
-        @endif
-        @if($user->description)
-          <hr><span>{{ $user->description }}</span>
-        @endif
-      </p>
+          <i class="fa fa-fw fa-edit"></i>
+        </div>
+      </a>
+
+      {{-- Login --}}
+      <a href="{{ route('login') }}" data-toggle="tooltip" data-placement="right" title="Login" data-original-title="Login">
+        <div class="button add"><i class="fa fa-fw fa-sign-in"></i></div>
+      </a>
     @endif
-  @endif
+  </div>
 </div>
