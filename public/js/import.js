@@ -36,5 +36,3 @@
   };
 
 }).call(this);
-
-//# sourceMappingURL=import.js.map

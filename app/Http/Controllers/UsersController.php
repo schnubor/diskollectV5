@@ -395,7 +395,7 @@ class UsersController extends Controller {
 		$user = User::find(Auth::user()->id);
 		$email_new_follower = $request->input('email_new_follower');
 
-		if($email_new_follower == 'on'){
+		if($email_new_follower === 'on'){
 			$user->email_new_follower = 1;
 		}
 		else{
