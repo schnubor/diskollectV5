@@ -468,10 +468,7 @@ p.placeholder {
       .toolbar form input[type="text"]:nth-child(3) {
         border-right: none; }
     .toolbar form #submit-search {
-      border: 0;
-      background-color: transparent;
-      font-size: 18px;
-      color: #CCC; }
+      margin-left: 20px; }
   .toolbar .pages {
     line-height: 26px;
     font-size: 16px; }

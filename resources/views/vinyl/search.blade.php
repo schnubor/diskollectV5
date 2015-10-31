@@ -18,7 +18,7 @@
           {!! Form::text('catno', Input::old('catno'), ['class' => 'form-control', 'placeholder' => 'Cat. No.']) !!}
         </div>
         @if($user->discogs_access_token)
-          {!! Form::button('<i class="fa fa-fw fa-search"></i>', ['id' => 'submit-search', 'type' => 'submit']) !!}
+          {!! Form::button('<i class="fa fa-fw fa-search"></i> Search', ['id' => 'submit-search', 'class' => 'btn btn-primary', 'type' => 'submit']) !!}
         @else
           {!! Form::button('Search', ['id' => 'submit-search', 'disabled' => 'disabled', 'type' => 'submit']) !!}
         @endif

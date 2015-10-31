@@ -299,9 +299,11 @@
 }).call(this);
 
 (function() {
-  var $results, $search, EURinGBP, EURinUSD, GBPinUSD, getMedian;
+  var $results, $search, $vinylData, EURinGBP, EURinUSD, GBPinUSD, getMedian;
 
   $results = [];
+
+  $vinylData = {};
 
   $search = null;
 
@@ -355,6 +357,7 @@
       },
       success: function(results) {
         var $index;
+        console.log(results);
         $results = results;
         $index = 0;
         return $('.loading').fadeOut(function() {
@@ -404,7 +407,7 @@
   $('#quickAddVinyl').on('hidden.bs.modal', function(e) {
     var modal;
     modal = $(this);
-    $('#modalSubmit').disabled = true;
+    $('#searchModalSubmit').disabled = true;
     $('#addVinylForm .trackInfo').remove();
     $('#currencyLabel').hide();
     modal.find('input[name="price"]').before('<input type="hidden" name="price"/>').remove();
@@ -417,7 +420,7 @@
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $catno, $color, $count, $country, $cover, $discogs_uri, $format, $genre, $label, $priceRequest, $release_id, $size, $spotify, $title, $tracklist, $type, $videos, $weight, $year, button, modal, vinyl, vinyl_index;
+    var $priceRequest, $spotify, button, modal, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
@@ -435,7 +438,7 @@
         console.log(results);
         if (results.albums.items.length) {
           $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A' + results.albums.items[0].id + '" width="598" height="380" frameborder="0" allowtransparency="true"></iframe>');
-          return modal.find('input[name="spotify_id"]').val(results.albums.items[0].id);
+          return $vinylData.spotify_id = results.albums.items[0].id;
         }
       }
     });
@@ -484,110 +487,104 @@
           $('#price').html(median + ' ' + userCurrency);
           modal.find('input[name="price"]').val(median);
         }
-        return $('#modalSubmit').disabled = false;
+        return $('#searchModalSubmit').disabled = false;
       }
     });
     if (vinyl.artists) {
-      $artist = vinyl.artists[0].name;
+      $vinylData.artist = vinyl.artists[0].name;
     } else {
-      $artist = 'unknown artist';
+      $vinylData.artist = 'unknown artist';
     }
     if (vinyl.title) {
-      $title = vinyl.title;
+      $vinylData.title = vinyl.title;
     } else {
-      $title = 'unknown title';
+      $vinylData.title = 'unknown title';
     }
     if (vinyl.images) {
-      $cover = vinyl.images[0].uri;
+      $vinylData.cover = vinyl.images[0].uri;
     } else {
-      $cover = 'images/PH_vinyl.svg';
+      $vinylData.cover = 'images/PH_vinyl.svg';
     }
     if (vinyl.labels) {
-      $label = vinyl.labels[0].name;
+      $vinylData.label = vinyl.labels[0].name;
       if (vinyl.labels[0].catno) {
-        $catno = vinyl.labels[0].catno;
+        $vinylData.catno = vinyl.labels[0].catno;
       } else {
-        $catno = 'unknown catno';
+        $vinylData.catno = 'unknown catno';
       }
     } else {
-      $label = 'unknown label';
+      $vinylData.label = 'unknown label';
     }
     if (vinyl.genres) {
-      $genre = vinyl.genres[0];
+      $vinylData.genre = vinyl.genres[0];
     } else {
-      $genre = 'unknown genre';
+      $vinylData.genre = 'unknown genre';
     }
     if (vinyl.country) {
-      $country = vinyl.country;
+      $vinylData.country = vinyl.country;
     } else {
-      $country = 'unknown country';
+      $vinylData.country = 'unknown country';
     }
     if (vinyl.year) {
-      $year = vinyl.year;
+      $vinylData.year = vinyl.year;
     } else {
-      $year = 'unknown year';
+      $vinylData.year = 'unknown year';
     }
     if (vinyl.format_quantity) {
-      $count = vinyl.format_quantity;
+      $vinylData.count = vinyl.format_quantity;
     } else {
-      $count = 'unknown quantity';
+      $vinylData.count = 'unknown quantity';
     }
     if (vinyl.estimated_weight) {
-      $weight = vinyl.estimated_weight;
+      $vinylData.weight = vinyl.estimated_weight;
     } else {
-      $weight = '0';
+      $vinylData.weight = '0';
     }
     if (vinyl.type) {
-      $type = vinyl.type;
+      $vinylData.type = vinyl.type;
     } else {
-      $type = '-';
+      $vinylData.type = '-';
     }
-    $color = '#000000';
-    $size = '12';
-    $format = 'LP';
-    $release_id = vinyl.id;
-    $discogs_uri = vinyl.uri;
+    $vinylData.color = '#000000';
+    $vinylData.size = '12';
+    $vinylData.format = 'LP';
+    $vinylData.release_id = vinyl.id;
+    $vinylData.discogs_uri = vinyl.uri;
     if (vinyl.tracklist) {
-      $tracklist = vinyl.tracklist;
+      $vinylData.tracklist = vinyl.tracklist;
     } else {
-      $tracklist = [];
+      $vinylData.tracklist = [];
     }
     if (vinyl.videos) {
-      $videos = vinyl.videos;
+      $vinylData.videos = vinyl.videos;
     } else {
-      $videos = [];
+      $vinylData.videos = [];
     }
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
-    modal.find('.modal-body .cover').html('<img src="' + $cover + '" class="thumbnail" width="100%">');
-    modal.find('input[name="artist"]').val($artist);
-    modal.find('input[name="title"]').val($title);
-    modal.find('input[name="cover"]').val($cover);
-    modal.find('input[name="label"]').val($label);
-    modal.find('input[name="catno"]').val($catno);
-    modal.find('input[name="genre"]').val($genre);
-    modal.find('input[name="country"]').val($country);
-    modal.find('input[name="year"]').val($year);
-    modal.find('input[name="count"]').val($count);
-    modal.find('input[name="color"]').val($color);
-    modal.find('input[name="format"]').val($format);
-    modal.find('input[name="size"]').val($size);
-    modal.find('input[name="weight"]').val($weight);
-    modal.find('input[name="type"]').val($type);
-    modal.find('input[name="release_id"]').val($release_id);
-    modal.find('input[name="discogs_uri"]').val($discogs_uri);
-    modal.find('input[name="trackCount"]').val($tracklist.length);
-    modal.find('input[name="videoCount"]').val($videos.length);
-    _.each($tracklist, function(track, index) {
-      modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_title" type="hidden" value="' + track.title + '"/>');
-      modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_position" type="hidden" value="' + track.position + '"/>');
-      return modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_duration" type="hidden" value="' + track.duration + '"/>');
-    });
-    return _.each($videos, function(video, index) {
-      var uri;
-      uri = "//www.youtube.com/embed/" + video.uri.substr(video.uri.length - 11);
-      modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_title" type="hidden" value="' + video.title + '"/>');
-      modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_uri" type="hidden" value="' + uri + '"/>');
-      return modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_duration" type="hidden" value="' + video.duration + '"/>');
+    return modal.find('.modal-body .cover').html('<img src="' + $vinylData.cover + '" class="thumbnail" width="100%">');
+  });
+
+  $('#searchModalSubmit').on('click', function(e) {
+    var $createVinyl, button;
+    e.preventDefault();
+    e.stopPropagation();
+    button = e.target;
+    $vinylData._token = $(button).data('token');
+    $vinylData.price = $('#quickAddVinyl').find('input[name=price]').val();
+    console.log($vinylData);
+    return $createVinyl = $.ajax({
+      url: '/vinyl/create',
+      type: 'POST',
+      data: $vinylData,
+      success: function(reponse) {
+        console.log('vinyl added!');
+        $('#quickAddVinyl').modal('hide');
+        return $('body').append('<div class="flash-message"><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>' + $vinylData.artist + ' - ' + $vinylData.title + '</b> is now in your collection.</div></div>');
+      },
+      error: function(error) {
+        console.warn(error);
+        return $('body').append('<div class="flash-message"><div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Oops! Something went wrong, please try again.</div></div>');
+      }
     });
   });
 

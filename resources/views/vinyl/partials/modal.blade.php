@@ -55,7 +55,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        {!! Form::submit('Add vinyl', ['class' => 'btn btn-primary', 'id' => 'modalSubmit']) !!}
+        {!! Form::submit('Add vinyl', ['class' => 'btn btn-primary', 'id' => 'searchModalSubmit', 'data-token' => csrf_token() ]) !!}
       </div>
       {!! Form::close() !!}
     </div>

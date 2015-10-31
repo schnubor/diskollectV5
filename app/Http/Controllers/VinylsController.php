@@ -226,28 +226,28 @@ class VinylsController extends Controller {
     ]);
 
     if($vinyl){
-      $tracklistItems = $request->input('trackCount');
-      $videoItems = $request->input('videoCount');
+      $tracklist = $request->input('tracklist');
+      $videolist = $request->input('videos');
 
       // Tracklist
-      for($i = 0; $i < $tracklistItems; $i++){
+      foreach($tracklist as $track){
         Track::create([
           'vinyl_id' => $vinyl->id,
           'artist_id' => 1,
           'artist' => $vinyl->artist,
-          'title' => $request->input('track_'.$i.'_title'),
-          'number' => $request->input('track_'.$i.'_position'),
-          'duration' => $request->input('track_'.$i.'_duration'),
+          'title' => $track['title'],
+          'number' => $track['position'],
+          'duration' => $track['duration']
         ]);
       }
 
       // Videos
-      for($i = 0; $i < $videoItems; $i++){
+      foreach($videolist as $video){
         Video::create([
           'vinyl_id' => $vinyl->id,
-          'title' => $request->input('video_'.$i.'_title'),
-          'duration' => $request->input('video_'.$i.'_duration'),
-          'uri' => $request->input('video_'.$i.'_uri')
+          'title' => $video['title'],
+          'duration' => $video['duration'],
+          'uri' => '//www.youtube.com/embed/'.substr($video['uri'], -11)
         ]);
       }
 

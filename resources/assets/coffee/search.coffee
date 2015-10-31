@@ -2,6 +2,7 @@
 # ----------------------------
 
 $results = []
+$vinylData = {}
 $search = null
 
 EURinUSD = 1.14 # USD
@@ -52,7 +53,7 @@ $('#submit-search').click (e) ->
         $('.loading').html('<p class="placeholder">Oops! <br> Try refreshing your Discogs Connection</p><a href="/oauth/discogs" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-exchange"></i> Refresh Discogs Token</a>')
 
     success: (results) -> # search results received
-      # console.log results
+      console.log results
       $results = results
       $index = 0
       $('.loading').fadeOut ->
@@ -109,7 +110,7 @@ $('#cancel-search').click ->
 
 $('#quickAddVinyl').on 'hidden.bs.modal', (e) ->
   modal = $(this)
-  $('#modalSubmit').disabled = true         # disable submit
+  $('#searchModalSubmit').disabled = true         # disable submit
   $('#addVinylForm .trackInfo').remove()    # remove track infos
   $('#currencyLabel').hide()                # remove price
   modal.find('input[name="price"]').before('<input type="hidden" name="price"/>').remove()
@@ -141,7 +142,7 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
       console.log results
       if(results.albums.items.length)
         $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A'+results.albums.items[0].id+'" width="598" height="380" frameborder="0" allowtransparency="true"></iframe>')
-        modal.find('input[name="spotify_id"]').val(results.albums.items[0].id)
+        $vinylData.spotify_id = results.albums.items[0].id
 
   # fetch price
   $priceRequest = $.ajax
@@ -193,131 +194,123 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
         modal.find('input[name="price"]').val(median)
 
       # enable submit button
-      $('#modalSubmit').disabled = false
+      $('#searchModalSubmit').disabled = false
 
   # artist
   if vinyl.artists
-    $artist = vinyl.artists[0].name
+    $vinylData.artist = vinyl.artists[0].name
   else
-    $artist = 'unknown artist'
+    $vinylData.artist = 'unknown artist'
 
   # title
   if vinyl.title
-    $title = vinyl.title
+    $vinylData.title = vinyl.title
   else
-    $title = 'unknown title'
+    $vinylData.title = 'unknown title'
 
   # cover
   if vinyl.images
-    $cover = vinyl.images[0].uri
+    $vinylData.cover = vinyl.images[0].uri
   else
-    $cover = 'images/PH_vinyl.svg'
+    $vinylData.cover = 'images/PH_vinyl.svg'
 
   # label & catno
   if vinyl.labels
-    $label = vinyl.labels[0].name
+    $vinylData.label = vinyl.labels[0].name
     if vinyl.labels[0].catno
-      $catno = vinyl.labels[0].catno
+      $vinylData.catno = vinyl.labels[0].catno
     else
-      $catno = 'unknown catno'
+      $vinylData.catno = 'unknown catno'
   else
-    $label = 'unknown label'
+    $vinylData.label = 'unknown label'
 
   # genre
   if vinyl.genres
-    $genre = vinyl.genres[0]
+    $vinylData.genre = vinyl.genres[0]
   else
-    $genre = 'unknown genre'
+    $vinylData.genre = 'unknown genre'
 
   # country
   if vinyl.country
-    $country = vinyl.country
+    $vinylData.country = vinyl.country
   else
-    $country = 'unknown country'
+    $vinylData.country = 'unknown country'
 
   # year
   if vinyl.year
-    $year = vinyl.year
+    $vinylData.year = vinyl.year
   else
-    $year = 'unknown year'
+    $vinylData.year = 'unknown year'
 
   # count
   if vinyl.format_quantity
-    $count = vinyl.format_quantity
+    $vinylData.count = vinyl.format_quantity
   else
-    $count = 'unknown quantity'
+    $vinylData.count = 'unknown quantity'
 
   # weight
   if vinyl.estimated_weight
-    $weight = vinyl.estimated_weight
+    $vinylData.weight = vinyl.estimated_weight
   else
-    $weight = '0'
+    $vinylData.weight = '0'
 
   # type
   if vinyl.type
-    $type = vinyl.type
+    $vinylData.type = vinyl.type
   else
-    $type = '-'
+    $vinylData.type = '-'
 
   # color
-  $color = '#000000'
+  $vinylData.color = '#000000'
 
   # size
-  $size = '12'
+  $vinylData.size = '12'
 
   # format
-  $format = 'LP'
+  $vinylData.format = 'LP'
 
   # release ID
-  $release_id = vinyl.id
+  $vinylData.release_id = vinyl.id
 
   # Discogs URI
-  $discogs_uri = vinyl.uri
+  $vinylData.discogs_uri = vinyl.uri
 
   # tracklist
   if vinyl.tracklist
-    $tracklist = vinyl.tracklist
+    $vinylData.tracklist = vinyl.tracklist
   else
-    $tracklist = []
+    $vinylData.tracklist = []
 
   # videos
   if vinyl.videos
-    $videos = vinyl.videos
+    $vinylData.videos = vinyl.videos
   else
-    $videos = []
+    $vinylData.videos = []
 
   # visible form data
   modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - '+ vinyl.title + '" to collection')
-  modal.find('.modal-body .cover').html('<img src="'+$cover+'" class="thumbnail" width="100%">')
-  
-  # invisible form data
-  modal.find('input[name="artist"]').val($artist)
-  modal.find('input[name="title"]').val($title)
-  modal.find('input[name="cover"]').val($cover)
-  modal.find('input[name="label"]').val($label)
-  modal.find('input[name="catno"]').val($catno)
-  modal.find('input[name="genre"]').val($genre)
-  modal.find('input[name="country"]').val($country)
-  modal.find('input[name="year"]').val($year)
-  modal.find('input[name="count"]').val($count)
-  modal.find('input[name="color"]').val($color)
-  modal.find('input[name="format"]').val($format)
-  modal.find('input[name="size"]').val($size)
-  modal.find('input[name="weight"]').val($weight)
-  modal.find('input[name="type"]').val($type)
-  modal.find('input[name="release_id"]').val($release_id)
-  modal.find('input[name="discogs_uri"]').val($discogs_uri)
-  modal.find('input[name="trackCount"]').val($tracklist.length)
-  modal.find('input[name="videoCount"]').val($videos.length)
-  _.each $tracklist, (track, index) ->
-    #console.log track
-    modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_title" type="hidden" value="'+track.title+'"/>');
-    modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_position" type="hidden" value="'+track.position+'"/>');
-    modal.find('#addVinylForm').append('<input class="trackInfo" name="track_'+index+'_duration" type="hidden" value="'+track.duration+'"/>');
-  _.each $videos, (video, index) ->
-    #console.log video
-    # rewrite uri to embed uri
-    uri = "//www.youtube.com/embed/"+video.uri.substr(video.uri.length-11)
-    modal.find('#addVinylForm').append('<input class="videoInfo" name="video_'+index+'_title" type="hidden" value="'+video.title+'"/>');
-    modal.find('#addVinylForm').append('<input class="videoInfo" name="video_'+index+'_uri" type="hidden" value="'+uri+'"/>');
-    modal.find('#addVinylForm').append('<input class="videoInfo" name="video_'+index+'_duration" type="hidden" value="'+video.duration+'"/>');
+  modal.find('.modal-body .cover').html('<img src="'+$vinylData.cover+'" class="thumbnail" width="100%">')
+
+# Submit Add Modal
+# ----------------------------
+
+$('#searchModalSubmit').on 'click', (e) ->
+  e.preventDefault()
+  e.stopPropagation()
+
+  button = e.target
+  $vinylData._token = $(button).data 'token'
+  $vinylData.price = $('#quickAddVinyl').find('input[name=price]').val()
+  console.log $vinylData
+  # fetch Spotify tracklist
+  $createVinyl = $.ajax
+    url: '/vinyl/create'
+    type: 'POST'
+    data: $vinylData
+    success: (reponse) ->
+      console.log 'vinyl added!'
+      $('#quickAddVinyl').modal('hide')
+      $('body').append '<div class="flash-message"><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>'+ $vinylData.artist + ' - ' + $vinylData.title + '</b> is now in your collection.</div></div>'
+    error: (error) ->
+      console.warn error
+      $('body').append '<div class="flash-message"><div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Oops! Something went wrong, please try again.</div></div>'
