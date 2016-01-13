@@ -29,6 +29,7 @@ elixir(function(mix) {
   mix.copy('bower_components/normalize.css/normalize.css', 'public/css/vendor/normalize.css');
   mix.copy('bower_components/bootstrap/dist/css/bootstrap.css', 'public/css/vendor/bootstrap.css');
   mix.copy('bower_components/jquery/dist/jquery.js', 'public/js/vendor/jquery.js');
+  mix.copy('bower_components/vue/dist/vue.js', 'public/js/vendor/vue.js');
   mix.copy('bower_components/bootstrap/dist/js/bootstrap.js', 'public/js/vendor/bootstrap.js');
   mix.copy('bower_components/fontawesome/fonts', 'public/css/fonts');
   mix.copy('bower_components/fontawesome/css/font-awesome.min.css', 'public/css/vendor/font-awesome.min.css');
@@ -47,6 +48,7 @@ elixir(function(mix) {
 
   mix.scripts([                       // concat scripts
     'vendor/jquery.js',
+    'vendor/vue.js',
     'vendor/bootstrap.js',
     'vendor/underscore-min.js',
     'vendor/d3.min.js',
