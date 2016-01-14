@@ -17,9 +17,9 @@ class ApiController extends Controller {
    *
    * @return Response
    */
-	public function vinyls($id){
+  public function vinyls($id){
     $user = User::find($id);
-    $vinyls = $user->vinyls;
+    $vinyls = $user->vinyls()->latest()->paginate(12);
     return $vinyls;
   }
 

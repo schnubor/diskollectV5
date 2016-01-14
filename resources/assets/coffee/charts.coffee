@@ -42,7 +42,7 @@ $.getStats = (userId) ->
           timeData_temp.push(time.format('Y'))
 
       console.log timeData_temp
-      
+
       genreData = _.chain(genreData).countBy().pairs().value()
 
       sizeData_temp = _.chain(sizeData_temp).countBy().pairs().value()
@@ -71,7 +71,7 @@ $.getStats = (userId) ->
           title: vinyls.length+' Vinyls'
           label:
             format: (value) ->
-                return value
+              return value
 
       sizeChart = c3.generate
         bindto: '#sizeChart'
