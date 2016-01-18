@@ -40,17 +40,17 @@
         </div>
       </div>
     </div>
-    
-    
+
+
     <div class="row feature">
       <div class="container">
-        <div class="col-md-4 col-md-offset-1">
+        <div class="col-md-4">
           <p class="h3">Collection Statistics.</p>
           <p class="description">
             Dive into the numbers and keep track of your progress. We will create personlized statistics for your collection, covering overall value, genre distribution, favourites and much more.
           </p>
         </div>
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-7 col-md-offset-1">
           <img src="/images/welcome/browser-stats.png" alt="Statistics" width="100%">
         </div>
       </div>
@@ -58,27 +58,27 @@
 
     <div class="row feature">
       <div class="container">
-        <div class="col-md-5 col-md-offset-1">
-          <img src="/images/welcome/browser-vinyl.png" alt="Statistics" width="100%">
-        </div>
-        <div class="col-md-4 col-md-offset-1">
+        <div class="col-md-4">
           <p class="h3">Open Data. Minimal effort.</p>
           <p class="description">
             For The Record is part of the Open Data Movement and integrates with different APIs like Discogs, iTunes or Youtube to automatically fetch all the data for your records. It also has its own API.
           </p>
+        </div>
+        <div class="col-md-7 col-md-offset-1">
+          <img src="/images/welcome/browser-vinyl.png" alt="Statistics" width="100%">
         </div>
       </div>
     </div>
 
     <div class="row feature">
       <div class="container">
-        <div class="col-md-4 col-md-offset-1">
+        <div class="col-md-4">
           <p class="h3">Collect and connect.</p>
           <p class="description">
-            Share your collection with anyone you know and follow other collectors to explore their music and discover new records. For The Record turns collecting into an collective experience. 
+            Share your collection with anyone you know and follow other collectors to explore their music and discover new records. For The Record turns collecting into an collective experience.
           </p>
         </div>
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-7 col-md-offset-1">
           <img src="/images/welcome/browser-dashboard.png" alt="Statistics" width="100%">
         </div>
       </div>
@@ -109,7 +109,7 @@
         </div>
       </div>
     </div>
-    
+
     {{-- Latest members --}}
     <div class="latestMembers">
       <div class="container">
@@ -135,7 +135,7 @@
         </div>
       </div>
     </div>
-    
+
 
     {{-- Footer --}}
     <div class="footer">
@@ -146,10 +146,10 @@
           <img src="/images/made-in-berlin-badge.png" alt="Made in Berlin" width="100">
           <br><br>
         </p>
-        
+
       </div>
     </div>
-    
+
   </div>
 @endsection
 

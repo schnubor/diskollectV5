@@ -21229,10 +21229,10 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
     var reader;
     if (input.files && input.files[0]) {
       reader = new FileReader();
-      reader.onload = function(e) {
-        return $('#vinylCover').attr('src', e.target.result);
+      return reader.onload = function(e) {
+        $('#vinylCover').attr('src', e.target.result);
+        return reader.readAsDataURL(input.files[0]);
       };
-      return reader.readAsDataURL(input.files[0]);
     }
   };
 
@@ -21728,4 +21728,5 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 }).call(this);
 
 //# sourceMappingURL=app.js.map
+
 //# sourceMappingURL=all.js.map
