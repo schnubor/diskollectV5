@@ -21,9 +21,9 @@ $.getReleases = (username, user_id) ->
                     console.log error
                 success: (response) ->
                     user_vinyls = response
-                    # imports = $.grep() 
+                    # imports = $.grep()
                     $('.js-importResults').html('<p class="placeholder">Found '+discogs_vinyls.length+' records in your Discogs collection.</p>')
-                    
+
                     $.each discogs_vinyls, (index) ->
-                        $('.js-importTable').find('tbody').append('<tr><td>'+discogs_vinyls[index].id+'</td><td>'+discogs_vinyls[index].basic_information.artists[0].name+'</td><td>'+discogs_vinyls[index].basic_information.title+'</td></tr>');
+                        $('.js-importTable').find('tbody').append('<tr><td>'+discogs_vinyls[index].id+'</td><td>'+discogs_vinyls[index].basic_information.artists[0].name+'</td><td>'+discogs_vinyls[index].basic_information.title+'</td></tr>')
                     $('.js-importTable').fadeIn()
