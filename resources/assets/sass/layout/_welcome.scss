@@ -1,167 +1,170 @@
-#welcome{
-  height: 100%;
-
-  .header{
-    background-image: url('/images/header_BG.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+#welcome {
     height: 100%;
-    color: $white;
-    overflow: hidden;
-
-    #bgvid{
-      height: 100%;
-    }
-
-    .header-menu{
-      padding: 20px 40px;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100px;
-
-      .logo{
-        width: 80px;
-        display: inline-block;
-
-        img{
-          width: 100%;
-        }
-      }
-    }
-
-    .header-content{
-      position: absolute;
-      top: calc(50% - 150px);
-      width: 100%;
-      height: 200px;
-      text-align: center;
-
-      h1{
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 3em;
-      }
-
-      h2{
-        color: #808080;
-        text-align: center;
-        font-weight: lighter;
-        font-size: 2em;
-      }
-    }
-
-    .header-stats{
-      width: 100%;
-      position: absolute;
-      bottom: 20px;
-      text-align: center;
-
-      .stat{
-          width: 100px;
-          display: inline-block;
-
-          span{
-            font-size: 24px;
-          }
-
-          small{
-            font-size: 14px;
-            color: #808080;
-          }
-      }
-    }
-
-  }
-
-  .cta{
-    text-align: center;
-    .btn.btn-primary.btn-header{
-      margin-top: 50px;
-      border: 1px solid $white;
-      height: 60px;
-      width: 200px;
-      font-weight: lighter;
-      line-height: 35px;
-      border-radius: 4px;
-      background-color: transparent;
-      transition: 0.4s all;
-
-      &.dark{
-        border: 1px solid #333;
-        color: #333;
-      }
-
-      &:hover{
+    .header {
+        background-image: url('/images/header_BG.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100%;
         color: $white;
-        border: 1px solid $blue;
-        background-color: $blue;
-      }
+        overflow: hidden;
+        #bgvid {
+            height: 100%;
+        }
+        .header-menu {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100px;
+
+            .navbar{
+                background-color: transparent;
+
+                .btn-default{
+                    background-color: transparent;
+                    border: 1px solid $white;
+                    padding: 5px 10px;
+                    font-size: 14px;
+                    margin: 10px 0;
+
+                    &:hover{
+                        background-color: $white;
+                        color: $grey;
+                    }
+                }
+
+                a{
+                    color: $white;
+                    opacity: .5;
+                    transition: .2s all;
+
+                    &:hover{
+                        opacity: 1;
+
+                    }
+                }
+            }
+        }
+        .header-content {
+            position: absolute;
+            top: calc(50% - 200px);
+            width: 100%;
+            height: 300px;
+            text-align: center;
+
+            .logo {
+                width: 150px;
+                padding: 20px 0;
+                display: inline-block;
+                img {
+                    width: 100%;
+                }
+            }
+
+            h1 {
+                font-size: 2em;
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            h2 {
+                opacity: .6;
+                text-align: center;
+                font-weight: lighter;
+                font-size: 1.4em;
+                letter-spacing: 1px;
+            }
+        }
+        .header-stats {
+            width: 100%;
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            .stat {
+                width: 100px;
+                display: inline-block;
+                span {
+                    font-size: 24px;
+                }
+                small {
+                    font-size: 14px;
+                    color: #808080;
+                }
+            }
+        }
     }
-  }
-
-  .intro{
-    color: $grey;
-    margin-top: 100px;
-    padding-bottom: 100px;
-
-    i{
-      font-size: 52px;
-      margin-bottom: 40px;
+    .cta {
+        text-align: center;
+        .btn.btn-primary.btn-header {
+            margin-top: 50px;
+            border: 1px solid $white;
+            height: 60px;
+            width: 200px;
+            font-weight: lighter;
+            line-height: 35px;
+            border-radius: 4px;
+            background-color: transparent;
+            transition: 0.4s all;
+            &.dark {
+                border: 1px solid #333;
+                color: #333;
+            }
+            &:hover {
+                color: $white;
+                border: 1px solid $blue;
+                background-color: $blue;
+            }
+        }
     }
-
-    p{
-      font-weight: 200;
-      font-size: 18px;
+    .intro {
+        color: $grey;
+        margin-top: 100px;
+        padding-bottom: 100px;
+        i {
+            font-size: 52px;
+            margin-bottom: 40px;
+        }
+        p {
+            font-weight: 200;
+            font-size: 18px;
+        }
     }
-  }
-
-  .feature{
-    margin: 0;
-    padding: 50px 0;
-    border-bottom: 1px solid #CCC;
-
-    img{
-      box-shadow: 5px 10px 15px rgba(0,0,0,.2);
+    .feature {
+        margin: 0;
+        padding: 50px 0;
+        border-bottom: 1px solid #CCC;
+        img {
+            box-shadow: 5px 10px 15px rgba(0,0,0,.2);
+        }
+        .description {
+            font-size: 18px;
+            color: $lighter-grey;
+            margin-top: 20px;
+            line-height: 2em;
+        }
     }
-
-    .description{
-      font-size: 18px;
-      color: grey;
-      margin-top: 20px;
-      line-height: 2em;
+    .headline {
+        font-size: 48px;
+        margin-bottom: 0;
     }
-  }
-
-  .headline{
-    font-size: 48px;
-    margin-bottom: 0;
-  }
-
-  .subheadline{
-    font-size: 16px;
-    color: #AAA;
-    margin-bottom: 50px;
-  }
-
-  .latestVinyls{
-    padding: 50px 0;
-  }
-
-  .latestMembers{
-    padding: 50px 0;
-    background-color: $grey;
-    color: $white;
-  }
-
-  .footer{
-    padding: 20px 0 0;
-
-    p{
-      font-weight: lighter;
-      margin-top: 20px;
-      color: #A0A0A0;
+    .subheadline {
+        font-size: 16px;
+        color: #AAA;
+        margin-bottom: 50px;
     }
-  }
+    .latestVinyls {
+        padding: 50px 0;
+    }
+    .latestMembers {
+        padding: 50px 0;
+        background-color: $grey;
+        color: $white;
+    }
+    .footer {
+        padding: 20px 0 0;
+        p {
+            font-weight: lighter;
+            margin-top: 20px;
+            color: #A0A0A0;
+        }
+    }
 }

@@ -8,7 +8,7 @@
 }).call(this);
 
 (function() {
-  $.getStats = function(userId) {
+  mysq$.getStats = function(userId) {
     var $vinyls;
     console.log('user: ' + userId);
     return $vinyls = $.ajax({
@@ -315,11 +315,9 @@
 
   getMedian = function(values) {
     var half;
-    values.sort((function(_this) {
-      return function(a, b) {
-        return a - b;
-      };
-    })(this));
+    values.sort(function(a, b) {
+      return a - b;
+    });
     half = Math.floor(values.length / 2);
     if (values.length % 2) {
       return values[half];
