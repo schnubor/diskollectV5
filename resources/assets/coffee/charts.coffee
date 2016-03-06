@@ -1,4 +1,4 @@
-mysq$.getStats = (userId) ->
+$.getStats = (userId) ->
     console.log 'user: '+userId
 
     $vinyls = $.ajax
@@ -9,8 +9,6 @@ mysq$.getStats = (userId) ->
             console.log status
             console.log error
         success: (vinyls) -> # search results received
-            #console.log vinyls
-
             genreData = []
 
             sizeData = [
@@ -25,11 +23,12 @@ mysq$.getStats = (userId) ->
             ]
             timeData_temp = []
 
+            vinyls = vinyls.data
+
             _.each vinyls, (vinyl) ->
                 # --- Genre --------------------------------
                 genre = vinyl.genre.split(';')[0]
-                if genre == ""
-                    genre = "unknown"
+                genre = "unknown" if genre is ""
                 genreData.push(genre)
 
                 # --- Size --------------------------------
@@ -55,9 +54,7 @@ mysq$.getStats = (userId) ->
                 timeData[0].push(timeArray[0])
                 timeData[1].push(timeArray[1])
 
-
             console.log timeData
-
 
             # --- Charts --------------------------------
             genreChart = c3.generate

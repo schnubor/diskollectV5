@@ -7600,7 +7600,7 @@ p.placeholder {
       margin-top: 10px; }
   .sidebar .bottom-nav {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     width: 100%; }
   .sidebar p.lead {
     margin-top: 15px;
@@ -7624,7 +7624,8 @@ p.placeholder {
       .sidebar small a:hover {
         text-decoration: none; }
   .sidebar hr {
-    border-top: 1px solid #3E4545; }
+    border-top: 1px solid #3E4545;
+    margin: 10px; }
   .sidebar form {
     margin-bottom: 10px; }
   .sidebar .navigation {
@@ -7652,15 +7653,20 @@ p.placeholder {
     font-size: 16px;
     color: #808080;
     background-color: #3E4545; }
-    .sidebar .button:hover, .sidebar .button.active {
+    .sidebar .button:hover,
+    .sidebar .button.active {
       background-color: #111313; }
-      .sidebar .button:hover.orange, .sidebar .button.active.orange {
+      .sidebar .button:hover.orange,
+      .sidebar .button.active.orange {
         color: #E08447; }
-      .sidebar .button:hover.blue, .sidebar .button.active.blue {
+      .sidebar .button:hover.blue,
+      .sidebar .button.active.blue {
         color: #1E89B7; }
-      .sidebar .button:hover.green, .sidebar .button.active.green {
+      .sidebar .button:hover.green,
+      .sidebar .button.active.green {
         color: #6EB85F; }
-      .sidebar .button:hover.purple, .sidebar .button.active.purple {
+      .sidebar .button:hover.purple,
+      .sidebar .button.active.purple {
         color: #9D3F51; }
     .sidebar .button.add {
       background-color: #1E89B7;

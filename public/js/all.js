@@ -21117,7 +21117,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 }).call(this);
 
 (function() {
-  mysq$.getStats = function(userId) {
+  $.getStats = function(userId) {
     var $vinyls;
     console.log('user: ' + userId);
     return $vinyls = $.ajax({
@@ -21135,6 +21135,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
         sizeData_temp = [];
         timeData = [['x'], ['vinyls']];
         timeData_temp = [];
+        vinyls = vinyls.data;
         _.each(vinyls, function(vinyl) {
           var genre, size, time;
           genre = vinyl.genre.split(';')[0];
