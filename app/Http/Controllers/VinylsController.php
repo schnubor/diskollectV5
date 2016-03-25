@@ -228,25 +228,29 @@ class VinylsController extends Controller
             $videolist = $request->input('videos');
 
             // Tracklist
-            foreach ($tracklist as $track) {
-                Track::create([
-                    'vinyl_id' => $vinyl->id,
-                    'artist_id' => 1,
-                    'artist' => $vinyl->artist,
-                    'title' => $track['title'],
-                    'number' => $track['position'],
-                    'duration' => $track['duration'],
-                ]);
+            if(isset($tracklist)){
+                foreach ($tracklist as $track) {
+                    Track::create([
+                        'vinyl_id' => $vinyl->id,
+                        'artist_id' => 1,
+                        'artist' => $vinyl->artist,
+                        'title' => $track['title'],
+                        'number' => $track['position'],
+                        'duration' => $track['duration'],
+                    ]);
+                }
             }
 
             // Videos
-            foreach ($videolist as $video) {
-                Video::create([
-                    'vinyl_id' => $vinyl->id,
-                    'title' => $video['title'],
-                    'duration' => $video['duration'],
-                    'uri' => '//www.youtube.com/embed/'.substr($video['uri'], -11),
-                ]);
+            if(isset($videolist)){
+                foreach ($videolist as $video) {
+                    Video::create([
+                        'vinyl_id' => $vinyl->id,
+                        'title' => $video['title'],
+                        'duration' => $video['duration'],
+                        'uri' => '//www.youtube.com/embed/'.substr($video['uri'], -11),
+                    ]);
+                }
             }
 
             flash()->success('Success! '.$request->input('artist').' - '.$request->input('title').' is now in your collection.');
