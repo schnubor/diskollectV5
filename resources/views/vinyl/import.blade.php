@@ -12,7 +12,7 @@
     <div class="col-md-12 content">
       <div class="col-md-12 js-importResults">
         @if(Auth::user()->discogs_username)
-          <button class="btn btn-primary js-startImport"><i class="fa fa-fw fa-download"></i> Scan Discogs</button>
+          <button class="btn btn-lg btn-primary js-startImport"><i class="fa fa-fw fa-download"></i> Scan Discogs</button>
         @else
           <a href="{{ route('get.oAuthDiscogs') }}" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-exchange"></i> Authorize with Discogs</a>
         @endif
@@ -27,13 +27,13 @@
             </tr>
           </thead>
           <tbody>
-            
+
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  
+
   {{-- Sidebar --}}
   @include('user.partials.sidebar')
 

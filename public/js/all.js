@@ -21276,6 +21276,10 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 }).call(this);
 
 (function() {
+  var discogs_vinyls;
+
+  discogs_vinyls = 0;
+
   $.getReleases = function(username, user_id) {
     var $discogs;
     $('.js-startImport').fadeOut(400, function() {
@@ -21289,7 +21293,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
         return console.log(error);
       },
       success: function(response) {
-        var $api, discogs_vinyls, user_vinyls;
+        var $api, user_vinyls;
         discogs_vinyls = response.releases;
         user_vinyls = null;
         return $api = $.ajax({
@@ -21301,7 +21305,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
           },
           success: function(response) {
             user_vinyls = response;
-            $('.js-importResults').html('<p class="placeholder">Found ' + discogs_vinyls.length + ' records in your Discogs collection.</p>');
+            $('.js-importResults').html('<p class="placeholder">Found ' + discogs_vinyls.length + ' records in your Discogs collection.</p><button class="btn btn-primary btn-lg js-startMapping">Start mapping</button>');
             $.each(discogs_vinyls, function(index) {
               return $('.js-importTable').find('tbody').append('<tr><td>' + discogs_vinyls[index].id + '</td><td>' + discogs_vinyls[index].basic_information.artists[0].name + '</td><td>' + discogs_vinyls[index].basic_information.title + '</td></tr>');
             });
@@ -21311,6 +21315,16 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
       }
     });
   };
+
+  $('js-startMapping').on('click', function() {
+    var counter;
+    counter = 0;
+    return processNext(counter);
+  });
+
+  ({
+    processNext: function(n) {}
+  });
 
 }).call(this);
 

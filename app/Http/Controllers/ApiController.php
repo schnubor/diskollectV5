@@ -9,6 +9,7 @@ use Discogs;
 use GuzzleHttp;
 use League;
 use Illuminate\Http\Request;
+use Auth;
 
 class ApiController extends Controller {
 
@@ -71,5 +72,33 @@ class ApiController extends Controller {
     $identity = $client->getOAuthIdentity();
 
     return $identity['username'];
+  }
+
+  /**
+   * Get ID from Discogs
+   *
+   * @return Response
+   */
+  public function getDiscogsId($id){
+    $user = Auth::user();
+
+    $client = Discogs\ClientFactory::factory([
+    'defaults' => [
+       'headers' => ['User-Agent' => 'Diskollect/0.1 +https://www.diskollect.com'],
+    ],
+    ]);
+    $client->getHttpClient()->getEmitter()->attach(new Discogs\Subscriber\ThrottleSubscriber());
+
+    $oauth = new GuzzleHttp\Subscriber\Oauth\Oauth1([
+      'consumer_key' => env('DC_CONSUMER_KEY'), // from Discogs developer page
+      'consumer_secret' => env('DC_CONSUMER_SECRET'), // from Discogs developer page
+      'token' => $user->discogs_access_token, // get this using a OAuth library
+      'token_secret' => $user->discogs_access_token_secret, // get this using a OAuth library
+    ]);
+    $client->getHttpClient()->getEmitter()->attach($oauth);
+
+    $data = $client->getRelease(['id' => $id]);
+
+    return $data;
   }
 }

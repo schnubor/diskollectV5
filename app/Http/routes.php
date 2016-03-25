@@ -44,6 +44,11 @@ Route::get('/api/vinyl/{id}/tracks', [
   'uses' => 'ApiController@tracks'
 ]);
 
+Route::get('/api/discogs/{id}', [
+    'as' => 'api.discogs',
+    'uses' => 'ApiController@getDiscogsId'
+]);
+
 /**
  * User
  */

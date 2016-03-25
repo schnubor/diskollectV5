@@ -38,6 +38,7 @@
             </div>
             <div class="search-results row">
                 <div class="col-md-12 text-center search-help">
+                    <p class="placeholder">You may also</p>
                     <p class="placeholder">
                         <a href="{{ route('get.create.vinyl') }}" class="btn btn-lg btn-default"><i class="fa fa-fw fa-edit"></i> Add vinyl manually</a>
                         <span style="padding: 0 10px; font-size: 18px; color: #DDD;">or</span>
