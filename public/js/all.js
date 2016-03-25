@@ -21528,7 +21528,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $priceRequest, $spotify, button, modal, vinyl, vinyl_index;
+    var $priceRequest, $spotify, button, i, key, len, modal, ref, tmpTracklist, track, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
@@ -21551,7 +21551,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
       }
     });
     $priceRequest = $.ajax({
-      url: '//api.discogs.com/marketplace/search?release_id=' + vinyl.id,
+      url: 'https://api.discogs.com/marketplace/search?release_id=' + vinyl.id,
       type: 'GET',
       dataType: 'JSON',
       error: function(x, status, error) {
@@ -21659,7 +21659,18 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
     $vinylData.release_id = vinyl.id;
     $vinylData.discogs_uri = vinyl.uri;
     if (vinyl.tracklist) {
-      $vinylData.tracklist = vinyl.tracklist;
+      tmpTracklist = [];
+      ref = vinyl.tracklist;
+      for (key = i = 0, len = ref.length; i < len; key = ++i) {
+        track = ref[key];
+        console.log(key, track);
+        tmpTracklist.push({
+          duration: track.duration,
+          position: track.position,
+          title: track.title
+        });
+      }
+      $vinylData.tracklist = tmpTracklist;
     } else {
       $vinylData.tracklist = [];
     }

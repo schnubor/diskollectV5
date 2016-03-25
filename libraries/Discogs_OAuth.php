@@ -25,17 +25,17 @@ class Discogs extends Server
 
     public function urlTemporaryCredentials()
     {
-        return 'http://api.discogs.com/oauth/request_token';
+        return 'https://api.discogs.com/oauth/request_token';
     }
 
     public function urlAuthorization()
     {
-        return 'http://discogs.com/oauth/authorize';
+        return 'https://discogs.com/oauth/authorize';
     }
 
     public function urlTokenCredentials()
     {
-        return 'http://api.discogs.com/oauth/access_token';
+        return 'https://api.discogs.com/oauth/access_token';
     }
 
     public function userDetails($data, TokenCredentials $tokenCredentials) {}

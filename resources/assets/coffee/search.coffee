@@ -146,7 +146,7 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
 
     # fetch price
     $priceRequest = $.ajax
-        url: '//api.discogs.com/marketplace/search?release_id='+vinyl.id
+        url: 'https://api.discogs.com/marketplace/search?release_id='+vinyl.id
         type: 'GET'
         dataType: 'JSON'
         error: (x,status,error) ->
@@ -277,7 +277,14 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
 
     # tracklist
     if vinyl.tracklist
-        $vinylData.tracklist = vinyl.tracklist
+        tmpTracklist = []
+        for track, key in vinyl.tracklist
+            console.log key, track
+            tmpTracklist.push
+                duration: track.duration
+                position: track.position
+                title: track.title
+        $vinylData.tracklist = tmpTracklist
     else
         $vinylData.tracklist = []
 

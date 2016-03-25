@@ -26,14 +26,14 @@
           </div>
         @endforeach
       </div>
-        
+
       {{-- Right side --}}
       <div class="col-md-6">
         {{-- Details --}}
         <div class="panel panel-default">
           <div class="panel-heading">Vinyl Details</div>
           <ul class="list-group">
-            <li class="list-group-item"><p class="h2 text-center">{{ $vinyl->price.$user->currency }}</p></li>
+            <li class="list-group-item"><p class="h2 text-center">{{ number_format($vinyl->price, 2).$user->currency }}</p></li>
           </ul>
           <table class="table table-bordered">
             <tr>
@@ -132,11 +132,11 @@
             {!! Form::close() !!}
           </div>
         @endif
-      
+
       </div>
     </div>
   </div>
-  
+
   <!-- Sidebar -->
   @include('user.partials.sidebar')
 @endsection
