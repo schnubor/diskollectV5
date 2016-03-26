@@ -8,5 +8,7 @@ $.getStatus = (userId) ->
             console.log error
             $('.js-connectionStatus').removeClass('btn-info').addClass('btn-danger').html('<i class="fa fa-fw fa-exclamation-circle"></i> Not connected')
             $('.js-connectionAction').removeClass 'hidden'
+            return false
         success: (response) -> # connected
             $('.js-connectionStatus').removeClass('btn-info').addClass('btn-success').html('<i class="fa fa-fw fa-check"></i> Connected')
+            return true

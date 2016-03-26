@@ -17,6 +17,11 @@
           <a href="{{ route('get.oAuthDiscogs') }}" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-exchange"></i> Authorize with Discogs</a>
         @endif
       </div>
+      <div class="col-md-12 js-importProgress" style="display: none;">
+          <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div>
+          </div>
+      </div>
       <div class="col-md-12">
         <table class="table table-striped js-importTable" style="display: none;">
           <thead>

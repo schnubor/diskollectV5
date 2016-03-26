@@ -156,10 +156,12 @@
         console.log(status);
         console.log(error);
         $('.js-connectionStatus').removeClass('btn-info').addClass('btn-danger').html('<i class="fa fa-fw fa-exclamation-circle"></i> Not connected');
-        return $('.js-connectionAction').removeClass('hidden');
+        $('.js-connectionAction').removeClass('hidden');
+        return false;
       },
       success: function(response) {
-        return $('.js-connectionStatus').removeClass('btn-info').addClass('btn-success').html('<i class="fa fa-fw fa-check"></i> Connected');
+        $('.js-connectionStatus').removeClass('btn-info').addClass('btn-success').html('<i class="fa fa-fw fa-check"></i> Connected');
+        return true;
       }
     });
   };
@@ -209,11 +211,15 @@
 
   $('.js-importResults').on('click', '.js-startMapping', function() {
     console.log("Starting Mapping ...");
+    $('.js-startMapping').hide();
+    $('.js-importProgress').show();
     return processNext(0);
   });
 
   processNext = function(n) {
     console.log("Processing vinyl index " + n);
+    $('.js-importProgress .progress-bar').css('width', ((100 * n) / discogs_vinyls.length) + "%");
+    $('.js-importProgress .progress-bar').text(((100 * n) / discogs_vinyls.length) + "%");
     if (n < discogs_vinyls.length) {
       return $.ajax({
         url: "/api/discogs/" + discogs_vinyls[n].id,

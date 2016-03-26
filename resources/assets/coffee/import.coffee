@@ -37,12 +37,18 @@ $.getReleases = (username, user_id) ->
 # ----------------------------
 $('.js-importResults').on 'click', '.js-startMapping', ->
     console.log "Starting Mapping ..."
+    $('.js-startMapping').hide()
+    $('.js-importProgress').show()
     processNext(0)
 
 # Add vinyl n from discogs collection
 # -----------------------------------
 processNext = (n) ->
     console.log "Processing vinyl index #{n}"
+    # update progress bar
+    $('.js-importProgress .progress-bar').css('width', "#{(100 * n) / discogs_vinyls.length}%" )
+    $('.js-importProgress .progress-bar').text("#{(100 * n) / discogs_vinyls.length}%")
+
     if n < discogs_vinyls.length
         $.ajax
             url: "/api/discogs/#{discogs_vinyls[n].id}"
