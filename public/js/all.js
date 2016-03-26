@@ -21276,7 +21276,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 }).call(this);
 
 (function() {
-  var discogs_vinyls;
+  var discogs_vinyls, processNext;
 
   discogs_vinyls = 0;
 
@@ -21316,15 +21316,128 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
     });
   };
 
-  $('js-startMapping').on('click', function() {
-    var counter;
-    counter = 0;
-    return processNext(counter);
+  $('.js-importResults').on('click', '.js-startMapping', function() {
+    console.log("Starting Mapping ...");
+    return processNext(0);
   });
 
-  ({
-    processNext: function(n) {}
-  });
+  processNext = function(n) {
+    console.log("Processing vinyl index " + n);
+    if (n < discogs_vinyls.length) {
+      return $.ajax({
+        url: "/api/discogs/" + discogs_vinyls[n].id,
+        type: "GET",
+        error: function(x, status, error) {
+          console.log(status);
+          return console.log(error);
+        },
+        success: function(vinyl) {
+          var $vinylData, i, key, len, ref, tmpTracklist, track;
+          $vinylData = {};
+          $vinylData._token = $('meta[name=csrf-token]').attr('content');
+          $vinylData.price = 10;
+          if (vinyl.artists) {
+            $vinylData.artist = vinyl.artists[0].name;
+          } else {
+            $vinylData.artist = 'unknown artist';
+          }
+          if (vinyl.title) {
+            $vinylData.title = vinyl.title;
+          } else {
+            $vinylData.title = 'unknown title';
+          }
+          if (vinyl.images) {
+            $vinylData.cover = vinyl.images[0].uri;
+          } else {
+            $vinylData.cover = 'images/PH_vinyl.svg';
+          }
+          if (vinyl.labels) {
+            $vinylData.label = vinyl.labels[0].name;
+            if (vinyl.labels[0].catno) {
+              $vinylData.catno = vinyl.labels[0].catno;
+            } else {
+              $vinylData.catno = 'unknown catno';
+            }
+          } else {
+            $vinylData.label = 'unknown label';
+          }
+          if (vinyl.genres) {
+            $vinylData.genre = vinyl.genres[0];
+          } else {
+            $vinylData.genre = 'unknown genre';
+          }
+          if (vinyl.country) {
+            $vinylData.country = vinyl.country;
+          } else {
+            $vinylData.country = 'unknown country';
+          }
+          if (vinyl.year) {
+            $vinylData.year = vinyl.year;
+          } else {
+            $vinylData.year = 'unknown year';
+          }
+          if (vinyl.format_quantity) {
+            $vinylData.count = vinyl.format_quantity;
+          } else {
+            $vinylData.count = 'unknown quantity';
+          }
+          if (vinyl.estimated_weight) {
+            $vinylData.weight = vinyl.estimated_weight;
+          } else {
+            $vinylData.weight = '0';
+          }
+          if (vinyl.type) {
+            $vinylData.type = vinyl.type;
+          } else {
+            $vinylData.type = '-';
+          }
+          $vinylData.color = '#000000';
+          $vinylData.size = '12';
+          $vinylData.format = 'LP';
+          $vinylData.release_id = vinyl.id;
+          $vinylData.discogs_uri = vinyl.uri;
+          if (vinyl.tracklist) {
+            tmpTracklist = [];
+            ref = vinyl.tracklist;
+            for (key = i = 0, len = ref.length; i < len; key = ++i) {
+              track = ref[key];
+              tmpTracklist.push({
+                duration: track.duration,
+                position: track.position,
+                title: track.title
+              });
+            }
+            $vinylData.tracklist = tmpTracklist;
+          } else {
+            $vinylData.tracklist = [];
+          }
+          if (vinyl.videos) {
+            $vinylData.videos = vinyl.videos;
+          } else {
+            $vinylData.videos = [];
+          }
+          $.ajaxSetup({
+            headers: {
+              'X-XSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+          });
+          return $.ajax({
+            url: '/vinyl/create',
+            type: 'POST',
+            data: $vinylData,
+            success: function(reponse) {
+              console.log("vinyl " + n + " added!");
+              n++;
+              return processNext(n);
+            },
+            error: function(error) {
+              return console.warn(error);
+            }
+          });
+        }
+      });
+    }
+  };
 
 }).call(this);
 

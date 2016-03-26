@@ -306,7 +306,7 @@ $('#searchModalSubmit').on 'click', (e) ->
     e.stopPropagation()
 
     button = e.target
-    $vinylData._token = $(button).data 'token'
+    $vinylData._token = $(button).data 'token' # attach CSRF token
     $vinylData.price = $('#quickAddVinyl').find('input[name=price]').val()
     console.log $vinylData
     # fetch Spotify tracklist

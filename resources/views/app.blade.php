@@ -8,6 +8,7 @@
 
 	<link rel="stylesheet" href="{{ elixir("css/all.css") }}">
 	<link rel="stylesheet" href="/css/vendor/font-awesome.min.css">
+	<meta name="csrf-token" content="<?php echo csrf_token() ?>"/>
 
 	<!-- Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
