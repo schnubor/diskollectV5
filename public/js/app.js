@@ -169,9 +169,11 @@
 }).call(this);
 
 (function() {
-  var discogs_vinyls, processNext;
+  var discogs_vinyls, processNext, vinylsToImport;
 
-  discogs_vinyls = 0;
+  discogs_vinyls = [];
+
+  vinylsToImport = [];
 
   $.getReleases = function(username, user_id) {
     var $discogs;
@@ -197,8 +199,31 @@
             return console.log(error);
           },
           success: function(response) {
-            user_vinyls = response;
-            $('.js-importResults').html('<p class="placeholder">Found ' + discogs_vinyls.length + ' records in your Discogs collection.</p><button class="btn btn-primary btn-lg js-startMapping">Start mapping</button>');
+            var alreadyInCollection, discogs_vinyl, i, j, len, len1, onlyInA, onlyInB, user_vinyl;
+            user_vinyls = response.data;
+            console.log(user_vinyls, discogs_vinyls);
+            alreadyInCollection = [];
+            for (i = 0, len = discogs_vinyls.length; i < len; i++) {
+              discogs_vinyl = discogs_vinyls[i];
+              for (j = 0, len1 = user_vinyls.length; j < len1; j++) {
+                user_vinyl = user_vinyls[j];
+                if (discogs_vinyl.id === parseInt(user_vinyl.release_id)) {
+                  alreadyInCollection.push(discogs_vinyl);
+                }
+              }
+            }
+            onlyInA = alreadyInCollection.filter(function(current) {
+              return discogs_vinyls.filter(function(current_b) {
+                return current_b.id === current.id;
+              }).length === 0;
+            });
+            onlyInB = discogs_vinyls.filter(function(current) {
+              return alreadyInCollection.filter(function(current_a) {
+                return current_a.id === current.id;
+              }).length === 0;
+            });
+            vinylsToImport = onlyInA.concat(onlyInB);
+            $('.js-importResults').html('<p class="placeholder">Found ' + discogs_vinyls.length + ' records in your Discogs collection. ' + alreadyInCollection.length + ' of them are already in your collection.</p><button class="btn btn-primary btn-lg js-startMapping">Start mapping</button>');
             $.each(discogs_vinyls, function(index) {
               return $('.js-importTable').find('tbody').append('<tr><td>' + discogs_vinyls[index].id + '</td><td>' + discogs_vinyls[index].basic_information.artists[0].name + '</td><td>' + discogs_vinyls[index].basic_information.title + '</td></tr>');
             });
@@ -218,11 +243,11 @@
 
   processNext = function(n) {
     console.log("Processing vinyl index " + n);
-    $('.js-importProgress .progress-bar').css('width', ((100 * n) / discogs_vinyls.length) + "%");
-    $('.js-importProgress .progress-bar').text(((100 * n) / discogs_vinyls.length) + "%");
-    if (n < discogs_vinyls.length) {
+    $('.js-importProgress .progress-bar').css('width', ((100 * n) / vinylsToImport.length) + "%");
+    $('.js-importProgress .progress-bar').text((Math.round(((100 * n) / vinylsToImport.length) * 100) / 100) + "%");
+    if (n < vinylsToImport.length) {
       return $.ajax({
-        url: "/api/discogs/" + discogs_vinyls[n].id,
+        url: "/api/discogs/" + vinylsToImport[n].id,
         type: "GET",
         error: function(x, status, error) {
           console.log(status);

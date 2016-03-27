@@ -1,4 +1,5 @@
-discogs_vinyls = 0
+discogs_vinyls = []
+vinylsToImport = []
 
 # Get vinyls from discogs collection
 # ----------------------------------
@@ -24,9 +25,30 @@ $.getReleases = (username, user_id) ->
                     console.log status
                     console.log error
                 success: (response) ->
-                    user_vinyls = response
+                    user_vinyls = response.data
+                    console.log user_vinyls, discogs_vinyls
 
-                    $('.js-importResults').html('<p class="placeholder">Found '+discogs_vinyls.length+' records in your Discogs collection.</p><button class="btn btn-primary btn-lg js-startMapping">Start mapping</button>')
+                    alreadyInCollection = []
+                    for discogs_vinyl in discogs_vinyls
+                        for user_vinyl in user_vinyls
+                            alreadyInCollection.push discogs_vinyl if discogs_vinyl.id is parseInt user_vinyl.release_id
+
+                    # remove vinyls that are already in collection
+                    onlyInA = alreadyInCollection.filter((current) ->
+                        return discogs_vinyls.filter((current_b) ->
+                            return current_b.id == current.id
+                        ).length == 0
+                    )
+
+                    onlyInB = discogs_vinyls.filter((current) ->
+                        return alreadyInCollection.filter((current_a) ->
+                            return current_a.id == current.id
+                        ).length == 0
+                    )
+
+                    vinylsToImport = onlyInA.concat(onlyInB)
+
+                    $('.js-importResults').html('<p class="placeholder">Found ' + discogs_vinyls.length + ' records in your Discogs collection. ' + alreadyInCollection.length + ' of them are already in your collection.</p><button class="btn btn-primary btn-lg js-startMapping">Start mapping</button>')
 
                     # create results table
                     $.each discogs_vinyls, (index) ->
@@ -46,12 +68,12 @@ $('.js-importResults').on 'click', '.js-startMapping', ->
 processNext = (n) ->
     console.log "Processing vinyl index #{n}"
     # update progress bar
-    $('.js-importProgress .progress-bar').css('width', "#{(100 * n) / discogs_vinyls.length}%" )
-    $('.js-importProgress .progress-bar').text("#{(100 * n) / discogs_vinyls.length}%")
+    $('.js-importProgress .progress-bar').css('width', "#{(100 * n) / vinylsToImport.length}%" )
+    $('.js-importProgress .progress-bar').text("#{Math.round(((100 * n) / vinylsToImport.length) * 100) / 100}%")
 
-    if n < discogs_vinyls.length
+    if n < vinylsToImport.length
         $.ajax
-            url: "/api/discogs/#{discogs_vinyls[n].id}"
+            url: "/api/discogs/#{vinylsToImport[n].id}"
             type: "GET"
             error: (x,status,error) ->
                 console.log status
