@@ -16,6 +16,7 @@ elixir(function(mix) {
   mix.sass('app.scss');               // compile sass
   mix.coffee([
     'app.coffee',
+    'helper.coffee',
     'charts.coffee',
     'createVinyl.coffee',
     'getStatus.coffee',

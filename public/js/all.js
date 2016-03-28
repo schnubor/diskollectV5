@@ -21117,6 +21117,155 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 }).call(this);
 
 (function() {
+  var getMedian;
+
+  getMedian = function(values) {
+    var half;
+    values.sort(function(a, b) {
+      return a - b;
+    });
+    half = Math.floor(values.length / 2);
+    if (values.length % 2) {
+      return values[half];
+    } else {
+      return (values[half - 1] + values[half]) / 2.0;
+    }
+  };
+
+  $.fetchPrice = function(id, userCurrency, callback) {
+    var EURinGBP, EURinUSD, GBPinUSD;
+    EURinUSD = 1.12;
+    EURinGBP = 0.79;
+    GBPinUSD = 1.42;
+    return $.ajax({
+      url: "https://api.discogs.com/marketplace/search?release_id=" + id,
+      type: 'GET',
+      dataType: 'JSON',
+      error: function(x, status, error) {
+        console.log(status);
+        return console.log(error);
+      },
+      success: function(prices) {
+        var median, values;
+        values = [];
+        median = 0;
+        _.each(prices, function(price) {
+          var currency;
+          currency = price.currency;
+          switch (price.currency) {
+            case 'EUR':
+              return values.push(parseInt(price.price.substr(1)));
+            case 'GBP':
+              return values.push(parseInt(price.price.substr(1)) / EURinGBP);
+            case 'USD':
+              return values.push(parseInt(price.price.substr(1)) / EURinUSD);
+          }
+        });
+        median = getMedian(values).toFixed(2);
+        switch (userCurrency) {
+          case 'EUR':
+            median = median;
+            break;
+          case 'GBP':
+            median = median * EURinGBP;
+            break;
+          case 'USD':
+            median = median * EURinUSD;
+        }
+        return callback(median);
+      }
+    });
+  };
+
+  $.mapVinylData = function(vinyl) {
+    var $vinylData, i, key, len, ref, tmpTracklist, track;
+    $vinylData = {};
+    if (vinyl.artists) {
+      $vinylData.artist = vinyl.artists[0].name;
+    } else {
+      $vinylData.artist = 'unknown artist';
+    }
+    if (vinyl.title) {
+      $vinylData.title = vinyl.title;
+    } else {
+      $vinylData.title = 'unknown title';
+    }
+    if (vinyl.images) {
+      $vinylData.cover = vinyl.images[0].uri;
+    } else {
+      $vinylData.cover = 'images/PH_vinyl.svg';
+    }
+    if (vinyl.labels) {
+      $vinylData.label = vinyl.labels[0].name;
+      if (vinyl.labels[0].catno) {
+        $vinylData.catno = vinyl.labels[0].catno;
+      } else {
+        $vinylData.catno = 'unknown catno';
+      }
+    } else {
+      $vinylData.label = 'unknown label';
+    }
+    if (vinyl.genres) {
+      $vinylData.genre = vinyl.genres[0];
+    } else {
+      $vinylData.genre = 'unknown genre';
+    }
+    if (vinyl.country) {
+      $vinylData.country = vinyl.country;
+    } else {
+      $vinylData.country = 'unknown country';
+    }
+    if (vinyl.year) {
+      $vinylData.year = vinyl.year;
+    } else {
+      $vinylData.year = 'unknown year';
+    }
+    if (vinyl.format_quantity) {
+      $vinylData.count = vinyl.format_quantity;
+    } else {
+      $vinylData.count = 'unknown quantity';
+    }
+    if (vinyl.estimated_weight) {
+      $vinylData.weight = vinyl.estimated_weight;
+    } else {
+      $vinylData.weight = '0';
+    }
+    if (vinyl.type) {
+      $vinylData.type = vinyl.type;
+    } else {
+      $vinylData.type = '-';
+    }
+    $vinylData.color = '#000000';
+    $vinylData.size = '12';
+    $vinylData.format = 'LP';
+    $vinylData.release_id = vinyl.id;
+    $vinylData.discogs_uri = vinyl.uri;
+    if (vinyl.tracklist) {
+      tmpTracklist = [];
+      ref = vinyl.tracklist;
+      for (key = i = 0, len = ref.length; i < len; key = ++i) {
+        track = ref[key];
+        tmpTracklist.push({
+          duration: track.duration,
+          position: track.position,
+          title: track.title
+        });
+      }
+      $vinylData.tracklist = tmpTracklist;
+    } else {
+      $vinylData.tracklist = [];
+    }
+    if (vinyl.videos) {
+      $vinylData.videos = vinyl.videos;
+    } else {
+      $vinylData.videos = [];
+    }
+    return $vinylData;
+  };
+
+}).call(this);
+
+(function() {
   $.getStats = function(userId) {
     var $vinyls;
     console.log('user: ' + userId);
@@ -21286,9 +21435,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
   $.getReleases = function(username, user_id) {
     var $discogs;
-    $('.js-startImport').fadeOut(400, function() {
-      return $('.js-importResults').html('<p class="placeholder">Fetching ...</p>');
-    });
+    $('.js-startImport').html('<i class="fa fa-fw fa-spin fa-refresh"></i> Scan Discogs');
     return $discogs = $.ajax({
       url: 'https://api.discogs.com/users/' + username + '/collection/folders/0/releases',
       type: 'GET',
@@ -21310,7 +21457,6 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
           success: function(response) {
             var alreadyInCollection, discogs_vinyl, i, j, len, len1, onlyInA, onlyInB, user_vinyl;
             user_vinyls = response.data;
-            console.log(user_vinyls, discogs_vinyls);
             alreadyInCollection = [];
             for (i = 0, len = discogs_vinyls.length; i < len; i++) {
               discogs_vinyl = discogs_vinyls[i];
@@ -21332,18 +21478,23 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
               }).length === 0;
             });
             vinylsToImport = onlyInA.concat(onlyInB);
-            $('.js-importResults').html('<p class="placeholder">Found ' + discogs_vinyls.length + ' records in your Discogs collection. ' + alreadyInCollection.length + ' of them are already in your collection.</p><button class="btn btn-primary btn-lg js-startMapping">Start mapping</button>');
-            $.each(discogs_vinyls, function(index) {
-              return $('.js-importTable').find('tbody').append('<tr><td>' + discogs_vinyls[index].id + '</td><td>' + discogs_vinyls[index].basic_information.artists[0].name + '</td><td>' + discogs_vinyls[index].basic_information.title + '</td></tr>');
+            console.log("vinyls to import: ", vinylsToImport);
+            return $('.js-startImport').fadeOut(400, function() {
+              $('.js-vinylsFound').text(discogs_vinyls.length);
+              $('.js-alreadyInCollection').text(alreadyInCollection.length);
+              $('.js-vinylsToImport').text(vinylsToImport.length);
+              if (!vinylsToImport.length) {
+                $('.js-startMapping').attr('disabled', 'disabled');
+              }
+              return $('.js-importFetchResults').fadeIn();
             });
-            return $('.js-importTable').fadeIn();
           }
         });
       }
     });
   };
 
-  $('.js-importResults').on('click', '.js-startMapping', function() {
+  $('.js-startMapping').click(function() {
     console.log("Starting Mapping ...");
     $('.js-startMapping').hide();
     $('.js-importProgress').show();
@@ -21355,6 +21506,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
     $('.js-importProgress .progress-bar').css('width', ((100 * n) / vinylsToImport.length) + "%");
     $('.js-importProgress .progress-bar').text((Math.round(((100 * n) / vinylsToImport.length) * 100) / 100) + "%");
     if (n < vinylsToImport.length) {
+      $('.js-currentImportVinyl').text(vinylsToImport[n].basic_information.artists[0].name + " - " + vinylsToImport[n].basic_information.title);
       return $.ajax({
         url: "/api/discogs/" + vinylsToImport[n].id,
         type: "GET",
@@ -21363,110 +21515,33 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
           return console.log(error);
         },
         success: function(vinyl) {
-          var $vinylData, i, key, len, ref, tmpTracklist, track;
-          $vinylData = {};
-          $vinylData._token = $('meta[name=csrf-token]').attr('content');
-          $vinylData.price = 10;
-          if (vinyl.artists) {
-            $vinylData.artist = vinyl.artists[0].name;
-          } else {
-            $vinylData.artist = 'unknown artist';
-          }
-          if (vinyl.title) {
-            $vinylData.title = vinyl.title;
-          } else {
-            $vinylData.title = 'unknown title';
-          }
-          if (vinyl.images) {
-            $vinylData.cover = vinyl.images[0].uri;
-          } else {
-            $vinylData.cover = 'images/PH_vinyl.svg';
-          }
-          if (vinyl.labels) {
-            $vinylData.label = vinyl.labels[0].name;
-            if (vinyl.labels[0].catno) {
-              $vinylData.catno = vinyl.labels[0].catno;
-            } else {
-              $vinylData.catno = 'unknown catno';
-            }
-          } else {
-            $vinylData.label = 'unknown label';
-          }
-          if (vinyl.genres) {
-            $vinylData.genre = vinyl.genres[0];
-          } else {
-            $vinylData.genre = 'unknown genre';
-          }
-          if (vinyl.country) {
-            $vinylData.country = vinyl.country;
-          } else {
-            $vinylData.country = 'unknown country';
-          }
-          if (vinyl.year) {
-            $vinylData.year = vinyl.year;
-          } else {
-            $vinylData.year = 'unknown year';
-          }
-          if (vinyl.format_quantity) {
-            $vinylData.count = vinyl.format_quantity;
-          } else {
-            $vinylData.count = 'unknown quantity';
-          }
-          if (vinyl.estimated_weight) {
-            $vinylData.weight = vinyl.estimated_weight;
-          } else {
-            $vinylData.weight = '0';
-          }
-          if (vinyl.type) {
-            $vinylData.type = vinyl.type;
-          } else {
-            $vinylData.type = '-';
-          }
-          $vinylData.color = '#000000';
-          $vinylData.size = '12';
-          $vinylData.format = 'LP';
-          $vinylData.release_id = vinyl.id;
-          $vinylData.discogs_uri = vinyl.uri;
-          if (vinyl.tracklist) {
-            tmpTracklist = [];
-            ref = vinyl.tracklist;
-            for (key = i = 0, len = ref.length; i < len; key = ++i) {
-              track = ref[key];
-              tmpTracklist.push({
-                duration: track.duration,
-                position: track.position,
-                title: track.title
-              });
-            }
-            $vinylData.tracklist = tmpTracklist;
-          } else {
-            $vinylData.tracklist = [];
-          }
-          if (vinyl.videos) {
-            $vinylData.videos = vinyl.videos;
-          } else {
-            $vinylData.videos = [];
-          }
-          $.ajaxSetup({
-            headers: {
-              'X-XSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-          });
-          return $.ajax({
-            url: '/vinyl/create',
-            type: 'POST',
-            data: $vinylData,
-            success: function(reponse) {
-              console.log("vinyl " + n + " added!");
-              n++;
-              return processNext(n);
-            },
-            error: function(error) {
-              return console.warn(error);
-            }
+          var userCurrency;
+          userCurrency = $('meta[name=user-currency]').attr('content');
+          return $.fetchPrice(vinyl.id, userCurrency, function(price) {
+            var $vinylData;
+            $vinylData = $.mapVinylData(vinyl);
+            $vinylData.price = price;
+            $vinylData._token = $('meta[name=csrf-token]').attr('content');
+            return $.ajax({
+              url: '/vinyl/create',
+              type: 'POST',
+              data: $vinylData,
+              success: function(reponse) {
+                console.log("vinyl " + n + " added!");
+                n++;
+                return processNext(n);
+              },
+              error: function(error) {
+                return console.warn(error);
+              }
+            });
           });
         }
       });
+    } else {
+      $('.js-currentImportVinyl').hide();
+      $('.js-importProgress .progress-bar').addClass('progress-bar-success');
+      return $('.js-importComplete').show();
     }
   };
 
@@ -21567,32 +21642,13 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 }).call(this);
 
 (function() {
-  var $results, $search, $vinylData, EURinGBP, EURinUSD, GBPinUSD, getMedian;
+  var $results, $search, $vinylData;
 
   $results = [];
 
   $vinylData = {};
 
   $search = null;
-
-  EURinUSD = 1.14;
-
-  EURinGBP = 0.73;
-
-  GBPinUSD = 1.53;
-
-  getMedian = function(values) {
-    var half;
-    values.sort(function(a, b) {
-      return a - b;
-    });
-    half = Math.floor(values.length / 2);
-    if (values.length % 2) {
-      return values[half];
-    } else {
-      return (values[half - 1] + values[half]) / 2.0;
-    }
-  };
 
   $('#submit-search').click(function(e) {
     console.log('Hello from search.');
@@ -21686,7 +21742,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $priceRequest, $spotify, button, i, key, len, modal, ref, tmpTracklist, track, vinyl, vinyl_index;
+    var $spotify, button, modal, userCurrency, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
@@ -21701,142 +21757,26 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
         return console.log(error);
       },
       success: function(results) {
-        console.log(results);
         if (results.albums.items.length) {
           $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A' + results.albums.items[0].id + '" width="598" height="380" frameborder="0" allowtransparency="true"></iframe>');
           return $vinylData.spotify_id = results.albums.items[0].id;
         }
       }
     });
-    $priceRequest = $.ajax({
-      url: 'https://api.discogs.com/marketplace/search?release_id=' + vinyl.id,
-      type: 'GET',
-      dataType: 'JSON',
-      error: function(x, status, error) {
-        console.log(status);
-        return console.log(error);
-      },
-      success: function(prices) {
-        var median, userCurrency, values;
-        userCurrency = $('#userCurrency').val();
-        values = [];
-        median = 0;
-        _.each(prices, function(price) {
-          var currency;
-          currency = price.currency;
-          switch (price.currency) {
-            case 'EUR':
-              return values.push(parseInt(price.price.substr(1)));
-            case 'GBP':
-              return values.push(parseInt(price.price.substr(1)) / EURinGBP);
-            case 'USD':
-              return values.push(parseInt(price.price.substr(1)) / EURinUSD);
-          }
-        });
-        median = getMedian(values).toFixed(2);
-        switch (userCurrency) {
-          case 'EUR':
-            median = median;
-            break;
-          case 'GBP':
-            median = median * EURinGBP;
-            break;
-          case 'USD':
-            median = median * EURinUSD;
-        }
-        if (isNaN(median)) {
-          modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove();
-          $('#currencyLabel').text(userCurrency).show();
-          $('#price').remove();
-          $('#priceLabelText').text('What did you pay?');
-        } else {
-          $('#price').html(median + ' ' + userCurrency);
-          modal.find('input[name="price"]').val(median);
-        }
-        return $('#searchModalSubmit').disabled = false;
+    userCurrency = $('#userCurrency').val();
+    $.fetchPrice(vinyl.id, userCurrency, function(price) {
+      if (isNaN(price)) {
+        modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove();
+        $('#currencyLabel').text(userCurrency).show();
+        $('#price').remove();
+        return $('#priceLabelText').text('What did you pay?');
+      } else {
+        $('#price').html(price + ' ' + userCurrency);
+        return modal.find('input[name="price"]').val(price);
       }
     });
-    if (vinyl.artists) {
-      $vinylData.artist = vinyl.artists[0].name;
-    } else {
-      $vinylData.artist = 'unknown artist';
-    }
-    if (vinyl.title) {
-      $vinylData.title = vinyl.title;
-    } else {
-      $vinylData.title = 'unknown title';
-    }
-    if (vinyl.images) {
-      $vinylData.cover = vinyl.images[0].uri;
-    } else {
-      $vinylData.cover = 'images/PH_vinyl.svg';
-    }
-    if (vinyl.labels) {
-      $vinylData.label = vinyl.labels[0].name;
-      if (vinyl.labels[0].catno) {
-        $vinylData.catno = vinyl.labels[0].catno;
-      } else {
-        $vinylData.catno = 'unknown catno';
-      }
-    } else {
-      $vinylData.label = 'unknown label';
-    }
-    if (vinyl.genres) {
-      $vinylData.genre = vinyl.genres[0];
-    } else {
-      $vinylData.genre = 'unknown genre';
-    }
-    if (vinyl.country) {
-      $vinylData.country = vinyl.country;
-    } else {
-      $vinylData.country = 'unknown country';
-    }
-    if (vinyl.year) {
-      $vinylData.year = vinyl.year;
-    } else {
-      $vinylData.year = 'unknown year';
-    }
-    if (vinyl.format_quantity) {
-      $vinylData.count = vinyl.format_quantity;
-    } else {
-      $vinylData.count = 'unknown quantity';
-    }
-    if (vinyl.estimated_weight) {
-      $vinylData.weight = vinyl.estimated_weight;
-    } else {
-      $vinylData.weight = '0';
-    }
-    if (vinyl.type) {
-      $vinylData.type = vinyl.type;
-    } else {
-      $vinylData.type = '-';
-    }
-    $vinylData.color = '#000000';
-    $vinylData.size = '12';
-    $vinylData.format = 'LP';
-    $vinylData.release_id = vinyl.id;
-    $vinylData.discogs_uri = vinyl.uri;
-    if (vinyl.tracklist) {
-      tmpTracklist = [];
-      ref = vinyl.tracklist;
-      for (key = i = 0, len = ref.length; i < len; key = ++i) {
-        track = ref[key];
-        console.log(key, track);
-        tmpTracklist.push({
-          duration: track.duration,
-          position: track.position,
-          title: track.title
-        });
-      }
-      $vinylData.tracklist = tmpTracklist;
-    } else {
-      $vinylData.tracklist = [];
-    }
-    if (vinyl.videos) {
-      $vinylData.videos = vinyl.videos;
-    } else {
-      $vinylData.videos = [];
-    }
+    $('#searchModalSubmit').disabled = false;
+    $vinylData = $.mapVinylData(vinyl);
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
     return modal.find('.modal-body .cover').html('<img src="' + $vinylData.cover + '" class="thumbnail" width="100%">');
   });

@@ -5,21 +5,6 @@ $results = []
 $vinylData = {}
 $search = null
 
-EURinUSD = 1.14 # USD
-EURinGBP = 0.73 # GBP
-GBPinUSD = 1.53 # USD
-
-# Calc Median
-# ----------------------------
-
-getMedian = (values) ->
-    values.sort (a,b) -> return a - b
-    half = Math.floor values.length/2
-    if values.length % 2
-        return values[half]
-    else
-        return (values[half-1] + values[half]) / 2.0
-
 # Submit Search
 # ----------------------------
 
@@ -139,160 +124,30 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
             console.log status
             console.log error
         success: (results) -> # search results received
-            console.log results
+            # console.log results
             if(results.albums.items.length)
                 $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A'+results.albums.items[0].id+'" width="598" height="380" frameborder="0" allowtransparency="true"></iframe>')
                 $vinylData.spotify_id = results.albums.items[0].id
 
     # fetch price
-    $priceRequest = $.ajax
-        url: 'https://api.discogs.com/marketplace/search?release_id='+vinyl.id
-        type: 'GET'
-        dataType: 'JSON'
-        error: (x,status,error) ->
-            console.log status
-            console.log error
-        success: (prices) -> # prices
-            # console.log prices
-            userCurrency = $('#userCurrency').val()
-            values = []
-            median = 0
-
-            # convert all prices to EUR and add up
-            _.each prices, (price) ->
-                currency = price.currency
-
-                switch(price.currency)
-                    when 'EUR'
-                        values.push(parseInt(price.price.substr(1)))
-                    when 'GBP'
-                        values.push(parseInt(price.price.substr(1)) / EURinGBP)
-                    when 'USD'
-                        values.push(parseInt(price.price.substr(1)) / EURinUSD)
-
-            # calc median
-            median = getMedian(values).toFixed(2)
-
-            # convert to users currency
-            switch(userCurrency)
-                when 'EUR'
-                    median = median
-                when 'GBP'
-                    median = median * EURinGBP
-                when 'USD'
-                    median = median * EURinUSD
-
-            # show the price & add to form
-            if(isNaN(median))
-                # no prices on Discogs -> show text input for price
-                modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove()
-                $('#currencyLabel').text(userCurrency).show()
-                $('#price').remove()
-                $('#priceLabelText').text('What did you pay?')
-            else
-                $('#price').html(median+' '+userCurrency)
-                modal.find('input[name="price"]').val(median)
-
-            # enable submit button
-            $('#searchModalSubmit').disabled = false
-
-    # artist
-    if vinyl.artists
-        $vinylData.artist = vinyl.artists[0].name
-    else
-        $vinylData.artist = 'unknown artist'
-
-    # title
-    if vinyl.title
-        $vinylData.title = vinyl.title
-    else
-        $vinylData.title = 'unknown title'
-
-    # cover
-    if vinyl.images
-        $vinylData.cover = vinyl.images[0].uri
-    else
-        $vinylData.cover = 'images/PH_vinyl.svg'
-
-    # label & catno
-    if vinyl.labels
-        $vinylData.label = vinyl.labels[0].name
-        if vinyl.labels[0].catno
-            $vinylData.catno = vinyl.labels[0].catno
+    userCurrency = $('#userCurrency').val()
+    $.fetchPrice vinyl.id, userCurrency, (price) ->
+        # show the price & add to form
+        if(isNaN(price))
+            # no prices on Discogs -> show text input for price
+            modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove()
+            $('#currencyLabel').text(userCurrency).show()
+            $('#price').remove()
+            $('#priceLabelText').text('What did you pay?')
         else
-            $vinylData.catno = 'unknown catno'
-    else
-        $vinylData.label = 'unknown label'
+            $('#price').html(price+' '+userCurrency)
+            modal.find('input[name="price"]').val(price)
 
-    # genre
-    if vinyl.genres
-        $vinylData.genre = vinyl.genres[0]
-    else
-        $vinylData.genre = 'unknown genre'
+    # enable submit button
+    $('#searchModalSubmit').disabled = false
 
-    # country
-    if vinyl.country
-        $vinylData.country = vinyl.country
-    else
-        $vinylData.country = 'unknown country'
-
-    # year
-    if vinyl.year
-        $vinylData.year = vinyl.year
-    else
-        $vinylData.year = 'unknown year'
-
-    # count
-    if vinyl.format_quantity
-        $vinylData.count = vinyl.format_quantity
-    else
-        $vinylData.count = 'unknown quantity'
-
-    # weight
-    if vinyl.estimated_weight
-        $vinylData.weight = vinyl.estimated_weight
-    else
-        $vinylData.weight = '0'
-
-    # type
-    if vinyl.type
-        $vinylData.type = vinyl.type
-    else
-        $vinylData.type = '-'
-
-    # color
-    $vinylData.color = '#000000'
-
-    # size
-    $vinylData.size = '12'
-
-    # format
-    $vinylData.format = 'LP'
-
-    # release ID
-    $vinylData.release_id = vinyl.id
-
-    # Discogs URI
-    $vinylData.discogs_uri = vinyl.uri
-
-    # tracklist
-    if vinyl.tracklist
-        tmpTracklist = []
-        for track, key in vinyl.tracklist
-            console.log key, track
-            tmpTracklist.push
-                duration: track.duration
-                position: track.position
-                title: track.title
-        $vinylData.tracklist = tmpTracklist
-    else
-        $vinylData.tracklist = []
-
-    # videos
-    if vinyl.videos
-        $vinylData.videos = vinyl.videos
-    else
-        $vinylData.videos = []
+    # map fetched vinyl data to object required to create vinyl
+    $vinylData = $.mapVinylData vinyl
 
     # visible form data
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - '+ vinyl.title + '" to collection')
