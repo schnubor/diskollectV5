@@ -14,13 +14,24 @@ use Auth;
 class ApiController extends Controller {
 
   /**
-   * Return vinyls of user as JSON
+   * Return vinyls of user as JSON (paginated)
    *
    * @return Response
    */
   public function vinyls($id){
     $user = User::find($id);
-    $vinyls = $user->vinyls()->latest()->paginate(12);
+    $vinyls = $user->vinyls()->latest()->paginate(20);
+    return $vinyls;
+  }
+
+  /**
+   * Return vinyls of user as JSON
+   *
+   * @return Response
+   */
+  public function vinylsAll($id){
+    $user = User::find($id);
+    $vinyls = $user->vinyls()->latest()->get();
     return $vinyls;
   }
 

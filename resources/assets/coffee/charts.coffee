@@ -1,6 +1,5 @@
-$.getStats = (userId) ->
-    console.log 'user: '+userId
-
+$.fetchVinylPage = (page) ->
+    vinyls = []
     $vinyls = $.ajax
         url: '/api/user/'+userId+'/vinyls'
         type: 'GET'
@@ -8,7 +7,19 @@ $.getStats = (userId) ->
         error: (x,status,error) ->
             console.log status
             console.log error
+        success: (response) ->
+            return response.data
+
+$.getStats = (userId) ->
+    $vinyls = $.ajax
+        url: '/api/user/'+userId+'/vinyls/all'
+        type: 'GET'
+        dataType: 'JSON'
+        error: (x,status,error) ->
+            console.log status
+            console.log error
         success: (vinyls) -> # search results received
+            # console.log vinyls
             genreData = []
 
             sizeData = [
@@ -22,8 +33,6 @@ $.getStats = (userId) ->
                 ['vinyls']
             ]
             timeData_temp = []
-
-            vinyls = vinyls.data
 
             _.each vinyls, (vinyl) ->
                 # --- Genre --------------------------------
@@ -40,7 +49,7 @@ $.getStats = (userId) ->
                 if time.getFullYear()
                     timeData_temp.push(time.format('Y'))
 
-            console.log timeData_temp
+            # console.log timeData_temp
 
             genreData = _.chain(genreData).countBy().pairs().value()
 
@@ -54,7 +63,7 @@ $.getStats = (userId) ->
                 timeData[0].push(timeArray[0])
                 timeData[1].push(timeArray[1])
 
-            console.log timeData
+            # console.log timeData
 
             # --- Charts --------------------------------
             genreChart = c3.generate
@@ -65,7 +74,7 @@ $.getStats = (userId) ->
                 legend:
                     show: true
                 donut:
-                    title: vinyls.length+' Vinyls'
+                    title: vinyls.length + ' Vinyls'
                     label:
                         format: (value) ->
                             return value

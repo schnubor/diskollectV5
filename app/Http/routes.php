@@ -29,6 +29,11 @@ Route::get('/api/user/{id}/vinyls', [
   'uses' => 'ApiController@vinyls'
 ]);
 
+Route::get('/api/user/{id}/vinyls/all', [
+  'as' => 'api.user.vinyls',
+  'uses' => 'ApiController@vinylsAll'
+]);
+
 Route::get('/api/user/{id}/status', [
   'as' => 'api.user.status',
   'uses' => 'ApiController@connectionStatus'

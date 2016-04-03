@@ -157,11 +157,27 @@
 }).call(this);
 
 (function() {
-  $.getStats = function(userId) {
-    var $vinyls;
-    console.log('user: ' + userId);
+  $.fetchVinylPage = function(page) {
+    var $vinyls, vinyls;
+    vinyls = [];
     return $vinyls = $.ajax({
       url: '/api/user/' + userId + '/vinyls',
+      type: 'GET',
+      dataType: 'JSON',
+      error: function(x, status, error) {
+        console.log(status);
+        return console.log(error);
+      },
+      success: function(response) {
+        return response.data;
+      }
+    });
+  };
+
+  $.getStats = function(userId) {
+    var $vinyls;
+    return $vinyls = $.ajax({
+      url: '/api/user/' + userId + '/vinyls/all',
       type: 'GET',
       dataType: 'JSON',
       error: function(x, status, error) {
@@ -175,7 +191,6 @@
         sizeData_temp = [];
         timeData = [['x'], ['vinyls']];
         timeData_temp = [];
-        vinyls = vinyls.data;
         _.each(vinyls, function(vinyl) {
           var genre, size, time;
           genre = vinyl.genre.split(';')[0];
@@ -190,7 +205,6 @@
             return timeData_temp.push(time.format('Y'));
           }
         });
-        console.log(timeData_temp);
         genreData = _.chain(genreData).countBy().pairs().value();
         sizeData_temp = _.chain(sizeData_temp).countBy().pairs().value();
         _.each(sizeData_temp, function(sizeArray) {
@@ -202,7 +216,6 @@
           timeData[0].push(timeArray[0]);
           return timeData[1].push(timeArray[1]);
         });
-        console.log(timeData);
         genreChart = c3.generate({
           bindto: '#genreChart',
           data: {
