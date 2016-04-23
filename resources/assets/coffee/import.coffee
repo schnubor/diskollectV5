@@ -1,60 +1,103 @@
 discogs_vinyls = []
 vinylsToImport = []
 
-# Get vinyls from discogs collection
-# ----------------------------------
-$.getReleases = (username, user_id) ->
-    $('.js-startImport').html('<i class="fa fa-fw fa-spin fa-refresh"></i> Scan Discogs')
-
-    $discogs = $.ajax
-        url: 'https://api.discogs.com/users/'+username+'/collection/folders/0/releases'
+# Fetch a site from discogs
+# -----------------------------------
+$.fetchDiscogsPage = (username, page, promises = []) ->
+    request = $.ajax
+        url: "https://api.discogs.com/users/#{username}/collection/folders/0/releases?page=#{page}&per_page=100"
         type: 'GET'
         error: (x,status,error) ->
             console.log status
             console.log error
         success: (response) ->
-            discogs_vinyls = response.releases
-            user_vinyls = null
+            console.log response
+            return response.releases
+    promises.push(request)
 
-            # get vinyls that are already in users collection
-            $api = $.ajax
-                url: '/api/user/'+user_id+'/vinyls'
-                type: 'GET'
-                error: (x,status,error) ->
-                    console.log status
-                    console.log error
-                success: (response) ->
-                    user_vinyls = response.data
-                    # console.log user_vinyls, discogs_vinyls
+# Compare Discogs and User collection
+# -----------------------------------
+$.getVinylsToImport = (discogs_vinyls, user_vinyls) ->
+    alreadyInCollection = []
+    for discogs_vinyl in discogs_vinyls
+        for user_vinyl in user_vinyls
+            alreadyInCollection.push discogs_vinyl if discogs_vinyl.id is parseInt user_vinyl.release_id
 
-                    alreadyInCollection = []
-                    for discogs_vinyl in discogs_vinyls
-                        for user_vinyl in user_vinyls
-                            alreadyInCollection.push discogs_vinyl if discogs_vinyl.id is parseInt user_vinyl.release_id
+    # remove vinyls that are already in collection
+    onlyInA = alreadyInCollection.filter((current) ->
+        return discogs_vinyls.filter((current_b) ->
+            return current_b.id == current.id
+        ).length == 0
+    )
 
-                    # remove vinyls that are already in collection
-                    onlyInA = alreadyInCollection.filter((current) ->
-                        return discogs_vinyls.filter((current_b) ->
-                            return current_b.id == current.id
-                        ).length == 0
-                    )
+    onlyInB = discogs_vinyls.filter((current) ->
+        return alreadyInCollection.filter((current_a) ->
+            return current_a.id == current.id
+        ).length == 0
+    )
 
-                    onlyInB = discogs_vinyls.filter((current) ->
-                        return alreadyInCollection.filter((current_a) ->
-                            return current_a.id == current.id
-                        ).length == 0
-                    )
+    vinylsToImport = onlyInA.concat(onlyInB)
+    return {
+        "vinylsToImport" : vinylsToImport
+        "alreadyInCollection" : alreadyInCollection
+    }
 
-                    vinylsToImport = onlyInA.concat(onlyInB)
-                    console.log "vinyls to import: ", vinylsToImport
+$.getReleases = (username, user_id) ->
+    $('.js-startImport').html('<i class="fa fa-fw fa-spin fa-refresh"></i> Scan Discogs')
 
-                    # show fetch results
-                    $('.js-startImport').fadeOut 400, ->
-                        $('.js-vinylsFound').text discogs_vinyls.length
-                        $('.js-alreadyInCollection').text alreadyInCollection.length
-                        $('.js-vinylsToImport').text vinylsToImport.length
-                        $('.js-startMapping').attr('disabled', 'disabled') unless vinylsToImport.length
-                        $('.js-importFetchResults').fadeIn()
+    user_vinyls = []
+    discogs_vinyls = []
+
+    $.ajax
+        url: "https://api.discogs.com/users/#{username}/collection/folders/0/releases?page=1&per_page=100"
+        type: 'GET'
+        error: (x,status,error) ->
+            console.log status
+            console.log error
+        success: (response) ->
+            console.log 'pagination: ', response.pagination
+            promises = []
+            currentPage = 1
+
+            # Get discogs collection
+            # -----------------------------------------------
+            while currentPage <= response.pagination.pages
+                request = $.ajax
+                    url: "https://api.discogs.com/users/#{username}/collection/folders/0/releases?page=#{currentPage}&per_page=100"
+                    type: 'GET'
+                    error: (x,status,error) ->
+                        console.log status
+                        console.log error
+                    success: (response) ->
+                        console.log response
+                        for release in response.releases
+                            discogs_vinyls.push release
+                promises.push(request)
+                currentPage++
+
+            $.when.apply(null, promises).done ->
+                # Get vinyls that are already in users collection
+                # -----------------------------------------------
+                $userVinylsCall = $.ajax
+                    url: '/api/user/'+user_id+'/vinyls'
+                    type: 'GET'
+                    error: (x,status,error) ->
+                        console.log status
+                        console.log error
+                    success: (response) ->
+                        user_vinyls = response.data
+                        # console.log user_vinyls, discogs_vinyls
+
+                        vinylsObj = $.getVinylsToImport(discogs_vinyls, user_vinyls)
+                        console.log "vinyls to import: ", vinylsToImport
+
+                        # show fetch results
+                        $('.js-startImport').fadeOut 400, ->
+                            $('.js-vinylsFound').text discogs_vinyls.length
+                            $('.js-alreadyInCollection').text vinylsObj.alreadyInCollection.length
+                            $('.js-vinylsToImport').text vinylsObj.vinylsToImport.length
+                            $('.js-startMapping').attr('disabled', 'disabled') unless vinylsObj.vinylsToImport.length
+                            $('.js-importFetchResults').fadeIn()
 
 # Click Start Mapping
 # ----------------------------

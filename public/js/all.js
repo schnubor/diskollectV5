@@ -21446,62 +21446,120 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
   vinylsToImport = [];
 
-  $.getReleases = function(username, user_id) {
-    var $discogs;
-    $('.js-startImport').html('<i class="fa fa-fw fa-spin fa-refresh"></i> Scan Discogs');
-    return $discogs = $.ajax({
-      url: 'https://api.discogs.com/users/' + username + '/collection/folders/0/releases',
+  $.fetchDiscogsPage = function(username, page, promises) {
+    var request;
+    if (promises == null) {
+      promises = [];
+    }
+    request = $.ajax({
+      url: "https://api.discogs.com/users/" + username + "/collection/folders/0/releases?page=" + page + "&per_page=100",
       type: 'GET',
       error: function(x, status, error) {
         console.log(status);
         return console.log(error);
       },
       success: function(response) {
-        var $api, user_vinyls;
-        discogs_vinyls = response.releases;
-        user_vinyls = null;
-        return $api = $.ajax({
-          url: '/api/user/' + user_id + '/vinyls',
-          type: 'GET',
-          error: function(x, status, error) {
-            console.log(status);
-            return console.log(error);
-          },
-          success: function(response) {
-            var alreadyInCollection, discogs_vinyl, i, j, len, len1, onlyInA, onlyInB, user_vinyl;
-            user_vinyls = response.data;
-            alreadyInCollection = [];
-            for (i = 0, len = discogs_vinyls.length; i < len; i++) {
-              discogs_vinyl = discogs_vinyls[i];
-              for (j = 0, len1 = user_vinyls.length; j < len1; j++) {
-                user_vinyl = user_vinyls[j];
-                if (discogs_vinyl.id === parseInt(user_vinyl.release_id)) {
-                  alreadyInCollection.push(discogs_vinyl);
-                }
+        console.log(response);
+        return response.releases;
+      }
+    });
+    return promises.push(request);
+  };
+
+  $.getVinylsToImport = function(discogs_vinyls, user_vinyls) {
+    var alreadyInCollection, discogs_vinyl, i, j, len, len1, onlyInA, onlyInB, user_vinyl;
+    alreadyInCollection = [];
+    for (i = 0, len = discogs_vinyls.length; i < len; i++) {
+      discogs_vinyl = discogs_vinyls[i];
+      for (j = 0, len1 = user_vinyls.length; j < len1; j++) {
+        user_vinyl = user_vinyls[j];
+        if (discogs_vinyl.id === parseInt(user_vinyl.release_id)) {
+          alreadyInCollection.push(discogs_vinyl);
+        }
+      }
+    }
+    onlyInA = alreadyInCollection.filter(function(current) {
+      return discogs_vinyls.filter(function(current_b) {
+        return current_b.id === current.id;
+      }).length === 0;
+    });
+    onlyInB = discogs_vinyls.filter(function(current) {
+      return alreadyInCollection.filter(function(current_a) {
+        return current_a.id === current.id;
+      }).length === 0;
+    });
+    vinylsToImport = onlyInA.concat(onlyInB);
+    return {
+      "vinylsToImport": vinylsToImport,
+      "alreadyInCollection": alreadyInCollection
+    };
+  };
+
+  $.getReleases = function(username, user_id) {
+    var user_vinyls;
+    $('.js-startImport').html('<i class="fa fa-fw fa-spin fa-refresh"></i> Scan Discogs');
+    user_vinyls = [];
+    discogs_vinyls = [];
+    return $.ajax({
+      url: "https://api.discogs.com/users/" + username + "/collection/folders/0/releases?page=1&per_page=100",
+      type: 'GET',
+      error: function(x, status, error) {
+        console.log(status);
+        return console.log(error);
+      },
+      success: function(response) {
+        var currentPage, promises, request;
+        console.log('pagination: ', response.pagination);
+        promises = [];
+        currentPage = 1;
+        while (currentPage <= response.pagination.pages) {
+          request = $.ajax({
+            url: "https://api.discogs.com/users/" + username + "/collection/folders/0/releases?page=" + currentPage + "&per_page=100",
+            type: 'GET',
+            error: function(x, status, error) {
+              console.log(status);
+              return console.log(error);
+            },
+            success: function(response) {
+              var i, len, ref, release, results;
+              console.log(response);
+              ref = response.releases;
+              results = [];
+              for (i = 0, len = ref.length; i < len; i++) {
+                release = ref[i];
+                results.push(discogs_vinyls.push(release));
               }
+              return results;
             }
-            onlyInA = alreadyInCollection.filter(function(current) {
-              return discogs_vinyls.filter(function(current_b) {
-                return current_b.id === current.id;
-              }).length === 0;
-            });
-            onlyInB = discogs_vinyls.filter(function(current) {
-              return alreadyInCollection.filter(function(current_a) {
-                return current_a.id === current.id;
-              }).length === 0;
-            });
-            vinylsToImport = onlyInA.concat(onlyInB);
-            console.log("vinyls to import: ", vinylsToImport);
-            return $('.js-startImport').fadeOut(400, function() {
-              $('.js-vinylsFound').text(discogs_vinyls.length);
-              $('.js-alreadyInCollection').text(alreadyInCollection.length);
-              $('.js-vinylsToImport').text(vinylsToImport.length);
-              if (!vinylsToImport.length) {
-                $('.js-startMapping').attr('disabled', 'disabled');
-              }
-              return $('.js-importFetchResults').fadeIn();
-            });
-          }
+          });
+          promises.push(request);
+          currentPage++;
+        }
+        return $.when.apply(null, promises).done(function() {
+          var $userVinylsCall;
+          return $userVinylsCall = $.ajax({
+            url: '/api/user/' + user_id + '/vinyls',
+            type: 'GET',
+            error: function(x, status, error) {
+              console.log(status);
+              return console.log(error);
+            },
+            success: function(response) {
+              var vinylsObj;
+              user_vinyls = response.data;
+              vinylsObj = $.getVinylsToImport(discogs_vinyls, user_vinyls);
+              console.log("vinyls to import: ", vinylsToImport);
+              return $('.js-startImport').fadeOut(400, function() {
+                $('.js-vinylsFound').text(discogs_vinyls.length);
+                $('.js-alreadyInCollection').text(vinylsObj.alreadyInCollection.length);
+                $('.js-vinylsToImport').text(vinylsObj.vinylsToImport.length);
+                if (!vinylsObj.vinylsToImport.length) {
+                  $('.js-startMapping').attr('disabled', 'disabled');
+                }
+                return $('.js-importFetchResults').fadeIn();
+              });
+            }
+          });
         });
       }
     });
