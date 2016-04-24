@@ -1,7 +1,7 @@
 <template id="vinyls-template">
     @if($vinyls->count())
         <div class="row padding15">
-          <div v-for="group in list | filterBy filter in 'artist' 'title' 'label' 'catno' | chunk 4" class="row">
+          <div v-for="group in list | filterBy filter in 'artist' 'title' 'label' 'catno' | orderBy sorting | chunk 4" class="row">
             <div class="col-md-3 vinyl" v-for="vinyl in group">
               <div class="cover">
                 <a href="/vinyl/@{{ vinyl.id }}"><img v-bind:src="vinyl.artwork" alt="@{{ vinyl.artist }} - @{{ vinyl.title }}"></a>

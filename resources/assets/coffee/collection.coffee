@@ -1,6 +1,6 @@
 Vue.component 'vinyls',
     template: '#vinyls-template'
-    props: ['userid', 'filter']
+    props: ['userid', 'filter', 'sorting']
 
     data: ->
         return {
@@ -13,7 +13,6 @@ Vue.component 'vinyls',
     methods:
         fetchVinylList: ->
             $.getJSON "/api/user/#{@userid}/vinyls/all", (response) =>
-                console.log response
                 @list = response
 
 Vue.filter 'chunk', (value, size) ->
@@ -23,3 +22,4 @@ new Vue
     el: '#collection'
     data:
         vinylFilter: ""
+        vinylSorting: "Latest"

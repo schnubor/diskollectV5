@@ -22537,7 +22537,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 (function() {
   Vue.component('vinyls', {
     template: '#vinyls-template',
-    props: ['userid', 'filter'],
+    props: ['userid', 'filter', 'sorting'],
     data: function() {
       return {
         list: []
@@ -22550,7 +22550,6 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
       fetchVinylList: function() {
         return $.getJSON("/api/user/" + this.userid + "/vinyls/all", (function(_this) {
           return function(response) {
-            console.log(response);
             return _this.list = response;
           };
         })(this));
@@ -22565,7 +22564,8 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   new Vue({
     el: '#collection',
     data: {
-      vinylFilter: ""
+      vinylFilter: "",
+      vinylSorting: "Latest"
     }
   });
 

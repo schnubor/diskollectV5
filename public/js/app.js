@@ -271,7 +271,7 @@
 (function() {
   Vue.component('vinyls', {
     template: '#vinyls-template',
-    props: ['userid', 'filter'],
+    props: ['userid', 'filter', 'sorting'],
     data: function() {
       return {
         list: []
@@ -284,7 +284,6 @@
       fetchVinylList: function() {
         return $.getJSON("/api/user/" + this.userid + "/vinyls/all", (function(_this) {
           return function(response) {
-            console.log(response);
             return _this.list = response;
           };
         })(this));
@@ -299,7 +298,8 @@
   new Vue({
     el: '#collection',
     data: {
-      vinylFilter: ""
+      vinylFilter: "",
+      vinylSorting: "Latest"
     }
   });
 
