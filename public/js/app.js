@@ -271,7 +271,25 @@
 (function() {
   Vue.component('vinyls', {
     template: '#vinyls-template',
-    props: ['list']
+    props: ['userid', 'filter'],
+    data: function() {
+      return {
+        list: []
+      };
+    },
+    created: function() {
+      return this.fetchVinylList();
+    },
+    methods: {
+      fetchVinylList: function() {
+        return $.getJSON("/api/user/" + this.userid + "/vinyls/all", (function(_this) {
+          return function(response) {
+            console.log(response);
+            return _this.list = response;
+          };
+        })(this));
+      }
+    }
   });
 
   Vue.filter('chunk', function(value, size) {
@@ -279,7 +297,10 @@
   });
 
   new Vue({
-    el: '#collection'
+    el: '#collection',
+    data: {
+      vinylFilter: ""
+    }
   });
 
 }).call(this);

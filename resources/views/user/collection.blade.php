@@ -19,13 +19,14 @@
       @endif
     </div>
     <div class="col-md-12 content">
+      <input type="text" class="form-control" name="name" placeholder="Filter" v-model="vinylFilter">
       @if($user->collection_visibility == 'everyone' || Auth::user()->id == $user->id)
         {{-- @include('partials.collectionVinyls') --}}
-        <vinyls :list="{{ json_encode($vinyls) }}"></vinyls>
+        <vinyls userid="{{ Auth::user()->id }}" :filter="vinylFilter"></vinyls>
       @else {{-- not everyone can the collection --}}
         @if($user->collection_visibility == 'follower')
           @if($user->isFollowedBy(Auth::user()))
-            <vinyls :list="{{ json_encode($vinyls) }}"></vinyls>
+            <vinyls userid="{{ Auth::user()->id }}" :filter="vinylFilter"></vinyls>
             {{-- @include('partials.collectionVinyls') --}}
           @else
             <div class="col-md-12 text-center">
