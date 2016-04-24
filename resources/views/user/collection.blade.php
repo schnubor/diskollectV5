@@ -20,18 +20,18 @@
     </div>
     <div class="col-md-12 content">
       <div class="vinylControls row">
-              <div class="col-md-2">
-                  <input type="text" class="form-control" placeholder="Filter" v-model="vinylFilter">
-              </div>
-              <div class="col-md-2">
-                  <select class="form-control col-md-3" v-model="vinylSorting">
-                      <option value="created_at" selected>Latest</option>
-                      <option value="artist">Artist</option>
-                      <option value="title">Title</option>
-                      <option value="label">Label</option>
-                      <option value="price">Price</option>
-                  </select>
-              </div>
+          <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Filter" v-model="vinylFilter">
+          </div>
+          <div class="col-md-2">
+              <select class="form-control col-md-3" v-model="vinylSorting">
+                  <option value="created_at" selected>Latest</option>
+                  <option value="artist">Artist</option>
+                  <option value="title">Title</option>
+                  <option value="label">Label</option>
+                  <option value="price">Price</option>
+              </select>
+          </div>
       </div>
       <hr>
       @if($user->collection_visibility == 'everyone' || Auth::user()->id == $user->id)
