@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  <div class="content-area">
+  <div class="content-area" id="collection">
     <div class="col-md-12 toolbar">
       {{-- Controls --}}
       @if(Auth::check())
@@ -20,11 +20,13 @@
     </div>
     <div class="col-md-12 content">
       @if($user->collection_visibility == 'everyone' || Auth::user()->id == $user->id)
-        @include('partials.collectionVinyls')
+        {{-- @include('partials.collectionVinyls') --}}
+        <vinyls :list="{{ json_encode($vinyls) }}"></vinyls>
       @else {{-- not everyone can the collection --}}
         @if($user->collection_visibility == 'follower')
           @if($user->isFollowedBy(Auth::user()))
-            @include('partials.collectionVinyls')
+            <vinyls :list="{{ json_encode($vinyls) }}"></vinyls>
+            {{-- @include('partials.collectionVinyls') --}}
           @else
             <div class="col-md-12 text-center">
               <p class="placeholder">This collection is only visible for followers.</p>
@@ -45,4 +47,7 @@
 
   {{-- Sidebar --}}
   @include('user.partials.sidebar')
+
+  {{-- Templates --}}
+  @include('templates.collectionVinyls')
 @endsection

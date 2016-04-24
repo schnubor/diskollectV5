@@ -278,10 +278,10 @@ class VinylsController extends Controller
         $videos = $vinyl->videos;
 
         return view('vinyl.show')
-      ->with('vinyl', $vinyl)
-      ->with('user', $user)
-      ->with('tracks', $tracks)
-      ->with('videos', $videos);
+          ->with('vinyl', $vinyl)
+          ->with('user', $user)
+          ->with('tracks', $tracks)
+          ->with('videos', $videos);
     }
 
     /**

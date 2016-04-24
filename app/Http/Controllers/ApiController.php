@@ -13,6 +13,16 @@ use Auth;
 
 class ApiController extends Controller {
 
+    /**
+     * Return currently signed in user
+     *
+     * @return Response
+     */
+    public function me(){
+      $user = Auth::user();
+      return $user;
+    }
+
   /**
    * Return vinyls of user as JSON (paginated)
    *

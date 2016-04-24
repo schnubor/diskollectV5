@@ -269,6 +269,22 @@
 }).call(this);
 
 (function() {
+  Vue.component('vinyls', {
+    template: '#vinyls-template',
+    props: ['list']
+  });
+
+  Vue.filter('chunk', function(value, size) {
+    return _.chunk(value, size);
+  });
+
+  new Vue({
+    el: '#collection'
+  });
+
+}).call(this);
+
+(function() {
   var readUrl;
 
   $('.createVinyl .js-add-track').click(function() {

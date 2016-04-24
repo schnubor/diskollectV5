@@ -68,7 +68,7 @@ class UsersController extends Controller {
 
 		if($user){
 			Mail::send('emails.activation', [
-				'link' => route('user.activate', $code), 
+				'link' => route('user.activate', $code),
 				'username' => $username
 			], function($message) use ($user){
 				$message->to($user->email, $user->username)->subject('Account Activation');
@@ -178,7 +178,8 @@ class UsersController extends Controller {
 	public function collection($id)
 	{
 		$user = User::findOrFail($id);
-		$vinyls = $user->vinyls()->orderBy('created_at', 'DESC')->paginate(12);
+		// $vinyls = $user->vinyls()->orderBy('created_at', 'DESC')->paginate(12);
+        $vinyls = $user->vinyls()->latest()->get();
 
 		return view('user.collection')
 			->with('user', $user)
