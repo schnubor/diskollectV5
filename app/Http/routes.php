@@ -24,6 +24,11 @@ Route::get('/', [
  * API
  */
 
+ Route::get('/api/user/me', [
+   'as' => 'api.user.me',
+   'uses' => 'ApiController@me'
+ ]);
+
 Route::get('/api/user/{id}/vinyls', [
   'as' => 'api.user.vinyls',
   'uses' => 'ApiController@vinyls'

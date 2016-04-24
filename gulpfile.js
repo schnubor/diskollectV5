@@ -18,6 +18,7 @@ elixir(function(mix) {
     'app.coffee',
     'helper.coffee',
     'charts.coffee',
+    'collection.coffee',
     'createVinyl.coffee',
     'getStatus.coffee',
     'import.coffee',
@@ -34,7 +35,7 @@ elixir(function(mix) {
   mix.copy('bower_components/bootstrap/dist/js/bootstrap.js', 'public/js/vendor/bootstrap.js');
   mix.copy('bower_components/fontawesome/fonts', 'public/css/fonts');
   mix.copy('bower_components/fontawesome/css/font-awesome.min.css', 'public/css/vendor/font-awesome.min.css');
-  mix.copy('bower_components/underscore/underscore-min.js', 'public/js/vendor/underscore-min.js');
+  mix.copy('bower_components/lodash/dist/lodash.min.js', 'public/js/vendor/lodash.min.js');
   mix.copy('bower_components/d3/d3.min.js', 'public/js/vendor/d3.min.js');
   mix.copy('bower_components/c3/c3.min.js', 'public/js/vendor/c3.min.js');
   mix.copy('bower_components/c3/c3.min.css', 'public/css/vendor/c3.min.css');
@@ -49,9 +50,9 @@ elixir(function(mix) {
 
   mix.scripts([                       // concat scripts
     'vendor/jquery.js',
+    'vendor/lodash.min.js',
     'vendor/vue.js',
     'vendor/bootstrap.js',
-    'vendor/underscore-min.js',
     'vendor/d3.min.js',
     'vendor/c3.min.js',
     'vendor/dateformat.min.js',

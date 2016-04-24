@@ -269,6 +269,70 @@
 }).call(this);
 
 (function() {
+  Vue.component('vinyls', {
+    template: '#vinyls-template',
+    props: ['userid', 'filter', 'sorting'],
+    data: function() {
+      return {
+        list: [],
+        currentPage: 0,
+        itemsPerPage: 16,
+        resultCount: 0
+      };
+    },
+    computed: {
+      totalPages: function() {
+        return Math.ceil(this.resultCount / this.itemsPerPage);
+      }
+    },
+    created: function() {
+      return this.fetchVinylList();
+    },
+    methods: {
+      fetchVinylList: function() {
+        return $.getJSON("/api/user/" + this.userid + "/vinyls/all", (function(_this) {
+          return function(response) {
+            _this.list = response;
+            return _this.currentPage = 0;
+          };
+        })(this));
+      },
+      setPage: function(pageNumber) {
+        return this.currentPage = pageNumber;
+      }
+    }
+  });
+
+  Vue.filter('chunk', function(value, size) {
+    return _.chunk(value, size);
+  });
+
+  Vue.filter('paginate', function(list) {
+    var index;
+    this.resultCount = list.length;
+    console.log('resultCount: ', this.resultCount);
+    console.log('totalPages: ', this.totalPages);
+    console.log('currentPage before: ', this.currentPage);
+    if (this.currentPage >= this.totalPages) {
+      this.currentPage = this.totalPages - 1;
+    }
+    console.log('currentPage: ', this.currentPage);
+    index = this.currentPage * this.itemsPerPage;
+    console.log(list.slice(index, index + this.itemsPerPage));
+    return list.slice(index, index + this.itemsPerPage);
+  });
+
+  new Vue({
+    el: '#collection',
+    data: {
+      vinylFilter: "",
+      vinylSorting: "Latest"
+    }
+  });
+
+}).call(this);
+
+(function() {
   var readUrl;
 
   $('.createVinyl .js-add-track').click(function() {
