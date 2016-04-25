@@ -22537,18 +22537,33 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 (function() {
   Vue.component('vinyls', {
     template: '#vinyls-template',
-    props: ['userid', 'filter', 'sorting'],
+    props: ['userid'],
     data: function() {
       return {
         list: [],
         currentPage: 0,
         itemsPerPage: 16,
-        resultCount: 0
+        resultCount: 0,
+        filter: "",
+        sorting: "created_at",
+        pageButtonClass: "active"
       };
     },
     computed: {
       totalPages: function() {
         return Math.ceil(this.resultCount / this.itemsPerPage);
+      },
+      nextButtonClass: function() {
+        if (this.currentPage >= this.totalPages - 1) {
+          return "disabled";
+        }
+        return "";
+      },
+      prevButtonClass: function() {
+        if (this.currentPage === 0) {
+          return "disabled";
+        }
+        return "";
       }
     },
     created: function() {
@@ -22565,6 +22580,16 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
       },
       setPage: function(pageNumber) {
         return this.currentPage = pageNumber;
+      },
+      nextPage: function() {
+        if (this.currentPage !== this.totalPages) {
+          return this.currentPage++;
+        }
+      },
+      prevPage: function() {
+        if (this.currentPage > 0) {
+          return this.currentPage--;
+        }
       }
     }
   });
@@ -22576,24 +22601,19 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
   Vue.filter('paginate', function(list) {
     var index;
     this.resultCount = list.length;
-    console.log('resultCount: ', this.resultCount);
-    console.log('totalPages: ', this.totalPages);
-    console.log('currentPage before: ', this.currentPage);
-    if (this.currentPage >= this.totalPages) {
-      this.currentPage = this.totalPages - 1;
+    if (this.resultCount !== 0) {
+      if (this.currentPage >= this.totalPages) {
+        this.currentPage = this.totalPages - 1;
+      }
+    } else {
+      this.currentPage = 0;
     }
-    console.log('currentPage: ', this.currentPage);
     index = this.currentPage * this.itemsPerPage;
-    console.log(list.slice(index, index + this.itemsPerPage));
     return list.slice(index, index + this.itemsPerPage);
   });
 
   new Vue({
-    el: '#collection',
-    data: {
-      vinylFilter: "",
-      vinylSorting: "Latest"
-    }
+    el: '#collection'
   });
 
 }).call(this);
