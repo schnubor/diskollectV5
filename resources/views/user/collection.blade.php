@@ -36,11 +36,11 @@
       <hr>
       @if($user->collection_visibility == 'everyone' || Auth::user()->id == $user->id)
         {{-- @include('partials.collectionVinyls') --}}
-        <vinyls userid="{{ Auth::user()->id }}" :filter="vinylFilter" :sorting="vinylSorting"></vinyls>
+        <vinyls userid="{{ $user->id }}" :filter="vinylFilter" :sorting="vinylSorting"></vinyls>
       @else {{-- not everyone can the collection --}}
         @if($user->collection_visibility == 'follower')
           @if($user->isFollowedBy(Auth::user()))
-            <vinyls userid="{{ Auth::user()->id }}" :filter="vinylFilter" :sorting="vinylSorting"></vinyls>
+            <vinyls userid="{{ $user->id }}" :filter="vinylFilter" :sorting="vinylSorting"></vinyls>
             {{-- @include('partials.collectionVinyls') --}}
           @else
             <div class="col-md-12 text-center">

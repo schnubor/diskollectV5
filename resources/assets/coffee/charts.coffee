@@ -51,14 +51,14 @@ $.getStats = (userId) ->
 
             # console.log timeData_temp
 
-            genreData = _.chain(genreData).countBy().pairs().value()
+            genreData = _.chain(genreData).countBy().toPairs().value()
 
-            sizeData_temp = _.chain(sizeData_temp).countBy().pairs().value()
+            sizeData_temp = _.chain(sizeData_temp).countBy().toPairs().value()
             _.each sizeData_temp, (sizeArray) ->
                 sizeData[0].push(sizeArray[0])
                 sizeData[1].push(sizeArray[1])
 
-            timeData_temp = _.chain(timeData_temp).countBy().pairs().value()
+            timeData_temp = _.chain(timeData_temp).countBy().toPairs().value()
             _.each timeData_temp, (timeArray) ->
                 timeData[0].push(timeArray[0])
                 timeData[1].push(timeArray[1])
