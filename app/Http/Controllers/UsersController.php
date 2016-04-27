@@ -187,6 +187,21 @@ class UsersController extends Controller {
 	}
 
 	/**
+	 * Display users collection.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function deleteCollection($id)
+	{
+		$user = User::findOrFail($id);
+        $user->vinyls()->delete();
+
+		return redirect()->route('user.collection', Auth::user()->id);
+	}
+
+
+	/**
 	 * Display users jukebox.
 	 *
 	 * @param  int  $id
@@ -268,11 +283,11 @@ class UsersController extends Controller {
 
 		if($user->save()){
 			flash()->success('Profile updated successfully!');
-			return redirect()->route('user.settings', Auth::user()->id);
+			return redirect()->route('user.settings');
 		}
 
 		flash()->error('Sorry! Please try again.');
-		return redirect()->route('user.settings', Auth::user()->id);
+		return redirect()->route('user.settings');
 	}
 
 	/**
@@ -377,15 +392,15 @@ class UsersController extends Controller {
 
 			if($user->save()){
 				flash()->success('You successfully changed your password.');
-				return redirect()->route('user.settings', Auth::user()->id);
+				return redirect()->route('user.settings');
 			}
 
 			flash()->error('Sorry! Please try again.');
-			return redirect()->route('user.settings', Auth::user()->id);
+			return redirect()->route('user.settings');
 		}
 
 		flash()->error('Wrong password.');
-		return redirect()->route('user.settings', Auth::user()->id);
+		return redirect()->route('user.settings');
 	}
 
 	/**
@@ -405,11 +420,11 @@ class UsersController extends Controller {
 
 		if($user->save()){
 			flash()->success('You successfully updated your notification settings.');
-			return redirect()->route('user.settings', Auth::user());
+			return redirect()->route('user.settings');
 		}
 
 		flash()->error('Wrong password.');
-		return redirect()->route('user.settings', Auth::user()->id);
+		return redirect()->route('user.settings');
 	}
 
 	/**
@@ -424,11 +439,11 @@ class UsersController extends Controller {
 
 		if($user->save()){
 			flash()->success('You successfully updated your notification settings.');
-			return redirect()->route('user.settings', Auth::user());
+			return redirect()->route('user.settings');
 		}
 
 		flash()->error('Wrong password.');
-		return redirect()->route('user.settings', Auth::user()->id);
+		return redirect()->route('user.settings');
 	}
 
 }

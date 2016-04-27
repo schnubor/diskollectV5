@@ -96,6 +96,12 @@ Route::get('/user/{id}/collection', [
   'uses' => 'UsersController@collection'
 ]);
 
+Route::delete('/user/{id}/collection', [
+  'as' => 'user.collection.delete',
+  'uses' => 'UsersController@deleteCollection',
+  'middleware' => 'auth'
+]);
+
 Route::get('/user/{id}/jukebox', [
   'as' => 'user.jukebox',
   'uses' => 'UsersController@jukebox'
@@ -111,7 +117,7 @@ Route::get('/user/{id}/following', [
   'uses' => 'UsersController@following'
 ]);
 
-Route::get('/user/{id}/settings', [
+Route::get('/settings', [
   'as' => 'user.settings',
   'uses' => 'UsersController@settings',
   'middleware' => 'auth'

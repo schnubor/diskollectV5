@@ -865,11 +865,6 @@
         }
         return true;
       }
-    },
-    methods: {
-      "delete": function() {
-        return console.log("delete!");
-      }
     }
   });
 
