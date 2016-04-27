@@ -24,6 +24,7 @@ elixir(function(mix) {
     'import.coffee',
     'jukebox.coffee',
     'search.coffee',
+    'settings.coffee',
     'welcome.coffee'
   ]);                       // compile coffeescript
 

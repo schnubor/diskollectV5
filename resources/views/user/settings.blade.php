@@ -9,8 +9,8 @@
     <div class="col-md-12 toolbar">
       <p class="lead"><strong>Settings</strong></p>
     </div>
-    
-    <div class="col-md-12 content">
+
+    <div class="col-md-12 content" id="settings">
       {{-- Flash messages --}}
       <div class="col-md-12">
         @if (session('status'))
@@ -37,13 +37,13 @@
           <div class="panel-heading">Edit profile</div>
           {!! Form::model(Auth::user(), ['route' => 'post.edit.user', 'files' => true, 'class' => 'form-horizontal']) !!}
           <div class="panel-body">
-            
+
             <div class="row">
               <div class="col-md-4 col-md-offset-4">
                 <div class="avatar center-block" style="background-image: url('{{ Auth::user()->image }}');"></div>
               </div>
             </div>
-            
+
             <div class="row">
               <!-- Avatar -->
               <div class="form-group">
@@ -90,8 +90,8 @@
                 {!! Form::label('currency', 'Currency', ['class' => 'col-md-4 control-label']) !!}
                 <div class="col-md-6">
                   {!! Form::select('currency', [
-                    'EUR' => '&euro; - Euro', 
-                    'USD' => '&#36; - United States Dollar', 
+                    'EUR' => '&euro; - Euro',
+                    'USD' => '&#36; - United States Dollar',
                     'GBP' => '&pound; - Great Britain Pound'
                   ], Auth::user()->currency, ['class' => 'form-control']) !!}
                 </div>
@@ -105,8 +105,8 @@
           {!! Form::close() !!}
         </div>
       </div>
-      
-      <!-- Password -->
+
+      {{-- Password --}}
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">Edit Password</div>
@@ -157,7 +157,7 @@
           </div>
         </div>
       </div>
-      
+
       {{-- Email Notifications --}}
       <div class="col-md-6">
         <div class="panel panel-default">
@@ -166,11 +166,11 @@
           <div class="panel-body">
             <div class="form-group">
               <div class="col-md-12">
-                {!! Form::checkbox('email_new_follower', Input::old('email_new_follower'), ['class' => 'form-control']) !!} 
+                {!! Form::checkbox('email_new_follower', Input::old('email_new_follower'), ['class' => 'form-control']) !!}
                 Email me on new followers
               </div>
             </div>
-            
+
           </div>
           <div class="panel-footer">
             {!! Form::submit('Update', array('class' => 'btn btn-md btn-primary pull-right')) !!}
@@ -190,8 +190,8 @@
               {!! Form::label('collection_visibility', 'Who can see my collection', ['class' => 'col-md-5 control-label']) !!}
               <div class="col-md-7">
                 {!! Form::select('collection_visibility', [
-                      'everyone' => 'Everyone', 
-                      'noone' => 'Noone', 
+                      'everyone' => 'Everyone',
+                      'noone' => 'Noone',
                       'follower' => 'Only follower'
                     ], Auth::user()->collection_visibility, ['class' => 'form-control']) !!}
               </div>
@@ -200,8 +200,8 @@
               {!! Form::label('statistics_visibility', 'Who can see my statistics', ['class' => 'col-md-5 control-label']) !!}
               <div class="col-md-7">
                 {!! Form::select('statistics_visibility', [
-                      'everyone' => 'Everyone', 
-                      'noone' => 'Noone', 
+                      'everyone' => 'Everyone',
+                      'noone' => 'Noone',
                       'follower' => 'Only follower'
                     ], Auth::user()->statistics_visibility, ['class' => 'form-control']) !!}
               </div>
@@ -215,11 +215,23 @@
         </div>
       </div>
 
+      {{-- Collection --}}
+      <div class="col-md-6">
+          <div class="panel panel-default">
+              <div class="panel-heading">Collection</div>
+              <div class="panel-body">
+                  <button class="btn btn-danger" data-toggle="modal" data-target="#deleteCollectionModal"><i class="fa fa-trash-o"></i> Delete Collection</button>
+              </div>
+          </div>
+      </div>
+      @include('partials.deleteCollectionModal')
+      
     </div>
   </div>
 
   {{-- Sidebar --}}
   @include('user.partials.sidebar')
+
 @endsection
 
 @section('scripts')

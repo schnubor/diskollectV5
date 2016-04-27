@@ -22660,13 +22660,12 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 (function() {
   $.getStatus = function(userId) {
     var $vinyls;
-    console.log(userId);
     return $vinyls = $.ajax({
       url: '/api/user/' + userId + '/status',
       type: 'GET',
       error: function(x, status, error) {
-        console.log(status);
-        console.log(error);
+        console.warn(status);
+        console.warn(error);
         $('.js-connectionStatus').removeClass('btn-info').addClass('btn-danger').html('<i class="fa fa-fw fa-exclamation-circle"></i> Not connected');
         $('.js-connectionAction').removeClass('hidden');
         return false;
@@ -23115,6 +23114,29 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
         return $('body').append('<div class="flash-message"><div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Oops! Something went wrong, please try again.</div></div>');
       }
     });
+  });
+
+}).call(this);
+
+(function() {
+  new Vue({
+    el: '#settings',
+    data: {
+      confirm: ""
+    },
+    computed: {
+      disabled: function() {
+        if (this.confirm === "delete") {
+          return false;
+        }
+        return true;
+      }
+    },
+    methods: {
+      "delete": function() {
+        return console.log("delete!");
+      }
+    }
   });
 
 }).call(this);
