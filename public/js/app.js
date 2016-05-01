@@ -279,7 +279,8 @@
         itemsPerPage: 16,
         resultCount: 0,
         filter: "",
-        sorting: "created_at"
+        sorting: "created_at",
+        loading: true
       };
     },
     computed: {
@@ -307,7 +308,8 @@
         return $.getJSON("/api/user/" + this.userid + "/vinyls/all", (function(_this) {
           return function(response) {
             _this.list = response;
-            return _this.currentPage = 0;
+            _this.currentPage = 0;
+            return _this.loading = false;
           };
         })(this));
       },

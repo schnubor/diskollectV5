@@ -9,6 +9,7 @@ Vue.component 'vinyls',
         resultCount: 0
         filter: ""
         sorting: "created_at"
+        loading: true
 
     computed:
         totalPages: ->
@@ -30,6 +31,7 @@ Vue.component 'vinyls',
             $.getJSON "/api/user/#{@userid}/vinyls/all", (response) =>
                 @list = response
                 @currentPage = 0
+                @loading = false
 
         setPage: (pageNumber) ->
             @currentPage = pageNumber
