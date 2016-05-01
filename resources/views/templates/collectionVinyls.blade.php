@@ -13,13 +13,6 @@
                     <option value="price">Price</option>
                 </select>
             </div>
-            <div class="col-md-2">
-                <select class="form-control" v-model="itemsPerPage">
-                    <option value="16" selected>16 per page</option>
-                    <option value="32">32 per page</option>
-                    <option value="64">64 per page</option>
-                </select>
-            </div>
             <nav class="col-md-2">
                 <button class="btn btn-default" :class="prevButtonClass" @click="prevPage()"><i class="fa fa-chevron-left"></i></button>
                 <ul class="pagination no-margin">
