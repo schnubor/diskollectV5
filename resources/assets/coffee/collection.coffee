@@ -10,9 +10,6 @@ Vue.component 'vinyls',
         filter: ""
         sorting: "created_at"
 
-        #classes
-        pageButtonClass: "active"
-
     computed:
         totalPages: ->
             return Math.ceil @resultCount / @itemsPerPage

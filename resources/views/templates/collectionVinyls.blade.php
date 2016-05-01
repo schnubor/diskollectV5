@@ -5,7 +5,7 @@
                 <input type="text" class="form-control" placeholder="Filter" v-model="filter">
             </div>
             <div class="col-md-2">
-                <select class="form-control col-md-3" v-model="sorting">
+                <select class="form-control" v-model="sorting">
                     <option value="created_at" selected>Latest</option>
                     <option value="artist">Artist</option>
                     <option value="title">Title</option>
@@ -13,14 +13,19 @@
                     <option value="price">Price</option>
                 </select>
             </div>
-            <nav>
-              <ul class="pagination no-margin">
-                <li v-bind:class="prevButtonClass" @click="prevPage()"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                <li v-for="pageNumber in totalPages" v-bind:class="pageNumber == currentPage ? pageButtonClass : ''">
-                  <a href="#" @click="setPage(pageNumber)">@{{ pageNumber + 1 }}</a>
-                </li>
-                <li v-bind:class="nextButtonClass" @click="nextPage()"><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-              </ul>
+            <div class="col-md-2">
+                <select class="form-control" v-model="itemsPerPage">
+                    <option value="16" selected>16 per page</option>
+                    <option value="32">32 per page</option>
+                    <option value="64">64 per page</option>
+                </select>
+            </div>
+            <nav class="col-md-2">
+                <button class="btn btn-default" :class="prevButtonClass" @click="prevPage()"><i class="fa fa-chevron-left"></i></button>
+                <ul class="pagination no-margin">
+                    <li style="padding: 0 10px;">Page @{{ currentPage + 1 }}</li>
+                </ul>
+                <button class="btn btn-default" :class="nextButtonClass" @click="nextPage()"><i class="fa fa-chevron-right"></i></button>
             </nav>
         </div>
 
@@ -30,7 +35,7 @@
           <div v-for="group in list | filterBy filter in 'artist' 'title' 'label' 'catno' | orderBy sorting | paginate | chunk 4" class="row">
             <div class="col-md-3 vinyl" v-for="vinyl in group">
               <div class="cover">
-                <a href="/vinyl/@{{ vinyl.id }}"><img v-bind:src="vinyl.artwork" alt="@{{ vinyl.artist }} - @{{ vinyl.title }}"></a>
+                <a href="/vinyl/@{{ vinyl.id }}"><img :src="vinyl.artwork" alt="@{{ vinyl.artist }} - @{{ vinyl.title }}"></a>
               </div>
               <div class="info">
                 <span class="artist">@{{ vinyl.artist }}</span><br>

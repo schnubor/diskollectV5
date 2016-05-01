@@ -279,8 +279,7 @@
         itemsPerPage: 16,
         resultCount: 0,
         filter: "",
-        sorting: "created_at",
-        pageButtonClass: "active"
+        sorting: "created_at"
       };
     },
     computed: {

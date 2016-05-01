@@ -22552,8 +22552,7 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
         itemsPerPage: 16,
         resultCount: 0,
         filter: "",
-        sorting: "created_at",
-        pageButtonClass: "active"
+        sorting: "created_at"
       };
     },
     computed: {
