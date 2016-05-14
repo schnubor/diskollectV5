@@ -126,7 +126,7 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
         success: (results) -> # search results received
             # console.log results
             if(results.albums.items.length)
-                $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A'+results.albums.items[0].id+'" width="598" height="380" frameborder="0" allowtransparency="true"></iframe>')
+                $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A'+results.albums.items[0].id+'" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>')
                 $vinylData.spotify_id = results.albums.items[0].id
 
     # fetch price
@@ -169,10 +169,10 @@ $('#searchModalSubmit').on 'click', (e) ->
         url: '/vinyl/create'
         type: 'POST'
         data: $vinylData
-        success: (reponse) ->
+        success: (response) ->
             console.log 'vinyl added!'
             $('#quickAddVinyl').modal('hide')
-            $('body').append '<div class="flash-message"><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>'+ $vinylData.artist + ' - ' + $vinylData.title + '</b> is now in your collection.</div></div>'
+            $('body').append('<div class="flash-message"><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><a href="/vinyl/'+response.id+'"><b>'+ $vinylData.artist + ' - ' + $vinylData.title + '</b></a> is now in your collection.</div></div>')
         error: (error) ->
             console.warn error
             $('body').append '<div class="flash-message"><div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Oops! Something went wrong, please try again.</div></div>'

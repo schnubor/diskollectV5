@@ -32,7 +32,18 @@
               <div v-for="group in list | filterBy filter in 'artist' 'title' 'label' 'catno' | orderBy sorting | paginate | chunk 4" class="row">
                 <div class="col-md-3 vinyl" v-for="vinyl in group">
                   <div class="cover">
-                    <a href="/vinyl/@{{ vinyl.id }}"><img :src="vinyl.artwork" alt="@{{ vinyl.artist }} - @{{ vinyl.title }}"></a>
+                    <div class="vinylContent">
+                        <a href="/vinyl/@{{ vinyl.id }}">
+                            <div class="overlay">
+                                <div class="price">@{{ vinyl.price.toFixed(2) }} {{ Auth::user()->currency }}</div>
+                            </div>
+                            <img :src="vinyl.artwork" alt="@{{ vinyl.artist }} - @{{ vinyl.title }}">
+                        </a>
+                        <div class="actions">
+                            <a href="/vinyl/@{{ vinyl.id }}/edit" class="btn btn-default edit"><i class="fa fa-edit"></i></a>
+                            <button class="btn btn-default delete" @click="deleteVinyl(vinyl, $event)"><i class="fa fa-trash-o"></i></button>
+                        </div>
+                    </div>
                   </div>
                   <div class="info">
                     <span class="artist">@{{ vinyl.artist }}</span><br>

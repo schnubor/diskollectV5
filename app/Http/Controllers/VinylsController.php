@@ -253,9 +253,7 @@ class VinylsController extends Controller
                 }
             }
 
-            flash()->success('Success! '.$request->input('artist').' - '.$request->input('title').' is now in your collection.');
-
-            return redirect()->route('user.collection', $user->id);
+            return response()->json($vinyl);
         }
 
         flash()->error('Oops! There was an error adding the vinyl to the collection. Please try again.');
@@ -388,15 +386,7 @@ class VinylsController extends Controller
     {
         $vinyl = Vinyl::find($id);
         if ($vinyl->delete()) {
-            flash()->info($vinyl->artist.' - '.$vinyl->title.' was deleted successfully.');
-
-            return redirect()->route('user.collection', Auth::user()->id)
-        ->with('info-alert', 'All done! Vinyl deleted successfully.');
-        } else {
-            flash()->error('Oops! Could not delete vinyl. Please try again.');
-
-            return redirect()->route('user.collection', Auth::user()->id)
-        ->with('danger-alert', 'Oops! Vinyl could not be deleted.');
+            return "deleted";
         }
     }
 }

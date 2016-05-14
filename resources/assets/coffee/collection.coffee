@@ -27,6 +27,31 @@ Vue.component 'vinyls',
         @fetchVinylList()
 
     methods:
+        deleteVinyl: (vinyl, event) ->
+            event.preventDefault()
+            event.stopPropagation()
+
+            swal
+                title: "Are you sure?"
+                text: "This will remove the vinyl from your collection!"
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55"
+                confirmButtonText: "Yes, delete it!"
+                closeOnConfirm: true
+            , =>
+                console.log "delete vinyl with id=#{vinyl.id}"
+                $.ajaxSetup
+                    headers:
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                $.ajax
+                    url: "/vinyl/#{vinyl.id}/delete"
+                    method: "DELETE"
+                    success: =>
+                        console.log "deleted!"
+                        @list.$remove(vinyl)
+
         fetchVinylList: ->
             $.getJSON "/api/user/#{@userid}/vinyls/all", (response) =>
                 @list = response

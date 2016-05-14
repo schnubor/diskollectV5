@@ -536,9 +536,51 @@ p.placeholder {
     vertical-align: top; }
 
 .vinyl .cover {
-  background-color: #839393; }
+  background-color: #D0D0D0;
+  position: relative;
+  width: 100%; }
+  .vinyl .cover:before {
+    content: "";
+    display: block;
+    padding-top: 100%; }
+  .vinyl .cover:hover .overlay,
+  .vinyl .cover:hover .actions {
+    opacity: 1; }
+  .vinyl .cover .vinylContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden; }
   .vinyl .cover img {
-    width: 100%; }
+    height: 100%; }
+  .vinyl .cover .overlay {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: .2s all; }
+    .vinyl .cover .overlay .price {
+      position: absolute;
+      color: white;
+      font-weight: bold;
+      font-size: 22px;
+      top: 10px;
+      left: 10px; }
+  .vinyl .cover .actions {
+    opacity: 0;
+    transition: .2s all;
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    text-align: right;
+    width: 100%;
+    z-index: 2; }
 
 .vinyl .info {
   margin-top: 8px;

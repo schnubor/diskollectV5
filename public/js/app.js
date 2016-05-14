@@ -304,6 +304,36 @@
       return this.fetchVinylList();
     },
     methods: {
+      deleteVinyl: function(vinyl, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        return swal({
+          title: "Are you sure?",
+          text: "This will remove the vinyl from your collection!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Yes, delete it!",
+          closeOnConfirm: true
+        }, (function(_this) {
+          return function() {
+            console.log("delete vinyl with id=" + vinyl.id);
+            $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+            });
+            return $.ajax({
+              url: "/vinyl/" + vinyl.id + "/delete",
+              method: "DELETE",
+              success: function() {
+                console.log("deleted!");
+                return _this.list.$remove(vinyl);
+              }
+            });
+          };
+        })(this));
+      },
       fetchVinylList: function() {
         return $.getJSON("/api/user/" + this.userid + "/vinyls/all", (function(_this) {
           return function(response) {
@@ -804,7 +834,7 @@
       },
       success: function(results) {
         if (results.albums.items.length) {
-          $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A' + results.albums.items[0].id + '" width="598" height="380" frameborder="0" allowtransparency="true"></iframe>');
+          $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A' + results.albums.items[0].id + '" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>');
           return $vinylData.spotify_id = results.albums.items[0].id;
         }
       }
@@ -839,10 +869,10 @@
       url: '/vinyl/create',
       type: 'POST',
       data: $vinylData,
-      success: function(reponse) {
+      success: function(response) {
         console.log('vinyl added!');
         $('#quickAddVinyl').modal('hide');
-        return $('body').append('<div class="flash-message"><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>' + $vinylData.artist + ' - ' + $vinylData.title + '</b> is now in your collection.</div></div>');
+        return $('body').append('<div class="flash-message"><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><a href="/vinyl/' + response.id + '"><b>' + $vinylData.artist + ' - ' + $vinylData.title + '</b></a> is now in your collection.</div></div>');
       },
       error: function(error) {
         console.warn(error);

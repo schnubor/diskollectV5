@@ -42,11 +42,14 @@ elixir(function(mix) {
   mix.copy('bower_components/c3/c3.min.js', 'public/js/vendor/c3.min.js');
   mix.copy('bower_components/c3/c3.min.css', 'public/css/vendor/c3.min.css');
   mix.copy('bower_components/dateformatjs/dateformat.min.js', 'public/js/vendor/dateformat.min.js');
+  mix.copy('bower_components/sweetalert/dist/sweetalert.min.js', 'public/js/vendor/sweetalert.min.js');
+  mix.copy('bower_components/sweetalert/dist/sweetalert.css', 'public/css/vendor/sweetalert.css');
 
   mix.styles([                        // concat styles
     'vendor/normalize.css',
     'vendor/bootstrap.css',
     'vendor/c3.min.css',
+    'vendor/sweetalert.css',
     'app.css'
   ], null, 'public/css');
 
@@ -55,10 +58,12 @@ elixir(function(mix) {
     'vendor/lodash.min.js',
     'vendor/vue.js',
     'vendor/vue-resource.min.js',
+    'vendor/vue-filter.min.js',
     'vendor/bootstrap.js',
     'vendor/d3.min.js',
     'vendor/c3.min.js',
     'vendor/dateformat.min.js',
+    'vendor/sweetalert.min.js',
     'app.js',
   ], null, 'public/js');
 
