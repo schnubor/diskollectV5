@@ -8229,6 +8229,36 @@ p.placeholder {
   p.placeholder.small {
     font-size: 18px; }
 
+#jukebox .videoBg {
+  height: 100%;
+  padding-top: 70px;
+  position: absolute;
+  width: calc(100% - 65px);
+  overflow: hidden; }
+  #jukebox .videoBg > div {
+    height: 100%;
+    width: 100%; }
+
+#jukebox .jukeboxPlayer:hover .vinylDetails {
+  opacity: 1; }
+
+#jukebox .vinylDetails {
+  opacity: 0;
+  transition: .2s all;
+  position: absolute;
+  box-sizing: border-box;
+  width: calc(100% - 65px);
+  padding: 20px;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); }
+  #jukebox .vinylDetails .vinylTitle {
+    font-weight: 200;
+    color: white;
+    font-size: 22px;
+    line-height: 46px; }
+  #jukebox .vinylDetails .vinylMeta {
+    color: #CCC; }
+
 #welcome {
   height: 100%; }
   #welcome .header {

@@ -19902,6 +19902,273 @@ var template = Object.freeze({
  * MIT License.
  */
 !function(){"use strict";function r(r,e){return E.isArrayLike(r)?r[e]:r}function e(r,e){return E.isArray(r)?E.isArray(e)?r.concat(e):r.concat(E.toArray(e)):E.isArray(e)?E.toArray(r).concat(e):E.toArray(r).concat(E.toArray(e))}function t(r){return E.isArrayLike(r)?r[0]:r}function n(r,e){return E.isArray(r)?r.join(e):E.isArrayLike(r)?E.toArray(r).join(e):r}function a(r){return E.isArrayLike(r)?r[r.length-1]:r}function i(r,e){return E.map(r,e)}function u(r){if(r){if(E.isObject(r)&&(r=E.toArray(r)),E.isArrayLike(r)&&0!=r.length){var e=Math.floor(r.length*Math.random());return r[e]}return r}}function o(r){return E.isArray(r)?(r=r.concat(),r.reverse()):E.isString(r)?r.split("").reverse().join(""):r}function c(r){var e=r.length;return e?e:0}function s(r,e){r=[];for(var t=0;e>t;t++)r.push(t);return r}function f(r,e){var t=!1;if(E.isArrayLike(r))if(E.isFunction(e)){var n=e;E.each(r,function(r){return n(r)===!0?(t=!0,!1):void 0})}else E.each(r,function(r){return r===e?(t=!0,!1):void 0});return t}function l(r,e){return E.isNumber(r)?r/e:r}function y(r,e){return E.isNumber(r)?r-e:r}function g(r,e){return E.isNumber(r)?r+e:r}function b(r,e){return E.isNumber(r)?r*e:r}function p(r,e){return E.isNumber(r)?r%e:r}function v(r,e){var t,n,a;return E.isArray(r)?(n=-(1/0),E.each(r,function(r){a=E.get(r,e),a>n&&(n=a,t=r)}),t):r}function k(r,e){var t,n,a;return E.isArray(r)?(n=1/0,E.each(r,function(r){a=E.get(r,e),n>a&&(n=a,t=r)}),t):r}function h(r,e){if(E.isArrayLike(r)&&!E.isString(r)){var t=e||0;return E.each(r,function(r){return E.isNumber(r)?void(t+=r):(t=void 0,!1)}),t}return r}function d(r){if(E.isArray(r)){var e=r.reduce(function(r,e){return r+e},0),t=r.length;return E.isNumber(e)&&0!=t?e/t:0}return r}function A(r,e){return r=r||0===r?r.toString():"",r+e}function m(r){var e=/(?:^|[-_\/])(\w)/g;return r.toString().replace(e,function(r,e){return e.toUpperCase()})}function j(r,e){return r=r||0===r?r.toString():"",e+r}function M(r,e){return E.isString(r)&&(r=r.split(e).join("")),r}function S(r,e){return e=e||"",E.isString(r)?r.split(e):r}function w(r,e,t){return e=new RegExp(e,t),e.test(r)}function O(r,e){if(E.isString(r)){var t;return t="r"==e?/\s+$/:"l"==e?/^\s+/:/^\s+|\s+$/g,r.replace(t,"")}return r}function D(r,e,t){return e=e||30,t="string"==typeof t?t:"...",(r.length+t.length>e?r.slice(0,e-t.length):r)+t}function L(r,e){function t(){var r=[31,28,31,30,31,30,31,31,30,31,30,31],e=a.getFullYear(),t=a.getMonth(),n=a.getDate();(e%100==0&&e%400==0||e%4==0)&&(r[1]=29);for(var i=0,u=0;t>u;u++)i+=r[u];return i+n}function n(r){var e="";switch(r){case"%a":e=tr[a.getDay()].slice(0,3);break;case"%A":e=tr[a.getDay()];break;case"%b":e=nr[a.getMonth()].slice(0,3);break;case"%B":e=nr[a.getMonth()];break;case"%c":e=a.toLocaleDateString()+" "+a.toLocaleTimeString();break;case"%d":var n=a.getDate();e=i(n);break;case"%-d":e=a.getDate();break;case"%D":e="%m/%d/%Y";break;case"%e":e=a.getDate();break;case"%F":e="%Y-%m-%d";break;case"%H":var u=a.getHours();e=i(u);break;case"%I":e=a.getHours()%12;break;case"%j":e=i(t(),3);break;case"k":e=a.getHours();break;case"%m":var o=a.getMonth()+1;e=i(o,2);break;case"%M":e=i(a.getMinutes(),2);break;case"%s":e=i(a.getSeconds(),2);break;case"%p":e=a.getHours()<12?"AM":"PM";break;case"%r":e="%I:%M:%s %p";break;case"%R":e="%H:%M";break;case"%T":e="%H:%M:%s";break;case"%U":e=Math.ceil(t()/7);break;case"%w":e=a.getDay();break;case"%x":e="%m/%d/%y";break;case"%X":e="%h:%M:%s";break;case"%y":e=a.getFullYear()%100;break;case"%Y":e=a.getFullYear();break;default:e=r}return e}var a=new Date(r),i=function(r,e){e||(e=2),r=""+r;for(var t=0,n="";t<e-r.length;t++)n+="0";return n+r},u=/%-?[\w]/g;return e||(e="%c"),e=e.replace(u,n),e=e.replace(u,n)}function x(r,e){return null==r||""===r?e:r}function F(r){E.each(q,function(e,t){r.filter(t,e)}),E.each(rr,function(e,t){r.filter(t,e)}),E.each(er,function(e,t){r.filter(t,e)}),E.each(ar,function(e,t){r.filter(t,e)})}var N=Array.prototype,H=Object.prototype,Y=N.slice,z=H.toString,E={};E.isArray=function(r){return Array.isArray(r)};var T=Math.pow(2,53)-1;E.isArrayLike=function(r){var e=r.length;return"number"==typeof e&&e>=0&&T>=e},E.isObject=function(r){var e=typeof r;return"function"===e||"object"===e&&!!r},E.each=function(r,e){var t,n;if(E.isArray(r))for(t=0,n=r.length;n>t&&e(r[t],t,r)!==!1;t++);else for(t in r)if(e(r[t],t,r)===!1)break;return r},E.each(["Arguments","Function","String","Number","Date","RegExp","Error"],function(r){E["is"+r]=function(e){return z.call(e)==="[object "+r+"]"}}),E.keys=function(r){if(!E.isObject(r))return[];if(Object.keys)return Object.keys(r);var e=[];for(var t in r)r.hasOwnProperty(t)&&e.push(t);return e},E.values=function(r){for(var e=E.keys(r),t=e.length,n=Array(t),a=0;t>a;a++)n[a]=r[e[a]];return n},E.toArray=function(r){return r?E.isArrayLike(r)?Y.call(r):E.values(r):[]},E.map=function(r,e){for(var t=!E.isArrayLike(r)&&E.keys(r),n=(t||r).length,a=Array(n),i=0;n>i;i++){var u=t?t[i]:i;a[i]=e(r[u],u,r)}return a},E.get=function(r,e){var t=void 0;if(!E.isObject(r))return r;if(void 0==e)return r;if(E.isString(e)){e=e.split("."),t=r;try{for(var n=0;n<e.length;n++)t=t[e[n]]}catch(a){t=void 0}}else E.isFunction(e)&&(t=e(r));return t};var q=Object.freeze({at:r,concat:e,first:t,join:n,last:a,map:i,random:u,reverse:o,size:c,range:s,contains:f}),J={};["abs","acos","asin","atan","atan2","ceil","cos","exp","floor","log","pow","round","sin","sqrt","tan"].forEach(function(r){J[r]=function(e,t){return"number"==typeof e?Math[r](e,t):e}});var R=J.abs,I=J.acos,P=J.asin,U=J.atan,V=J.atan2,$=J.ceil,B=J.cos,C=J.exp,W=J.floor,X=J.log,_=J.pow,G=J.round,K=J.sin,Q=J.sqrt,Z=J.tan,rr=Object.freeze({abs:R,acos:I,asin:P,atan:U,atan2:V,ceil:$,cos:B,exp:C,floor:W,log:X,pow:_,round:G,sin:K,sqrt:Q,tan:Z,max:v,min:k,mean:d,sum:h,plus:g,minus:y,multiply:b,divide:l,mod:p}),er=Object.freeze({append:A,camelcase:m,prepend:j,remove:M,split:S,test:w,trim:O,truncate:D}),tr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],nr=["January","February","March","April","May","June","July","August","September","October","November","December"],ar=Object.freeze({date:L,defaults:x});"object"==typeof exports?module.exports=F:"function"==typeof define&&define.amd?define([],function(){return F}):window.Vue&&Vue.use(F)}();
+/*! Vue YouTube Embed version 0.4.0 under MIT License copyright 2016 kaorun343 */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["VueYouTubeEmbed"] = factory();
+	else
+		root["VueYouTubeEmbed"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports) {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.getIdFromURL = getIdFromURL;
+exports.getTimeFromURL = getTimeFromURL;
+exports.install = install;
+if (!String.prototype.includes) {
+  String.prototype.includes = function () {
+    'use strict';
+
+    return String.prototype.indexOf.apply(this, arguments) !== -1;
+  };
+}
+
+var youtubeRegexp = /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig;
+var timeRegexp = /t=(\d+)[ms]?(\d+)?s?/;
+
+/**
+ * get id from url
+ * @param  {string} url url
+ * @return {string}     id
+ */
+function getIdFromURL(url) {
+  var id = url.replace(youtubeRegexp, "$1");
+
+  if (id.includes(";")) {
+    var pieces = id.split(";");
+
+    if (pieces[1].includes("%")) {
+      var uriComponent = decodeURIComponent(pieces[1]);
+      id = ('http://youtube.com' + uriComponent).replace(youtubeRegexp, "$1");
+    } else {
+      id = pieces[0];
+    }
+  } else if (id.includes("#")) {
+    id = id.split("#")[0];
+  }
+
+  return id;
+}
+
+/**
+ * get time from url
+ * @param  {string} url url
+ * @return {number}     time
+ */
+function getTimeFromURL() {
+  var url = arguments.length <= 0 || arguments[0] === undefined ? "" : arguments[0];
+
+  var times = url.match(timeRegexp);
+
+  if (!times) {
+    return 0;
+  }
+
+  var _times = _slicedToArray(times, 3);
+
+  var full = _times[0];
+  var minutes = _times[1];
+  var seconds = _times[2];
+
+
+  if (typeof seconds !== "undefined") {
+    seconds = parseInt(seconds, 10);
+    minutes = parseInt(minutes, 10);
+  } else if (full.includes("m")) {
+    minutes = parseInt(minutes, 10);
+    seconds = 0;
+  } else {
+    seconds = parseInt(minutes, 10);
+    minutes = 0;
+  }
+
+  return seconds + minutes * 60;
+}
+
+var container = exports.container = {
+  scripts: [],
+
+  run: function run() {
+    var _this = this;
+
+    this.scripts.forEach(function (callback) {
+      callback(_this.YT);
+    });
+    this.scripts = [];
+  },
+  register: function register(callback) {
+    var _this2 = this;
+
+    if (this.YT) {
+      this.Vue.nextTick(function () {
+        callback(_this2.YT);
+      });
+    } else {
+      this.scripts.push(callback);
+    }
+  }
+};
+
+var events = {
+  0: 'ended',
+  1: 'playing',
+  2: 'paused',
+  3: 'buffering',
+  5: 'queued'
+};
+
+var pid = 0;
+
+var YouTubePlayer = exports.YouTubePlayer = {
+  props: ['playerHeight', 'playerWidth', 'playerVars', 'videoId'],
+  template: '<div><div :id="elementId"></div></div>',
+  watch: {
+    playerWidth: 'setSize',
+    playerHeight: 'setSize',
+    videoId: 'update'
+  },
+  data: function data() {
+    pid += 1;
+    return {
+      elementId: 'youtube-player-' + pid
+    };
+  },
+
+  methods: {
+    setSize: function setSize() {
+      this.player.setSize(this.playerWidth || '640', this.playerHeight || '390');
+    },
+    update: function update(videoId) {
+      var _playerVars = this.playerVars;
+      var playerVars = _playerVars === undefined ? { autoplay: 0 } : _playerVars;
+
+      var name = (playerVars.autoplay ? 'load' : 'cue') + 'VideoById';
+      this.player[name](videoId);
+    }
+  },
+  created: function created() {
+    var _this3 = this;
+
+    container.register(function (YouTube) {
+      var _playerHeight = _this3.playerHeight;
+      var height = _playerHeight === undefined ? '390' : _playerHeight;
+      var _playerWidth = _this3.playerWidth;
+      var width = _playerWidth === undefined ? '640' : _playerWidth;
+      var _playerVars2 = _this3.playerVars;
+      var playerVars = _playerVars2 === undefined ? { autoplay: 0, start: 0 } : _playerVars2;
+      var videoId = _this3.videoId;
+
+
+      _this3.player = new YouTube.Player(_this3.elementId, {
+        height: height,
+        width: width,
+        playerVars: playerVars,
+        videoId: videoId,
+        events: {
+          onReady: function onReady(event) {
+            _this3.$emit('ready', event.target);
+          },
+          onStateChange: function onStateChange(event) {
+            if (event.data !== -1) {
+              _this3.$emit(events[event.data], event.target);
+            }
+          },
+          onError: function onError(event) {
+            _this3.$emit('error', event.target);
+          }
+        }
+      });
+    });
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.player !== null) {
+      this.player.destroy();
+    }
+    delete this.player;
+  }
+};
+
+function install(Vue) {
+  container.Vue = Vue;
+  Vue.component('youtube', YouTubePlayer);
+  Vue.prototype.$youtube = { getIdFromURL: getIdFromURL, getTimeFromURL: getTimeFromURL };
+
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  window.onYouTubeIframeAPIReady = function () {
+    container.YT = YT;
+    Vue.nextTick(function () {
+      container.run();
+    });
+  };
+}
+
+exports.default = {
+  getIdFromURL: getIdFromURL, getTimeFromURL: getTimeFromURL, YouTubePlayer: YouTubePlayer, install: install
+};
+
+/***/ }
+/******/ ])
+});
+;
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -22903,97 +23170,80 @@ return d.pie(d.filterTargetsToShow(d.data.targets)).forEach(function(b){f||b.dat
 
 }).call(this);
 
-
-/*
-  String to time
- */
-
 (function() {
-  var checkPlayer, delay, firstScriptTag, player, tag;
+  var userId, vm;
 
-  String.prototype.toHHMMSS = function() {
-    var hours, minutes, sec_num, seconds, time;
-    sec_num = parseInt(this, 10);
-    hours = Math.floor(sec_num / 3600);
-    minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-    seconds = sec_num - (hours * 3600) - (minutes * 60);
-    if (hours < 10) {
-      hours = '0' + hours;
+  userId = $('#jukebox').data('userid');
+
+  Vue.use(VueYouTubeEmbed);
+
+  vm = new Vue({
+    el: '#jukebox',
+    data: {
+      vinyls: [],
+      userId: userId,
+      loading: true,
+      videoId: 'videoId',
+      timeout: null,
+      vinyl: {
+        id: null,
+        cover: "/images/PH_vinyl.svg",
+        artist: "-",
+        title: "-",
+        label: "-",
+        year: "-",
+        country: "-"
+      }
+    },
+    methods: {
+      fetchVinylList: function(userId) {
+        return $.getJSON("/api/user/" + userId + "/vinyls/videos/all", (function(_this) {
+          return function(response) {
+            _this.vinyls = response;
+            _this.loading = false;
+            return _this.newRecord(_this.vinyls);
+          };
+        })(this));
+      },
+      newRecord: function(vinyls) {
+        var video, vinyl;
+        clearTimeout(this.timeout);
+        vinyl = vinyls[Math.floor(Math.random() * vinyls.length)];
+        video = vinyl.videos[Math.floor(Math.random() * vinyl.videos.length)];
+        this.videoId = video.uri.slice(-11);
+        this.vinyl.id = vinyl.id;
+        this.vinyl.cover = vinyl.artwork;
+        this.vinyl.artist = vinyl.artist;
+        this.vinyl.title = vinyl.title;
+        this.vinyl.label = vinyl.label;
+        this.vinyl.year = vinyl.releasedate;
+        return this.vinyl.country = vinyl.country;
+      },
+      playerReady: function(player) {
+        return this.player = player;
+      },
+      playing: function() {
+        console.log("playing");
+        return clearTimeout(this.timeout);
+      },
+      paused: function() {
+        return console.log("paused");
+      },
+      buffering: function() {
+        return this.timeout = setTimeout((function(_this) {
+          return function() {
+            return _this.newRecord(_this.vinyls);
+          };
+        })(this), 5000);
+      },
+      queued: function() {
+        return console.log("queued");
+      }
+    },
+    ready: function() {
+      return this.fetchVinylList(this.userId);
     }
-    if (minutes < 10) {
-      minutes = '0' + minutes;
-    }
-    if (seconds < 10) {
-      seconds = '0' + seconds;
-    }
-    time = hours + ':' + minutes + ':' + seconds;
-    return time;
-  };
-
-
-  /*
-    Youtube API
-   */
-
-  tag = document.createElement('script');
-
-  tag.src = 'https://www.youtube.com/iframe_api';
-
-  firstScriptTag = document.getElementsByTagName('script')[0];
-
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  player = void 0;
-
-  checkPlayer = void 0;
-
-  delay = function(ms, func) {
-    return setTimeout(func, ms);
-  };
-
-
-  /*
-    JukeBox functionality
-   */
-
-  $.jukebox = function(vinyls) {
-    var duration, onPlayerReady, onPlayerStateChange, video, vinyl;
-    window.onYouTubeIframeAPIReady = function() {
-      player = new YT.Player('player', {
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    };
-    onPlayerStateChange = function(state) {};
-    onPlayerReady = function() {
-      player.playVideo();
-      checkPlayer = setInterval(function() {
-        var state;
-        state = player.getPlayerState();
-        console.log(state);
-        if (state === -1 || state === 0) {
-          clearInterval(checkPlayer);
-          checkPlayer = 0;
-          return $.jukebox(vinyls);
-        }
-      }, 2000);
-    };
-    vinyl = vinyls[Math.floor(Math.random() * vinyls.length)];
-    video = vinyl.videos[Math.floor(Math.random() * vinyl.videos.length)];
-    $('.js-cover').attr('src', vinyl.artwork);
-    $('.js-link').attr('href', '/vinyl/' + vinyl.id);
-    $('.js-vinylTitle').text(vinyl.artist + ' – ' + vinyl.title);
-    duration = video.duration.toHHMMSS();
-    $('.js-videoTitle').html(video.title + '<span class="badge pull-right">' + duration + '</span>');
-    $('#player').attr('src', video.uri + "?&controls=0&enablejsapi=1&showinfo=0&autohide=1&iv_load_policy=3");
-    return $('.js-skip').click(function() {
-      clearInterval(checkPlayer);
-      checkPlayer = 0;
-      return $.jukebox(vinyls);
-    });
-  };
+  });
 
 }).call(this);
 

@@ -35,8 +35,13 @@ Route::get('/api/user/{id}/vinyls', [
 ]);
 
 Route::get('/api/user/{id}/vinyls/all', [
-  'as' => 'api.user.vinyls',
+  'as' => 'api.user.vinyls.all',
   'uses' => 'ApiController@vinylsAll'
+]);
+
+Route::get('/api/user/{id}/vinyls/videos/all', [
+  'as' => 'api.user.vinyls.videos.all',
+  'uses' => 'ApiController@vinylsWithVideosAll'
 ]);
 
 Route::get('/api/user/{id}/status', [

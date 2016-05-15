@@ -46,6 +46,17 @@ class ApiController extends Controller {
   }
 
   /**
+   * Return vinyls of user that have videos as JSON
+   *
+   * @return Response
+   */
+  public function vinylsWithVideosAll($id){
+      $user = User::findOrFail($id);
+      $vinyls = $user->vinyls()->with('videos')->has('videos')->get();
+    return $vinyls;
+  }
+
+  /**
    * Return videos of vinyl as JSON
    *
    * @return Response

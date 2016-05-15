@@ -59,6 +59,7 @@ elixir(function(mix) {
     'vendor/vue.js',
     'vendor/vue-resource.min.js',
     'vendor/vue-filter.min.js',
+    'vendor/vue-youtube-embed.js',
     'vendor/bootstrap.js',
     'vendor/d3.min.js',
     'vendor/c3.min.js',
