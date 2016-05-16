@@ -14,19 +14,23 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
   mix.phpUnit();                      // run tests
   mix.sass('app.scss');               // compile sass
+
+  // Common scripts for all pages (app.js)
   mix.coffee([
     'app.coffee',
     'helper.coffee',
-    'charts.coffee',
-    'collection.coffee',
-    'createVinyl.coffee',
-    'getStatus.coffee',
-    'import.coffee',
-    'jukebox.coffee',
-    'search.coffee',
-    'settings.coffee',
-    'welcome.coffee'
-  ]);                       // compile coffeescript
+    'getStatus.coffee'
+  ]);
+
+  // special scripts for certain pages
+  mix.coffee('charts.coffee');
+  mix.coffee('collection.coffee');
+  mix.coffee('createVinyl.coffee');
+  mix.coffee('import.coffee');
+  mix.coffee('jukebox.coffee');
+  mix.coffee('search.coffee');
+  mix.coffee('settings.coffee');
+  mix.coffee('welcome.coffee');
 
   // copy all bower files
   mix.copy('bower_components/normalize.css/normalize.css', 'public/css/vendor/normalize.css');
@@ -65,7 +69,7 @@ elixir(function(mix) {
     'vendor/c3.min.js',
     'vendor/dateformat.min.js',
     'vendor/sweetalert.min.js',
-    'app.js',
+    'app.js'
   ], null, 'public/js');
 
   mix.version('public/css/all.css');  // versioning

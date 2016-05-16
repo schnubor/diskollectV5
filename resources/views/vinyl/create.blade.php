@@ -132,25 +132,29 @@
             </div>
           </div>
         </div>
-        
+
         {{-- Tracklist --}}
         <div class="panel panel-default">
           <div class="panel-heading">Tracklist</div>
           <div class="panel-body">
             {!! Form::hidden('trackCount', 0) !!}
             <table class="table js-trackTable">
-              
+
             </table>
             <button type="button" class="js-add-track btn btn-md btn-info"><i class="fa fa-plus"></i> Add Track</button>
           </div>
         </div>
       </div>
       {!! Form::submit('Add vinyl', array('class' => 'btn btn-lg btn-primary pull-right', 'style' => 'margin: 15px 0')) !!}
-    </div>  
+    </div>
   </div>
 
   {!! Form::close() !!}
-  
+
   {{-- Sidebar --}}
   @include('user.partials.sidebar')
+@endsection
+
+@section('scripts')
+  <script src="/js/createVinyl.js"></script>
 @endsection

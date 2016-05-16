@@ -1,30 +1,11 @@
 (function() {
-  var $results, $search, EURinGBP, EURinUSD, GBPinUSD, getMedian;
+  var $results, $search, $vinylData;
 
   $results = [];
 
+  $vinylData = {};
+
   $search = null;
-
-  EURinUSD = 1.14;
-
-  EURinGBP = 0.73;
-
-  GBPinUSD = 1.53;
-
-  getMedian = function(values) {
-    var half;
-    values.sort((function(_this) {
-      return function(a, b) {
-        return a - b;
-      };
-    })(this));
-    half = Math.floor(values.length / 2);
-    if (values.length % 2) {
-      return values[half];
-    } else {
-      return (values[half - 1] + values[half]) / 2.0;
-    }
-  };
 
   $('#submit-search').click(function(e) {
     console.log('Hello from search.');
@@ -55,6 +36,7 @@
       },
       success: function(results) {
         var $index;
+        console.log(results);
         $results = results;
         $index = 0;
         return $('.loading').fadeOut(function() {
@@ -104,7 +86,7 @@
   $('#quickAddVinyl').on('hidden.bs.modal', function(e) {
     var modal;
     modal = $(this);
-    $('#modalSubmit').disabled = true;
+    $('#searchModalSubmit').disabled = true;
     $('#addVinylForm .trackInfo').remove();
     $('#currencyLabel').hide();
     modal.find('input[name="price"]').before('<input type="hidden" name="price"/>').remove();
@@ -117,7 +99,7 @@
   });
 
   $('#quickAddVinyl').on('show.bs.modal', function(e) {
-    var $artist, $catno, $color, $count, $country, $cover, $discogs_uri, $format, $genre, $label, $priceRequest, $release_id, $size, $spotify, $title, $tracklist, $type, $videos, $weight, $year, button, modal, vinyl, vinyl_index;
+    var $spotify, button, modal, userCurrency, vinyl, vinyl_index;
     button = $(e.relatedTarget);
     vinyl_index = button.data('result');
     vinyl = $results[vinyl_index];
@@ -132,163 +114,54 @@
         return console.log(error);
       },
       success: function(results) {
-        console.log(results);
         if (results.albums.items.length) {
-          $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A' + results.albums.items[0].id + '" width="598" height="380" frameborder="0" allowtransparency="true"></iframe>');
-          return modal.find('input[name="spotify_id"]').val(results.albums.items[0].id);
+          $('#spotify').html('<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A' + results.albums.items[0].id + '" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>');
+          return $vinylData.spotify_id = results.albums.items[0].id;
         }
       }
     });
-    $priceRequest = $.ajax({
-      url: '//api.discogs.com/marketplace/search?release_id=' + vinyl.id,
-      type: 'GET',
-      dataType: 'JSON',
-      error: function(x, status, error) {
-        console.log(status);
-        return console.log(error);
-      },
-      success: function(prices) {
-        var median, userCurrency, values;
-        userCurrency = $('#userCurrency').val();
-        values = [];
-        median = 0;
-        _.each(prices, function(price) {
-          var currency;
-          currency = price.currency;
-          switch (price.currency) {
-            case 'EUR':
-              return values.push(parseInt(price.price.substr(1)));
-            case 'GBP':
-              return values.push(parseInt(price.price.substr(1)) / EURinGBP);
-            case 'USD':
-              return values.push(parseInt(price.price.substr(1)) / EURinUSD);
-          }
-        });
-        median = getMedian(values).toFixed(2);
-        switch (userCurrency) {
-          case 'EUR':
-            median = median;
-            break;
-          case 'GBP':
-            median = median * EURinGBP;
-            break;
-          case 'USD':
-            median = median * EURinUSD;
-        }
-        if (isNaN(median)) {
-          modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove();
-          $('#currencyLabel').text(userCurrency).show();
-          $('#price').remove();
-          $('#priceLabelText').text('What did you pay?');
-        } else {
-          $('#price').html(median + ' ' + userCurrency);
-          modal.find('input[name="price"]').val(median);
-        }
-        return $('#modalSubmit').disabled = false;
-      }
-    });
-    if (vinyl.artists) {
-      $artist = vinyl.artists[0].name;
-    } else {
-      $artist = 'unknown artist';
-    }
-    if (vinyl.title) {
-      $title = vinyl.title;
-    } else {
-      $title = 'unknown title';
-    }
-    if (vinyl.images) {
-      $cover = vinyl.images[0].uri;
-    } else {
-      $cover = 'images/PH_vinyl.svg';
-    }
-    if (vinyl.labels) {
-      $label = vinyl.labels[0].name;
-      if (vinyl.labels[0].catno) {
-        $catno = vinyl.labels[0].catno;
+    userCurrency = $('#userCurrency').val();
+    $.fetchPrice(vinyl.id, userCurrency, function(price) {
+      if (isNaN(price)) {
+        modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove();
+        $('#currencyLabel').text(userCurrency).show();
+        $('#price').remove();
+        return $('#priceLabelText').text('What did you pay?');
       } else {
-        $catno = 'unknown catno';
+        $('#price').html(price + ' ' + userCurrency);
+        return modal.find('input[name="price"]').val(price);
       }
-    } else {
-      $label = 'unknown label';
-    }
-    if (vinyl.genres) {
-      $genre = vinyl.genres[0];
-    } else {
-      $genre = 'unknown genre';
-    }
-    if (vinyl.country) {
-      $country = vinyl.country;
-    } else {
-      $country = 'unknown country';
-    }
-    if (vinyl.year) {
-      $year = vinyl.year;
-    } else {
-      $year = 'unknown year';
-    }
-    if (vinyl.format_quantity) {
-      $count = vinyl.format_quantity;
-    } else {
-      $count = 'unknown quantity';
-    }
-    if (vinyl.estimated_weight) {
-      $weight = vinyl.estimated_weight;
-    } else {
-      $weight = '0';
-    }
-    if (vinyl.type) {
-      $type = vinyl.type;
-    } else {
-      $type = '-';
-    }
-    $color = '#000000';
-    $size = '12';
-    $format = 'LP';
-    $release_id = vinyl.id;
-    $discogs_uri = vinyl.uri;
-    if (vinyl.tracklist) {
-      $tracklist = vinyl.tracklist;
-    } else {
-      $tracklist = [];
-    }
-    if (vinyl.videos) {
-      $videos = vinyl.videos;
-    } else {
-      $videos = [];
-    }
-    modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
-    modal.find('.modal-body .cover').html('<img src="' + $cover + '" class="thumbnail" width="100%">');
-    modal.find('input[name="artist"]').val($artist);
-    modal.find('input[name="title"]').val($title);
-    modal.find('input[name="cover"]').val($cover);
-    modal.find('input[name="label"]').val($label);
-    modal.find('input[name="catno"]').val($catno);
-    modal.find('input[name="genre"]').val($genre);
-    modal.find('input[name="country"]').val($country);
-    modal.find('input[name="year"]').val($year);
-    modal.find('input[name="count"]').val($count);
-    modal.find('input[name="color"]').val($color);
-    modal.find('input[name="format"]').val($format);
-    modal.find('input[name="size"]').val($size);
-    modal.find('input[name="weight"]').val($weight);
-    modal.find('input[name="type"]').val($type);
-    modal.find('input[name="release_id"]').val($release_id);
-    modal.find('input[name="discogs_uri"]').val($discogs_uri);
-    modal.find('input[name="trackCount"]').val($tracklist.length);
-    modal.find('input[name="videoCount"]').val($videos.length);
-    _.each($tracklist, function(track, index) {
-      modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_title" type="hidden" value="' + track.title + '"/>');
-      modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_position" type="hidden" value="' + track.position + '"/>');
-      return modal.find('#addVinylForm').append('<input class="trackInfo" name="track_' + index + '_duration" type="hidden" value="' + track.duration + '"/>');
     });
-    return _.each($videos, function(video, index) {
-      var uri;
-      uri = "//www.youtube.com/embed/" + video.uri.substr(video.uri.length - 11);
-      modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_title" type="hidden" value="' + video.title + '"/>');
-      modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_uri" type="hidden" value="' + uri + '"/>');
-      return modal.find('#addVinylForm').append('<input class="videoInfo" name="video_' + index + '_duration" type="hidden" value="' + video.duration + '"/>');
+    $('#searchModalSubmit').disabled = false;
+    $vinylData = $.mapVinylData(vinyl);
+    modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');
+    return modal.find('.modal-body .cover').html('<img src="' + $vinylData.cover + '" class="thumbnail" width="100%">');
+  });
+
+  $('#searchModalSubmit').on('click', function(e) {
+    var $createVinyl, button;
+    e.preventDefault();
+    e.stopPropagation();
+    button = e.target;
+    $vinylData._token = $(button).data('token');
+    $vinylData.price = $('#quickAddVinyl').find('input[name=price]').val();
+    console.log($vinylData);
+    return $createVinyl = $.ajax({
+      url: '/vinyl/create',
+      type: 'POST',
+      data: $vinylData,
+      success: function(response) {
+        console.log('vinyl added!');
+        $('#quickAddVinyl').modal('hide');
+        return $('body').append('<div class="flash-message"><div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><a href="/vinyl/' + response.id + '"><b>' + $vinylData.artist + ' - ' + $vinylData.title + '</b></a> is now in your collection.</div></div>');
+      },
+      error: function(error) {
+        console.warn(error);
+        return $('body').append('<div class="flash-message"><div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Oops! Something went wrong, please try again.</div></div>');
+      }
     });
   });
 
 }).call(this);
+
+//# sourceMappingURL=search.js.map

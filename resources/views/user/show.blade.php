@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  
+
   <div class="content-area">
     <div class="col-md-12 toolbar">
       @if(Auth::check())
@@ -18,7 +18,7 @@
         @include('user.partials.dropdown')
       @endif
     </div>
-    
+
     <div class="col-md-12 content">
       @if($user->statistics_visibility == 'everyone' || Auth::user()->id == $user->id)
         @include('partials.statistics')
@@ -43,11 +43,12 @@
       @endif
     </div>
   </div>
-  
+
   <!-- Sidebar -->
   @include('user.partials.sidebar')
 @endsection
 
 @section('scripts')
+  <script src="/js/charts.js"></script>
   <script>$.getStats({{$user->id}});</script>
 @endsection

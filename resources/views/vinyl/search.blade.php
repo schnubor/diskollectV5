@@ -78,3 +78,7 @@
     {{-- Modal --}}
     @include('vinyl.partials.modal')
 @endsection
+
+@section('scripts')
+  <script src="/js/search.js"></script>
+@endsection

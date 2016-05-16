@@ -50,3 +50,7 @@
   {{-- Templates --}}
   @include('templates.collectionVinyls')
 @endsection
+
+@section('scripts')
+  <script src="/js/collection.js"></script>
+@endsection

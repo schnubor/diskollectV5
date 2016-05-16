@@ -60,5 +60,5 @@
 @endsection
 
 @section('scripts')
-  <script></script>
+  <script src="/js/jukebox.js"></script>
 @endsection

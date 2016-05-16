@@ -69,6 +69,7 @@
 @endsection
 
 @section('scripts')
+  <script src="/js/import.js"></script>
   <script>
     $('.js-startImport').click(function(event){
       $.getReleases('{{ Auth::user()->discogs_username }}', {{ Auth::user()->id }})

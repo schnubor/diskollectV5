@@ -225,7 +225,7 @@
           </div>
       </div>
       @include('partials.deleteCollectionModal')
-      
+
     </div>
   </div>
 
@@ -236,4 +236,5 @@
 
 @section('scripts')
   <script>$.getStatus({{Auth::user()->id}});</script>
+  <script src="/js/settings.js"></script>
 @endsection
