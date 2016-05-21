@@ -6,7 +6,7 @@
 
 @section('content')
 
-  <div class="content-area">
+  <div id="statistics" class="content-area" data-userid="{{ $user->id }}">
     <div class="col-md-12 toolbar">
       @if(Auth::check())
         @if(Auth::user()->id == $user->id)
@@ -50,5 +50,4 @@
 
 @section('scripts')
   <script src="/js/charts.js"></script>
-  <script>$.getStats({{$user->id}});</script>
 @endsection

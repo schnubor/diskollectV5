@@ -166,7 +166,8 @@ class UsersController extends Controller {
 			->with('favArtist', $favArtist)
 			->with('favLabel', $favLabel)
 			->with('valueVinyl', $valueVinyl)
-			->with('value', $value);
+			->with('value', $value)
+			->with('count', $user->vinyls()->get()->count());
 	}
 
 	/**

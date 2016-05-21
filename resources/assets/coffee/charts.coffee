@@ -1,101 +1,132 @@
-$.fetchVinylPage = (page) ->
-    vinyls = []
-    $vinyls = $.ajax
-        url: '/api/user/'+userId+'/vinyls'
-        type: 'GET'
-        dataType: 'JSON'
-        error: (x,status,error) ->
-            console.log status
-            console.log error
-        success: (response) ->
-            return response.data
+userId = $('#statistics').data('userid')
 
-$.getStats = (userId) ->
-    $vinyls = $.ajax
-        url: '/api/user/'+userId+'/vinyls/all'
-        type: 'GET'
-        dataType: 'JSON'
-        error: (x,status,error) ->
-            console.log status
-            console.log error
-        success: (vinyls) -> # search results received
-            # console.log vinyls
-            genreData = []
+new Vue
+    el: '#statistics'
 
-            sizeData = [
-                ['x'],
-                ['sizes']
+    data:
+        loading: true
+        vinyls: []
+        userId: userId
+        genreData:
+            labels: []
+            datasets: [
+                {
+                    label: "Genre Distrbution"
+                    backgroundColor: [
+                        "#56c9b8",
+                        "#2f9fc2",
+                        "#4466b3",
+                        "#7d4193",
+                        "#975aaa",
+                        "#a44b8b",
+                        "#be5f5f",
+                        "#b98657",
+                        "#e8c56a",
+                        "#bee488",
+                        "#60b04c",
+                        "#5fda9b"
+                    ]
+                    hoverBorderColor: "#FFF"
+                    data: []
+                }
             ]
-            sizeData_temp = []
-
-            timeData = [
-                ['x']
-                ['vinyls']
+        sizeData:
+            labels: []
+            datasets: [
+                {
+                    label: "Vinyl Sizes"
+                    backgroundColor: [
+                        "#202020",
+                        "#404040",
+                        "#606060"
+                    ]
+                    hoverBorderColor: "#FFF"
+                    data: []
+                }
             ]
-            timeData_temp = []
+        timeData:
+            labels: []
+            datasets: [
+                {
+                    label: "Vinyl Release Dates"
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)"
+                    borderColor: "rgba(75,192,192,1)"
+                    borderCapStyle: 'butt'
+                    borderDash: []
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter'
+                    pointBorderColor: "rgba(75,192,192,1)"
+                    pointBackgroundColor: "#fff"
+                    pointBorderWidth: 1
+                    pointHoverRadius: 5
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)"
+                    pointHoverBorderColor: "rgba(220,220,220,1)"
+                    pointHoverBorderWidth: 2
+                    pointRadius: 1
+                    pointHitRadius: 10
+                    data: []
+                }
+            ]
+
+    methods:
+        fetchVinylList: (userId) ->
+            $.getJSON "/api/user/#{userId}/vinyls/all", (response) =>
+                @vinyls = response
+                @loading = false
+                @generateCharts(@vinyls)
+
+        generateCharts: (vinyls) ->
+            allGenres = []
+            allSizes = []
+            allTimes = []
+
+            genreCount = []
+            sizeCount = []
+            timeCount = []
 
             _.each vinyls, (vinyl) ->
-                # --- Genre --------------------------------
+                # Genre
                 genre = vinyl.genre.split(';')[0]
                 genre = "unknown" if genre is ""
-                genreData.push(genre)
-
-                # --- Size --------------------------------
+                allGenres.push(genre)
+                genreCount = _.chain(allGenres).countBy().toPairs().value()
+                # Sizes
                 size = vinyl.size
-                sizeData_temp.push(size)
+                allSizes.push(size)
+                sizeCount = _.chain(allSizes).countBy().toPairs().value()
+                # Times
+                time = vinyl.releasedate
+                allTimes.push(time)
+                timeCount = _.chain(allTimes).countBy().toPairs().value()
 
-                # --- Time --------------------------------
-                time = new Date(vinyl.releasedate)
-                if time.getFullYear()
-                    timeData_temp.push(time.format('Y'))
+            _.each genreCount, (genre) =>
+                @genreData.labels.push(genre[0])
+                @genreData.datasets[0].data.push(genre[1])
 
-            # console.log timeData_temp
+            _.each sizeCount, (size) =>
+                @sizeData.labels.push("#{size[0]}inch")
+                @sizeData.datasets[0].data.push(size[1])
 
-            genreData = _.chain(genreData).countBy().toPairs().value()
+            _.each timeCount, (time) =>
+                @timeData.labels.push("#{time[0]}")
+                @timeData.datasets[0].data.push(time[1])
 
-            sizeData_temp = _.chain(sizeData_temp).countBy().toPairs().value()
-            _.each sizeData_temp, (sizeArray) ->
-                sizeData[0].push(sizeArray[0])
-                sizeData[1].push(sizeArray[1])
+            genreChartCanvas = $("#genreChart")
+            genreChart = new Chart genreChartCanvas,
+                type: 'pie',
+                data: @genreData
 
-            timeData_temp = _.chain(timeData_temp).countBy().toPairs().value()
-            _.each timeData_temp, (timeArray) ->
-                timeData[0].push(timeArray[0])
-                timeData[1].push(timeArray[1])
+            sizeChartCanvas = $("#sizeChart")
+            sizeChart = new Chart sizeChartCanvas,
+                type: 'pie',
+                data: @sizeData
 
-            # console.log timeData
+            timeChartCanvas = $("#timeChart")
+            timeChart = new Chart timeChartCanvas,
+                type: 'line',
+                data: @timeData
 
-            # --- Charts --------------------------------
-            genreChart = c3.generate
-                bindto: '#genreChart'
-                data:
-                    columns: genreData
-                    type: 'donut'
-                legend:
-                    show: true
-                donut:
-                    title: vinyls.length + ' Vinyls'
-                    label:
-                        format: (value) ->
-                            return value
-
-            sizeChart = c3.generate
-                bindto: '#sizeChart'
-                data:
-                    x: 'x'
-                    columns: sizeData
-                    types:
-                        sizes: 'bar'
-                legend:
-                    show: false
-                axis:
-                    x:
-                        type: 'categorized'
-
-            timeChart = c3.generate
-                bindto: '#timeChart'
-                data:
-                    x: 'x'
-                    columns: timeData
-                legend:
-                    show: false
+    ready: ->
+        @fetchVinylList(@userId)
