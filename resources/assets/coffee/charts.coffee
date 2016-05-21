@@ -34,7 +34,7 @@ new Vue
             labels: []
             datasets: [
                 {
-                    label: "Vinyl Sizes"
+                    label: "Record Sizes"
                     backgroundColor: [
                         "#202020",
                         "#404040",
@@ -48,7 +48,7 @@ new Vue
             labels: []
             datasets: [
                 {
-                    label: "Vinyl Release Dates"
+                    label: "Record Release Dates"
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: "rgba(75,192,192,0.4)"

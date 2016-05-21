@@ -1,3 +1,15 @@
+{{-- Vinyl count --}}
+<div class="col-md-3">
+  <div class="well">
+    @if(isset($count))
+      <p class="h2">{{ $count }}</p>
+    @else
+      <p class="h2">0</p>
+    @endif
+    <p class="lead">Records</p>
+  </div>
+</div>
+
 {{-- Value --}}
 <div class="col-md-3">
   <div class="well">
@@ -11,18 +23,6 @@
   <div class="well">
     <p class="h2">{{ $weight }} kg</p>
     <p class="lead">Overall Weight</p>
-  </div>
-</div>
-
-{{-- Fav artist --}}
-<div class="col-md-3">
-  <div class="well">
-    @if(isset($count))
-      <p class="h2">{{ $count }}</p>
-    @else
-      <p class="h2">0</p>
-    @endif
-    <p class="lead">Records</p>
   </div>
 </div>
 
