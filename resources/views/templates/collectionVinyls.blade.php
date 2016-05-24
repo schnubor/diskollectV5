@@ -38,7 +38,7 @@
                     <div class="vinylContent">
                         <a href="/vinyl/@{{ vinyl.id }}">
                             <div class="overlay">
-                                <div class="price">@{{ vinyl.price.toFixed(2) }} {{ Auth::user()->currency }}</div>
+                                <div class="price">@{{ parseFloat(vinyl.price).toFixed(2) }} {{ Auth::user()->currency }}</div>
                             </div>
                             <img :src="vinyl.artwork" alt="@{{ vinyl.artist }} - @{{ vinyl.title }}">
                         </a>
