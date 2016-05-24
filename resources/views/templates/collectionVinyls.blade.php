@@ -17,6 +17,9 @@
                         <option value="price">Price</option>
                     </select>
                 </div>
+                <div class="col-md-1">
+                    <button class="btn btn-default" @click="changeOrder()"><i :class="orderButtonClass"></i></button>
+                </div>
                 <nav class="col-md-2">
                     <button class="btn btn-default" :class="prevButtonClass" @click="prevPage()"><i class="fa fa-chevron-left"></i></button>
                     <ul class="pagination no-margin">
@@ -29,13 +32,13 @@
             <hr>
 
             <div class="row padding15">
-              <div v-for="group in list | filterBy filter in 'artist' 'title' 'label' 'catno' | orderBy sorting | paginate | chunk 4" class="row">
+              <div v-for="group in list | filterBy filter in 'artist' 'title' 'label' 'catno' | orderBy sorting order | paginate | chunk 4" class="row">
                 <div class="col-md-3 vinyl" v-for="vinyl in group">
                   <div class="cover">
                     <div class="vinylContent">
                         <a href="/vinyl/@{{ vinyl.id }}">
                             <div class="overlay">
-                                <div class="price">@{{ parseFloat(vinyl.price).toFixed(2) }} {{ Auth::user()->currency }}</div>
+                                <div class="price">@{{ vinyl.price.toFixed(2) }} {{ Auth::user()->currency }}</div>
                             </div>
                             <img :src="vinyl.artwork" alt="@{{ vinyl.artist }} - @{{ vinyl.title }}">
                         </a>

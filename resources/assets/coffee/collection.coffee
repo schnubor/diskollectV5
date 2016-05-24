@@ -8,7 +8,8 @@ Vue.component 'vinyls',
         itemsPerPage: 16
         resultCount: 0
         filter: ""
-        sorting: "created_at"
+        sorting: ""
+        order: 1
         loading: true
 
     computed:
@@ -22,6 +23,10 @@ Vue.component 'vinyls',
         prevButtonClass: ->
             return "disabled" if @currentPage is 0
             return ""
+
+        orderButtonClass: ->
+            return "fa fa-sort-amount-asc" if @order is 1
+            return "fa fa-sort-amount-desc"
 
     created: ->
         @fetchVinylList()
@@ -66,6 +71,10 @@ Vue.component 'vinyls',
 
         prevPage: ->
             @currentPage-- if @currentPage > 0
+
+        changeOrder: ->
+            @order = @order * -1
+
 
 Vue.filter 'chunk', (value, size) ->
     return _.chunk value, size

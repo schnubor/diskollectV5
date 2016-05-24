@@ -9,7 +9,8 @@
         itemsPerPage: 16,
         resultCount: 0,
         filter: "",
-        sorting: "created_at",
+        sorting: "",
+        order: 1,
         loading: true
       };
     },
@@ -28,6 +29,12 @@
           return "disabled";
         }
         return "";
+      },
+      orderButtonClass: function() {
+        if (this.order === 1) {
+          return "fa fa-sort-amount-asc";
+        }
+        return "fa fa-sort-amount-desc";
       }
     },
     created: function() {
@@ -85,6 +92,9 @@
         if (this.currentPage > 0) {
           return this.currentPage--;
         }
+      },
+      changeOrder: function() {
+        return this.order = this.order * -1;
       }
     }
   });
