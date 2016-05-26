@@ -1,5 +1,9 @@
 .content-area {
     margin-left: 65px;
+
+    @media (max-width: 991px) {
+        margin-left: 0;
+    }
 }
 .content {
     padding-top: 30px;
