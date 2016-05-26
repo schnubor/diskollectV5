@@ -52,12 +52,24 @@
             height: 300px;
             text-align: center;
 
+            @media (max-width: 320px) {
+                top: calc(50% - 230px);
+            }
+
+            @media (max-width: 375px) {
+                top: calc(50% - 260px);
+            }
+
             .logo {
                 width: 150px;
                 padding: 20px 0;
                 display: inline-block;
                 img {
                     width: 100%;
+                }
+
+                @media (max-width: 320px) {
+                    width: 80px;
                 }
             }
 
@@ -140,6 +152,10 @@
             color: $lighter-grey;
             margin-top: 20px;
             line-height: 2em;
+
+            @media (max-width: 768px) {
+                margin-bottom: 30px;
+            }
         }
     }
     .headline {

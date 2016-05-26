@@ -8,9 +8,11 @@
     position: fixed;
     top: 0;
     left: 0;
+    
     @media (min-width: 992px) {
         display: block;
     }
+
     .sb-logo {
         background-color: $blue;
         height: 70px;
