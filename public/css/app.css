@@ -7,6 +7,12 @@
 .content {
   padding-top: 30px;
   padding-bottom: 30px; }
+  @media (max-width: 991px) {
+    .content {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      padding-left: 0;
+      padding-right: 0; } }
   .content.full-height {
     height: 100%; }
   .content .loading {
@@ -527,6 +533,9 @@ p.placeholder {
   padding: 0 30px;
   height: 71px;
   border-bottom: 1px solid #DDD; }
+  @media (max-width: 991px) {
+    .toolbar {
+      padding: 0 15px; } }
   .toolbar .avatar {
     display: inline-block;
     margin-top: 10px;

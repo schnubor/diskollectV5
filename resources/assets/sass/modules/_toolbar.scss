@@ -5,6 +5,10 @@
   height: 71px;
   border-bottom: 1px solid #DDD;
 
+  @media (max-width: 991px) {
+    padding: 0 15px;
+  }
+
   .avatar{
     display: inline-block;
     margin-top: 10px;
