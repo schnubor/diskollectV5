@@ -449,7 +449,7 @@ p.placeholder {
   top: 0;
   left: 0;
   transition: .2s all; }
-  @media (max-width: 320px) {
+  @media (max-width: 375px) {
     .sidebar {
       left: -65px; }
       .sidebar.active {
