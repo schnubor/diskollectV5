@@ -1,8 +1,11 @@
 .content-area {
-  margin-left: 65px; }
+  margin-left: 65px;
+  transition: .2s all; }
   @media (max-width: 991px) {
     .content-area {
-      margin-left: 0; } }
+      margin-left: 0; }
+      .content-area.active {
+        margin-left: 65px; } }
 
 .content {
   padding-top: 30px;
@@ -398,6 +401,22 @@ p.placeholder {
     .navbar .navbar-brand img {
       width: 30px; }
 
+.mobileNav {
+  display: none;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 60px;
+  height: 60px;
+  background: #1E89B7;
+  border-radius: 50%;
+  color: white;
+  line-height: 60px;
+  font-size: 24px; }
+  @media (max-width: 991px) {
+    .mobileNav {
+      display: block; } }
+
 .panel-body .avatar {
   width: 140px;
   height: 140px;
@@ -424,14 +443,17 @@ p.placeholder {
   min-height: 100%;
   padding: 0;
   color: #f0f0f0;
-  display: none;
+  display: block;
   width: 65px;
   position: fixed;
   top: 0;
-  left: 0; }
-  @media (min-width: 992px) {
+  left: 0;
+  transition: .2s all; }
+  @media (max-width: 320px) {
     .sidebar {
-      display: block; } }
+      left: -65px; }
+      .sidebar.active {
+        left: 0; } }
   .sidebar .sb-logo {
     background-color: #1E89B7;
     height: 70px;

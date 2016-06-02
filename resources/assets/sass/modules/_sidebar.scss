@@ -3,14 +3,19 @@
     min-height: 100%;
     padding: 0;
     color: #f0f0f0;
-    display: none;
+    display: block;
     width: 65px;
     position: fixed;
     top: 0;
     left: 0;
-    
-    @media (min-width: 992px) {
-        display: block;
+    transition: .2s all;
+
+    @media (max-width: 320px) {
+        left: -65px;
+
+        &.active {
+            left: 0;
+        }
     }
 
     .sb-logo {

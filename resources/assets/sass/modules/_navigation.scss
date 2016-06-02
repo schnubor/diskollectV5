@@ -1,5 +1,5 @@
 .navbar{
-  
+
   margin-bottom: 0;
   background-color: $dark-grey;
   border-bottom: 0;
@@ -17,4 +17,22 @@
       width: 30px;
     }
   }
+}
+
+.mobileNav{
+    display: none;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 60px;
+    height: 60px;
+    background: #1E89B7;
+    border-radius: 50%;
+    color: white;
+    line-height: 60px;
+    font-size: 24px;
+
+    @media (max-width: 991px) {
+        display: block;
+    }
 }

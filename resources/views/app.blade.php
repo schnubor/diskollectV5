@@ -31,6 +31,12 @@
 
 	@yield('content')
 
+	@if(Auth::check())
+		<nav class="mobileNav text-center" onClick="$('.sidebar, .content-area').toggleClass('active');">
+			<i class="fa fa-bars"></i>
+		</nav>
+	@endif
+
 	<!-- Scripts -->
 	<script src="/js/all.js"></script>
 	@yield('scripts')

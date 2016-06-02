@@ -1,8 +1,13 @@
 .content-area {
     margin-left: 65px;
+    transition: .2s all;
 
     @media (max-width: 991px) {
         margin-left: 0;
+
+        &.active{
+            margin-left: 65px;
+        }
     }
 }
 .content {
