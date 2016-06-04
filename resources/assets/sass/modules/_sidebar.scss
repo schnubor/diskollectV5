@@ -134,6 +134,13 @@
                 border-color: transparent transparent transparent $dark-grey;
             }
         }
+
+        &.purple {
+            @media (max-width: 375px) {
+                display: none;
+            }
+        }
+        
         .triangle {
             display: none;
         }

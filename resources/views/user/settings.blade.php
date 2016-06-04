@@ -38,13 +38,12 @@
           {!! Form::model(Auth::user(), ['route' => 'post.edit.user', 'files' => true, 'class' => 'form-horizontal']) !!}
           <div class="panel-body">
 
-            <div class="row">
-              <div class="col-md-4 col-md-offset-4">
-                <div class="avatar center-block" style="background-image: url('{{ Auth::user()->image }}');"></div>
+              <div class="row">
+                  <div class="col-md-4 col-md-offset-4">
+                    <div class="avatar center-block" style="background-image: url('{{ Auth::user()->image }}');"></div>
+                  </div>
               </div>
-            </div>
 
-            <div class="row">
               <!-- Avatar -->
               <div class="form-group">
                 {!! Form::label('avatar', 'Avatar', ['class' => 'col-md-4 control-label']) !!}
@@ -96,7 +95,6 @@
                   ], Auth::user()->currency, ['class' => 'form-control']) !!}
                 </div>
               </div>
-            </div>
           </div>
           <div class="panel-footer">
             {!! Form::submit('Update', array('class' => 'btn btn-md btn-primary pull-right')) !!}

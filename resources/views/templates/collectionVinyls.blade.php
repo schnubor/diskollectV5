@@ -18,9 +18,9 @@
                     </select>
                 </div>
                 <div class="col-md-1">
-                    <button class="btn btn-default" @click="changeOrder()"><i :class="orderButtonClass"></i></button>
+                    <button class="btn btn-default btn-block" @click="changeOrder()"><i :class="orderButtonClass"></i></button>
                 </div>
-                <nav class="col-md-2">
+                <nav class="col-md-3">
                     <button class="btn btn-default" :class="prevButtonClass" @click="prevPage()"><i class="fa fa-chevron-left"></i></button>
                     <ul class="pagination no-margin">
                         <li style="padding: 0 10px;">Page @{{ currentPage + 1 }}</li>
@@ -32,7 +32,7 @@
             <hr>
 
             <div class="row padding15">
-              <div v-for="group in list | filterBy filter in 'artist' 'title' 'label' 'catno' | orderBy sorting order | paginate | chunk 4" class="row">
+              <div v-for="group in list | filterBy filter in 'artist' 'title' 'label' 'catno' | orderBy sorting order | paginate | chunk 4" class="row vinylRow">
                 <div class="col-md-3 vinyl" v-for="vinyl in group">
                   <div class="cover">
                     <div class="vinylContent">
