@@ -1,8 +1,10 @@
 @extends('app')
 
-@section('title')
-  {{$user->username}}s Jukebox
-@endsection
+@section('robots', 'all')
+@section('title'){{$user->username}}s Jukebox @endsection
+@section('ogimage'){{ $user->avatar }}@endsection
+@section('description')Check out {{ $user->username }}s jukebox on therecord.de @endsection
+@section('keywords', ', jukebox, community')
 
 @section('content')
   <div class="content-area">

@@ -1,8 +1,7 @@
 @extends('app')
 
-@section('title')
-  Collectors
-@endsection
+@section('robots', 'all')
+@section('title', 'Collectors')
 
 @section('content')
   <div class="content-area">
@@ -43,7 +42,7 @@
           @endforeach
         </div>
       @endforeach
-      
+
       <div class="row text-center">
         {!! $users->render() !!}
       </div>

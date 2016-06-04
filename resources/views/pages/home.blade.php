@@ -1,8 +1,10 @@
 @extends('app')
 
-@section('title')
-  Welcome
-@endsection
+@section('robots', 'all')
+
+@section('title', 'Welcome')
+
+@section('description', 'TheRecord.de is bringing vinyl collectors together and allows you to maintain and analyze your collection online.')
 
 @section('content')
   {{-- Welcome Page --}}

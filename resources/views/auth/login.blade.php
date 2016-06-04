@@ -1,8 +1,7 @@
 @extends('app')
 
-@section('title')
-	Login
-@endsection
+@section('robots', 'all')
+@section('title', 'Login')
 
 @section('content')
 <div class="container-fluid">
@@ -11,7 +10,7 @@
 			<a href="/"><img src="/images/logo_dark.png" alt="For the Record Logo" width="100px"></a>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="container">
 			<div class="panel panel-default margin-top">

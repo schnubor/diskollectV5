@@ -1,8 +1,10 @@
 @extends('app')
 
-@section('title')
-  {{ $vinyl->artist }} - {{ $vinyl->title }}
-@endsection
+@section('robots', 'all')
+@section('title'){{ $vinyl->artist }} - {{ $vinyl->title }}@endsection
+@section('ogimage'){{ $vinyl->artwork }}@endsection
+@section('description')Check out {{ $vinyl->artist }} - {{ $vinyl->title }} owned by {{ $user->username }} on therecord.de @endsection
+@section('keywords'), {{ $vinyl->artist }}, {{ $vinyl->title }} @endsection
 
 @section('content')
   <div class="content-area">

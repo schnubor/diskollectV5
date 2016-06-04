@@ -1,8 +1,7 @@
 @extends('app')
 
-@section('title')
-	Register
-@endsection
+@section('robots', 'all')
+@section('title', 'Register')
 
 @section('content')
 <div class="container-fluid">
@@ -11,7 +10,7 @@
 			<a href="/"><img src="/images/logo_dark.png" alt="For the Record Logo" width="100px"></a>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default margin-top">
@@ -47,8 +46,8 @@
 	            {!! Form::label('currency', 'Currency', ['class' => 'col-md-4 control-label']) !!}
 	            <div class="col-md-6">
 	              {!! Form::select('currency', [
-                    'EUR' => '&euro; - Euro', 
-                    'USD' => '&#36; - United States Dollar', 
+                    'EUR' => '&euro; - Euro',
+                    'USD' => '&#36; - United States Dollar',
                     'GBP' => '&pound; - Great Britain Pound'
                   ], 'EUR', ['class' => 'form-control']) !!}
 	            </div>

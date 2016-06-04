@@ -1,8 +1,10 @@
 @extends('app')
 
-@section('title')
-  {{$user->username}}s Collection
-@endsection
+@section('robots', 'all')
+@section('title'){{$user->username}}s Collection @endsection
+@section('ogimage'){{ $user->avatar }}@endsection
+@section('description')Check out {{ $user->username }}s vinyl collection on therecord.de @endsection
+@section('keywords', ', collection, community')
 
 @section('content')
   <div class="content-area" id="collection">
