@@ -2,7 +2,7 @@
 
 @section('robots', 'all')
 @section('title'){{ $user->username }}@endsection
-@section('ogimage'){{ $user->avatar }}@endsection
+@section('ogimage'){{ 'http://'.Request::server ("HTTP_HOST") }}{{ $user->image }}@endsection
 @section('description')Check out {{ $user->username }}s vinyl statistics on therecord.de @endsection
 @section('keywords', ', statistics, community')
 

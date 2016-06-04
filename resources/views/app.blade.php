@@ -11,7 +11,7 @@
 	<meta name="keywords" content="vinyl, record, therecord @yield('keywords')">
 
 	{{-- Social --}}
-	<meta property="og:image" content="@yield('ogimage', 'http://beta.diskollect.com/image/fb_image.jpg')">
+	<meta property="og:image" content="@yield('ogimage', 'http://beta.diskollect.com/images/fb_image.jpg')">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="@yield('title') | The Record">
 	<meta property="og:description" content="@yield('description', 'TheRecord.de is bringing vinyl collectors together and allows you to maintain and analyze your collection online.')">
