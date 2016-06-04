@@ -31,10 +31,6 @@
                 @else
                   <div class="col-md-12 text-center">
                     <p class="placeholder">This collection is only visible for followers.</p>
-                    {!! Form::open([ 'route' => 'follow' ]) !!}
-                      {!! Form::hidden('userIdToFollow', $user->id) !!}
-                      <button class="btn btn-md btn-success btn-follow" type="submit"><i class="fa fa-fw fa-plus"></i> Follow</button>
-                    {!! Form::close() !!}
                   </div>
                 @endif
               @else
@@ -46,13 +42,9 @@
         @else
             @if($user->collection_visibility == 'everyone')
                 <vinyls userid="{{ $user->id }}"></vinyls>
-            @elseif($user->collection_visibility == 'follow')
+            @elseif($user->collection_visibility == 'follower')
                 <div class="col-md-12 text-center">
                   <p class="placeholder">This collection is only visible for followers.</p>
-                  {!! Form::open([ 'route' => 'follow' ]) !!}
-                    {!! Form::hidden('userIdToFollow', $user->id) !!}
-                    <button class="btn btn-md btn-success btn-follow" type="submit"><i class="fa fa-fw fa-plus"></i> Follow</button>
-                  {!! Form::close() !!}
                 </div>
             @else
                 <div class="col-md-12 text-center">
