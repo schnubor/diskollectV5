@@ -38,7 +38,7 @@
                     <div class="vinylContent">
                         <a href="/vinyl/@{{ vinyl.id }}">
                             <div class="overlay">
-                                <div class="price">@{{ parseFloat(vinyl.price).toFixed(2) }} {{ Auth::user()->currency }}</div>
+                                <div class="price">@{{ parseFloat(vinyl.price).toFixed(2) }} {{ $user->currency }}</div>
                             </div>
                             <img :src="vinyl.artwork" alt="@{{ vinyl.artist }} - @{{ vinyl.title }}">
                         </a>
@@ -59,8 +59,10 @@
     @else
       <div class="col-md-12 text-center">
         <p class="placeholder">No vinyls in the collection yet.</p>
-        @if(Auth::user()->id == $user->id)
-          <a href="{{ route('get.search') }}" class="btn btn-primary btn-lg"><i class="fa fa-fw fa-plus"></i> Add vinyl</a>
+        @if(Auth::check())
+            @if(Auth::user()->id == $user->id)
+              <a href="{{ route('get.search') }}" class="btn btn-primary btn-lg"><i class="fa fa-fw fa-plus"></i> Add vinyl</a>
+            @endif
         @endif
       </div>
     @endif

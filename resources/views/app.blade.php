@@ -14,7 +14,7 @@
 	<meta property="og:image" content="@yield('ogimage', 'http://beta.diskollect.com/images/fb_image.jpg')">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="@yield('title') | The Record">
-	<meta property="og:description" content="@yield('description', 'TheRecord.de is bringing vinyl collectors together and allows you to maintain and analyze your collection online.')">
+	<meta property="og:description" content="@yield('description', 'therecord.de is bringing vinyl collectors together and allows you to maintain and analyze your record collection online.')">
 	<meta property="og:url" content="{{ Request::url() }}">
 	<meta property="og:site_name" content="therecord.de">
 

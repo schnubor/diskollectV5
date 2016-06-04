@@ -21,28 +21,45 @@
       @endif
     </div>
     <div class="col-md-12 content">
-
-      @if($user->collection_visibility == 'everyone' || Auth::user()->id == $user->id)
-        <vinyls userid="{{ $user->id }}"></vinyls>
-      @else {{-- not everyone can the collection --}}
-        @if($user->collection_visibility == 'follower')
-          @if($user->isFollowedBy(Auth::user()))
-            <vinyls userid="{{ $user->id }}"></vinyls>
-          @else
-            <div class="col-md-12 text-center">
-              <p class="placeholder">This collection is only visible for followers.</p>
-              {!! Form::open([ 'route' => 'follow' ]) !!}
-                {!! Form::hidden('userIdToFollow', $user->id) !!}
-                <button class="btn btn-md btn-success btn-follow" type="submit"><i class="fa fa-fw fa-plus"></i> Follow</button>
-              {!! Form::close() !!}
-            </div>
-          @endif
+        @if(Auth::check())
+            @if($user->collection_visibility == 'everyone' || Auth::user()->id == $user->id)
+              <vinyls userid="{{ $user->id }}"></vinyls>
+            @else {{-- not everyone can the collection --}}
+              @if($user->collection_visibility == 'follower')
+                @if($user->isFollowedBy(Auth::user()))
+                  <vinyls userid="{{ $user->id }}"></vinyls>
+                @else
+                  <div class="col-md-12 text-center">
+                    <p class="placeholder">This collection is only visible for followers.</p>
+                    {!! Form::open([ 'route' => 'follow' ]) !!}
+                      {!! Form::hidden('userIdToFollow', $user->id) !!}
+                      <button class="btn btn-md btn-success btn-follow" type="submit"><i class="fa fa-fw fa-plus"></i> Follow</button>
+                    {!! Form::close() !!}
+                  </div>
+                @endif
+              @else
+                <div class="col-md-12 text-center">
+                  <p class="placeholder">This collection is private.</p>
+                </div>
+              @endif
+            @endif
         @else
-          <div class="col-md-12 text-center">
-            <p class="placeholder">This collection is private.</p>
-          </div>
+            @if($user->collection_visibility == 'everyone')
+                <vinyls userid="{{ $user->id }}"></vinyls>
+            @elseif($user->collection_visibility == 'follow')
+                <div class="col-md-12 text-center">
+                  <p class="placeholder">This collection is only visible for followers.</p>
+                  {!! Form::open([ 'route' => 'follow' ]) !!}
+                    {!! Form::hidden('userIdToFollow', $user->id) !!}
+                    <button class="btn btn-md btn-success btn-follow" type="submit"><i class="fa fa-fw fa-plus"></i> Follow</button>
+                  {!! Form::close() !!}
+                </div>
+            @else
+                <div class="col-md-12 text-center">
+                  <p class="placeholder">This collection is private.</p>
+                </div>
+            @endif
         @endif
-      @endif
     </div>
   </div>
 
