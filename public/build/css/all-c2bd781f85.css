@@ -8162,6 +8162,11 @@ body.stop-scrolling {
       display: none; } }
   .content hr {
     border-top: 1px solid #DDD; }
+  .content small.timeInfo {
+    margin-bottom: 20px;
+    display: block;
+    padding-left: 10px;
+    color: #839393; }
 
 .textDevider {
   width: 100%;
@@ -8475,6 +8480,8 @@ p.placeholder {
   .avatar.tiny {
     height: 20px;
     width: 20px; }
+  .avatar.inline {
+    display: inline-block; }
 
 .btn {
   border-radius: 4px;
@@ -8582,6 +8589,17 @@ p.placeholder {
 
 .panel p {
   margin-bottom: 20px; }
+
+.panel .username {
+  display: inline-block;
+  line-height: 50px;
+  font-size: 24px;
+  vertical-align: top;
+  padding-left: 10px; }
+  .panel .username a {
+    color: black; }
+    .panel .username a:hover {
+      color: #839393; }
 
 .sidebar {
   background-color: #25292A;

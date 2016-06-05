@@ -27,4 +27,20 @@
   p{
     margin-bottom: 20px;
   }
+
+  .username {
+      display: inline-block;
+      line-height: 50px;
+      font-size: 24px;
+      vertical-align: top;
+      padding-left: 10px;
+
+      a{
+          color: black;
+
+          &:hover{
+              color: $lighter-grey;
+          }
+      }
+  }
 }

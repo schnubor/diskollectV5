@@ -64,7 +64,6 @@
               url: "/vinyl/" + vinyl.id + "/delete",
               method: "DELETE",
               success: function() {
-                console.log("deleted!");
                 return _this.list.$remove(vinyl);
               }
             });

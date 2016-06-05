@@ -54,7 +54,6 @@ Vue.component 'vinyls',
                     url: "/vinyl/#{vinyl.id}/delete"
                     method: "DELETE"
                     success: =>
-                        console.log "deleted!"
                         @list.$remove(vinyl)
 
         fetchVinylList: ->

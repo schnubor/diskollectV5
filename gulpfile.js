@@ -30,6 +30,7 @@ elixir(function(mix) {
   mix.coffee('jukebox.coffee');
   mix.coffee('search.coffee');
   mix.coffee('settings.coffee');
+  mix.coffee('vinyl.coffee');
   mix.coffee('welcome.coffee');
 
   // copy all bower files
@@ -39,8 +40,8 @@ elixir(function(mix) {
   mix.copy('bower_components/vue/dist/vue.js', 'public/js/vendor/vue.js');
   mix.copy('bower_components/vue-resource/dist/vue-resource.min.js', 'public/js/vendor/vue-resource.min.js');
   mix.copy('bower_components/bootstrap/dist/js/bootstrap.js', 'public/js/vendor/bootstrap.js');
-  mix.copy('bower_components/fontawesome/fonts', 'public/css/fonts');
-  mix.copy('bower_components/fontawesome/css/font-awesome.min.css', 'public/css/vendor/font-awesome.min.css');
+  mix.copy('bower_components/font-awesome/fonts', 'public/css/fonts');
+  mix.copy('bower_components/font-awesome/css/font-awesome.min.css', 'public/css/vendor/font-awesome.min.css');
   mix.copy('bower_components/lodash/dist/lodash.min.js', 'public/js/vendor/lodash.min.js');
   mix.copy('bower_components/Chart.js/dist/Chart.min.js', 'public/js/vendor/Chart.min.js');
   mix.copy('bower_components/dateformatjs/dateformat.min.js', 'public/js/vendor/dateformat.min.js');

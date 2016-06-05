@@ -125,7 +125,7 @@
             </div>
 
             <div class="form-group">
-              {!! Form::label('confirm', 'Current password again', ['class' => 'col-md-5 control-label']) !!}
+              {!! Form::label('confirm', 'New password again', ['class' => 'col-md-5 control-label']) !!}
               <div class="col-md-7">
                 {!! Form::password('confirm', ['class' => 'form-control', 'placeholder' => 'Required']) !!}
               </div>

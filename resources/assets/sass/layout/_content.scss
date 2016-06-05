@@ -68,6 +68,13 @@
     hr{
         border-top: 1px solid #DDD;
     }
+
+    small.timeInfo {
+        margin-bottom: 20px;
+        display: block;
+        padding-left: 10px;
+        color: $lighter-grey;
+    }
 }
 
 .textDevider {
