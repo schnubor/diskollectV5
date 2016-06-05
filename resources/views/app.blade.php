@@ -9,6 +9,7 @@
 	<title>@yield('title') | The Record</title>
 	<meta name="description" content="@yield('description', 'TheRecord.de is bringing vinyl collectors together and allows you to maintain and analyze your collection online.')">
 	<meta name="keywords" content="vinyl, record, therecord @yield('keywords')">
+	<link href="/images/apple-touch-icon.png" rel="apple-touch-icon">
 
 	{{-- Social --}}
 	<meta property="og:image" content="@yield('ogimage', 'http://beta.diskollect.com/images/fb_image.jpg')">
