@@ -65,7 +65,7 @@ class VinylsController extends Controller
         $identity = $client->getOAuthIdentity();
 
         $user = Auth::user(); // Current user
-    $user->discogs_access_token = $token->getIdentifier();
+        $user->discogs_access_token = $token->getIdentifier();
         $user->discogs_access_token_secret = $token->getSecret();
         $user->discogs_uri = $identity['resource_url'];
         $user->discogs_username = $identity['username'];
@@ -385,8 +385,15 @@ class VinylsController extends Controller
     public function destroy($id)
     {
         $vinyl = Vinyl::find($id);
-        if ($vinyl->delete()) {
-            return "deleted";
+        $owner = $vinyl->user;
+        $currentUser = Auth::user();
+
+        if($owner == $currentUser){
+            if ($vinyl->delete()) {
+                return "deleted";
+            }
         }
+
+        return response("Unauthorized", 401);
     }
 }

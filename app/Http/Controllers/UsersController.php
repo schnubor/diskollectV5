@@ -196,9 +196,13 @@ class UsersController extends Controller {
 	public function deleteCollection($id)
 	{
 		$user = User::findOrFail($id);
-        $user->vinyls()->delete();
 
-		return redirect()->route('user.collection', Auth::user()->id);
+		if(Auth::user() == $user){
+        	$user->vinyls()->delete();
+			return redirect()->route('user.collection', Auth::user()->id);
+		}
+
+		return response("Unauthorized", 401);
 	}
 
 
