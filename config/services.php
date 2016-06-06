@@ -15,8 +15,8 @@ return [
 	*/
 
 	'mailgun' => [
-		'domain' => '',
-		'secret' => '',
+		'domain' => 'therecord.de',
+		'secret' => env('MAIL_API_KEY'),
 	],
 
 	'mandrill' => [
