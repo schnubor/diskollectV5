@@ -11,7 +11,7 @@ class Track extends Model {
    */
   protected $table = 'tracks';
 
-  protected $fillable = ['vinyl_id','artist_id','number','title','artist','duration'];
+  protected $fillable = ['vinyl_id','number','title','artist','duration'];
 
   /**
    * Vinyl
