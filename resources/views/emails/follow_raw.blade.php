@@ -71,7 +71,7 @@
       font-size: 28px; }
 
     h3 {
-      font-size: 24px; 
+      font-size: 24px;
       text-align: center; }
 
     h4 {
@@ -96,7 +96,7 @@
       .container .masthead {
         padding: 110px 0;
         background: #E08447;
-        background-image: url('http://beta.diskollect.com/images/email_bg.jpg');
+        background-image: url('https://therecord.de/images/email_bg.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
@@ -140,7 +140,7 @@
 
                         <h2>Hi {{ $username }},</h2>
 
-                        <p>you got a new follower on FTR. Check out his profile:</p>
+                        <p>you got a new follower on therecord.de. Check out his profile:</p>
 
                         <table>
                             <tr>
@@ -157,9 +157,9 @@
                             </tr>
                         </table>
 
-                        <p>Enjoy FTR and feel free to give us feedback any time!</p>
+                        <p>Enjoy therecord.de and feel free to give us feedback any time!</p>
 
-                        <p><em>– Christian from FTR</em></p>
+                        <p><em>– Christian from therecord.de</em></p>
 
                     </td>
                 </tr>

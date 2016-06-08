@@ -61,7 +61,7 @@
       font-size: 28px; }
 
     h3 {
-      font-size: 24px; 
+      font-size: 24px;
       text-align: center; }
 
     h4 {
@@ -86,7 +86,7 @@
       .container .masthead {
         padding: 110px 0;
         background: #E08447;
-        background-image: url('http://beta.diskollect.com/images/email_bg.jpg');
+        background-image: url('https://therecord.de/images/email_bg.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
@@ -148,7 +148,7 @@
 
                         <p>You can change your password again, once you're logged in.</p>
 
-                        <p><em>– Christian from FTR</em></p>
+                        <p><em>– Christian from therecord.de</em></p>
 
                     </td>
                 </tr>

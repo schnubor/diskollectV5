@@ -61,7 +61,7 @@
       font-size: 28px; }
 
     h3 {
-      font-size: 24px; 
+      font-size: 24px;
       text-align: center; }
 
     h4 {
@@ -86,7 +86,7 @@
       .container .masthead {
         padding: 110px 0;
         background: #E08447;
-        background-image: url('http://beta.diskollect.com/images/email_bg.jpg');
+        background-image: url('https://therecord.de/images/email_bg.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
@@ -130,7 +130,7 @@
 
                         <h2>Hi {{ $username }},</h2>
 
-                        <p>thank you for signing up at FTR. Please click the button below to complete your registration.</p>
+                        <p>thank you for signing up at therecord.de. Please click the button below to complete your registration.</p>
 
                         <table>
                             <tr>
@@ -142,9 +142,9 @@
                             </tr>
                         </table>
 
-                        <p>Enjoy FTR and feel free to give us feedback any time!</p>
+                        <p>Enjoy therecord.de and feel free to give us feedback any time!</p>
 
-                        <p><em>– Christian from FTR</em></p>
+                        <p><em>– Christian from therecord.de</em></p>
 
                     </td>
                 </tr>
@@ -159,8 +159,7 @@
             <table>
                 <tr>
                     <td class="content footer" align="center">
-                        <p>Sent by <a href="http://beta.diskollect.com">For the record</a>, Berlin</p>
-                        <p>You can turn off email notifications in your <a href="#">profile settings</a>.</p>
+                        <p>Sent by <a href="http://therecord.de">The record</a>, Berlin</p>
                     </td>
                 </tr>
             </table>
