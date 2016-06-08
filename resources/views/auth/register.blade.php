@@ -7,7 +7,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="container text-center margin-top-50">
-			<a href="/"><img src="/images/logo_dark.png" alt="For the Record Logo" width="100px"></a>
+			<a href="/"><img src="/images/logo_dark.png" alt="The Record Logo" width="100px"></a>
 		</div>
 	</div>
 

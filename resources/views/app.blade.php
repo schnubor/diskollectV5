@@ -12,7 +12,7 @@
 	<link href="/images/apple-touch-icon.png" rel="apple-touch-icon">
 
 	{{-- Social --}}
-	<meta property="og:image" content="@yield('ogimage', 'http://beta.diskollect.com/images/fb_image.jpg')">
+	<meta property="og:image" content="@yield('ogimage', 'https://therecord.de/images/fb_image.jpg')">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="@yield('title') | The Record">
 	<meta property="og:description" content="@yield('description', 'therecord.de is bringing vinyl collectors together and allows you to maintain and analyze your record collection online.')">

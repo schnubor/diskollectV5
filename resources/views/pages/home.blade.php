@@ -16,7 +16,7 @@
       </video>
       <div class="header-content container">
         <div class="logo">
-          <img src="/images/logo.png" alt="For the record">
+          <img src="/images/logo.png" alt="The Record">
         </div>
         <h1>Your vinyls new home.</h1>
         <h2>Manage, rediscover and analyse your collection.</h2>
@@ -59,7 +59,7 @@
         <div class="col-md-4">
           <p class="h3">Open Data. Minimal effort.</p>
           <p class="description">
-            For The Record is part of the Open Data Movement and integrates with different APIs like Discogs, iTunes or Youtube to automatically fetch all the data for your records. It also has its own API.
+            The Record is part of the Open Data Movement and integrates with different APIs like Discogs, iTunes or Youtube to automatically fetch all the data for your records. It also has its own API.
           </p>
         </div>
         <div class="col-md-7 col-md-offset-1">
@@ -73,7 +73,7 @@
         <div class="col-md-4">
           <p class="h3">Collect and connect.</p>
           <p class="description">
-            Share your collection with anyone you know and follow other collectors to explore their music and discover new records. For The Record turns collecting into an collective experience.
+            Share your collection with anyone you know and follow other collectors to explore their music and discover new records. The Record turns collecting into an collective experience.
           </p>
         </div>
         <div class="col-md-7 col-md-offset-1">

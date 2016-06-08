@@ -159,7 +159,7 @@
             <table>
                 <tr>
                     <td class="content footer" align="center">
-                        <p>Sent by <a href="http://therecord.de">The record</a>, Berlin</p>
+                        <p>Sent by <a href="http://therecord.de">therecord.de</a>, Berlin</p>
                     </td>
                 </tr>
             </table>

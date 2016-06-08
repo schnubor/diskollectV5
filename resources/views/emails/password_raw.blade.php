@@ -163,8 +163,7 @@
             <table>
                 <tr>
                     <td class="content footer" align="center">
-                        <p>Sent by <a href="http://beta.diskollect.com">For the record</a>, Berlin</p>
-                        <p>You can turn off email notifications in your <a href="#">profile settings</a>.</p>
+                        <p>Sent by <a href="https://therecord.de">therecord.de</a>, Berlin</p>
                     </td>
                 </tr>
             </table>

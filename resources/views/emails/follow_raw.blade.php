@@ -47,7 +47,7 @@
       border-radius: 75px;
       -webkit-border-radius: 75px;
       -moz-border-radius: 75px;
-      background: url('http://beta.diskollect.com/images/users/{{ $follower->image }}') center center no-repeat;
+      background: url('https://therecord.de/images/users/{{ $follower->image }}') center center no-repeat;
       background-size: cover;
     }
 
@@ -174,8 +174,8 @@
             <table>
                 <tr>
                     <td class="content footer" align="center">
-                        <p>Sent by <a href="http://beta.diskollect.com">For the record</a>, Berlin</p>
-                        <p>You can turn off email notifications in your <a href="#">profile settings</a>.</p>
+                        <p>Sent by <a href="https://therecord.de">therecord.de</a>, Berlin</p>
+                        <p>You can turn off email notifications in your <a href="https://therecord.de/settings">profile settings</a>.</p>
                     </td>
                 </tr>
             </table>
