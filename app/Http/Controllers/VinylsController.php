@@ -232,7 +232,6 @@ class VinylsController extends Controller
                 foreach ($tracklist as $track) {
                     Track::create([
                         'vinyl_id' => $vinyl->id,
-                        'artist_id' => 1,
                         'artist' => $vinyl->artist,
                         'title' => $track['title'],
                         'number' => $track['position'],
@@ -356,7 +355,6 @@ class VinylsController extends Controller
           } else {
               Track::create([
             'vinyl_id' => $vinyl->id,
-            'artist_id' => 1,
             'artist' => $vinyl->artist,
             'title' => $request->input('track_'.$i.'_title'),
             'number' => $request->input('track_'.$i.'_position'),
