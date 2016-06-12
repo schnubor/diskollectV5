@@ -10,6 +10,7 @@
 	<meta name="description" content="@yield('description', 'TheRecord.de is bringing vinyl collectors together and allows you to maintain and analyze your collection online.')">
 	<meta name="keywords" content="vinyl, record, therecord @yield('keywords')">
 	<link href="/images/apple-touch-icon.png" rel="apple-touch-icon">
+	<meta name="google-site-verification" content="5yzH2z3tjL4bQoC_F_vRho5xpEMYI0itj5AJR6wTaLo" />
 
 	{{-- Social --}}
 	<meta property="og:image" content="@yield('ogimage', 'https://therecord.de/images/fb_image.jpg')">
@@ -36,6 +37,8 @@
 	<![endif]-->
 </head>
 <body>
+	@include('partials.analytics')
+
 	<div class="flash-message">
 		@include('flash::message')
 	</div>
