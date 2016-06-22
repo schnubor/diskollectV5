@@ -40,13 +40,15 @@
         @endforeach
       @else
         <div class="col-md-12 text-center">
-          <p class="placeholder">Following noone.</p>
-          @if(Auth::user()->id == $user->id)
-            <a href="{{ route('user.index') }}" class="btn btn-primary btn-lg"><i class="fa fa-fw fa-users"></i> Collectors</a>
+          <p class="placeholder">Not following anyone yet.</p>
+          @if(Auth::check())
+              @if(Auth::user()->id == $user->id)
+                <a href="{{ route('user.index') }}" class="btn btn-primary btn-lg"><i class="fa fa-fw fa-users"></i> Collectors</a>
+              @endif
           @endif
         </div>
       @endif
-      
+
       <div class="row text-center">
         {!! $followings->render() !!}
       </div>
