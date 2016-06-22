@@ -78,7 +78,6 @@
     margin: 0; } }
 
 html, body {
-  height: 100%;
   font-family: 'Open Sans', sans-serif; }
 
 body {
@@ -188,11 +187,12 @@ p.placeholder {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    height: 100%;
+    height: 600px;
     color: #F0F0F0;
-    overflow: hidden; }
+    overflow: hidden;
+    position: relative; }
     #welcome .header #bgvid {
-      height: 100%; }
+      width: 120%; }
     #welcome .header .header-menu {
       position: absolute;
       top: 0;
@@ -262,12 +262,12 @@ p.placeholder {
   #welcome .cta {
     text-align: center; }
     #welcome .cta .btn.btn-primary.btn-header {
-      margin-top: 50px;
+      margin-top: 30px;
       border: 1px solid #F0F0F0;
-      height: 60px;
-      width: 200px;
+      height: 50px;
+      width: 170px;
       font-weight: lighter;
-      line-height: 35px;
+      line-height: 25px;
       border-radius: 4px;
       background-color: transparent;
       transition: 0.4s all; }

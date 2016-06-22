@@ -19,7 +19,6 @@
           <img src="/images/logo.png" alt="The Record">
         </div>
         <h1>Your vinyls new home.</h1>
-        <h2>Manage, rediscover and analyse your collection.</h2>
         <div class="cta">
           <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-header">Start here.</a>
         </div>

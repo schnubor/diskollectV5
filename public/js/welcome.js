@@ -4,7 +4,7 @@
   scaleVid = function() {
     var height, ratio, widescreen, width;
     width = $(window).width();
-    height = $(window).height();
+    height = 600;
     ratio = width / height;
     widescreen = 16 / 9;
     if (ratio < widescreen) {
