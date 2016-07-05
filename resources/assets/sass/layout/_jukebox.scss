@@ -1,7 +1,6 @@
 #jukebox{
     .videoBg {
-        height: 100%;
-        padding-top: 70px;
+        height: calc(100% - 71px);
         position: absolute;
         width: calc(100% - 65px);
         overflow: hidden;
