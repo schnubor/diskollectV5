@@ -10,7 +10,7 @@
       <p class="lead"><strong>Collectors</strong></p>
     </div>
 
-    <div class="col-md-12 content" id="collectors">
+    <div class="container content" id="collectors">
       @foreach(array_chunk($users->all(), 6) as $userRow)
         <div class="row padding15">
           @foreach($userRow as $user)

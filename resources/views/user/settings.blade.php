@@ -10,7 +10,7 @@
       <p class="lead"><strong>Settings</strong></p>
     </div>
 
-    <div class="col-md-12 content" id="settings">
+    <div class="container content" id="settings">
       {{-- Flash messages --}}
       <div class="col-md-12">
         @if (session('status'))

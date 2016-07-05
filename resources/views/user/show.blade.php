@@ -21,7 +21,7 @@
       @endif
     </div>
 
-    <div class="col-md-12 content">
+    <div class="container content">
       @if($user->statistics_visibility == 'everyone' || Auth::user()->id == $user->id)
         @include('partials.statistics')
       @else {{-- not everyone can the collection --}}

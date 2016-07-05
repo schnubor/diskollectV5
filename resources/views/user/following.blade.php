@@ -20,7 +20,7 @@
     </div>
 
     {{-- Content --}}
-    <div class="col-md-12 content">
+    <div class="container content">
       @if($followings->count())
         @foreach(array_chunk($followings->all(), 6) as $followerRow)
           <div class="row padding15">

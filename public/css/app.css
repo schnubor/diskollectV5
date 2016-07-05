@@ -601,7 +601,8 @@ p.placeholder {
   color: #333;
   padding: 0 30px;
   height: 71px;
-  border-bottom: 1px solid #DDD; }
+  border-bottom: 1px solid #DDD;
+  float: none; }
   @media (max-width: 991px) {
     .toolbar {
       padding: 0 15px; } }

@@ -7,7 +7,7 @@
         <div class="col-md-12 toolbar">
             <p class="lead news">Add new vinyls</p>
         </div>
-        <div class="col-md-12 content">
+        <div class="container content">
             @unless($user->discogs_access_token)
             <div class="help">
                 <div class="col-md-12 text-center">

@@ -9,7 +9,7 @@
     <div class="col-md-12 toolbar">
       <p class="lead">Import from Discogs</p>
     </div>
-    <div class="col-md-12 content">
+    <div class="container content">
       <div class="col-md-12 js-importResults">
         @if(Auth::user()->discogs_username)
           <button class="btn btn-lg btn-primary js-startImport"><i class="fa fa-fw fa-download"></i> Scan Discogs</button>

@@ -20,7 +20,7 @@
         @include('user.partials.dropdown')
       @endif
     </div>
-    <div class="col-md-12 content">
+    <div class="container content">
         @if(Auth::check())
             @if($user->collection_visibility == 'everyone' || Auth::user()->id == $user->id)
               <vinyls userid="{{ $user->id }}"></vinyls>

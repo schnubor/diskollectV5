@@ -15,7 +15,7 @@
     </div>
 
     {{-- Content --}}
-    <div class="col-md-12 content">
+    <div class="container content">
       {{-- Cover --}}
       <div class="col-md-4">
         <div class="panel panel-default">

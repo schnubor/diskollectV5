@@ -10,7 +10,7 @@
     <div class="col-md-12 toolbar">
       <p class="lead pull-left">{{ $vinyl->artist }} - {{ $vinyl->title }}</p>
     </div>
-    <div class="col-md-12 content">
+    <div class="container content">
       {{-- Left side --}}
       <div class="col-md-6">
         <div class="thumbnail">

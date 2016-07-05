@@ -10,7 +10,7 @@
         Welcome <a href="{{ route('user.show', $latestUser->id) }}">{{ $latestUser->username }}</a> to the party!
       </p>
     </div>
-    <div class="col-md-12 content">
+    <div class="container content">
       {{-- Activities --}}
       <div class="col-md-6 activities">
         <div class="panel panel-default">

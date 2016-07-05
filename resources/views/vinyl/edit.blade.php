@@ -15,7 +15,7 @@
     </div>
 
     {{-- Content --}}
-    <div class="col-md-12 content">
+    <div class="container content">
       <div class="row col-md-12">
         {{-- Cover --}}
         <div class="col-md-4">
@@ -143,7 +143,7 @@
               </div>
             </div>
           </div>
-          
+
           {{-- Tracklist --}}
           <div class="panel panel-default">
             <div class="panel-heading">Tracklist</div>
@@ -169,7 +169,7 @@
               <button type="button" class="js-add-track btn btn-md btn-default"><i class="fa fa-plus"></i> Add Track</button>
             </div>
           </div>
-          
+
           {{-- Submit --}}
           {!! Form::submit('Save', array('class' => 'btn btn-lg btn-primary pull-right', 'style' => 'margin: 15px 0')) !!}
         </div>

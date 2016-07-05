@@ -21,7 +21,7 @@
     </div>
 
     {{-- Content --}}
-    <div class="col-md-12 content">
+    <div class="container content">
       @if($followers->count())
         @foreach(array_chunk($followers->all(), 6) as $followerRow)
           <div class="row padding15">
@@ -44,7 +44,7 @@
           <p class="placeholder">No Followers yet.</p>
         </div>
       @endif
-      
+
       <div class="row text-center">
         {!! $followers->render() !!}
       </div>
