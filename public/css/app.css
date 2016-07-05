@@ -364,6 +364,12 @@ p.placeholder {
   .avatar.inline {
     display: inline-block; }
 
+.avatartext {
+  display: block;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
 .btn {
   border-radius: 4px;
   border: 0; }

@@ -82,7 +82,7 @@
               <div class="col-sm-3 text-center">
                 <a href="{{route('user.show', $member->id)}}"><div class="avatar sm" style="background-image: url('{{ $member->image }}');"></div></a>
                 <p>
-                  <span>{{ $member->username }}</span>
+                  <span class="avatartext">{{ $member->username }}</span>
                 </p>
               </div>
             @endforeach
