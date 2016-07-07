@@ -21,7 +21,7 @@
 	<meta property="og:site_name" content="therecord.de">
 
 	{{-- Fonts --}}
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
 	{{-- Styles, Scripts, etc. --}}
 	<link rel="stylesheet" href="{{ elixir("css/all.css") }}">
