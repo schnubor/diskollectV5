@@ -64,6 +64,11 @@ Route::get('/api/discogs/{id}', [
     'uses' => 'ApiController@getDiscogsId'
 ]);
 
+Route::get('/api/discogs/marketplace/{id}', [
+    'as' => 'api.discogs.marketplace',
+    'uses' => 'ApiController@getDiscogsMarketplaceId'
+]);
+
 /**
  * User
  */
