@@ -10,9 +10,10 @@
       <p class="lead">Import from Discogs</p>
     </div>
     <div class="container content">
-      <div class="col-md-12 js-importResults">
+      <div class="col-md-12 js-importResults text-center">
         @if(Auth::user()->discogs_username)
-          <button class="btn btn-lg btn-primary js-startImport"><i class="fa fa-fw fa-download"></i> Scan Discogs</button>
+          <p class="lead">Scan and compare your Discogs collection.</p>
+          <button class="btn btn-lg btn-primary js-startImport"><i class="fa fa-fw fa-search"></i> Scan Discogs now</button>
         @else
           <a href="{{ route('get.oAuthDiscogs') }}" class="btn btn-lg btn-primary"><i class="fa fa-fw fa-exchange"></i> Authorize with Discogs</a>
         @endif
