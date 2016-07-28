@@ -4,6 +4,9 @@
 @section('ogimage'){{ $vinyl->artwork }}@endsection
 @section('description')Check out {{ $vinyl->artist }} - {{ $vinyl->title }} owned by {{ $user->username }} on therecord.de @endsection
 @section('keywords'), {{ $vinyl->artist }}, {{ $vinyl->title }} @endsection
+@if($user->collection_visibility == 'everyone')
+    @section('robots', 'all')
+@endif
 
 @section('content')
   <div class="content-area" id="singleVinyl">
@@ -114,7 +117,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Affiliate Links</div>
             <div class="panel-body">
-                <a href="{{ $vinyl->discogs_uri }}" class="btn btn-warning btn-lg btn-block text-center"><i class="fa fa-shopping-bag"></i> Buy on Discogs.com</a>
+                <a href="{{ $vinyl->discogs_uri }}" rel="nofollow" class="btn btn-warning btn-lg btn-block text-center"><i class="fa fa-shopping-bag"></i> Buy on Discogs.com</a>
             </div>
         </div>
         @endif

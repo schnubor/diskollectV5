@@ -1,6 +1,8 @@
 @extends('app')
 
-@section('robots', 'all')
+@if($user->collection_visibility == 'everyone')
+    @section('robots', 'all')
+@endif
 @section('title'){{$user->username}}s Collection @endsection
 @section('ogimage'){{ 'http://'.Request::server ("HTTP_HOST") }}{{ $user->image }}@endsection
 @section('description')Check out {{ $user->username }}s vinyl collection on therecord.de @endsection

@@ -1,6 +1,8 @@
 @extends('app')
 
-@section('robots', 'all')
+@if($user->statistics_visibility == 'everyone')
+    @section('robots', 'all')
+@endif
 @section('title'){{ $user->username }}@endsection
 @section('ogimage'){{ 'http://'.Request::server ("HTTP_HOST") }}{{ $user->image }}@endsection
 @section('description')Check out {{ $user->username }}s vinyl statistics on therecord.de @endsection
