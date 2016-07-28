@@ -19,7 +19,7 @@
         <small class="timeInfo">Added {{ date("d. F Y", strtotime($vinyl->created_at)) }}, last updated {{ date("d. F Y", strtotime($vinyl->updated_at)) }}</small>
         @foreach($videos as $video)
           <div class="panel panel-default">
-            <div class="panel-heading">{{ $video->title }} <span class="label label-default pull-right">{{ gmdate('H:i:s', $video->duration) }}</span></div>
+            <div class="panel-heading">{{ $video->title }}</div>
             <div class="panel-body">
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="{{ $video->uri }}"></iframe>
@@ -101,10 +101,6 @@
                   <td>{{ $vinyl->weight }}g</td>
                 </tr>
               @endif
-              <tr>
-                <td><strong>Qty &amp; Size</strong></td>
-                <td>{{ $vinyl->count }}x {{ $vinyl->size }}" {{ $vinyl->releasetype }}</td>
-              </tr>
               @if($vinyl->notes)
                 <tr>
                   <td><strong>Notes</strong></td>

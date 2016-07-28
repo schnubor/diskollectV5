@@ -39,7 +39,7 @@
 </div>
 
 {{-- Genres --}}
-<div class="col-md-6">
+<div class="col-md-9">
   <div class="panel panel-default">
     <div class="panel-heading"><strong>Genre Distribution</strong></div>
     <div class="panel-body">
@@ -51,7 +51,7 @@
   </div>
 </div>
 
-{{-- Sizes --}}
+{{-- Sizes
 <div class="col-md-6">
   <div class="panel panel-default">
     <div class="panel-heading"><strong>Record Sizes</strong></div>
@@ -63,6 +63,7 @@
     </div>
   </div>
 </div>
+--}}
 
 {{-- Value Vinyl --}}
 <div class="col-md-3">
@@ -89,7 +90,7 @@
 </div>
 
 {{-- Times --}}
-<div class="col-md-9">
+<div class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading"><strong>Record Release Dates</strong></div>
     <div class="panel-body">

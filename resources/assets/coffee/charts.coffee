@@ -118,11 +118,13 @@ new Vue
                 type: 'pie',
                 data: @genreData
 
+            ###
             sizeChartCanvas = $("#sizeChart")
             sizeChart = new Chart sizeChartCanvas,
                 type: 'pie',
                 data: @sizeData
-
+            ###
+            
             timeChartCanvas = $("#timeChart")
             timeChart = new Chart timeChartCanvas,
                 type: 'line',

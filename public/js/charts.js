@@ -69,7 +69,7 @@
         })(this));
       },
       generateCharts: function(vinyls) {
-        var allGenres, allSizes, allTimes, genreChart, genreChartCanvas, genreCount, sizeChart, sizeChartCanvas, sizeCount, timeChart, timeChartCanvas, timeCount;
+        var allGenres, allSizes, allTimes, genreChart, genreChartCanvas, genreCount, sizeCount, timeChart, timeChartCanvas, timeCount;
         allGenres = [];
         allSizes = [];
         allTimes = [];
@@ -114,11 +114,13 @@
           type: 'pie',
           data: this.genreData
         });
-        sizeChartCanvas = $("#sizeChart");
-        sizeChart = new Chart(sizeChartCanvas, {
-          type: 'pie',
-          data: this.sizeData
-        });
+
+        /*
+        sizeChartCanvas = $("#sizeChart")
+        sizeChart = new Chart sizeChartCanvas,
+            type: 'pie',
+            data: @sizeData
+         */
         timeChartCanvas = $("#timeChart");
         return timeChart = new Chart(timeChartCanvas, {
           type: 'line',
