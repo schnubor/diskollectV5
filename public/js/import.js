@@ -68,7 +68,6 @@
       },
       success: function(response) {
         var currentPage, promises, request;
-        console.log('pagination: ', response.pagination);
         promises = [];
         currentPage = 1;
         while (currentPage <= response.pagination.pages) {
@@ -81,7 +80,6 @@
             },
             success: function(response) {
               var i, len, ref, release, results;
-              console.log(response);
               ref = response.releases;
               results = [];
               for (i = 0, len = ref.length; i < len; i++) {

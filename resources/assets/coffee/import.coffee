@@ -55,7 +55,6 @@ $.getReleases = (username, user_id) ->
             console.log status
             console.log error
         success: (response) ->
-            console.log 'pagination: ', response.pagination
             promises = []
             currentPage = 1
 
@@ -69,7 +68,6 @@ $.getReleases = (username, user_id) ->
                         console.log status
                         console.log error
                     success: (response) ->
-                        console.log response
                         for release in response.releases
                             discogs_vinyls.push release
                 promises.push(request)
