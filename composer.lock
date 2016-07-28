@@ -1949,12 +1949,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schnubor/php-discogs-api.git",
-                "reference": "77d13f109f055cf0f9f831fa28c02b8a0860092a"
+                "reference": "8ceeb75f4bc907807a060f721e027b9bc91afe2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schnubor/php-discogs-api/zipball/77d13f109f055cf0f9f831fa28c02b8a0860092a",
-                "reference": "77d13f109f055cf0f9f831fa28c02b8a0860092a",
+                "url": "https://api.github.com/repos/schnubor/php-discogs-api/zipball/8ceeb75f4bc907807a060f721e027b9bc91afe2c",
+                "reference": "8ceeb75f4bc907807a060f721e027b9bc91afe2c",
                 "shasum": ""
             },
             "require": {
@@ -2001,7 +2001,7 @@
             "support": {
                 "source": "https://github.com/schnubor/php-discogs-api/tree/master"
             },
-            "time": "2016-07-27 22:14:41"
+            "time": "2016-07-28 18:35:27"
         },
         {
             "name": "swiftmailer/swiftmailer",

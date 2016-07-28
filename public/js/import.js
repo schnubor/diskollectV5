@@ -60,7 +60,7 @@
     user_vinyls = [];
     discogs_vinyls = [];
     return $.ajax({
-      url: "https://api.discogs.com/users/" + username + "/collection/folders/0/releases?page=1&per_page=100",
+      url: "/api/discogs/user/" + username + "/releases/1",
       type: 'GET',
       error: function(x, status, error) {
         console.log(status);
@@ -73,7 +73,7 @@
         currentPage = 1;
         while (currentPage <= response.pagination.pages) {
           request = $.ajax({
-            url: "https://api.discogs.com/users/" + username + "/collection/folders/0/releases?page=" + currentPage + "&per_page=100",
+            url: "/api/discogs/user/" + username + "/releases/" + currentPage,
             type: 'GET',
             error: function(x, status, error) {
               console.log(status);
@@ -145,26 +145,23 @@
           return console.log(error);
         },
         success: function(vinyl) {
-          var userCurrency;
+          var $vinylData, userCurrency;
           userCurrency = $('meta[name=user-currency]').attr('content');
-          return $.fetchPrice(vinyl.id, userCurrency, function(price) {
-            var $vinylData;
-            $vinylData = $.mapVinylData(vinyl);
-            $vinylData.price = price;
-            $vinylData._token = $('meta[name=csrf-token]').attr('content');
-            return $.ajax({
-              url: '/vinyl/create',
-              type: 'POST',
-              data: $vinylData,
-              success: function(reponse) {
-                console.log("vinyl " + n + " added!");
-                n++;
-                return processNext(n);
-              },
-              error: function(error) {
-                return console.warn(error);
-              }
-            });
+          $vinylData = $.mapVinylData(vinyl);
+          $vinylData.price = 0;
+          $vinylData._token = $('meta[name=csrf-token]').attr('content');
+          return $.ajax({
+            url: '/vinyl/create',
+            type: 'POST',
+            data: $vinylData,
+            success: function(reponse) {
+              console.log("vinyl " + n + " added!");
+              n++;
+              return processNext(n);
+            },
+            error: function(error) {
+              return console.warn(error);
+            }
           });
         }
       });

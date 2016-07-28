@@ -69,6 +69,11 @@ Route::get('/api/discogs/marketplace/{id}', [
     'uses' => 'ApiController@getDiscogsMarketplaceId'
 ]);
 
+Route::get('/api/discogs/user/{username}/releases/{page}', [
+    'as' => 'api.discogs.user.releases',
+    'uses' => 'ApiController@getDiscogsUserReleases'
+]);
+
 /**
  * User
  */

@@ -49,7 +49,7 @@ $.getReleases = (username, user_id) ->
     discogs_vinyls = []
 
     $.ajax
-        url: "https://api.discogs.com/users/#{username}/collection/folders/0/releases?page=1&per_page=100"
+        url: "/api/discogs/user/#{username}/releases/1"
         type: 'GET'
         error: (x,status,error) ->
             console.log status
@@ -63,7 +63,7 @@ $.getReleases = (username, user_id) ->
             # -----------------------------------------------
             while currentPage <= response.pagination.pages
                 request = $.ajax
-                    url: "https://api.discogs.com/users/#{username}/collection/folders/0/releases?page=#{currentPage}&per_page=100"
+                    url: "/api/discogs/user/#{username}/releases/#{currentPage}"
                     type: 'GET'
                     error: (x,status,error) ->
                         console.log status
@@ -125,21 +125,21 @@ processNext = (n) ->
                 console.log error
             success: (vinyl) -> # fetched vinyl from Discogs
                 userCurrency = $('meta[name=user-currency]').attr('content')
-                $.fetchPrice vinyl.id, userCurrency, (price) ->
-                    $vinylData = $.mapVinylData vinyl
-                    $vinylData.price = price
-                    $vinylData._token = $('meta[name=csrf-token]').attr('content')  # attach CSRF token
+                # $.fetchPrice vinyl.id, userCurrency, (price) ->
+                $vinylData = $.mapVinylData vinyl
+                $vinylData.price = 0 # until there is a way to get the price again.
+                $vinylData._token = $('meta[name=csrf-token]').attr('content')  # attach CSRF token
 
-                    $.ajax
-                        url: '/vinyl/create'
-                        type: 'POST'
-                        data: $vinylData
-                        success: (reponse) ->
-                            console.log "vinyl #{n} added!"
-                            n++
-                            processNext(n)
-                        error: (error) ->
-                            console.warn error
+                $.ajax
+                    url: '/vinyl/create'
+                    type: 'POST'
+                    data: $vinylData
+                    success: (reponse) ->
+                        console.log "vinyl #{n} added!"
+                        n++
+                        processNext(n)
+                    error: (error) ->
+                        console.warn error
     else # import complete
         $('.js-currentImportVinyl').hide()
         $('.js-importProgress .progress-bar').addClass('progress-bar-success')

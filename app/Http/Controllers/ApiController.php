@@ -87,7 +87,7 @@ class ApiController extends Controller {
     $user = User::find($id);
     $client = Discogs\ClientFactory::factory([
       'defaults' => [
-        'headers' => ['User-Agent' => 'therecord/0.1 +https://www.diskollect.com'],
+        'headers' => ['User-Agent' => 'therecord/0.1 +https://therecord.de'],
       ]
     ]);
     $client->getHttpClient()->getEmitter()->attach(new Discogs\Subscriber\ThrottleSubscriber());
@@ -107,7 +107,7 @@ class ApiController extends Controller {
   }
 
   /**
-   * Get ID from Discogs
+   * Get release ID from Discogs
    *
    * @return Response
    */
@@ -116,7 +116,7 @@ class ApiController extends Controller {
 
     $client = Discogs\ClientFactory::factory([
     'defaults' => [
-       'headers' => ['User-Agent' => 'therecord/0.1 +https://www.diskollect.com'],
+       'headers' => ['User-Agent' => 'therecord/0.1 +https://therecord.de'],
     ],
     ]);
     $client->getHttpClient()->getEmitter()->attach(new Discogs\Subscriber\ThrottleSubscriber());
@@ -135,7 +135,7 @@ class ApiController extends Controller {
   }
 
   /**
-   * Get ID from Discogs
+   * Get release ID from Discogs Marketplace
    *
    * @return Response
    */
@@ -144,7 +144,7 @@ class ApiController extends Controller {
 
     $client = Discogs\ClientFactory::factory([
         'defaults' => [
-           'headers' => ['User-Agent' => 'therecord/0.1 +https://www.diskollect.com'],
+           'headers' => ['User-Agent' => 'therecord/0.1 +https://therecord.de'],
         ],
     ]);
     $client->getHttpClient()->getEmitter()->attach(new Discogs\Subscriber\ThrottleSubscriber());
@@ -158,6 +158,34 @@ class ApiController extends Controller {
     $client->getHttpClient()->getEmitter()->attach($oauth);
 
     $data = $client->marketplaceSearch(['release_id' => $id]);
+
+    return $data;
+  }
+
+  /**
+   * Get ID from Discogs
+   *
+   * @return Response
+   */
+  public function getDiscogsUserReleases($username, $page){
+    $user = Auth::user();
+
+    $client = Discogs\ClientFactory::factory([
+        'defaults' => [
+           'headers' => ['User-Agent' => 'therecord/0.1 +https://therecord.de'],
+        ],
+    ]);
+    $client->getHttpClient()->getEmitter()->attach(new Discogs\Subscriber\ThrottleSubscriber());
+
+    $oauth = new GuzzleHttp\Subscriber\Oauth\Oauth1([
+      'consumer_key' => env('DC_CONSUMER_KEY'), // from Discogs developer page
+      'consumer_secret' => env('DC_CONSUMER_SECRET'), // from Discogs developer page
+      'token' => $user->discogs_access_token, // get this using a OAuth library
+      'token_secret' => $user->discogs_access_token_secret, // get this using a OAuth library
+    ]);
+    $client->getHttpClient()->getEmitter()->attach($oauth);
+
+    $data = $client->getCollection(['username' => $username, 'page' => $page]);
 
     return $data;
   }

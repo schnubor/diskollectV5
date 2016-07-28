@@ -121,17 +121,24 @@
       }
     });
     userCurrency = $('#userCurrency').val();
-    $.fetchPrice(vinyl.id, userCurrency, function(price) {
-      if (isNaN(price)) {
-        modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove();
-        $('#currencyLabel').text(userCurrency).show();
-        $('#price').remove();
-        return $('#priceLabelText').text('What did you pay?');
-      } else {
-        $('#price').html(price + ' ' + userCurrency);
-        return modal.find('input[name="price"]').val(price);
-      }
-    });
+
+    /* Disabled until Discogs allows to fetch a price again
+    $.fetchPrice vinyl.id, userCurrency, (price) ->
+         * show the price & add to form
+        if(isNaN(price))
+             * no prices on Discogs -> show text input for price
+            modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove()
+            $('#currencyLabel').text(userCurrency).show()
+            $('#price').remove()
+            $('#priceLabelText').text('What did you pay?')
+        else
+            $('#price').html(price+' '+userCurrency)
+            modal.find('input[name="price"]').val(price)
+     */
+    modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove();
+    $('#currencyLabel').text(userCurrency).show();
+    $('#price').remove();
+    $('#priceLabelText').text('What did you pay?');
     $('#searchModalSubmit').disabled = false;
     $vinylData = $.mapVinylData(vinyl);
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');

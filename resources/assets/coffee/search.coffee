@@ -131,6 +131,7 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
 
     # fetch price
     userCurrency = $('#userCurrency').val()
+    ### Disabled until Discogs allows to fetch a price again
     $.fetchPrice vinyl.id, userCurrency, (price) ->
         # show the price & add to form
         if(isNaN(price))
@@ -142,6 +143,13 @@ $('#quickAddVinyl').on 'show.bs.modal', (e) ->
         else
             $('#price').html(price+' '+userCurrency)
             modal.find('input[name="price"]').val(price)
+    ###
+
+    # no prices on Discogs -> show text input for price
+    modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove()
+    $('#currencyLabel').text(userCurrency).show()
+    $('#price').remove()
+    $('#priceLabelText').text('What did you pay?')
 
     # enable submit button
     $('#searchModalSubmit').disabled = false
