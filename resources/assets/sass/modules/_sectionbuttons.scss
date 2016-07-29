@@ -1,0 +1,51 @@
+.section-buttons {
+    font-size: 0;
+
+    hr {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .button {
+        border-radius: 50%;
+        color: white;
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+
+        &.jukebox {
+            background-color: $purple;
+            &:hover{
+                background-color: $dark-purple;
+            }
+        }
+
+        &.collection {
+            background-color: $blue;
+            &:hover{
+                background-color: $dark-blue;
+            }
+        }
+
+        &.statistics {
+            background-color: $green;
+            &:hover{
+                background-color: $dark-green;
+            }
+        }
+
+        &.friends {
+            background-color: $yellow;
+            &:hover{
+                background-color: $dark-yellow;
+            }
+        }
+
+        &.sm{
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            margin-right: 8px;
+        }
+    }
+}

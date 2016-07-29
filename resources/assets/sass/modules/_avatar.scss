@@ -5,6 +5,10 @@
   background-position: center center;
   background-color: #DDD;
 
+  &.no-radius{
+    border-radius: 0;
+  }
+
   &.edgy{
     border-radius: 4px;
     background-color: $light-grey;

@@ -112,6 +112,9 @@
             &.purple {
                 color: $purple;
             }
+            &.yellow {
+                color: $yellow;
+            }
             background-color: $dark-grey;
         }
         &.add {
@@ -140,7 +143,7 @@
                 display: none;
             }
         }
-        
+
         .triangle {
             display: none;
         }

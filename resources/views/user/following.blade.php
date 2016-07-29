@@ -25,14 +25,22 @@
         @foreach(array_chunk($followings->all(), 6) as $followerRow)
           <div class="row padding15">
             @foreach($followerRow as $follower)
-              <div class="col-sm-2 collector">
+              <div class="col-sm-4 collector">
                 <div class="thumbnail">
-                  <a href="{{ route('user.show', $follower->id) }}"><div class="avatar" style="background-image: url('{{ $follower->image }}');"></div></a>
-                  <div class="caption">
+                  <a href="{{ route('user.show', $follower->id) }}"><div class="avatar big edgy pull-left" style="background-image: url('{{ $follower->image }}');"></div></a>
+                  <div class="caption pull-left">
                     <p class="h4"><a href="{{ route('user.show', $follower->id) }}"><strong class="username">{{ $follower->username }}</strong></a></p>
                     <p>{{ $follower->vinyls->count() }} Records</p>
                     <div class="text-left">@include('user.partials.follow', ['user' => $follower])</div>
+                    <div class="section-buttons">
+                        <hr>
+                        <a href="{{ route('user.show', $follower->id) }}" class="button statistics sm" data-toggle="tooltip" data-placement="bottom" title="Statistics" data-original-title="Statistics"><i class="fa fa-area-chart"></i></a>
+                        <a href="{{ route('user.collection', $follower->id) }}" class="button collection sm" data-toggle="tooltip" data-placement="bottom" title="Collection" data-original-title="Collection"><i class="fa fa-database"></i></a>
+                        <a href="{{ route('user.jukebox', $follower->id) }}" class="button jukebox sm" data-toggle="tooltip" data-placement="bottom" title="Jukebox" data-original-title="Jukebox"><i class="fa fa-play"></i></a>
+                        <a href="{{ route('user.following', $follower->id) }}" class="button friends sm" data-toggle="tooltip" data-placement="bottom" title="Friends" data-original-title="Friends"><i class="fa fa-users"></i></a>
+                    </div>
                   </div>
+                  <div style="clear: both;"></div>
                 </div>
               </div>
             @endforeach

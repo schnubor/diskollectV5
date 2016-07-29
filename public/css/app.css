@@ -117,14 +117,14 @@ a:hover {
   background-color: #6EB85F; }
 
 .purple {
-  color: #9D3F51; }
+  color: #f26161; }
   .purple.hover {
     color: #839393; }
     .purple.hover:hover {
-      color: #9D3F51; }
+      color: #f26161; }
 
 .purple-bg {
-  background-color: #9D3F51; }
+  background-color: #f26161; }
 
 .no-padding {
   padding: 0; }
@@ -339,6 +339,8 @@ p.placeholder {
   background-repeat: no-repeat;
   background-position: center center;
   background-color: #DDD; }
+  .avatar.no-radius {
+    border-radius: 0; }
   .avatar.edgy {
     border-radius: 4px;
     background-color: #3E4545; }
@@ -402,12 +404,6 @@ p.placeholder {
   white-space: nowrap;
   width: 100%;
   display: block; }
-
-.collector .avatar {
-  margin: 0px auto 0;
-  width: 100%;
-  height: 150px;
-  border-radius: 0; }
 
 .collector a {
   color: #333333; }
@@ -486,6 +482,39 @@ p.placeholder {
     color: black; }
     .panel .username a:hover {
       color: #839393; }
+
+.section-buttons {
+  font-size: 0; }
+  .section-buttons hr {
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  .section-buttons .button {
+    border-radius: 50%;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px; }
+    .section-buttons .button.jukebox {
+      background-color: #f26161; }
+      .section-buttons .button.jukebox:hover {
+        background-color: #bd4b4b; }
+    .section-buttons .button.collection {
+      background-color: #1E89B7; }
+      .section-buttons .button.collection:hover {
+        background-color: #176D93; }
+    .section-buttons .button.statistics {
+      background-color: #6EB85F; }
+      .section-buttons .button.statistics:hover {
+        background-color: #59954D; }
+    .section-buttons .button.friends {
+      background-color: #f2ec61; }
+      .section-buttons .button.friends:hover {
+        background-color: #c8c350; }
+    .section-buttons .button.sm {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      margin-right: 8px; }
 
 .sidebar {
   background-color: #25292A;
@@ -579,7 +608,10 @@ p.placeholder {
         color: #6EB85F; }
       .sidebar .button:hover.purple,
       .sidebar .button.active.purple {
-        color: #9D3F51; }
+        color: #f26161; }
+      .sidebar .button:hover.yellow,
+      .sidebar .button.active.yellow {
+        color: #f2ec61; }
     .sidebar .button.add {
       background-color: #1E89B7;
       color: #F0F0F0; }

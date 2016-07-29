@@ -53,7 +53,17 @@
       @else
         <div class="button purple">
       @endif
-        <i class="fa fa-fw fa-music"></i>
+        <i class="fa fa-fw fa-play"></i>
+      </div>
+    </a>
+    {{-- Friends --}}
+    <a href="{{ route('user.following', Auth::user()->id) }}" data-toggle="tooltip" data-placement="right" title="Friends" data-original-title="Friends">
+      @if(Request::url() == route('user.following', Auth::user()->id))
+        <div class="button yellow active">
+      @else
+        <div class="button yellow">
+      @endif
+        <i class="fa fa-fw fa-users"></i>
       </div>
     </a>
     </div>
