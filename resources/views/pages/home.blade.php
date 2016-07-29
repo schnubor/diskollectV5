@@ -117,13 +117,10 @@
           You could be one of them.
         </p>
         @foreach($latestMembers as $member)
-          <div class="col-sm-2 collector">
-            <div class="thumbnail">
-              <a href="{{ route('user.show', $member->id) }}"><div class="avatar" style="background-image: url('{{ $member->image }}');"></div></a>
-              <div class="caption">
-                <p class="h4"><a href="{{ route('user.show', $member->id) }}"><strong class="username">{{ $member->username }}</strong></a></p>
-              </div>
-            </div>
+          <div class="col-sm-2 text-center">
+              <a href="{{ route('user.show', $member->id) }}" style="display: inline-block;" data-toggle="tooltip" data-placement="top" title="{{ $member->username }}" data-original-title="{{ $member->username }}">
+                  <div class="avatar md inline margin-bottom-20" style="background-image: url('{{ $member->image }}');"></div>
+              </a>
           </div>
         @endforeach
 
