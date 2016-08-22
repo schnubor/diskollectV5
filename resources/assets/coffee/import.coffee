@@ -123,9 +123,7 @@ processNext = (n) ->
                 console.log error
             success: (vinyl) -> # fetched vinyl from Discogs
                 userCurrency = $('meta[name=user-currency]').attr('content')
-                # $.fetchPrice vinyl.id, userCurrency, (price) ->
                 $vinylData = $.mapVinylData vinyl
-                $vinylData.price = 0 # until there is a way to get the price again.
                 $vinylData._token = $('meta[name=csrf-token]').attr('content')  # attach CSRF token
 
                 $.ajax

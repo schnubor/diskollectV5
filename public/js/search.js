@@ -134,11 +134,23 @@
         else
             $('#price').html(price+' '+userCurrency)
             modal.find('input[name="price"]').val(price)
+    
+    
+     * no prices on Discogs -> show text input for price
+    modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove()
+    $('#currencyLabel').text(userCurrency).show()
+    $('#price').remove()
+    $('#priceLabelText').text('What did you pay?')
      */
-    modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove();
-    $('#currencyLabel').text(userCurrency).show();
-    $('#price').remove();
-    $('#priceLabelText').text('What did you pay?');
+    if (vinyl.lowest_price) {
+      $('#price').html(Math.round(vinyl.lowest_price * 100) / 100 + ' ' + userCurrency);
+      modal.find('input[name="price"]').val(vinyl.lowest_price);
+    } else {
+      modal.find('input[name="price"]').before('<input type="text" name="price" class="form-control" placeholder="required" required aria-describedby="currencyLabel"/>').remove();
+      $('#currencyLabel').text(userCurrency).show();
+      $('#price').remove();
+      $('#priceLabelText').text('What did you pay?');
+    }
     $('#searchModalSubmit').disabled = false;
     $vinylData = $.mapVinylData(vinyl);
     modal.find('.modal-title').text('Add "' + vinyl.artists[0].name + ' - ' + vinyl.title + '" to collection');

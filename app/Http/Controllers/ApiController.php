@@ -129,7 +129,7 @@ class ApiController extends Controller {
     ]);
     $client->getHttpClient()->getEmitter()->attach($oauth);
 
-    $data = $client->getRelease(['id' => $id]);
+    $data = $client->getRelease(['id' => $id, 'curr_abbr' => $user->currency]);
 
     return $data;
   }
@@ -185,7 +185,7 @@ class ApiController extends Controller {
     ]);
     $client->getHttpClient()->getEmitter()->attach($oauth);
 
-    $data = $client->getCollection(['username' => $username, 'page' => $page]);
+    $data = $client->getCollection(['username' => $username, 'folder_id' => 0, 'per_page' => 100, 'page' => intval($page)]);
 
     return $data;
   }

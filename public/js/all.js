@@ -22638,6 +22638,11 @@ c=c*d+o*u;var g=h/c;this.tickUnit="millisecond",this.scaleSizeInUnits=this.lastT
     } else {
       $vinylData.cover = 'images/PH_vinyl.svg';
     }
+    if (vinyl.lowest_price) {
+      $vinylData.price = vinyl.lowest_price;
+    } else {
+      $vinylData.price = 0;
+    }
     if (vinyl.labels) {
       $vinylData.label = vinyl.labels[0].name;
       if (vinyl.labels[0].catno) {
@@ -22731,4 +22736,5 @@ c=c*d+o*u;var g=h/c;this.tickUnit="millisecond",this.scaleSizeInUnits=this.lastT
 }).call(this);
 
 //# sourceMappingURL=app.js.map
+
 //# sourceMappingURL=all.js.map

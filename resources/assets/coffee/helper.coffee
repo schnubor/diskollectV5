@@ -77,6 +77,12 @@ $.mapVinylData = (vinyl) ->
     else
         $vinylData.cover = 'images/PH_vinyl.svg'
 
+    # price
+    if vinyl.lowest_price
+        $vinylData.price = vinyl.lowest_price
+    else
+        $vinylData.price = 0
+
     # label & catno
     if vinyl.labels
         $vinylData.label = vinyl.labels[0].name

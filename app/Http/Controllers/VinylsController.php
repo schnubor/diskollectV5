@@ -140,7 +140,7 @@ class VinylsController extends Controller
 
         foreach ($response['results'] as $result) {
             if ($result['type'] == 'release') { // Release
-                $release = $client->getRelease(['id' => $result['id']]);
+                $release = $client->getRelease(['id' => $result['id'], 'curr_abbr' => $user->currency]);
                 $release['type'] = 'release';
                 array_push($results, $release);
             } else { // Master

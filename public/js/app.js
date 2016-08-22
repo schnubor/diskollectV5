@@ -86,6 +86,11 @@
     } else {
       $vinylData.cover = 'images/PH_vinyl.svg';
     }
+    if (vinyl.lowest_price) {
+      $vinylData.price = vinyl.lowest_price;
+    } else {
+      $vinylData.price = 0;
+    }
     if (vinyl.labels) {
       $vinylData.label = vinyl.labels[0].name;
       if (vinyl.labels[0].catno) {

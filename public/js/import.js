@@ -146,7 +146,6 @@
           var $vinylData, userCurrency;
           userCurrency = $('meta[name=user-currency]').attr('content');
           $vinylData = $.mapVinylData(vinyl);
-          $vinylData.price = 0;
           $vinylData._token = $('meta[name=csrf-token]').attr('content');
           return $.ajax({
             url: '/vinyl/create',
