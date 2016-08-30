@@ -185,7 +185,7 @@ class ApiController extends Controller {
     ]);
     $client->getHttpClient()->getEmitter()->attach($oauth);
 
-    $data = $client->getCollectionReleases(['username' => $username, 'folder_id' => 0, 'per_page' => 100, 'page' => intval($page)]);
+    $data = $client->getCollectionItemsByFolder(['username' => $username, 'folder_id' => 0, 'per_page' => 100, 'page' => intval($page)]);
 
     return $data;
   }
