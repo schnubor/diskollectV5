@@ -22,8 +22,8 @@ class CreateUsersTable extends Migration {
 			$table->string('location', 50)->nullable();
 			$table->string('image')->default('/images/PH_user_large.png');
 			$table->string('description', 140)->nullable();
-			$table->string('password', 60);
-			$table->string('password_temp', 60)->nullable();
+			$table->string('password', 255);
+			$table->string('password_temp', 255)->nullable();
 			$table->string('code', 60)->nullable();
 			$table->string('discogs_access_token')->nullable();
 			$table->string('discogs_access_token_secret')->nullable();
